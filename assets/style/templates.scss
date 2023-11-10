@@ -1,0 +1,57 @@
+//общие стили сюда
+
+//переменные
+// фон остальных блоков
+$background-color: #990094;
+
+// тексты, в т.ч. и на кнопках
+$color: #ffccfd;
+
+// цвет кнопки
+$btnBackGround: black;
+$btnBackGroundHover: rgb(85, 14, 73);
+
+// фон остальных блоков
+$background: #990094;
+
+// цвет заголовков по страницам
+$headers: #ffffff;
+
+// переменные для шрифтов
+$font-texts: "Poppins";
+$font-titles: "Rubik";
+$font-btns: "Fira Sans Condensed";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    //общий класс для кнопок
+    background-color: $btnBackGround;
+    border-radius: 4vh;
+    border: solid black 1px;
+    color: $color;
+    width: 15vw;
+    height: 7vh; //поиграть с размерами для адаптива
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: $btnBackGroundHover;
+    box-shadow: 5px 5px 5px #ffccfd;
+}
+
+// общий контейнер для страниц
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 3vw;
+    padding-top: 4vh;
+    margin: 0 10vw 3vh 3vw;
+    background-color: $background-color;
+    height: 100vh;
+    color: $color;
+    border-radius: 4vh 4vh 40vh 4vh;
+}
