@@ -1,10 +1,21 @@
 //общие стили сюда
 
  //переменные
+ /*фон остальных блоков*/
  $background-color:#990094;
+
+ /*тексты, в т.ч. и на кнопках*/
  $color: #FFCCFD;
+
+ /*цвет кнопки*/
  $btnBackGround: black;
  $btnBackGroundHover:rgb(85, 14, 73);
+
+/*фон остальных блоков*/
+ $background: #990094;
+
+/*цвет заголовков по страницам*/
+$headers: #FFFFFF;
 
 
  *{
@@ -12,7 +23,6 @@
   margin: 0;
   padding: 0;
 }
-
 
 .btn{ //общий класс для кнопок
   background-color: $btnBackGround;
