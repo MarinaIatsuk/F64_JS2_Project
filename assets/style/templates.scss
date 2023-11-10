@@ -1,1 +1,42 @@
 //общие стили сюда
+
+ //переменные
+ $background-color:#990094;
+ $color: #FFCCFD;
+ $btnBackGround: black;
+ $btnBackGroundHover:rgb(85, 14, 73);
+
+
+ *{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.btn{ //общий класс для кнопок
+  background-color: $btnBackGround;
+  border-radius: 4vh;
+  border: solid black 1px;
+  color:$color;
+  width: 15vw;
+  height: 7vh;  //поиграть с размерами для адаптива
+  cursor: pointer;
+ }
+ .btn:hover {
+  background-color:$btnBackGroundHover;
+  box-shadow: 5px 5px 5px  #FFCCFD;
+ }
+
+ // общий контейнер для страниц
+.container {  
+  display: flex;
+  flex-direction: column;
+  padding-left: 3vw;
+  padding-top: 4vh;
+  margin:  0 10vw 3vh 3vw;
+  background-color:$background-color;
+  height: 100vh;
+  color:$color;
+  border-radius: 4vh 4vh 40vh 4vh;
+  }
