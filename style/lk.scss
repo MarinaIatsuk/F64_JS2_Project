@@ -1,0 +1,53 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ //переменные
+$background-color:#990094;
+$color: #FFCCFD;
+$btnBackGround: black;
+$btnBackGroundHover:rgb(85, 14, 73);
+
+.btn{ //общий класс для кнопок
+  background-color: $btnBackGround;
+  border-radius: 35px;
+  border: solid black 1px;
+  color:$color;
+  width: 226px;
+  height: 63px;
+  cursor: pointer;
+ }
+ .btn:hover {
+  background-color:$btnBackGroundHover;
+  box-shadow: 5px 5px 5px  #FFCCFD;
+ }
+// общий контейнер для страниц
+.container {  
+  display: flex;
+  flex-direction: column;
+  padding-left: 34px;
+  padding-top: 34px;
+  margin: 0 60px 15px 15px;
+  background-color:$background-color;
+  height: 100vh;
+  color:$color;
+  border-radius: 4vh 4vh 40vh 4vh;
+  }
+
+
+
+.lk{
+  &__title{
+    padding-bottom: 40px;
+  }
+
+  .createListBtn{
+     margin-bottom: 50px;
+  }
+  &__list{
+    display: flex;
+    flex-grow: 1;
+  }
+}

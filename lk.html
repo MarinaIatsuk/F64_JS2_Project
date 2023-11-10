@@ -2,23 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./style/index.scss" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/lk.scss" />
   </head>
   <body>
     <div class="lk" id="lk">
       <div class="container">
-        <h2 class="lk__title">Личный кабинет</h2>
+        <h2 class="lk__title title">Личный кабинет</h2>
         <div class="lk__list list">
           <h3 list__title>Мои списки:</h3>
           <div class="list__names"></div>
-          <div class="list__movieList"></div>
         </div>
-
-        <button class="createListBtn btn">Создать новый список</button>
+        <div class="lk__movieList"></div>
       </div>
+      <button class="createListBtn btn">Создать новый список</button>
     </div>
-    <script type="module" src="./src/main.js"></script>
   </body>
 </html>
