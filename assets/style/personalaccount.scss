@@ -1,0 +1,49 @@
+body {
+  overflow-x: hidden;
+}
+
+.lk{
+  &__title{
+    padding-bottom: 40px;
+  }
+
+  .createListBtn{
+     margin-bottom: 50px;
+  }
+  &__list{
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+
+
+/* кнопочка закрытия модального окна */
+.modalClose {
+/*   font-family: ; */
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* сама картинка кнопочки закрытия */
+.modalClose img {
+  margin: 3px;
+  width: 24px;
+  height: 24px;
+}
+
+.modalWindow {
+  position: relative;
+}
+
+
+.modalList__wrapper{
+  display: flex;
+  flex-direction: column;
+  
+ 
+}
