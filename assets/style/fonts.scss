@@ -1,0 +1,39 @@
+// Poppins для начертания ExtraLight
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins"), local("Poppins-ExtraLight"),
+        url("../fonts/Poppins-ExtraLight.woff") format("woff"),
+        url("../fonts/Poppins-ExtraLight.ttf") format("ttf");
+    font-weight: 200;
+    font-style: normal;
+}
+
+// Poppins для начертания Light
+@font-face {
+    font-family: "Poppins";
+    src: local("Poppins"), local("Poppins-Light"),
+        url("../fonts/Poppins-Light.woff") format("woff"),
+        url("../fonts/Poppins-Light.ttf") format("ttf");
+    font-weight: 300;
+    font-style: normal;
+}
+
+// Rubik для начертания Bold
+@font-face {
+    font-family: "Rubik";
+    src: local("Rubik Bold"), local("Rubik-Bold"),
+        url("../fonts/Rubik-Bold.woff") format("woff"),
+        url("../fonts/Rubik-Bold.ttf") format("ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+// Fira Sans Condensed для начертания Medium
+@font-face {
+    font-family: "Fira Sans Condensed";
+    src: local("Fira Sans Condensed"), local("FiraSansCondensed-Medium"),
+        url("../fonts/FiraSansCondensed-Medium.woff") format("woff"),
+        url("../fonts/FiraSansCondensed-Medium.ttf") format("ttf");
+    font-weight: 500;
+    font-style: normal;
+}
