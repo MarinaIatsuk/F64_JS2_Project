@@ -102,12 +102,13 @@ padding:  1vh 2vw;
           background-color: $backgroundLine;
           color:$color; 
           font-family: $font-btns;
-      
-         
-        
-           }
-    } 
+            }
+            } 
     }
+
   }
 
 
+/*   $mobile: "screen and (max-width: 599px)";
+  $tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
+  $desktop: "screen and (min-width: 1024px)"; */
