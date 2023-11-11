@@ -3,7 +3,8 @@
 //переменные
 // фон  блоков
 $background-color: #990094;
-
+$backgroundLine: #330031;
+$inputcolor:#D9D9D9;
 // тексты, в т.ч. и на кнопках
 $color: #ffccfd;
 
@@ -28,6 +29,7 @@ $font-btns: "Fira Sans Condensed";
 .btn {
     //общий класс для кнопок
     background-color: $btnBackGround;
+    font-family: $font-btns;
     border-radius: 4vh;
     border: solid black 1px;
     color: $color;
@@ -37,7 +39,7 @@ $font-btns: "Fira Sans Condensed";
 }
 .btn:hover {
     background-color: $btnBackGroundHover;
-    box-shadow: 5px 5px 5px #ffccfd;
+    box-shadow: 5px 5px 5px $color;
 }
 
 // общий контейнер для страниц

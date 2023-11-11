@@ -5,45 +5,80 @@ body {
 .lk{
   &__title{
     padding-bottom: 40px;
+   font-family:$font-titles;
   }
 
-  .createListBtn{
+  &__btn{
      margin-bottom: 50px;
+     
   }
   &__list{
+    font-family: $font-texts;
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
+    li{
+      list-style-type: none;
+      padding-top: 1vh;
+    }
+    a{
+      text-decoration: none;
+    }
   }
-}
-
-
-
-/* кнопочка закрытия модального окна */
-.modalClose {
-/*   font-family: ; */
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-/* сама картинка кнопочки закрытия */
-.modalClose img {
-  margin: 3px;
-  width: 24px;
-  height: 24px;
-}
-
-.modalWindow {
-  position: relative;
-}
-
-
-.modalList__wrapper{
-  display: flex;
-  flex-direction: column;
+  &__modalList{
+    margin: 100px auto;
+    position: relative;
+      border:none;
+      border-radius: 2vh;
+      width: 40vw;
+      height: 35vh;
+     
+      .modalList{
+           
+        &__title{
+         text-align: center;
+        background-color: $backgroundLine;
+        color:$color;
+        font-family:$font-titles;
+        padding: 2vh 0;
+        }
+        &__input{
+            display: flex;
+          flex-direction: column;
+      .input{
+        &__label{
+          font-family:$font-btns;
+          padding: 3vh 0;
+          text-align: center;
+          
+        }
+        &__text{
+             width: 75%;
+margin: 0 auto;
+padding:  1vh 2vw;
+            background-color: $inputcolor;
+            font-family: $font-texts;
+            border: none;
+            border-radius: 2vh;
+          }
+                  }
+                }
+        &__btn{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 2vh 0;
+          width: 100%;
+          border: none;
+          background-color: $backgroundLine;
+          color:$color; 
+          font-family: $font-btns;
+      
+         
+        
+           }
+    } 
+    }
   
- 
 }
+
