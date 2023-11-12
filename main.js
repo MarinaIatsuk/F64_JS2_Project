@@ -5,10 +5,3 @@
 //Пример импорта переменных: import{btn, container} from './vars.js'
 //Пример импорта функций import{one, two} from './function.js'
 // Важно! Не смешиваем переменные и функции. Функции с функциями, переменные с переменными
-
-// Подключать свои example_scr.js сюда
-// И в файл example.html подключить main.js так:
-// <script type="module" src="./main.js"></script>
-
-// Подключаем скрипты
-import "./src/catalog_scr";
