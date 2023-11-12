@@ -8,12 +8,12 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container_catalog container">
             <div class="container__header">Каталог</div>
             <div class="container__list">
-                <form class="container__genre">
+                <form class="container__box">
                     <label for="genre">Жанр</label>
-                    <select id="genre" name="genre">
+                    <select class="container__item" id="genre" name="genre">
                         <option value="all">Все жанры</option>
                         <option value="1">триллер</option>
                         <option value="2">драма</option>
@@ -39,10 +39,8 @@
                         <option value="22">документальный</option>
                         <option value="23">короткометражка</option>
                         <option value="24">аниме</option>
-                        <!-- <option value="25"></option> -->
                         <option value="26">новости</option>
                         <option value="27">концерт</option>
-                        <option value="28">для взрослых</option>
                         <option value="29">церемония</option>
                         <option value="30">реальное ТВ</option>
                         <option value="31">игра</option>
@@ -50,30 +48,9 @@
                         <option value="33">детский</option>
                     </select>
                 </form>
-                <!-- <form class="container__year">
-                    <label for="year">Год</label>
-                    <select id="year" name="year">
-                        <option value="all">Все года</option>
-                        <option value="2021-2023">2021-2023</option>
-                        <option value="2020-2022">2020-2022</option>
-                        <option value="2016-2019">2016-2019</option>
-                        <option value="2010-2015">2010-2015</option>
-                        <option value="2000-1995">2000-1995</option>
-                        <option value="1995">до 1995</option>
-                    </select>
-                </form> -->
-                <!-- <form class="container__raiting">
-                    <label for="year">Рейтинг</label>
-                    <select id="raiting" name="raiting">
-                        <option value="all">Все рейтинги</option>
-                        <option value="9-10">9-10</option>
-                        <option value="7-8">7-8</option>
-                        <option value="6">6 и меньше</option>
-                    </select>
-                </form> -->
-                <form class="container__country">
+                <form class="container__box">
                     <label for="country">Страна</label>
-                    <select id="country" name="country">
+                    <select class="container__item" id="country" name="country">
                         <option value="all">Все страны</option>
                         <option value="1">США</option>
                         <option value="2">Швейцария</option>
@@ -91,11 +68,10 @@
                         <option value="14">Канада</option>
                         <option value="15">Мексика</option>
                     </select>
-
                 </form>
-                <form class="container__movie-serial">
-                    <label for="movie-serial">Год</label>
-                    <select id="movie-serial" name="movie-serial">
+                <form class="container__box">
+                    <label for="movie-serial">Фильм или сериал?</label>
+                    <select class="container__item" id="movie-serial" name="movie-serial">
                         <option value="ALL">И сериалы и фильмы</option>
                         <option value="FILM">Фильмы</option>
                         <option value="TV_SHOW">тв-шоу</option>
@@ -103,11 +79,18 @@
                         <option value="MINI_SERIES">Мини-сериалы</option>
                     </select>
                 </form>
+                <div class="btn-wrapper">
+                    <button class="btn">Поиск</button>
+                </div>
+                
             </div>
+            
             <div class="container__content">
-                >
+
+                
+
             </div>
-            <button class="btn">Поиск</button>
+            
         </div>
         <script type="module" src="./main.js"></script>
     </body>
