@@ -13,3 +13,5 @@
 // которые относятся к функционалу именно этой страницы
 // import "./another";
 import'./catalog'
+import'./personalaccount'
+
