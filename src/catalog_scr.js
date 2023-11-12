@@ -33,17 +33,17 @@ function updateContainer(data) {
     data.items.forEach((film) => {
         const item = document.createElement("div");
         item.classList.add("content__item");
-        const template = `
-        <div class="content__poster"></div>
-        <div class="content__info">
+        const template = 
+        `
         <div class="content__poster">
-        <img src=" ${film.posterUrlPreview}" alt="poster"
-       </div>
-            <div class="content__title">Название: ${film.nameRu}</div>
-            <div class="content__year">Год выхода фильма: ${film.year}</div>
-            <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-        </div>
-  `
+                    <img src=" ${film.posterUrlPreview}" alt="poster" class="poster__img">
+                    </div>
+                    <div class="content__info">
+                        <div class="content__title">Название: ${film.nameRu}</div>
+                        <div class="content__year">Год выхода фильма: ${film.year}</div>
+                        <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
+                    </div>
+        `
         item.innerHTML = template
         container.appendChild(item);
 
