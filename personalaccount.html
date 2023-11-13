@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style/main.scss" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="lk" id="lk">
+      <div class="container">
+        <h2 class="lk__title title">Личный кабинет</h2>
+        <!--      <h3>Иия пользователя</h3> -->
+        <div class="lk__list list">
+          <h3 class="list__title">Мои списки:</h3>
+          <div class="list__movieList"></div>
+        </div>
+        <button class="lk__btn btn">Создать новый список</button>
+      </div>
+      <dialog class="lk__modalList modallist">
+        <div id="modal-box" class="modalList__wrapper">
+          <div class="modalList__title">Новый список</div>
+          <div class="modalList__input input">
+            <label for="listInput" class="input__label"
+              >Введите название списка:</label
+            >
+            <input type="text" id="listInput" class="input__text" />
+          </div>
+          <button class="modalList__btn">Создать</button>
+        </div>
+      </dialog>
+    </div>
+    <script src="./src/personalaccount.js"></script>
+  </body>
+</html>
