@@ -1,0 +1,32 @@
+
+.block-movie {
+    &__title-wrapper {
+        display: flex;
+    }
+
+    &__title{
+        color: azure;
+    }
+    &__main-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__cotanier-wrapper {
+        display: flex;
+    }
+
+    &__poster-wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__poster{
+        max-width: 250px;
+    }
+
+    // &__common-info-about{}
+
+    // &__id-kinopoisk
+
+}
