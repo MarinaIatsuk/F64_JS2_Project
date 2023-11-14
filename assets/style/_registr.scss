@@ -87,15 +87,13 @@ input {
         cursor: pointer;
     }
 
-    form{
-        &__btn-text{
-            cursor: pointer;
-        }
+}
+
+.form{
+    &__btn-text{
+        cursor: pointer;
     }
 }
 
-// form{
-//     &__btn-text{
-//         cursor: pointer;
-//     }
-// }
+
+

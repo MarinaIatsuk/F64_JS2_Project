@@ -131,10 +131,10 @@ submButton.addEventListener('click', () => {
                 .then(res => {
                     const info = {
                         id: res._id,
-                        likes: [],
-                        comments: [],
-                        rating: [],
-                        wish: []
+                        likes: {},
+                        comments: {},
+                        rating: {},
+                        wish: {}
                     }
                     db_post('info', info)
                         .catch(e => alert("Database error!"));
