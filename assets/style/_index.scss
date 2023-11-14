@@ -6,3 +6,13 @@
 // @import "./example";
 // Подключать в example.html так:
 // <link rel="stylesheet" href="./assets/style/main.scss" />
+
+
+.cont {
+    display: flex;
+    justify-content: end;
+    &__btn{
+        padding: 5px 10px;
+    }
+}
+

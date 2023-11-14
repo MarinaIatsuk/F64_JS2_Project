@@ -4,9 +4,56 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vite App</title>
-        <link rel="stylesheet" href="./assets/style/main.scss" />
+        <!-- <link rel="stylesheet" href="./assets/style/main.scss" /> -->
+        <link rel="stylesheet" href="./assets/style/_index.scss">
     </head>
     <body>
+      <!-- Кнопка временная -->
+      <div class="cont">
+        <button class="cont__btn" id="btnOpen">Войти</button>
+      </div>
+
+
+      <!-- Модальное окно -->
+      <dialog class="dialog" id="windModal">
+        <div class="dialog__close">
+          <button class="dialog__close" id="btnClose">X</button>
+        </div>
+        <div class="dialog__container" id="formContainer">
+          <h2 class="dialog__title">MOVIE Сервис</h2>
+          <p class="dialog__text">Войти в личный кабинет</p>
+          <form class="dialog-form" name="oneForm" novalidate>
+            <div class="dialog-form__email">
+              <label for="secondEmail" class="dialog-form__email-text">Email</label>
+              <input type="email" name="secondEmail" class="dialog-form__email-input" id="textEmail" pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$"
+                placeholder="Введите email..." required>
+    
+              <p class="dialog-form__email-error"></p>
+            </div>
+            <div class="dialog-form__password">
+              <label for="secondPassword">Пароль</label>
+              <input name="newPassword" type="password" id="secondPassword" placeholder="Введите пароль..." minlength="8"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
+    
+              <p class="error-message"></p>
+            </div>
+            <div class="form__btn">
+              <input class="form__btn-text" type="submit" name="sendForm" id="btnText" value="Войти">
+            </div>
+          </form>
+    
+          <div>
+            <p>Новенький?</p>
+            <a href="">Создай аккаунт</a>
+          </div>
+        </div>
+      </dialog>
+    
+      <a href="./registr.html">перейти</a>
+
+
+
+      <script type="module" src="./src/db.js"></script>
         <!-- <script type="module" src="./main.js"></script> -->
         <script type="module" src="./src/index.js"></script>
     </body>

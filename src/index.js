@@ -12,4 +12,25 @@
 // В файл example.js импортируем те js-файлы,
 // которые относятся к функционалу именно этой страницы
 // import "./another";
-import'./catalog'
+// import'./catalog';
+
+const btnOpen = document.querySelector('#btnOpen');
+
+const windModal = document.querySelector('#windModal');
+const btnClose = document.querySelector('#btnClose');
+// const formContainer= document.querySelector('#formContainer');
+
+function openModal(){
+    window.windModal.showModal();
+}
+
+function closeModal(){
+    window.windModal.close();
+}
+
+
+btnOpen.addEventListener('click', openModal);
+btnClose.addEventListener('click', closeModal);
+// formContainer.addEventListener('click', (e)=>{
+//     e.stopPropagation();
+// })
