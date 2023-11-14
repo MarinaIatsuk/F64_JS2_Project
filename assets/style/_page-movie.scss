@@ -1,12 +1,19 @@
-
 .block-movie {
     &__title-wrapper {
+        font-family: $font-titles;
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-left: 2vw;
+        padding-bottom: 2vw;
     }
 
-    &__title{
-        color: azure;
+    &__ratingAgeLimit {
+        max-width: 6vw;
+        margin-right: 5vw;
     }
+
     &__main-section {
         display: flex;
         flex-direction: column;
@@ -16,17 +23,58 @@
         display: flex;
     }
 
-    &__poster-wrapper{
+    &__poster-wrapper {
         display: flex;
         flex-direction: column;
     }
 
-    &__poster{
+    &__poster {
         max-width: 250px;
+        border-radius: 10%;
     }
 
-    // &__common-info-about{}
+    &__common-info-about {
+        display: flex;
+        flex-grow: 1;
+    }
 
-    // &__id-kinopoisk
+    &__info-wrapper, {
+        display: flex;
+        margin: 0 20px 10px;
+    }
+    &__ratingKinopoisk{margin: 20px 20px 20px;}
 
+    &__infomation {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__item {
+
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        max-width: 50%;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    &__subtitle {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+
+    }
+}
+
+.about {
+    font-family: $font-titles;
+}
+.description{
+    width: 80%;
 }

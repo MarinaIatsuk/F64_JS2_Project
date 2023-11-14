@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style/index.scss" />
+    <link rel="stylesheet" href="./assets/style/main.scss" />
     <title>Document</title>
 </head>
 
@@ -13,44 +13,84 @@
         <section class="block-movie">
             <div class="block-movie__title-wrapper">
                 <div>
-                    <h2 class="block-movie__title nameRu">nameRu</h2>
-                    <h2 class="block-movie__title nameEn">nameEn</h2>
-                    <h2 class="block-movie__title nameOriginal">nameOriginal</h2>
+                    <h2 class="block-movie__title nameRu"></h2>
+                    <h2 class="block-movie__title nameEn"></h2>
+                    <h2 class="block-movie__title nameOriginal"></h2>
                 </div>
-                <div class="block-movie__ratingAgeLimit"></div>
+                <img class="block-movie__ratingAgeLimit" src="" alt="age limit"></img>
             </div>
             <div class="block-movie__main-section">
                 <div class="block-movie__cotanier-wrapper">
                     <div class="block-movie__poster-wrapper">
-                        <img class="block-movie__poster" src="" alt="">
-                        <div class="block-movie__rating"></div>
+                        <img class="block-movie__poster" src="" alt="poster">
+                        <div class="block-movie__ratingKinopoisk"></div>
                     </div>
                     <div class="block-movie__common-info-about">
-                        <div class="block-movie__idKinopoisk"></div>
-                        <div class="block-movie__ratingKinopoisk"></div>
-                        <div class="block-movie__ratingImdb"></div>
-                        <div class="block-movie__filmLength"></div>
-                        <div class="block-movie__"></div>
-                        <div class="block-movie__startYear"></div>
-                        <div class="block-movie__country"></div>
-                        <div class="block-movie__descriptio"></div>
-                        <div class="block-movie__"></div>
-                        <div class="block-movie__"></div>
-                        <div class="block-movie__"></div>
-                        <div class="block-movie__"></div>
+                        <div class="block-movie__infomation">
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle about"></div>
+                                <div class="block-movie__item about"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle ">Год выпуска</div>
+                                <div class="block-movie__item startYear"></div>
+                            </div>
+
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle ">Страна происхождения</div>
+                                <div class="block-movie__item countries"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle">Жанры</div>
+                                <div class="block-movie__item genres"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle ">Слоган</div>
+                                <div class="block-movie__item slogan"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle ">Описание</div>
+                                <div class="block-movie__item shortDescription"></div>
+                            </div>
+
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle ">Время</div>
+                                <div class="block-movie__item filmLength"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle "></div>
+                                <div class="block-movie__item ratingImdb"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle"></div>
+                                <div class="block-movie__item"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle"></div>
+                                <div class="block-movie__item"></div>
+                            </div>
+                            <div class="block-movie__info-wrapper">
+                                <div class="block-movie__subtitle"></div>
+                                <div class="block-movie__item"></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="block-movie__info-wrapper">
+                    <div class="block-movie__item description"></div>
                 </div>
                 <div class="block-movie__resourse"></div>
             </div>
-
         </section>
         <section class="similar-movies">
             <div class="similar-movies__movie-contanier">
-                <img src="" class="similar-movies__poster" alt="poster">
+                <img src="" class="similar-movies__poster" alt="">
                 <div class="similar-movies__title"></div>
             </div>
         </section>
     </div>
+    <!-- <script type="module" src="./main.js"></script> -->
+    <script type="module" src="./src/page-movie.js"></script>
 </body>
 
 </html>
