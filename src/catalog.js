@@ -56,7 +56,7 @@ function updateContainer(data) {
 
 
 // выбираем все лайки
-    let selectedLike;
+
     const likeBtns = document.querySelectorAll('.likeBtn');
     likeBtns.forEach((btn) => {
       btn.addEventListener('click', function (event) {
@@ -69,9 +69,6 @@ function updateContainer(data) {
 //лайкаем и добавляем в избранное
     function putLike(span) {
       span.classList.toggle('liked');
-
-
-
 
     }
   }
