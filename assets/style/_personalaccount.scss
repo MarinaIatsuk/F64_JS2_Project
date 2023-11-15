@@ -3,20 +3,34 @@ body {
 }
 
 .lk{
-  &__title{
-    padding-bottom: 40px;
-   font-family:$font-titles;
-  }
-
-  &__btn{
-     margin-bottom: 50px;
-     
-  }
-  &__list{
-    font-family: $font-texts;
+  &__user{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    .user{
+
+  &__title{
+    padding-bottom: 4vh;
+   font-family:$font-titles;
+}
+    }
+  }
+  
+
+  &__list{
+    display: flex;
+    flex-direction: row;
     flex-grow: 1;
+
+    .list{
+ 
+      &__title{
+        .title{
+          &__header{
+    font-family: $font-texts;
+   }
+  }
     li{
       list-style-type: none;
       padding-top: 1vh;
@@ -25,6 +39,21 @@ body {
       text-decoration: none;
     }
   }
+
+
+ &__movieList{
+padding-left: 10vw;
+font-family:$font-titles;
+padding-top: 1vh;
+} 
+    }
+  
+  }
+
+&__btn{
+      margin-bottom: 50px;
+        }
+
   &__modalList{
     margin: 100px auto;
     position: relative;
@@ -79,6 +108,6 @@ padding:  1vh 2vw;
            }
     } 
     }
-  
-}
+  }
+
 

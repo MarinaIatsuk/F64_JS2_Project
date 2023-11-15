@@ -2,8 +2,10 @@ const listInput = document.querySelector("#listInput");
 const listItem = document.querySelector(".list__title");
 let createListBtn = document.querySelector(".lk__btn");
 let modal = document.querySelector('.lk__modalList');
-const modalBox = document.getElementById('modal-box')
-const modalListBtn = document.querySelector('.modalList__btn')
+const modalBox = document.getElementById('modal-box');
+const modalListBtn = document.querySelector('.modalList__btn');
+
+
 //открытие модалки
 let isModalOpen = false
 createListBtn .addEventListener('click', (e) => {
@@ -23,6 +25,7 @@ document.addEventListener('click', (e) => {
   }
 })
 
+// создание элемента списка
 
 function createListItem(){
   let inputValue = listInput.value.trim();
@@ -46,3 +49,10 @@ listInput.addEventListener('keyup', (event) => {
   }
 });
 
+
+// Добавляем в список фильмов
+//Пример: import{btn} from './vars.js'.
+
+function addToFavList(){
+
+}
