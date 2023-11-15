@@ -2,8 +2,10 @@ const listInput = document.querySelector("#listInput");
 const listItem = document.querySelector(".list__title");
 let createListBtn = document.querySelector(".lk__btn");
 let modal = document.querySelector('.lk__modalList');
-const modalBox = document.getElementById('modal-box')
-const modalListBtn = document.querySelector('.modalList__btn')
+const modalBox = document.getElementById('modal-box');
+const modalListBtn = document.querySelector('.modalList__btn');
+
+
 //открытие модалки
 let isModalOpen = false
 createListBtn .addEventListener('click', (e) => {
@@ -45,4 +47,27 @@ listInput.addEventListener('keyup', (event) => {
     modal.close()
   }
 });
+/* 
+{
+  const items = document.querySelectorAll('.filmFavContainer');
+ for(const item of items)
+ item.addEventListener('click', function(event)
+ {
+// like
+let isLiked = false;
+const likeBtn = document.getElementById('likeBtn');
+const likeIcon = document.getElementById('likeIcon');
 
+function like(){
+          
+              if (!isLiked) {
+               isLiked = true;
+              } else {
+               isLiked = false;
+              }
+              likeIcon.style.backgroundImage = isLiked ? "url('./assets/images/likePink.png')" : "url('./assets/images/likeGray.png')"
+            };
+  
+
+  likeBtn.addEventListener('click', like);
+   */

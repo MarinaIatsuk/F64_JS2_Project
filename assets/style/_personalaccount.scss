@@ -3,10 +3,43 @@ body {
 }
 
 .lk{
+  &__user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    .user{
+
   &__title{
-    padding-bottom: 40px;
+    padding-bottom: 4vh;
    font-family:$font-titles;
+}
+    }
   }
+ 
+ /*  &__filmFavContainer{
+
+    .likeBtn {
+      background-color: $background-color;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+  
+    }
+    
+    .likeIcon {
+      
+      width: 18px;
+      height: 18px;
+      background-image: url('../images/likeGray.png'); 
+          background-size: cover;
+      margin-right: 4px;
+    
+  }
+}
+ */
+
 
   &__btn{
      margin-bottom: 50px;
@@ -79,6 +112,6 @@ padding:  1vh 2vw;
            }
     } 
     }
-  
-}
+  }
+
 

@@ -1,6 +1,6 @@
-// Обработчик события клика на кнопку поиска
-document.querySelector(".btn").addEventListener("click", getData);
-
+document.addEventListener('DOMContentLoaded', function () {
+    // Обработчик события клика на кнопку поиска
+    document.querySelector(".btn").addEventListener("click", getData); 
 
 // Функция для выполнения запроса к API
 async function getData() {
@@ -27,7 +27,7 @@ async function getData() {
 function updateContainer(data) {
     // Очищаем предыдущие данные
     const container = document.querySelector(".container__content");
-    container.innerHTML = "";
+    container.textContent = "";   /* container.innerHTML = ""; для новых данных, а не для полного очищения контейнера. Более безопасно  container.textContent */
 
     // Проходимся по массиву фильмов и добавляем информацию в контейнер
     data.items.forEach((film) => {
@@ -42,11 +42,34 @@ function updateContainer(data) {
                         <div class="content__title">Название: ${film.nameRu}</div>
                         <div class="content__year">Год выхода фильма: ${film.year}</div>
                         <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
+                const item = document.createElement("div");
+        item.classList.add("content__item");   
+                    
+                        <div class="filmFavContainer">
+          <button  class="likeBtn">
+            <span  class="likeIcon"></span>
+          </button>
+        </div>
                     </div>
         `
-        item.innerHTML = template
+        item.innerHTML = template;
         container.appendChild(item);
-
-
     });
-};
+
+// выбираем все лайки
+    let selectedLike;
+    const likeBtns = document.querySelectorAll('.likeBtn');
+    likeBtns.forEach((btn) => {
+      btn.addEventListener('click', function (event) {
+        let target = event.target; //это «целевой» элемент, на котором произошло событие
+               if (target.tagName === 'SPAN') { 
+          putLike(target);
+        }
+      });
+    });
+//лайкаем
+    function putLike(span) {
+      span.classList.toggle('liked');
+    }
+  }
+});

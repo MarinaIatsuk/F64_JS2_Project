@@ -70,7 +70,32 @@
         }
     }
 
+}
 
+//like
+.filmFavContainer{
 
-
+    .likeBtn {
+      background-color: $background-color;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      }
+    
+    .likeIcon {
+      
+      width: 18px;
+      height: 18px;
+      background-image: url('../images/likeGray.png'); 
+          background-size: cover;
+      margin-right: 4px;
+      }
+      .liked {
+        background-image: url('../images/likePink.png');
+        background-size: cover;
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+}
 }
