@@ -71,7 +71,7 @@ fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
   .catch(err => console.log(err))
 
 
-fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${movie.kinopoiskId}`, {
+fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${selectedFilmId}`, {
   method: 'GET',
   headers: {
     'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
