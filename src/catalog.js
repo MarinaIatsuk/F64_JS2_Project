@@ -39,10 +39,10 @@ function updateContainer(data) {
                     <img src=" ${film.posterUrlPreview}" alt="poster" class="poster__img">
                     </div>
                     <div class="content__info">
-                        <div class="content__title">Название: ${film.nameRu}</div>
+                        <h3 class="content__title">${film.nameRu}</h3>
                         <div class="content__year">Год выхода фильма: ${film.year}</div>
                         <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-                
+                        <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
          <div class="filmFavContainer">
           <button  class="likeBtn">
             <span  class="likeIcon"></span>
