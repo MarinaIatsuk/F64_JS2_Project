@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <link rel="stylesheet" href="./assets/style/_registr.scss">
+</head>
+<body>
+    <main class="main-reg">
+        <div class="main-reg__container">
+            <h2 class="main-reg__title">MOVIE Сервис</h2>
+            <p class="main-reg__text">Зарегестрироваться</p>
+            <div class="main-reg__container-form">
+                <form class="main-reg__info form" name="oneForm" novalidate>
+                    <div class="form__name location">
+                        <label for="secondName" class="form__name-text text">Имя пользователя</label>
+                        <input type="text" placeholder="Введите имя..." name="secondName" class="form__name-input" id="textName" minlength="2" pattern="^[А-Яа-яЁёa-zA-Z]+$" required>
+
+                        <p class="form__name-error"></p>
+                    </div>
+                    <div class="form__email location">
+                        <label for="secondEmail" class="form__email-text text">Email</label>
+                        <input type="email" name="secondEmail" class="form__email-input" id="textEmail" pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+
+                        <p class="form__email-error"></p>
+                    </div>
+                    <div class="form__password location">
+                        <label for="newPassword" class="form__password-text text">Пароль</label>
+                        <input name="newPassword" type="password" class="form__password-input" id="secondPassword" placeholder="Введите пароль..." minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
+
+                        <p class="form__password-error"></p>
+                    </div>
+                    <div class="form__passrep location">
+                        <label for="repPassword" class="form__passrep-text text">Повторите пароль</label>
+                        <input type="password" name="repPassword" class="form__passrep-input" id="repeatPassword"  placeholder="Повторите пароль..."  minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" name="passwordTwo" required>
+
+                        <p class="form__passrep-error"></p>
+                    </div>
+                    <div class="form__secret location">
+                        <label for="secondSecret" class="form__code-text text">Кодовое слово</label>
+                        <input type="text" placeholder="Введите кодовое слово..." name="secondSecret" class="form__secret-input" id="textSecret" minlength="2" required>
+
+                        <p class="form__name-error"></p>
+                    </div>
+                    <div class="form__checkbox">
+                        <input id="formAgreement" class="form__checkbox-input" type="checkbox" name="secondCheckbox" required>
+                        <label for="formAgreement" class="form__checkbox-text text"><span>Согласие на обработку персональных данных</span></label>
+
+                        <p class="form__checkbox-error"></p>
+                    </div>
+                    <div class="form__btn">
+                        <button class="form__btn-text" id="btnText">Регистрация</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="main-reg__container">
+            <div class="main-reg__question">
+                <p class="main-reg__question-text">Уже есть аккаунт?</p>
+                <button class="main-reg__question-btn">Войдите</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./src/registr.js"></script>
+    <script type="module" src="./src/db.js"></script>
+</body>
+</html>
