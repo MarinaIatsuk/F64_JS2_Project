@@ -47,27 +47,3 @@ listInput.addEventListener('keyup', (event) => {
     modal.close()
   }
 });
-/* 
-{
-  const items = document.querySelectorAll('.filmFavContainer');
- for(const item of items)
- item.addEventListener('click', function(event)
- {
-// like
-let isLiked = false;
-const likeBtn = document.getElementById('likeBtn');
-const likeIcon = document.getElementById('likeIcon');
-
-function like(){
-          
-              if (!isLiked) {
-               isLiked = true;
-              } else {
-               isLiked = false;
-              }
-              likeIcon.style.backgroundImage = isLiked ? "url('./assets/images/likePink.png')" : "url('./assets/images/likeGray.png')"
-            };
-  
-
-  likeBtn.addEventListener('click', like);
-   */

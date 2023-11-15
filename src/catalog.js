@@ -73,3 +73,10 @@ function updateContainer(data) {
     }
   }
 });
+
+// Добавляем в список фильмов
+//Пример: import{btn} from './vars.js'.
+
+function addToFavList(){
+
+}
