@@ -38,6 +38,7 @@
     .container__content {
         display: flex;
         flex-direction: column;
+     
 
         margin-right: 15%;
 
@@ -45,6 +46,7 @@
             display: flex;
             flex-grow: 1;
             padding-top: 30px;
+            
 
             .content__poster {
 
@@ -57,20 +59,51 @@
             }
 
             .content__info {
-
+                             
                 .content__title {
-                    font-size: larger;
-                    color: $dark-frame;
+                 padding-bottom: 2vh;
+                 color: $dark-frame;
+                }
+                .content__rating{
+                    padding-bottom: 0.5vh;
+
+                }
+                .content__year{
+                    padding-bottom: 0.5vh;
                 }
 
-                .content__year {}
-
-                .content__rating {}
-            }
+            
+                           }
         }
     }
 
+}
 
+//like
+.filmFavContainer{
+    padding-top: 1vh;
 
-
+    .likeBtn {
+      background-color: $background-color;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      }
+    
+    .likeIcon {
+      
+      width: 18px;
+      height: 18px;
+      background-image: url('../images/likeGray.png'); 
+          background-size: cover;
+      margin-right: 4px;
+      }
+      .liked {
+        background-image: url('../images/likePink.png');
+        background-size: cover;
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+}
 }
