@@ -25,6 +25,7 @@ document.addEventListener('click', (e) => {
   }
 })
 
+// создание элемента списка
 
 function createListItem(){
   let inputValue = listInput.value.trim();
@@ -47,3 +48,11 @@ listInput.addEventListener('keyup', (event) => {
     modal.close()
   }
 });
+
+
+// Добавляем в список фильмов
+//Пример: import{btn} from './vars.js'.
+
+function addToFavList(){
+
+}

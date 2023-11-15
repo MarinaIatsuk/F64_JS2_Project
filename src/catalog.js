@@ -33,7 +33,7 @@ function updateContainer(data) {
     data.items.forEach((film) => {
         const item = document.createElement("div");
         item.classList.add("content__item");
-        const template = 
+             const template = 
         `
         <div class="content__poster">
                     <img src=" ${film.posterUrlPreview}" alt="poster" class="poster__img">
@@ -42,10 +42,8 @@ function updateContainer(data) {
                         <div class="content__title">Название: ${film.nameRu}</div>
                         <div class="content__year">Год выхода фильма: ${film.year}</div>
                         <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-                const item = document.createElement("div");
-        item.classList.add("content__item");   
-                    
-                        <div class="filmFavContainer">
+                
+         <div class="filmFavContainer">
           <button  class="likeBtn">
             <span  class="likeIcon"></span>
           </button>
@@ -55,6 +53,7 @@ function updateContainer(data) {
         item.innerHTML = template;
         container.appendChild(item);
     });
+
 
 // выбираем все лайки
     let selectedLike;
@@ -67,16 +66,14 @@ function updateContainer(data) {
         }
       });
     });
-//лайкаем
+//лайкаем и добавляем в избранное
     function putLike(span) {
       span.classList.toggle('liked');
+
+
+
+
     }
   }
 });
 
-// Добавляем в список фильмов
-//Пример: import{btn} from './vars.js'.
-
-function addToFavList(){
-
-}

@@ -16,15 +16,21 @@ body {
 }
     }
   }
-  &__btn{
-     margin-bottom: 50px;
-     
-  }
+  
+
   &__list{
-    font-family: $font-texts;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow: 1;
+
+    .list{
+ 
+      &__title{
+        .title{
+          &__header{
+    font-family: $font-texts;
+   }
+  }
     li{
       list-style-type: none;
       padding-top: 1vh;
@@ -33,6 +39,21 @@ body {
       text-decoration: none;
     }
   }
+
+
+ &__movieList{
+padding-left: 10vw;
+font-family:$font-titles;
+padding-top: 1vh;
+} 
+    }
+  
+  }
+
+&__btn{
+      margin-bottom: 50px;
+        }
+
   &__modalList{
     margin: 100px auto;
     position: relative;
