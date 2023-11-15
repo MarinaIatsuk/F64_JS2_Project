@@ -1,0 +1,109 @@
+.container_catalog {
+    min-height: 100vh;
+    height: 100%;
+
+    .container__header {
+        flex-basis: 80px;
+        font-size: 50px;
+    }
+
+    .container__list {
+        display: flex;
+
+        .container__box {
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            font-size: larger;
+
+            .container__item {
+                background-color: $background-color;
+                border: none;
+                color: $dark-frame;
+                margin-right: 10px;
+                font-size: medium;
+
+            }
+
+            .container__item:hover {
+                color: $btnBackGroundHover;
+            }
+        }
+
+        .btn-wrapper {
+            padding-left: 100px;
+        }
+    }
+
+    .container__content {
+        display: flex;
+        flex-direction: column;
+     
+
+        margin-right: 15%;
+
+        .content__item {
+            display: flex;
+            flex-grow: 1;
+            padding-top: 30px;
+            
+
+            .content__poster {
+
+                width: 100px;
+                margin-right: 10px;
+
+                .poster__img {
+                    width: 100%;
+                }
+            }
+
+            .content__info {
+                             
+                .content__title {
+                 padding-bottom: 2vh;
+                 color: $dark-frame;
+                }
+                .content__rating{
+                    padding-bottom: 0.5vh;
+
+                }
+                .content__year{
+                    padding-bottom: 0.5vh;
+                }
+
+            
+                           }
+        }
+    }
+
+}
+
+//like
+.filmFavContainer{
+    padding-top: 1vh;
+
+    .likeBtn {
+      background-color: $background-color;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      }
+    
+    .likeIcon {
+      
+      width: 18px;
+      height: 18px;
+      background-image: url('../images/likeGray.png'); 
+          background-size: cover;
+      margin-right: 4px;
+      }
+      .liked {
+        background-image: url('../images/likePink.png');
+        background-size: cover;
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+}
+}
