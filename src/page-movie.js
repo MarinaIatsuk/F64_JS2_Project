@@ -1,10 +1,12 @@
 //import "../page-film.html";
-let movie = {
-  kinopoiskId: 719762
-}
 
-// получает данные о фильме по ID
-fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${movie.kinopoiskId}`, {
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Получаем id фильма из localStorage
+  const selectedFilmId = localStorage.getItem('selectedFilmId');
+
+  // получает данные о фильме по ID
+fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
   method: 'GET',
   headers: {
     'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
@@ -150,3 +152,7 @@ fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${movie.kinopoisk
 //     parentElement.append(newDiv, newDiv2,newDiv3,newDiv4);
 // }})
 //     .catch(err => console.log(err))
+
+  // Думаю, стоит чистить localStorage после использования, чтобы он там один был
+  localStorage.removeItem('selectedFilmId');
+});
