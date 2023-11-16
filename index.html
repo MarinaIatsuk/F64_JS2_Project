@@ -8,6 +8,37 @@
                                                                                                                                              
     </head>
     <body>
+      <div class="wrapper">
+        <header class="header">
+            <div class="header__container _container">
+            <a href="#" class="header__logo"> MOVIEСервис </a>
+            <nav class="header__menu menu">
+            <ul class="menu__list">
+           <li class="menu__item">
+           <a href="#film" class="header__link" >Фильмы</a>
+           </li>
+            <li class="header__item">
+            <a href="#serials" class="header__link">Сериалы</a>
+             </li>
+             </ul>
+            </nav>
+            <form>
+              <input type="text" class="header__search" placeholder="Поиск" id="filter"> 
+              <ul class="list-group list-group-flush" id="list"></ul>
+             </form>
+              <div class="header__btn-container">
+              <div class="header__btn">
+              <label for="kabinet" class="header__text"> Зайти в личный кабинет:</label>
+              <h3 class="user__name">Имя пользователя</h3>
+            <div class="user__email"></div>
+            <img  src="./assets./img/avatar.jpg"  alt="avatar"   class="user__img" onclick="location.href='personalaccount.html'" />
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+          </header>
+          
       <!-- Кнопка временная -->
       <div class="cont" id="hiUser">
         <button class="cont__btn" id="btnOpen">Войти</button>
