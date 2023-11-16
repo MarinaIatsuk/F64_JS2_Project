@@ -1,3 +1,4 @@
+
 // Используем такую схему:
 
 // Создаем новую страницу в папке проекта
@@ -37,7 +38,6 @@ btnClose.addEventListener('click', closeModal);
 // formContainer.addEventListener('click', (e)=>{
 //     e.stopPropagation();
 // })
-
 
 
 
@@ -117,7 +117,7 @@ async function testtt() {
 // функция для добавления и убирания из избранного
 // state = true - добавить в избранное
 // state = false - убрать из избранного
-async function setLike(user_id, film_id, state) {
+export async function setLike(user_id, film_id, state) {
     const data = {};
     data[`likes.${film_id}`] = state;
     await db.update("users", user_id, data);
