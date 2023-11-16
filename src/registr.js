@@ -115,7 +115,7 @@ submButton.addEventListener('click', () => {
     //
     if(!checkAll()) return;
     // checkAll();
-    //
+    //данные которые ввел клиент в форме регистрации
     const newClient = {
         'name': userName.value,
         'password': MD5(userPassword.value).toString(),

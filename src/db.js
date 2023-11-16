@@ -22,7 +22,7 @@ export async function db_get(collection, q = null) {
 }
 
 
-//обновление юзера,клиента
+//обновление информации юзера,клиента + работа со списком фильмов, лайков, комментов
 export function db_put(collection, id, data) {
   return new Promise((res, rej) => {
     fetch(base_url + collection + '/' + id, {
