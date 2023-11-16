@@ -9,17 +9,18 @@
         padding-bottom: 1vw;
     }
 
-    &__ratingAgeLimit {
+    &__rating-age-limit {
         max-width: 6vw;
         margin-right: 5vw;
     }
 
-    &__ratingKinopoisk {
+    &__rating-kinopoisk {
         font-family: $font-titles;
         width: fit-content;
         border: 2px solid black;
         color: black;
         padding: 3px;
+        margin: 20px 20px 20px;
     }
 
     &__main-section {
@@ -53,9 +54,6 @@
     margin: 0 20px 15px;
     }
 
-&__ratingKinopoisk {
-    margin: 20px 20px 20px;
-}
 
 &__infomation {
     display: flex;
@@ -92,7 +90,15 @@
 }
 }
 
-.smallPict {
+.similar-movies{
+    &__posters-contanier{
+        display: flex;
+        gap: 30px;
+    }
+}
+
+
+.small-pict {
     max-width: 100px;
     border-radius: 10%;
 }
