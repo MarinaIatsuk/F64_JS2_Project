@@ -1,13 +1,101 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./assets/style/index.scss">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
 
-    <script type="module" src="./src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="./assets/style/index.scss">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+</head>
+
+<body>
+
+  <!--Начало главной страницы-->
+  <main class="block-main">
+    <div class="main-page">
+      <!--Контейнер-->
+      <div class="page-container container">
+        <div class="block-wrapper">
+          <!--Левая часть страницы с заголовком текстом и кнопками-->
+          <div class="left-wrapper">
+            <div class="block-info">
+              <!--Заголовок-->
+              <h1 class="info-title title">MOVIEСервис</h1>
+              <!--Подзаголовок-->
+              <h2 class="info-subtitle subtitle">насладись просмотром</h2>
+              <!--Текст-->
+              <p class="info-text text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enimad minim veniam, quis
+                nostrud exerci Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enimad minim veniam, quis nostrud
+                exerci</p>
+              <!--Блок с кнопками-->
+              <div class="block-buttons">
+                <!--Верхние кнопки-->
+                <div class="upper-buttons">
+                  <a href="#" class="btn btn-first">Случайный фильм</a>
+
+                  <a href="#" class="btn btn-second">Создать список</a>
+
+                </div>
+                <!--Нижние кнопки-->
+                <div class="down-button">
+                  <a href="#" class="btn btn-link">Каталог</a>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!--Правая часть страницы куда мы внесем постеры к фильмам-->
+          <div class="right-wrapper">
+            <div class="block-posters" id="block-posters">
+              <div class="upper-posters" id="upper-posters"></div>
+              <div class="down-posters" id="down-posters"></div>
+             
+ 
+              
+
+              
+               <!--<div class="upper-posters">
+
+                <div class="poster-info post-one">
+                  <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                   <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+                </div>
+  
+                <div class="poster-info">
+                  <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                  <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+                </div>
+
+              </div>-->
+              
+              
+              <!--Нижние постеры
+              <div class="down-posters">
+
+                <div class="poster-info post-one">
+                  <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                  <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+                </div>
+  
+                <div class="poster-info">
+                  <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                  <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+                </div>
+
+              </div>-->
+            
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!--Конец главной страницы-->
+  <script type="module" src="./src/main.js"></script>
+</body>
+
 </html>
