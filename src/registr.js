@@ -1,4 +1,4 @@
-import { db_post, db_get, db_put } from './db';
+import * as db from './db';
 import MD5 from "crypto-js/md5";
 
 const myForm = document.forms.oneForm;
@@ -97,9 +97,6 @@ myForm.addEventListener('submit', (e) => {
     e.preventDefault(); //отмена отправки
 
     checkAll();
-    // if (ok) allInputs.forEach(x => {
-    //     console.log(x.value);
-    // })
 });
 
 
@@ -110,38 +107,26 @@ const textSecret = document.querySelector('#textSecret'); //доступ к inpu
 
 //при клике на кнопку в базу данных внесутя данные с input Имя, Email, повторите пароль
 
-submButton.addEventListener('click', () => {
-    //
-    //
-    if(!checkAll()) return;
-    // checkAll();
-    //данные которые ввел клиент в форме регистрации
-    const newClient = {
-        'name': userName.value,
-        'password': MD5(userPassword.value).toString(),
-        'email': userEmail.value,
-        'secret': MD5(textSecret.value).toString()
-    }
+submButton.addEventListener('click', async () => {
+    if (!checkAll()) return;
     submButton.disabled = true;
 
-    db_get('clients', { email: newClient.email })
-        .then(res => {
-            if (res.length > 0) console.log("Email exists");
-            else db_post('clients', newClient)
-                .then(res => {
-                    const info = {
-                        id: res._id,
-                        likes: {},
-                        comments: {},
-                        rating: {},
-                        wish: {}
-                    }
-                    db_post('info', info)
-                        .catch(e => alert("Database error!"));
-                    console.log("регистрация завершена");
-                })
-                .catch(e => alert("Database error!"))
-        })
-        .catch(e => alert("Database error!"))
-        .finally(() => submButton.disabled = false);
+    //данные которые ввел клиент в форме регистрации
+    const newClient = {
+        name: userName.value,
+        password: MD5(userPassword.value).toString(),
+        email: userEmail.value,
+        secret: MD5(textSecret.value).toString(),
+        likes: {}
+    }
+
+    const users = await db.get_query("users", "email", newClient.email);
+    if (users.length > 0) {
+        console.log("user exists");
+    } else {
+        await db.add("users", newClient);
+        console.log("added");
+    }
+
+    submButton.disabled = false;
 });

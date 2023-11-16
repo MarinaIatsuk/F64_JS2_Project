@@ -1,9 +1,8 @@
 //import "../page-film.html";
 
-document.addEventListener('DOMContentLoaded', function () {
-
-  // Получаем id фильма из localStorage
-  const selectedFilmId = localStorage.getItem('selectedFilmId');
+document.addEventListener("DOMContentLoaded", function () {
+    // Получаем id фильма из localStorage
+    const selectedFilmId = localStorage.getItem("selectedFilmId");
 
   // получает данные о фильме по ID
   fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
@@ -35,48 +34,50 @@ document.addEventListener('DOMContentLoaded', function () {
       let slogan = document.querySelector('.slogan');
       // let shortDescription = document.querySelector('.shortDescription');
 
-      nameRu.textContent = json.nameRu;
-      nameEn.textContent = json.nameEn;
-      nameOriginal.textContent = json.nameOriginal;
-      if (json.ratingAgeLimits != null)
-        ratingAgeLimit.setAttribute('src', `../assets/images/${json.ratingAgeLimits}.png`);
-      else
-        ratingAgeLimit.setAttribute('class', 'no-visible');
-      poster.setAttribute('src', json.posterUrl);
-      ratingKinopoisk.textContent = json.ratingKinopoisk;
-      startYear.textContent = json.year;
-      if (json.filmLength != null)
-        filmLength.textContent = String(json.filmLength) + " мин.";
-      else
-        filmLength.setAttribute('class', 'no-visible');
+            nameRu.textContent = json.nameRu;
+            nameEn.textContent = json.nameEn;
+            nameOriginal.textContent = json.nameOriginal;
+            if (json.ratingAgeLimits != null)
+                ratingAgeLimit.setAttribute(
+                    "src",
+                    `../assets/images/${json.ratingAgeLimits}.svg`
+                );
+            else ratingAgeLimit.setAttribute("class", "no-visible");
+            poster.setAttribute("src", json.posterUrl);
+            ratingKinopoisk.textContent = json.ratingKinopoisk;
+            startYear.textContent = json.year;
+            if (json.filmLength != null)
+                filmLength.textContent = String(json.filmLength) + " мин.";
+            else filmLength.setAttribute("class", "no-visible");
 
-      slogan.textContent = json.slogan;
-      // shortDescription.textContent = json.shortDescription;
+            slogan.textContent = json.slogan;
+            // shortDescription.textContent = json.shortDescription;
 
-      for (let i = 0; i < json.countries.length; i++) {
-        if (!firstCounrty) { comma = ", " }
-        allCountry += comma + json.countries[i].country;
-        firstCounrty = false;
-      }
-      countries.textContent = allCountry;
-      let allGenres = "";
-      let firstGenres = true;
-      comma = "";
-      for (let i = 0; i < json.genres.length; i++) {
-        if (!firstGenres) { comma = ", " }
-        allGenres += comma + json.genres[i].genre;
-        firstGenres = false;
-      }
-      genres.textContent = allGenres;
+            for (let i = 0; i < json.countries.length; i++) {
+                if (!firstCounrty) {
+                    comma = ", ";
+                }
+                allCountry += comma + json.countries[i].country;
+                firstCounrty = false;
+            }
+            countries.textContent = allCountry;
+            let allGenres = "";
+            let firstGenres = true;
+            comma = "";
+            for (let i = 0; i < json.genres.length; i++) {
+                if (!firstGenres) {
+                    comma = ", ";
+                }
+                allGenres += comma + json.genres[i].genre;
+                firstGenres = false;
+            }
+            genres.textContent = allGenres;
 
-      if (json.serial == false)
-        about.textContent = "О фильме";
-      else
-        about.textContent = "О сериале";
-      description.textContent = json.description;
-    })
-    .catch(err => console.log(err))
-
+            if (json.serial == false) about.textContent = "О фильме";
+            else about.textContent = "О сериале";
+            description.textContent = json.description;
+        })
+        .catch((err) => console.log(err));
 
   fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${selectedFilmId}`, {
     method: 'GET',
@@ -161,5 +162,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
     .catch(err => console.log(err))
+
+
+    // Думаю, стоит чистить localStorage после использования, чтобы он там один был
+    //localStorage.removeItem('selectedFilmId');
 
 });

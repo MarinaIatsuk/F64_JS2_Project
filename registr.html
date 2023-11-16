@@ -14,31 +14,31 @@
             <div class="main-reg__container-form">
                 <form class="main-reg__info form" name="oneForm" novalidate>
                     <div class="form__name location">
-                        <label for="secondName" class="form__name-text text">Имя пользователя</label>
+                        <label for="textName" class="form__name-text text">Имя пользователя</label>
                         <input type="text" placeholder="Введите имя..." name="secondName" class="form__name-input" id="textName" minlength="2" pattern="^[А-Яа-яЁёa-zA-Z]+$" required>
 
                         <p class="form__name-error"></p>
                     </div>
                     <div class="form__email location">
-                        <label for="secondEmail" class="form__email-text text">Email</label>
-                        <input type="email" name="secondEmail" class="form__email-input" id="textEmail" pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+                        <label for="textEmail" class="form__email-text text">Email</label>
+                        <input type="email" name="secondEmail" class="form__email-input" id="textEmail" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" placeholder="Введите email..." required>
 
                         <p class="form__email-error"></p>
                     </div>
                     <div class="form__password location">
-                        <label for="newPassword" class="form__password-text text">Пароль</label>
+                        <label for="secondPassword" class="form__password-text text">Пароль</label>
                         <input name="newPassword" type="password" class="form__password-input" id="secondPassword" placeholder="Введите пароль..." minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
 
                         <p class="form__password-error"></p>
                     </div>
                     <div class="form__passrep location">
-                        <label for="repPassword" class="form__passrep-text text">Повторите пароль</label>
+                        <label for="repeatPassword" class="form__passrep-text text">Повторите пароль</label>
                         <input type="password" name="repPassword" class="form__passrep-input" id="repeatPassword"  placeholder="Повторите пароль..."  minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" name="passwordTwo" required>
 
                         <p class="form__passrep-error"></p>
                     </div>
                     <div class="form__secret location">
-                        <label for="secondSecret" class="form__code-text text">Кодовое слово</label>
+                        <label for="textSecret" class="form__code-text text">Кодовое слово</label>
                         <input type="text" placeholder="Введите кодовое слово..." name="secondSecret" class="form__secret-input" id="textSecret" minlength="2" required>
 
                         <p class="form__name-error"></p>
