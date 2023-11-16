@@ -1,60 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite App</title>
-        <!-- <link rel="stylesheet" href="./assets/style/main.scss" /> -->
-        <link rel="stylesheet" href="./assets/style/_index.scss">
-    </head>
-    <body>
-      <!-- Кнопка временная -->
-      <div class="cont" id="hiUser">
-        <button class="cont__btn" id="btnOpen">Войти</button>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <!-- <link rel="stylesheet" href="./assets/style/main.scss" /> -->
+  <link rel="stylesheet" href="./assets/style/_index.scss">
+</head>
+
+<body>
+  <!-- Кнопка временная -->
+  <div class="cont" id="hiUser">
+    <button class="cont__btn" id="btnOpen">Войти</button>
+  </div>
 
 
-      <!-- Модальное окно -->
-      <dialog class="dialog" id="windModal">
-        <div class="dialog__close">
-          <button class="dialog__close" id="btnClose">X</button>
+  <!-- Модальное окно -->
+  <dialog class="dialog" id="windModal">
+    <div class="dialog__close">
+      <button class="dialog__close" id="btnClose">X</button>
+    </div>
+    <div class="dialog__container" id="formContainer">
+      <h2 class="dialog__title">MOVIE Сервис</h2>
+      <p class="dialog__text">Войти в личный кабинет</p>
+      <form class="dialog-form" name="loginForm" novalidate>
+        <div class="dialog-form__email">
+          <label for="secondEmail" class="dialog-form__email-text">Email</label>
+          <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
+            pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+
+          <p class="dialog-form__email-error"></p>
         </div>
-        <div class="dialog__container" id="formContainer">
-          <h2 class="dialog__title">MOVIE Сервис</h2>
-          <p class="dialog__text">Войти в личный кабинет</p>
-          <form class="dialog-form" name="loginForm" novalidate>
-            <div class="dialog-form__email">
-              <label for="secondEmail" class="dialog-form__email-text">Email</label>
-              <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail" pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$"
-                placeholder="Введите email..." required>
-    
-              <p class="dialog-form__email-error"></p>
+        <div class="dialog-form__password">
+          <label for="secondPassword">Пароль</label>
+          <input name="newPassword" type="password" id="loginPassword" placeholder="Введите пароль..." minlength="8"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
+
+          <p class="error-message"></p>
+        </div>
+        <div class="form__btn">
+          <input class="form__btn-text" type="submit" name="sendForm" id="btnLogin" value="Войти">
+        </div>
+      </form>
+
+      <div>
+        <p>Новенький?</p>
+        <a href="">Создай аккаунт</a>
+      </div>
+    </div>
+  </dialog>
+
+  <a href="./registr.html">перейти</a>
+
+
+  <!--Начало главной страницы-->
+  <main class="block-main">
+    <div class="main-page">
+      <!--Контейнер-->
+      <div class="page-container container">
+        <div class="block-wrapper">
+          <!--Левая часть страницы с заголовком текстом и кнопками-->
+          <div class="left-wrapper">
+            <div class="block-info">
+              <!--Заголовок-->
+              <h1 class="info-title title">MOVIEСервис</h1>
+              <!--Подзаголовок-->
+              <h2 class="info-subtitle subtitle">насладись просмотром</h2>
+              <!--Текст-->
+              <p class="info-text text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enimad minim veniam, quis
+                nostrud exerci Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enimad minim veniam, quis nostrud
+                exerci</p>
+              <!--Блок с кнопками-->
+              <div class="block-buttons">
+                <!--Верхние кнопки-->
+                <div class="upper-buttons">
+                  <a href="#" class="btn btn-first">Случайный фильм</a>
+
+                  <a href="#" class="btn btn-second">Создать список</a>
+
+                </div>
+                <!--Нижние кнопки-->
+                <div class="down-button">
+                  <a href="#" class="btn btn-link">Каталог</a>
+
+                </div>
+              </div>
             </div>
-            <div class="dialog-form__password">
-              <label for="secondPassword">Пароль</label>
-              <input name="newPassword" type="password" id="loginPassword" placeholder="Введите пароль..." minlength="8"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
-    
-              <p class="error-message"></p>
+
+          </div>
+          <!--Правая часть страницы куда мы внесем постеры к фильмам-->
+          <div class="right-wrapper">
+            <div class="block-posters" id="block-posters">
+              <div class="upper-posters" id="upper-posters"></div>
+              <div class="down-posters" id="down-posters"></div>
+
+
+              <!--<div class="upper-posters">
+
+              <div class="poster-info post-one">
+                <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                 <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+              </div>
+
+              <div class="poster-info">
+                <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+              </div>
+
+            </div>-->
+
+
+              <!--Нижние постеры
+            <div class="down-posters">
+
+              <div class="poster-info post-one">
+                <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+              </div>
+
+              <div class="poster-info">
+                <img class="film-img" src="./assets/images/film.jpg" alt="film">
+                <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
+              </div>
+
+            </div>-->
             </div>
-            <div class="form__btn">
-              <input class="form__btn-text" type="submit" name="sendForm" id="btnLogin" value="Войти">
-            </div>
-          </form>
-    
-          <div>
-            <p>Новенький?</p>
-            <a href="">Создай аккаунт</a>
           </div>
         </div>
-      </dialog>
-    
-      <a href="./registr.html">перейти</a>
+      </div>
+    </div>
+  </main>
+  <!--Конец главной страницы-->
 
 
+  <script type="module" src="./src/db.js"></script>
+  <!-- <script type="module" src="./main.js"></script> -->
+  <script type="module" src="./src/index.js"></script>
+</body>
 
-      <script type="module" src="./src/db.js"></script>
-        <!-- <script type="module" src="./main.js"></script> -->
-        <script type="module" src="./src/index.js"></script>
-    </body>
 </html>
