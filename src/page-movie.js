@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
           newDiv.src = foundSimilarMovies.posterUrl;
           parentElement.append(newDiv);
           newDiv.setAttribute("class", "small-pict");
+          if (index == 5) { break }
         }
       }
       else{
