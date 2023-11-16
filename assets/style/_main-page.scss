@@ -1,0 +1,187 @@
+//Стили к Главной странице
+
+.html {
+    font-size: 100%;
+
+    @media screen and (min-width: 1024px) {
+        font-size: 85%;
+      }
+    
+     @media screen and (min-width: 600px) and (max-width: 1023px) {
+        font-size: 75%;
+      }
+    
+       @media screen and (max-width: 599px) {
+        font-size: 65%;
+      }
+}
+
+// контейнер главной страницы
+
+.container {
+    max-width: 1377px;
+    width: 100%;
+    min-height: 731px;
+    background: linear-gradient(135deg, #CA26FF 30%, #F4CAC0, #FFF3B0);
+    border-bottom-right-radius: 250px;
+    border-top-left-radius: 59px;
+
+    
+
+    //Главный wrapper
+    .main-page__wrapper {
+        display: flex;
+        padding-top: 50px;
+
+       
+
+        //Левый wrapper
+        .left-wrapper {
+            display: flex;
+            flex-basis: 55%;
+
+            
+        }
+    }
+
+}
+
+//Блок с информацией: заголовок, текст, кнопки
+.block-info {
+    padding-left: 10%;
+   
+    
+    .title {
+        margin-bottom: 15px;
+        letter-spacing: 0.12rem;
+        font-family: $font-titles;
+        font-weight: 400;
+        font-size: 3.75rem;
+        color: $main-header;
+
+    }
+
+    .subtitle {
+
+        margin-bottom: 40px;
+        font-family: $font-texts;
+        font-size: 2.25rem;
+        font-weight: 400;
+        letter-spacing: 0.60rem;
+        color: $headers;
+
+    }
+
+    .text {
+        max-width: 80%;
+        margin-bottom: 25px;
+        font-family: $font-texts;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 29.9px;
+        color: $headers;
+
+        
+    }
+
+}
+
+// блок с кнопками 
+
+.block__buttons {
+   
+
+    .upper-buttons {
+        max-width: 70%;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        .btn-first,
+        .btn-second {
+            text-align: center;
+            text-decoration: none;
+
+            font-family: $font-btns;
+            font-weight: 400;
+            font-size: 1.37rem;
+            line-height: 32.89px;
+            letter-spacing: 1.5%;
+        }
+
+    }
+
+    .down-button {
+        max-width: 70%;
+        display: flex;
+        justify-content: center;
+
+        font-weight: 400;
+        font-size: 1.37rem;
+        line-height: 32.89px;
+        letter-spacing: 1.5%;
+    }
+
+    .btn-link {
+        font-family: $font-btns;
+        text-align: center;
+        text-decoration: none;
+
+    }
+}
+
+//правая часть страницы с постерами к фильмам, правый wrapper
+
+.right-wrapper {
+    display: flex;
+    flex-grow: 1;
+
+   
+
+    .block__posters {
+        display: flex;
+        flex-direction: row;
+
+       
+        
+.upper-posters{
+    margin-right: 1rem;
+   
+}
+        .poster-info {
+        
+            .film-img {
+                max-width: 70%;
+                width: 230px;
+               
+                margin-bottom: 15px;
+                border-radius: 30px;
+                
+            
+                
+            }
+
+            .film-title-wrapper {
+                
+                width: 12vw;
+                height: 5vh;
+                background-color: $btnBackGround;
+                border-radius: 10px;
+                text-align: center;
+
+               .film-title{
+
+                font-weight: 400;
+                font-size: 1rem;
+                line-height: 18.5px;
+                color: $headers;
+               }
+            }
+        }
+
+    }
+}
+
+.poster-info:not(:last-child){
+    margin-bottom: 20px;
+}
