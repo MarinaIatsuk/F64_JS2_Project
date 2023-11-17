@@ -122,10 +122,10 @@ submButton.addEventListener('click', async () => {
 
     const users = await db.get_query("users", "email", newClient.email);
     if (users.length > 0) {
-        console.log("user exists");
+        console.log("пользователь существует");
     } else {
         await db.add("users", newClient);
-        console.log("added");
+        console.log("юзер зарегестрирован");
     }
 
     submButton.disabled = false;

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc, setDoc, getDocs, doc, getDoc, updateDoc, query, where } from "firebase/firestore";
+import { deleteField, collection, addDoc, setDoc, getDocs, doc, getDoc, updateDoc, query, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDeePC5rr7GNBjXgIZO4vkebjrpsfjRF1A",
@@ -60,6 +60,13 @@ export async function set(base, id, data) {
 // удалить из БД
 export async function remove(base, id) {
   await deleteDoc(doc(db, base, id));
+}
+
+// удалить подполе
+export async function removeSubfield(base, id, field) {
+  let data = {};
+  data[field] = deleteField();
+  await updateDoc(doc(db, base, id), data);
 }
 
 /**
