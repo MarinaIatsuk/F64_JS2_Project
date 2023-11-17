@@ -52,7 +52,8 @@ $font-btns: "Fira Sans Condensed";
     padding-top: 4vh;
     margin: 0 10vw 3vh 3vw;
     background-color: $background-color;
-    height: 100vh;
+    min-height: 100vh; 
+    height: 100%;//чтобы контейнер растягивался на ширину контента
     color: $color;
     border-radius: 4vh 4vh 40vh 4vh;
 }
