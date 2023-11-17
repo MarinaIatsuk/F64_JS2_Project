@@ -2,7 +2,6 @@ import "./db";
 import * as db from './db';
 import MD5 from "crypto-js/md5";
 
-document.addEventListener('DOMContentLoaded', function () {
     let currentPage = 1;
 
     // Обработчик события клика на кнопку поиска
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         </button>
                     </div>
             `;
-
             item.innerHTML = template;
             container.appendChild(item);
         });
@@ -106,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //при нажатии на кнопку, переходим на страницу с фильмрм и id выбранного фильма сохраняем в local storage, чтобы по нему отрисовать инфу о фильме:
 
     //находим все кнопки
-    const buttonInfo = document.querySelectorAll('.infoBTN')
+    const buttonInfo = document.querySelectorAll('.content__btn')
 
     // проходим по каждой кнопке:
     buttonInfo.forEach(function (button) {
@@ -114,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             // Получаю id фильма из атрибута ID
             const filmId = button.getAttribute('id');
+            console.log(filmId);
 
             // Сохранение id фильма в localStorage
             localStorage.setItem('selectedFilmId', filmId);
@@ -122,8 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = 'page-movie.html';
         });
     });
-
-
 
     //функция для лайков
     // выбираем все лайки
@@ -143,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
 
-                setLike(accessObj, filmId, false) 
+                setLike(accessObj, filmId, true) 
             }
         });
     });
@@ -153,6 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
         span.classList.toggle('liked');
     }
 }
-
-    });
+ async function setLike(user_id, film_id, state) {
+    const data = {};
+    data[`likes.${film_id}`] = state;
+    await db.update("users", user_id, data);
+}
+    ;
 
