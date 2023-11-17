@@ -84,7 +84,19 @@
             }
         }
     }
+    .container-pagination{
+        padding-top: 10%;
+        margin-bottom: 10%;
+        .prev-page-btn{
+            width: 20vw;
+                height: 4vh
+        }
+        .next-page-btn{
+            width: 20vw;
+                height: 4vh
+        }
 
+    }
 }
 
 //like
