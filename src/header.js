@@ -1,9 +1,6 @@
 
 document.querySelector('#avatar').onclick = function(){
     //alert('вход в личный кабинет');
- }
- 
- 
  
  //const API_KEY = "6e01b98a-32ba-41c9-b64f-a2a9582aafa5";
  //const url = 
@@ -14,16 +11,14 @@ document.querySelector('#avatar').onclick = function(){
  const list = document.querySelector('#list')
  const filter = document.querySelector('#filter') 
  let FILMS = []
- 
- filter.addEventListener('input', (event) => {
+  filter.addEventListener('input', (event) => {
     const value  = event.target.value.toLowerCase()
      const filteredFilms = FILMS.filter ((film) => {
       return film.name.toLowerCase().includes(value)
     })
    render(filteredFilms)
     })
- 
- async function start(){
+  async function start(){
      try{
        const responce = await fetch('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${input.value}&page=1',
        { 
@@ -32,14 +27,9 @@ document.querySelector('#avatar').onclick = function(){
           'content-type':     'application/json',
           "X-API-KEY":"6e01b98a-32ba-41c9-b64f-a2a9582aafa5"},
        })
- 
-      // 
-      // const data = await  responce.json()
-         //       render(data)
-      //  }
-    }
-        
-     catch(err){
+      //       // const data = await  responce.json() вот здесь я это убрала так как это не нужно?         //       render(data)
+          }
+           catch(err){
         list.style.color ='red'
          list.innerHTML = err.message
      }
@@ -52,12 +42,10 @@ document.querySelector('#avatar').onclick = function(){
         list.innerHTML = html
      }
   }
- 
-  function toHTML(film) {
+   function toHTML(film) {
     return`
     <li class="list-group-item">${film.name}</li>
-     `
-  }
+     `  }
  start()
  
  
