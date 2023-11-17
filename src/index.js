@@ -112,15 +112,25 @@ async function testtt() {
     // setLike(user.id, "film_id", false);
     // setRating(user.id, "film_id", 5);
     // addComment(user.id, user.name, "film_id", "film sucks");
+    // const data = {};
+    // data[`likes.somefilem`] = true;
+    // await db.update("users", "WAdKgR1PYL9r3fzKk03d", data);
+    
 };
 
 // функция для добавления и убирания из избранного
 // state = true - добавить в избранное
 // state = false - убрать из избранного
+
 export async function setLike(user_id, film_id, state) {
-    const data = {};
-    data[`likes.${film_id}`] = state;
-    await db.update("users", user_id, data);
+    let subfield = `likes.${film_id}`;
+    if (state) {
+        const data = {};
+        data[subfield] = true;
+        await db.update("users", user_id, data);
+    } else {
+        await db.removeSubfield("users", user_id, subfield);
+    }
 }
 
 // функция для установки и изменения рейтинга, value - значение рейтинга
