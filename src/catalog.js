@@ -89,8 +89,7 @@ function attachFilmButtonsEvent() {
         button.addEventListener('click', function () {
             const filmId = button.getAttribute('id'); // Получаю id фильма из атрибута ID
             //console.log(filmId); //Проверка
-            localStorage.setItem('selectedFilmId', filmId); // Сохранение id фильма в localStorage
-            window.location.href = 'page-movie.html'; // Переход на страницу film.html
+            window.location.href = `page-movie.html?id=${filmId}`; // Переход на страницу film.html
         });
     });
 }
