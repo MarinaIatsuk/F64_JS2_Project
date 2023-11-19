@@ -1,22 +1,22 @@
-.container_catalog {
+.catalog__container {
     // min-height: 100vh;
     // height: 100% !important;
 
-    .container__header {
+    .catalog__header {
         flex-basis: 80px;
         font-size: 50px;
     }
 
-    .container__list {
+    .catalog__interface {
         display: flex;
 
-        .container__box {
+        .catalog__box {
             display: flex;
             flex-direction: column;
             font-size: 20px;
             font-size: larger;
 
-            .container__item {
+            .catalog__item {
                 background-color: $background-color;
                 border: none;
                 color: $dark-frame;
@@ -30,30 +30,29 @@
             }
         }
 
-        .btn-wrapper {
+        .catalog__btn {
             padding-left: 100px;
         }
     }
 
-    .container__content {
+    .content {
         display: flex;
         flex-direction: column;
 
 
         margin-right: 15%;
 
-        .content__item {
+        .content__item{
             display: flex;
             flex-grow: 1;
             padding-top: 30px;
 
 
             .content__poster {
-
                 width: 100px;
                 margin-right: 10px;
 
-                .poster__img {
+                .content__img {
                     width: 100%;
                 }
             }
@@ -84,14 +83,14 @@
             }
         }
     }
-    .container-pagination{
+    .pagination{
         padding-top: 10%;
         margin-bottom: 10%;
-        .prev-page-btn{
+        .pagination__prev-page-btn{
             width: 20vw;
                 height: 4vh
         }
-        .next-page-btn{
+        .pagination__next-page-btn{
             width: 20vw;
                 height: 4vh
         }

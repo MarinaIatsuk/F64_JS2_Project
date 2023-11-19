@@ -1,6 +1,6 @@
 import * as db from './db'; // для работы с БД
 
-let currentPage = 1;
+let currentPage = 1; //Для пагинации
 let prevPageBtn, nextPageBtn; //объявление переменных для кнопок переключения страниц здесь, чтобы они работали в функции
 
 // Обработчик события клика на кнопку поиска
@@ -25,8 +25,8 @@ async function getData(page) {
             },
         });
         const data = await response.json();
-        console.log(data);
-        updateContainer(data);
+        //console.log(data); //Проверка
+        updateContainer(data); //отрисовка списка
         currentPage = page;
         
     } catch (error) {
@@ -36,7 +36,7 @@ async function getData(page) {
 
 // Функция, которая отрисовывает список фильмов
 function updateContainer(data) {
-    const container = document.querySelector(".container__content");
+    const container = document.querySelector(".content");
     container.textContent = "";
 
     data.items.forEach((film) => {
@@ -49,32 +49,32 @@ function updateContainer(data) {
     attachLikeButtonsEvent(); // Передача id фильма в БД при нажатии на лайк
 }
 
-// Создать элемент фильма. Проходимся по массиву фильмов и добавляем информацию в контейнер
+// Создает элемент фильма. Проходимся по массиву фильмов и добавляем информацию в контейнер
 function createFilmItem(film) {
     const item = document.createElement("div");
     item.classList.add("content__item");
     const template =
         `
-            <div class="content__poster">
-                <img src="${film.posterUrlPreview}" alt="poster" class="poster__img">
-            </div>
-            <div class="content__info">
-                <h3 class="content__title">${film.nameRu}</h3>
-                <h3 class="content__original-title">${film.nameOriginal}</h3>
-                <div class="content__year">Год выхода фильма: ${film.year}</div>
-                <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-                <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
-                <div class="filmFavContainer">
-                    <button class="content-button likeBtn" id="${film.kinopoiskId}">
-                        <span class="likeIcon"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="content-btn">
-                <button class="content__btn btn" id="${film.kinopoiskId}">
-                    Показать информацию о фильме
-                </button>
-            </div>
+        <div class="content__poster">
+        <img src="${film.posterUrlPreview}" alt="poster" class="content__img">
+    </div>
+    <div class="content__info">
+        <h3 class="content__title">${film.nameRu}</h3>
+        <h3 class="content__original-title">${film.nameOriginal}</h3>
+        <div class="content__year">Год выхода фильма: ${film.year}</div>
+        <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
+        <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
+        <div class="filmFavContainer">
+            <button class="content-button likeBtn" id="${film.kinopoiskId}">
+                <span class="likeIcon"></span>
+            </button>
+        </div>
+    </div>
+    <div class="content-btn">
+        <button class="content__btn btn" id="${film.kinopoiskId}">
+            Показать информацию о фильме
+        </button>
+    </div>
         `;
     item.innerHTML = template;
     return item;
@@ -140,18 +140,18 @@ function putLike(span) {
 
 // Управление кнопками страниц
 function managePageButtons() {
-    const paginationContainer = document.querySelector(".container-pagination");
+    const paginationContainer = document.querySelector(".pagination");
 
-    if (!document.querySelector(".prev-page-btn") || !document.querySelector(".next-page-btn")) { // Добавить элементы управления страницами, если их нет
+    if (!document.querySelector(".pagination__prev-page-btn") || !document.querySelector(".pagination__next-page-btn btn")) { // Добавить элементы управления страницами, если их нет
         const templateBtn =
             `
-        <button class="prev-page-btn btn">Предыдущая страница</button>
-        <button class="next-page-btn btn">Следующая страница</button>
+        <button class="pagination__prev-page-btn btn">Предыдущая страница</button>
+        <button class="pagination__next-page-btn btn">Следующая страница</button>
         `
         paginationContainer.innerHTML = templateBtn;
 
-        prevPageBtn = document.querySelector(".prev-page-btn");
-        nextPageBtn = document.querySelector(".next-page-btn");
+        prevPageBtn = document.querySelector(".pagination__prev-page-btn");
+        nextPageBtn = document.querySelector(".pagination__next-page-btn");
 
         nextPageBtn.addEventListener("click", function (event) { //Обработчик события на кнопку "Следующая страница"
             event.preventDefault();
@@ -166,174 +166,6 @@ function managePageButtons() {
         });
     }
     // Убрать кнопку "предыдущая" страница на первой и "Следующая" на послндней
-    prevPageBtn.style.display = (currentPage === -1) ? "none" : "block";
+    prevPageBtn.style.display = (currentPage === 1) ? "none" : "block";
     nextPageBtn.style.display = (currentPage === 4) ? "none" : "block"; //Апи выдает 5 страниц, но кнопка пропадает на 5-й только если здесь 4
 }
-
-
-
-// // Обработчик события клика на кнопку поиска
-// document.querySelector(".btn").addEventListener("click", function (event) {
-//     event.preventDefault(); // Остановить перезагрузку страницы
-//     getData(currentPage);// Вызов функцию для получения данных с текущей страницы
-// });
-
-// // Функция для выполнения запроса к API
-// async function getData(page) {
-//     const genre = document.getElementById("genre").value;
-//     const country = document.getElementById("country").value;
-//     const movieSerial = document.getElementById("movie-serial").value;
-
-//     try {
-//         const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films?countries=${country}&genres=${genre}&order=RATING&type=${movieSerial}&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=${page}`, {
-//             method: "GET",
-//             headers: {
-//                 'content-type': "application/json",
-//                 "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
-//             },
-//         });
-//         const data = await response.json();
-//         console.log(data);
-//         updateContainer(data);
-//         currentPage = page; // Установить текущую страницу после успешного запроса
-//     } catch (error) {
-//         console.error("Ошибка загрузки:", error);
-//     }
-// }
-
-// // Функция, которая отрисовывает список фильмов
-// function updateContainer(data) {
-//     // Очищаем предыдущие данные
-//     const container = document.querySelector(".container__content");
-//     container.textContent = "";
-
-//     // Проходимся по массиву фильмов и добавляем информацию в контейнер
-//     data.items.forEach((film) => {
-//         const item = document.createElement("div");
-//         item.classList.add("content__item");
-//         const template =
-//             `
-//                     <div class="content__poster">
-//                         <img src="${film.posterUrlPreview}" alt="poster" class="poster__img">
-//                     </div>
-//                     <div class="content__info">
-//                         <h3 class="content__title">${film.nameRu}</h3>
-//                         <div class="content__year">Год выхода фильма: ${film.year}</div>
-//                         <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-//                         <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
-//                         <div class="filmFavContainer">
-//                             <button class="content-button likeBtn" id="${film.kinopoiskId}">
-//                                 <span class="likeIcon"></span>
-//                             </button>
-//                         </div>
-//                     </div>
-//                     <div class="content-btn">
-//                         <button class="content__btn btn" id="${film.kinopoiskId}">
-//                             Показать информацию о фильме
-//                         </button>
-//                     </div>
-//             `;
-//         item.innerHTML = template;
-//         container.appendChild(item);
-//     });
-// // Находим новые кнопки здесь
-// let prevPageBtn, nextPageBtn;
-
-//     // Добавить элементы управления страницами, если их нет
-//     if (!document.querySelector(".prev-page-btn") || !document.querySelector(".next-page-btn")) {
-
-//         const paginationContainer = document.querySelector(".container-pagination");
-
-//         const templateBtn =
-//             `
-//         <button class="prev-page-btn btn">Предыдущая страница</button>
-//         <button class="next-page-btn btn">Следующая страница</button>
-//         `
-//         paginationContainer.innerHTML = templateBtn
-
-//         //Нашли новые кнопки:
-//          prevPageBtn = document.querySelector(".prev-page-btn")
-//          nextPageBtn = document.querySelector(".next-page-btn")
-
-//         // Обработчик события клика на кнопку "Следующая страница"
-//         nextPageBtn.addEventListener("click", function (event) {
-//             event.preventDefault();
-//             getData(currentPage + 1);
-//         });
-
-//         // Обработчик события клика на кнопку "Предыдущая страница"
-//         prevPageBtn.addEventListener("click", function (event) {
-//             event.preventDefault();
-//             if (currentPage > 1) {
-//                 getData(currentPage - 1);
-//             }
-//         });
-//     }
-
-//     // Условия для скрытия кнопок на первой и последней странице
-//     const maxPage = 5; // Максимальное количество страниц, выдаваемое API 
-//     if (currentPage === 1) {
-//         prevPageBtn.style.display = "none"; // Скрыть кнопку "Предыдущая страница" на первой странице
-//     }
-
-//     if (currentPage === maxPage) {
-//         nextPageBtn.style.display = "none"; // Скрыть кнопку "Следующая страница" на последней странице
-//     }
-
-
-//     //при нажатии на кнопку, переходим на страницу с фильмрм и id выбранного фильма сохраняем в local storage, чтобы по нему отрисовать инфу о фильме:
-
-//     //находим все кнопки
-//     const buttonInfo = document.querySelectorAll('.content__btn')
-
-//     // проходим по каждой кнопке:
-//     buttonInfo.forEach(function (button) {
-
-//         button.addEventListener('click', function () {
-//             // Получаю id фильма из атрибута ID
-//             const filmId = button.getAttribute('id');
-//             console.log(filmId);
-
-//             // Сохранение id фильма в localStorage
-//             localStorage.setItem('selectedFilmId', filmId);
-
-//             // Переход на страницу film.html
-//             window.location.href = 'page-movie.html';
-//         });
-//     });
-
-//     //функция для лайков
-//     // выбираем все лайки
-//     const likeBtns = document.querySelectorAll('.likeBtn');
-//     likeBtns.forEach((btn) => {
-//         btn.addEventListener('click', function (event) {
-//             event.preventDefault()
-//             // Получаю id фильма из каждого "лайка"
-//             const filmId = btn.getAttribute('id');
-//             let target = event.target; //это «целевой» элемент, на котором произошло событие
-//             if (target.tagName === 'SPAN') {
-//                 putLike(target);
-
-//                 console.log(filmId); //Проверка
-//                 // Получаю id пользователя из Local storage
-//                 const objLS = window.localStorage.getItem('client');
-//                 const accessObj = JSON.parse(objLS).id;
-//                 console.log(accessObj); //Проверка
-
-//                 setLike(accessObj, filmId, true)
-//             }
-//         });
-//     });
-
-//     //лайкаем и добавляем в избранное Нужно ли выносить?
-//     function putLike(span) {
-//         span.classList.toggle('liked');
-//     }
-// }
-
-// //Функция для работы с БД
-// async function setLike(user_id, film_id, state) {
-//     const data = {};
-//     data[`likes.${film_id}`] = state;
-//     await db.update("users", user_id, data);
-// };

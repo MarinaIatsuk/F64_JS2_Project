@@ -8,12 +8,12 @@
     </head>
 
     <body>
-        <div class="container_catalog container">
-            <div class="container__header">Каталог</div>
-            <div class="container__list">
-                <form class="container__box">
+        <div class="catalog__container container">
+            <div class="catalog__header">Каталог</div>
+            <div class="catalog__interface">
+                <form class="catalog__box">
                     <label for="genre">Жанр</label>
-                    <select class="container__item" id="genre" name="genre">
+                    <select class="catalog__item" id="genre" name="genre">
                         <option value="">Все жанры</option>
                         <option value="1">триллер</option>
                         <option value="2">драма</option>
@@ -48,10 +48,11 @@
                         <option value="33">детский</option>
                     </select>
                 </form>
-                <form class="container__box">
+                <form class="catalog__box">
                     <label for="country">Страна</label>
-                    <select class="container__item" id="country" name="country">
+                    <select class="catalog__item" id="country" name="country">
                         <option value="">Все страны</option>
+                        <option value="34">Россия</option>
                         <option value="1">США</option>
                         <option value="2">Швейцария</option>
                         <option value="3">Франция</option>
@@ -69,9 +70,9 @@
                         <option value="15">Мексика</option>
                     </select>
                 </form>
-                <form class="container__box">
+                <form class="catalog__box">
                     <label for="movie-serial">Фильм или сериал?</label>
-                    <select class="container__item" id="movie-serial" name="movie-serial">
+                    <select class="catalog__item" id="movie-serial" name="movie-serial">
                         <option value="ALL">И сериалы и фильмы</option>
                         <option value="FILM">Фильмы</option>
                         <option value="TV_SHOW">тв-шоу</option>
@@ -79,17 +80,16 @@
                         <option value="MINI_SERIES">Мини-сериалы</option>
                     </select>
                 </form>
-                <div class="btn-wrapper">
+                <div class="catalog__btn">
                     <button class="btn">Поиск</button>
                 </div>
                 
             </div>
             
-            <div class="container__content">
-            </div>
-            <div class="container-pagination">
+            <div class="content">
                 
-
+                </div>
+                       <div class="pagination">
             </div>
         </div>
         <script type="module" src="./main.js"></script>
