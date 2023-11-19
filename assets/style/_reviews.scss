@@ -1,0 +1,24 @@
+.block-reviews {
+    display: flex;
+    flex-direction: column;
+    &__title-wrapper {
+        font-family: $font-titles;
+        border-radius: 3px;
+        background-color: #dc8cd9;
+        padding: 12px;
+    }
+    &__title_state_active {
+        color: $dark-frame;
+        border-bottom: 2px solid $backgroundLine;
+    }
+    &__title_state_not-active {
+        color: gray;
+        border: none;
+    }
+}
+
+.reviews-titles {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
