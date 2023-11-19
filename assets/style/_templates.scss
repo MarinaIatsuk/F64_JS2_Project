@@ -60,7 +60,4 @@ $font-btns: "Fira Sans Condensed";
     height: 100%;//чтобы контейнер растягивался на ширину контента
     color: $color;
     border-radius: 4vh 4vh 40vh 4vh;
-    @media $mobile {
-        margin-top: 17%;
-      }
 }
