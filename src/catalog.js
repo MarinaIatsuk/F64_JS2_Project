@@ -45,7 +45,7 @@ function updateContainer(data) {
     });
 
     managePageButtons(); //Управление кнопками предыдущая/следующая страницы
-    attachFilmButtonsEvent(); // Переход на карточку выбранного пользователем фильма
+    // attachFilmButtonsEvent(); // Переход на карточку выбранного пользователем фильма
     attachLikeButtonsEvent(); // Передача id фильма в БД при нажатии на лайк
 }
 
@@ -71,28 +71,26 @@ function createFilmItem(film) {
         </div>
     </div>
     <div class="content-btn">
-        <button class="content__btn btn" id="${film.kinopoiskId}">
-            Показать информацию о фильме
-        </button>
+    <a class="content__btn" href="page-movie.html?id=${film.kinopoiskId}">Показать информацию о фильме</a>
     </div>
         `;
     item.innerHTML = template;
     return item;
 }
 
-// Обработчик события клика на кнопках для показа инфы о фильиах
-function attachFilmButtonsEvent() {
+// // Обработчик события клика на кнопках для показа инфы о фильиах
+// function attachFilmButtonsEvent() {
 
-    const buttonInfo = document.querySelectorAll('.content__btn')//находим все кнопки
-    buttonInfo.forEach(function (button) { // проходим по каждой кнопке:
+//     const buttonInfo = document.querySelectorAll('.content__btn')//находим все кнопки
+//     buttonInfo.forEach(function (button) { // проходим по каждой кнопке:
 
-        button.addEventListener('click', function () {
-            const filmId = button.getAttribute('id'); // Получаю id фильма из атрибута ID
-            //console.log(filmId); //Проверка
-            window.location.href = `page-movie.html?id=${filmId}`; // Переход на страницу film.html
-        });
-    });
-}
+//         button.addEventListener('click', function () {
+//             const filmId = button.getAttribute('id'); // Получаю id фильма из атрибута ID
+//             //console.log(filmId); //Проверка
+//             window.location.href = `page-movie.html?id=${filmId}`; // Переход на страницу film.html
+//         });
+//     });
+// }
 
 // Обработчик события клика на кнопках лайков
 function attachLikeButtonsEvent() {
@@ -103,7 +101,7 @@ function attachLikeButtonsEvent() {
             const filmId = btn.getAttribute('id');
             let target = event.target;
             // Проверка авторизации
-            const objLS = window.localStorage.getItem('client');
+            const objLS = window.localStorage.getItem('client'); // Получили id пользователя из бд
             if (!objLS) {// Если пользователь не авторизован, останавливаем функцию
                 return;
             }
@@ -168,3 +166,86 @@ function managePageButtons() {
     prevPageBtn.style.display = (currentPage === 1) ? "none" : "block";
     nextPageBtn.style.display = (currentPage === 4) ? "none" : "block"; //Апи выдает 5 страниц, но кнопка пропадает на 5-й только если здесь 4
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { get } from './db';
+
+document.addEventListener("DOMContentLoaded", function () {
+    getMovieId();
+
+    // Получаем id фильма из бд у пользователя:
+    async function getMovieId() {
+        try {
+            // Получаем id пользователя из бд:
+            // const clientId = window.localStorage.getItem('client');
+            // const clientInfo = JSON.parse(clientId);
+            // const userId = clientInfo.id;
+
+            // const userData = await get("users", userId);
+
+            // console.log(userData);
+const ex={
+    "name": "Михаил",
+    "email": "bulka12121@gmail.com",
+    "secret": "8586446755a81d800522bacda9fcf9c2",
+    "likes": {
+        "326": true,
+        "361": true,
+        "389": true,
+        "435": true,
+        "351771": true,
+        "460089": true,
+        "568016": true,
+        "909720": true,
+        "1201206": true,
+        "1252447": true,
+        "1309325": true,
+        "5260016": true
+    },
+    "password": "1ac217343c079c21859c159049731109",
+    "id": "WAdKgR1PYL9r3fzKk03d"
+}
+            const likesKeys = Object.keys(ex.likes);
+            console.log(likesKeys);
+            await getMovies(likesKeys);
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+        }
+    }
+
+    async function getMovies(likesKeys) {
+        console.log("я срабатываю");
+        try {
+            const moviePromises = likesKeys.map(async (id) => {
+                const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`, {
+                    method: "GET",
+                    headers: {
+                        'content-type': "application/json",
+                        "X-API-KEY": 'b5f46c64-de46-487e-b427-0ecc0ce121a5'
+                    },
+                });
+                const data = await response.json();
+                console.log(data);
+                // updateContainer(data);
+                return data; // возвращаем результат запроса
+            });
+
+            const moviesData = await Promise.all(moviePromises);
+            console.log(moviesData); // массив данных по фильмам
+        } catch (error) {
+            console.error("Ошибка загрузки:", error);
+        }
+    }
+});
