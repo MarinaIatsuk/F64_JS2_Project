@@ -37,12 +37,12 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     const html = `
 
   <div class="poster-info post-one">
-    <img class="film-img" src="${movieOne.posterUrl}" alt="film">
+  <a href=""><img class="film-img" src="${movieOne.posterUrl}" alt="film"></a>
      <div class="film-title-wrapper"><p class="film-title">${movieOne.nameRu}</p></div>
   </div>
 
   <div class="poster-info">
-    <img class="film-img" src="${movieTwo.posterUrl}" alt="film">
+  <a href=""><img class="film-img" src="${movieTwo.posterUrl}" alt="film"></a>
     <div class="film-title-wrapper"><p class="film-title">${movieTwo.nameRu}</p></div>
   </div>`;
 
@@ -50,12 +50,12 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     const htmlTwo = `
 
   <div class="poster-info post-one">
-    <img class="film-img" src="${movieThree.posterUrl}" alt="film">
+  <a href=""><img class="film-img" src="${movieThree.posterUrl}" alt="film"></a>
     <div class="film-title-wrapper"><p class="film-title">${movieThree.nameRu}</p></div>
   </div>
 
   <div class="poster-info">
-    <img class="film-img" src="${movieFour.posterUrl}" alt="film">
+  <a href=""><img class="film-img" src="${movieFour.posterUrl}" alt="film"></a>
     <div class="film-title-wrapper"><p class="film-title">${movieFour.nameRu}</p></div>
   </div>`
       ;
