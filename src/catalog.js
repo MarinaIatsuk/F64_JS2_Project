@@ -143,8 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const objLS = window.localStorage.getItem('client');
     const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
-            }
-                setLike(accessObj, filmId, true) ;
+               setLike(accessObj, filmId, true) 
+        }
                        });
         });
 
@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const data = {};
     data[`likes.${film_id}`] = state;
     await db.update("users", user_id, data);
+    
 };
     
 
@@ -185,20 +186,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "GET",
                 headers: {
                     'content-type': "application/json",
-                    "X-API-KEY": 'b5f46c64-de46-487e-b427-0ecc0ce121a5'
-                },
+                    'X-API-KEY': "ee5367e9-c264-44b7-93b8-dab17fafadc7",
+                                   },
             });
             const data = await response.json();
-            console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
-            makeList(data); // функция отрисовка списка, которая ниже
-
+           console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
+           makeList(data); // функция отрисовка списка, которая ниже
+           
         }
+       
     } catch (error) {
         console.error("Ошибка загрузки:", error);
     }
+   
 }
 
 
+let likeList = window.document.querySelector('.list__movieList');
 function makeList(data) {
     const item = document.createElement("div"); //создаем, например, див
     item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
@@ -222,12 +226,10 @@ function makeList(data) {
          Показать информацию о фильме
      </button>
      </div>
-   
-        ` //карточку можно сделать любую. брать ту инфу, которую выдает АПИ
-     ; //nameRu и shortDescription - это ключи объектов, которые выдает АПИ
+           ` 
 
-        let likeList = document.querySelector('.list__movieList');
        item.innerHTML = template; //вставляем карточку в item
+       
        likeList.appendChild(item); // добавляем элемент в контейнер
 } 
 })

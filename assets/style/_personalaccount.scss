@@ -1,114 +1,158 @@
-body {
-  overflow-x: hidden;
-}
-
-.lk{
-  &__user{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    .user{
-
-  &__title{
-    padding-bottom: 4vh;
-   font-family:$font-titles;
-}
-    }
+  body {
+    overflow-x: hidden;
   }
   
-
-  &__list{
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-
-    .list{
- 
-      &__title{
-        .title{
-          &__header{
-    font-family: $font-texts;
-   }
-  }
-    li{
-      list-style-type: none;
-      padding-top: 1vh;
-    }
-    a{
-      text-decoration: none;
-    }
-  }
-
-
- &__movieList{
-padding-left: 10vw;
-font-family:$font-titles;
-padding-top: 1vh;
-} 
-    }
+  .lk{
+    &__user{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      .user{
   
+    &__title{
+      padding-bottom: 4vh;
+     font-family:$font-titles;
   }
-
-&__btn{
-      margin-bottom: 50px;
-        }
-
-  &__modalList{
-    margin: 100px auto;
-    position: relative;
-      border:none;
-      border-radius: 2vh;
-      width: 40vw;
-      height: 35vh;
-     
-      .modalList{
-           
+      }
+    }
+    
+  
+    &__list{
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+  
+      .list{
+   
         &__title{
-         text-align: center;
-        background-color: $backgroundLine;
-        color:$color;
-        font-family:$font-titles;
-        padding: 2vh 0;
-        }
-        &__input{
-            display: flex;
-          flex-direction: column;
-      .input{
-        &__label{
-          font-family:$font-btns;
-          padding: 3vh 0;
-          text-align: center;
-          
-        }
-        &__text{
-             width: 75%;
-margin: 0 auto;
-padding:  1vh 2vw;
-            background-color: $inputcolor;
-            font-family: $font-texts;
-            border: none;
-            border-radius: 2vh;
-          }
-                  }
-                }
-        &__btn{
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          padding: 2vh 0;
-          width: 100%;
-          border: none;
-          background-color: $backgroundLine;
-          color:$color; 
-          font-family: $font-btns;
-            }
-            } 
+          .title{
+            &__header{
+      font-family: $font-texts;
+     }
     }
-
+      li{
+        list-style-type: none;
+        padding-top: 1vh;
+      }
+      a{
+        text-decoration: none;
+      }
+    }
+  
+  
+   &__movieList {
+  padding-left: 10vw;
+  font-family:$font-titles;
+  padding-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  
+  .content__item {
+      display: flex;
+      flex-grow: 1;
+      padding-top: 30px;
+  
+  
+      .content__poster {
+  
+          width: 100px;
+          margin-right: 10px;
+  
+          .poster__img {
+              width: 100%;
+          }
+      }
+  
+      .content__info {
+        margin-right: 8vw;
+          .content__title {
+              padding-bottom: 2vh;
+              color: $dark-frame;
+          }
+  
+          .content__rating {
+              padding-bottom: 0.5vh;
+  
+          }
+  
+          .content__year {
+              padding-bottom: 0.5vh;
+          }
+  
+  
+      }
+      .content__btn{
+          width: 30vw;
+          height: 4vh;
+          align-self: flex-end;
+  
+      }
   }
-
-
-/*   $mobile: "screen and (max-width: 599px)";
-  $tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
-  $desktop: "screen and (min-width: 1024px)"; */
+  
+  
+  } 
+      }
+    
+    }
+  
+  &__btn{
+        margin-bottom: 50px;
+          }
+  
+    &__modalList{
+      margin: 100px auto;
+      position: relative;
+        border:none;
+        border-radius: 2vh;
+        width: 40vw;
+        height: 35vh;
+       
+        .modalList{
+             
+          &__title{
+           text-align: center;
+          background-color: $backgroundLine;
+          color:$color;
+          font-family:$font-titles;
+          padding: 2vh 0;
+          }
+          &__input{
+              display: flex;
+            flex-direction: column;
+        .input{
+          &__label{
+            font-family:$font-btns;
+            padding: 3vh 0;
+            text-align: center;
+            
+          }
+          &__text{
+               width: 75%;
+  margin: 0 auto;
+  padding:  1vh 2vw;
+              background-color: $inputcolor;
+              font-family: $font-texts;
+              border: none;
+              border-radius: 2vh;
+            }
+                    }
+                  }
+          &__btn{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 2vh 0;
+            width: 100%;
+            border: none;
+            background-color: $backgroundLine;
+            color:$color; 
+            font-family: $font-btns;
+              }
+              } 
+      }
+  
+    }
+  
+  
+  
