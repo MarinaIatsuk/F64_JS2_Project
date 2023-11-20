@@ -1,7 +1,10 @@
 @import "./templates";
 @import "./fonts";
 
-// $color-text: #fff;
+
+
+
+
 
 .error {
     box-shadow: 0 0 15px red;
@@ -15,12 +18,23 @@
 .location {
     display: flex;
     flex-direction: column;
+    margin-top: 2%
 }
 
 input {
-    padding: 10px;
-    border-radius: 20px;
+    @extend %square;
+    padding: 1.5%;
 }
+
+.error-text{
+    @extend %error-text;
+}
+
+.see{
+    display: none;
+}
+
+
 .main-reg {
     display: flex;
     flex-direction: column;
@@ -32,12 +46,13 @@ input {
     &__title{
         font-size: 60px;
         color: #5E0E5A;
-        font-family: "Poppins";
-        font-weight: 400;
+        font-family: $font-titles;
     }
 
     &__text{
         font-size: 25px;
+        margin-bottom: 2%;
+       font-family: $font-texts;
     }
 
 
@@ -87,13 +102,61 @@ input {
         cursor: pointer;
     }
 
+    &__ok {
+        width: 100%;
+        background-color: #330031;
+        border-radius: 20px;
+        box-shadow: 3px 3px 28px 15px rgba(0, 0, 0, 0.10);
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__ok-text{
+        font-size: 25px;
+        color: $color;
+        font-family: $font-texts;
+    }
+
+    &__ok-link{
+        color: $color;
+        font-family: $font-texts;
+    }
+
 }
 
 .form{
     &__btn-text{
         cursor: pointer;
     }
+
+    &__btn-text{
+        margin-top: 2%;
+        padding: 1.5%;
+        font-weight: 600;
+        @extend %square;
+    }
+
+    &__btn-text:disabled{
+        background-color: #6e356b;
+        border: 1px solid rgb(168, 51, 51);
+        color: #330031;
+    }
+
+    &__checkbox{
+        margin-top: 2%;
+    }
+
+    
 }
+
+
+
+
+
+
 
 
 

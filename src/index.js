@@ -17,11 +17,10 @@
 
 // Модальное окно на главной странице
 
-const btnOpen = document.querySelector('#btnOpen');
+const btnOpen = document.querySelector('#btnOpen');//кнопка Войти в хэдэр
 
 const windModal = document.querySelector('#windModal');
 const btnClose = document.querySelector('#btnClose');
-// const formContainer= document.querySelector('#formContainer');
 
 function openModal() {
     window.windModal.showModal();
@@ -34,9 +33,6 @@ function closeModal() {
 
 btnOpen.addEventListener('click', openModal);
 btnClose.addEventListener('click', closeModal);
-// formContainer.addEventListener('click', (e)=>{
-//     e.stopPropagation();
-// })
 
 
 
@@ -54,19 +50,41 @@ const loginEmail = document.querySelector('#loginEmail');//доступ к input
 const loginPassword = document.querySelector('#loginPassword');//доступ к input пароль
 const btnLogin = document.querySelector('#btnLogin');//доступ к кнопке войти
 
-const hiUser = document.querySelector('#hiUser')
+const hiUser = document.querySelector('#hiUser')//приветствие юзера в хэдэр
 
 
-// function lsName(){
-//     //ДОДЕЛАТЬ если в локальном хранилище есть информация, то кнопка Войти = дисплей ноне, будет Привет юзер
-// }
-// window.addEventListener('load', lsName);
+function lsName() {
+    let equallyLs = localStorage.hasOwnProperty("client");// содержит ли локальное хранилище данные о "client"
+
+    if (equallyLs === true) {
+        btnOpen.style.display = 'none;';//кнопка войти в хэдэр
+
+
+        const objLS = window.localStorage.getItem('client');
+        const accessObj = JSON.parse(objLS);
+
+        hiUser.innerHTML = `<p class="cont__text-name"> Привет, ${accessObj.name}</p>`;//вместо кнопки войти в хэдэре
+    } else {
+        btnOpen.style.display = 'flex';
+    }
+
+    let login = new URLSearchParams(window.location.search).get('login');//если login=true, то открывается модальное окно
+    if (login) openModal();
+}
+
+//при загрузке страницы 
+window.addEventListener('load', lsName);
 
 
 // отмена отправки
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
 })
+
+const dialogEmailError = document.querySelector('#dialogEmailError'); //доступ к полю ошибки email
+
+const dialogPasswError = document.querySelector('#dialogPasswError'); //доступ к полю ошибки пароля
+
 
 
 //проверка есть ли пользователь с таким email и правильно ли введен пароль, если такой пользователь есть
@@ -78,10 +96,11 @@ async function examLogin() {
     const users = await db.get_query("users", "email", loginEmail.value);
 
     if (users == 0) {
-        console.log('нет пользователя с таким email');
+        dialogEmailError.textContent = `Пользователь с таким email не зарегестрирован. Создайте свой аккаунт в форме регистрации`;
     } else {
         if (users[0].password != pas) {
-            console.log("пароль неверный");
+            dialogPasswError.textContent = 'пароль неверный';
+
         } else {
             console.log('Добро пожаловать');
 
@@ -93,7 +112,7 @@ async function examLogin() {
 
             window.windModal.close();//закрыть модальное окно
 
-            btnOpen.style.display = 'none;';
+            btnOpen.style.display = 'none;';//кнопка войти в хэдэр
 
             const objLS = window.localStorage.getItem('client');
             const accessObj = JSON.parse(objLS);
@@ -107,6 +126,11 @@ async function examLogin() {
 btnLogin.addEventListener("click", examLogin); //клик на Войти в модальном окне
 
 
+
+
+
+//ДОДЕЛАТЬ Забыли пароль!!!!
+
 // ====================================================================
 async function testtt() {
     // setLike(user.id, "film_id", false);
@@ -115,7 +139,7 @@ async function testtt() {
     // const data = {};
     // data[`likes.somefilem`] = true;
     // await db.update("users", "WAdKgR1PYL9r3fzKk03d", data);
-    
+
 };
 
 // функция для добавления и убирания из избранного
@@ -147,11 +171,14 @@ async function setRating(user_id, film_id, value) {
 }
 
 // функция для добавления комментария, text - текст комментария
-async function addComment(user_id, user_name, film_id, text) {
-    const data = { text: text };
+async function addComment(user_id, user_name, film_id, text,title) {
+    const data = {};
+    data.text = text;
     data.name = user_name;
     data.user_id = user_id;
     data.film_id = film_id;
+    data.date = new Date().getTime();
+    data.title= title;
     const id = await db.add("comments", data);
     return id;
 }
@@ -161,3 +188,5 @@ async function addComment(user_id, user_name, film_id, text) {
 
 //ПРИМЕР получить комментарии к фильму
 // db.get_query("comments", "film_id", "film id 123").then(r => console.log(r));
+
+

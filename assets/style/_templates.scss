@@ -28,6 +28,19 @@ $font-btns: "Fira Sans Condensed";
     padding: 0;
 }
 
+//для инпутов форма взода, регистрации + кнопки
+%square{
+    background-color: $inputcolor;
+    border: none;
+    border-radius: 20px;
+}
+
+%error-text {
+    margin-top: 1%;
+    color: rgb(179, 116, 116);
+}
+
+
 .btn {
     //общий класс для кнопок
     background-color: $btnBackGround;

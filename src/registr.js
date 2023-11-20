@@ -4,10 +4,11 @@ import MD5 from "crypto-js/md5";
 const myForm = document.forms.oneForm;
 
 
+
 // Валидация прописанная
 function checkValidity(input) {
     function setError(text) {
-        input.nextSibling.textContent = text;
+        input.nextElementSibling.textContent = text;
         input.classList.add('error');
     }
 
@@ -52,7 +53,8 @@ function checkValidity(input) {
 
 //проверка каждого input на валидность
 
-const inputs = document.querySelectorAll('input');
+// const inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll('input[name="secondName"]');
 const allInputs = Array.from(inputs);
 
 function checkAll() {
@@ -64,16 +66,17 @@ function checkAll() {
 
     //Проверка совпадения паролей
 
-    const newPassword = myForm.elements.newPassword;
-    const passwordTwo = myForm.elements.repPassword;
+    const newPassword = document.getElementById('secondPassword');
+    const passwordTwo = document.getElementById('repeatPassword');
 
     if (passwordTwo.value !== newPassword.value) {
-        passwordTwo.nextSibling.textContent = 'Пароли не совпадают';
+        passwordTwo.nextElementSibling.textContent = 'Пароли не совпадают';
         ok = false;
     }
 
     return ok;
 }
+
 
 
 
@@ -105,6 +108,12 @@ const userEmail = document.querySelector('#textEmail');//доступ к input E
 const userPassword = document.querySelector('#repeatPassword');//доступ к input Повторите пароль
 const textSecret = document.querySelector('#textSecret'); //доступ к input Кодовое слово
 
+const invisibleOne = document.querySelector('#invisibleOne'); //доступ ко всему блоку формы регистрации
+const invisibleTwo = document.querySelector('#invisibleTwo');// доступ к блоку войти в существующий аккаунт
+const seeBlock = document.querySelector(".see");//доступ к div где убдет выводится Вы успешно зарегестрированы- прописаны стили к этому классу
+const resultOk = document.querySelector("#resultOk");//доступ к div где убдет выводится Вы успешно зарегестрированы- прописана функциональность
+const errErrorEmail = document.querySelector('.form__email-error');
+
 //при клике на кнопку в базу данных внесутя данные с input Имя, Email, повторите пароль
 
 submButton.addEventListener('click', async () => {
@@ -122,11 +131,44 @@ submButton.addEventListener('click', async () => {
 
     const users = await db.get_query("users", "email", newClient.email);
     if (users.length > 0) {
-        console.log("пользователь существует");
+        errErrorEmail.textContent ="пользователь с таким email существует";
     } else {
-        await db.add("users", newClient);
+        let uid = await db.add("users", newClient);
         console.log("юзер зарегестрирован");
+
+        invisibleOne.style.display = 'none';
+        invisibleTwo.style.display = 'none';
+
+        seeBlock.style.display = 'flex';
+
+        resultOk.innerHTML = `
+        <div class="main-reg__ok">
+        <p class="main-reg__ok-text">Вы успешно зарегестрировались</p>
+        <a class="main-reg__ok-link" href="./index.html">главная страница</a>
+    </div>
+        `;
+
+
+        //запись в локальное хранилище(чтобы на главной странице не нужно было заново вводить данные в форме входа)
+        let date = new Date().getTime(); // дата в миллисек
+        const obj = { id: uid, name: userName.value, time: date };
+
+        const objJSON = JSON.stringify(obj);
+        window.localStorage.setItem('client', objJSON); //добавление в локальное хранилище id клиента и время когда зашел
+
+        const objLS = window.localStorage.getItem('client');
+        JSON.parse(objLS);
     }
 
     submButton.disabled = false;
 });
+
+
+const btnComeIn = document.querySelector('#btnComeIn');
+
+//при нажатии направляет на главную страницу+/?login=true  - адрес с параметрами (чтобы было открытое модальное окно)
+function showComeIn() {
+    window.open(window.location.origin + '?login=true', '_self');
+}
+
+btnComeIn.addEventListener('click', showComeIn);
