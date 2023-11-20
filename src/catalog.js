@@ -21,7 +21,7 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                "X-API-KEY": "ee5367e9-c264-44b7-93b8-dab17fafadc7",
             },
         });
         const data = await response.json();
@@ -59,8 +59,8 @@ function createFilmItem(film) {
         <img src="${film.posterUrlPreview}" alt="poster" class="content__img">
     </div>
     <div class="content__info">
-        <h3 class="content__title">${film.nameRu}</h3>
-        <h3 class="content__original-title">${film.nameOriginal}</h3>
+        <a class="content__title" href="page-movie.html?id=${film.kinopoiskId}">${film.nameRu}</a>
+        <a class="content__original-title" href="page-movie.html?id=${film.kinopoiskId}">${film.nameOriginal}</a>
         <div class="content__year">Год выхода фильма: ${film.year}</div>
         <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
         <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
@@ -69,10 +69,7 @@ function createFilmItem(film) {
                 <span class="likeIcon"></span>
             </button>
         </div>
-    </div>
-    <div class="content-btn">
-    <a class="content__btn" href="page-movie.html?id=${film.kinopoiskId}">Показать информацию о фильме</a>
-    </div>
+   
         `;
     item.innerHTML = template;
     return item;
