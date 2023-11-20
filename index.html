@@ -5,8 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
-  <!-- <link rel="stylesheet" href="./assets/style/main.scss" /> -->
+  <link rel="stylesheet" href="./assets/style/main.scss" />
   <link rel="stylesheet" href="./assets/style/_index.scss">
+
 </head>
 
 <body>
@@ -58,32 +59,33 @@
   <main class="block-main">
     <div class="main-page">
       <!--Контейнер-->
-      <div class="page-container container">
-        <div class="block-wrapper">
+      <div class="main-page__container container">
+        <div class="main-page__wrapper">
           <!--Левая часть страницы с заголовком текстом и кнопками-->
-          <div class="left-wrapper">
+          <div class="main-page__left-wrapper left-wrapper">
             <div class="block-info">
               <!--Заголовок-->
-              <h1 class="info-title title">MOVIEСервис</h1>
+              <h1 class="block-info__title title">MOVIEСервис</h1>
               <!--Подзаголовок-->
-              <h2 class="info-subtitle subtitle">насладись просмотром</h2>
+              <h2 class="block-info__subtitle subtitle">насладись просмотром</h2>
               <!--Текст-->
-              <p class="info-text text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              <p class="block-info__text text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+                nonummy nibh
                 euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enimad minim veniam, quis
                 nostrud exerci Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
                 tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enimad minim veniam, quis nostrud
                 exerci</p>
               <!--Блок с кнопками-->
-              <div class="block-buttons">
+              <div class="block__buttons">
                 <!--Верхние кнопки-->
-                <div class="upper-buttons">
+                <div class="block__upper-buttons upper-buttons">
                   <a href="#" class="btn btn-first">Случайный фильм</a>
 
                   <a href="#" class="btn btn-second">Создать список</a>
 
                 </div>
                 <!--Нижние кнопки-->
-                <div class="down-button">
+                <div class="block__down-button down-button">
                   <a href="#" class="btn btn-link">Каталог</a>
 
                 </div>
@@ -92,15 +94,15 @@
 
           </div>
           <!--Правая часть страницы куда мы внесем постеры к фильмам-->
-          <div class="right-wrapper">
-            <div class="block-posters" id="block-posters">
-              <div class="upper-posters" id="upper-posters"></div>
-              <div class="down-posters" id="down-posters"></div>
+          <div class="main-page__right-wrapper right-wrapper">
+            <div class="block__posters" id="block-posters">
+              <div class="block__upper-posters upper-posters" id="upper-posters"></div>
+              <div class="block__down-posters down-posters" id="down-posters"></div>
 
 
               <!--<div class="upper-posters">
 
-              <div class="poster-info post-one">
+              <div class="poster-info">
                 <img class="film-img" src="./assets/images/film.jpg" alt="film">
                  <div class="film-title-wrapper"><p class="film-title">Название фильма</p></div>
               </div>
@@ -137,8 +139,9 @@
 
 
   <script type="module" src="./src/db.js"></script>
-  <!-- <script type="module" src="./main.js"></script> -->
+  <script type="module" src="./main.js"></script>
   <script type="module" src="./src/index.js"></script>
+
 </body>
 
 </html>
