@@ -105,7 +105,7 @@ const template =  `
 <img src="${data.posterUrlPreview}" alt="poster" class="poster__img">
 </div>
 <div class="content__info">
- <h3 class="content__title">${data.nameRu}</h3> 
+ <h3 class="content__title"><a href="page-movie.html?id=${data.kinopoiskId}" class="favorites_title">${data.nameRu}</a></h3> 
  <div class="content__year">Год выхода фильма: ${data.year}</div>
  <div class="content__rating">Рейтинг по кинопоиску: ${data.ratingKinopoisk}</div>
  <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
