@@ -1,7 +1,11 @@
 import "./db";
 import * as db from './db';
 import MD5 from "crypto-js/md5";
+import {
+    get
+} from './db'; // для работы с БД. Импорт функции из db
 
+document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 1;
 
     // Обработчик события клика на кнопку поиска
@@ -122,6 +126,7 @@ import MD5 from "crypto-js/md5";
         });
     });
 
+
     //функция для лайков
     // выбираем все лайки
     const likeBtns = document.querySelectorAll('.likeBtn');
@@ -133,17 +138,16 @@ import MD5 from "crypto-js/md5";
             let target = event.target; //это «целевой» элемент, на котором произошло событие
             if (target.tagName === 'SPAN') {
                 putLike(target);
-
                 console.log(filmId); //Проверка
-                // Получаю id пользователя из Local storage
-                const objLS = window.localStorage.getItem('client');
-                const accessObj = JSON.parse(objLS).id;
+                  // Получаю id пользователя из Local storage
+    const objLS = window.localStorage.getItem('client');
+    const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
-
-                setLike(accessObj, filmId, true) 
             }
+                setLike(accessObj, filmId, true) ;
+                       });
         });
-    });
+
 
     //лайкаем и добавляем в избранное Нужно ли выносить?
     function putLike(span) {
@@ -154,6 +158,78 @@ import MD5 from "crypto-js/md5";
     const data = {};
     data[`likes.${film_id}`] = state;
     await db.update("users", user_id, data);
+};
+    
+
+    const clientId = window.localStorage.getItem('client')
+    const clientInfo = JSON.parse(clientId); // Парсим строку JSON в объект
+    const userId = clientInfo.id; // Получаем id из объекта
+
+    get("users", userId) //Вызываем функцию get, которая возвращает промис users-это base, userId-это id
+        .then(clientInfo => {
+            console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes
+            // Получаем ключи объекта likes
+            const likesKeys = Object.keys(clientInfo.likes); //получили ключи необходимого объекта, так они являются id выбранных пользователем фильмов
+            console.log(likesKeys); //Проверили
+            getMovies(likesKeys) //Функция для получения фильмов из АПИ
+        })
+        .catch(error => {
+            console.error('Ошибка при получении данных из БД:', error);
+        });
+
+//тут мы проходим по массиву и по id в массиве и находим в АПИ инфу по этому id
+     async function getMovies(likesKeys) {
+    try {
+        for (const id of likesKeys) { //Проходим по массиву и получаем инфу от АПИ
+            const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`, {
+                method: "GET",
+                headers: {
+                    'content-type': "application/json",
+                    "X-API-KEY": 'b5f46c64-de46-487e-b427-0ecc0ce121a5'
+                },
+            });
+            const data = await response.json();
+            console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
+            makeList(data); // функция отрисовка списка, которая ниже
+
+        }
+    } catch (error) {
+        console.error("Ошибка загрузки:", error);
+    }
 }
-    ;
+
+
+function makeList(data) {
+    const item = document.createElement("div"); //создаем, например, див
+    item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
+    const template =  `
+    <div class="content__poster">
+    <img src="${data.posterUrlPreview}" alt="poster" class="poster__img">
+</div>
+    <div class="content__info">
+     <h3 class="content__title">${data.nameRu}</h3> 
+     <div class="content__year">Год выхода фильма: ${data.year}</div>
+     <div class="content__rating">Рейтинг по кинопоиску: ${data.ratingKinopoisk}</div>
+     <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
+     <div class="filmFavContainer">
+         <button class="content-button likeBtn" id="${data.kinopoiskId}">
+             <span class="likeIcon"></span>
+         </button>
+     </div>
+     </div>
+     <div class="content-btn">
+     <button class="content__btn btn" id="${data.kinopoiskId}">
+         Показать информацию о фильме
+     </button>
+     </div>
+   
+        ` //карточку можно сделать любую. брать ту инфу, которую выдает АПИ
+     ; //nameRu и shortDescription - это ключи объектов, которые выдает АПИ
+
+        let likeList = document.querySelector('.list__movieList');
+       item.innerHTML = template; //вставляем карточку в item
+       likeList.appendChild(item); // добавляем элемент в контейнер
+} 
+})
+
 
