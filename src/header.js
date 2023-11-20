@@ -1,7 +1,7 @@
 
 document.querySelector('#avatar').onclick = function(){
     //alert('вход в личный кабинет');
- 
+}
  //const API_KEY = "6e01b98a-32ba-41c9-b64f-a2a9582aafa5";
  //const url = 
  //"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=movie&page=1";
@@ -46,6 +46,5 @@ document.querySelector('#avatar').onclick = function(){
     return`
     <li class="list-group-item">${film.name}</li>
      `  }
- start()
- 
- 
+
+    start()
