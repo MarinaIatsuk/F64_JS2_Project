@@ -61,7 +61,8 @@
                                 <div class="block-movie__item actor"></div>
                             </div>
                             <div class="block-movie__info-wrapper">
-                                 <div id="actors-photos" class="block-movie__photos-wrapper "></div>
+                                <a class="block-movie__subtitle"></a>
+                                <div id="actors-photos" class="block-movie__photos-wrapper "></div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <div class="block-movie__subtitle"></div>
@@ -70,15 +71,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="block-movie__info-wrapper description-wrapper">
-                    <div class="block-movie__item description"></div>
-                </div>
+                <details class="description-wrapper">
+                    <summary>Описание фильма</summary>
+                    <p class="block-movie__item description"></p>
+                </details>
                 <div class="block-movie__resourse"></div>
             </div>
         </section>
         <section class="similar-movies">
             <h2 class="similar-movies__title">Похожие фильмы</h2>
-            <div  id="posters-contanier" class="similar-movies__posters-contanier">
+            <div id="posters-contanier" class="similar-movies__posters-contanier">
             </div>
         </section>
     </div>
