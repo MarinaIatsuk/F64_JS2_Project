@@ -4,8 +4,6 @@ import * as db from './db';
 import MD5 from "crypto-js/md5";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  // Получаем id фильма из localStorage
-  // let selectedFilmId = localStorage.getItem("selectedFilmId");
 
   let selectedFilmId = new URLSearchParams(window.location.search).get('id');
 
@@ -14,9 +12,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
       method: 'GET',
       headers: {
-         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+         'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
         'Content-Type': 'application/json',
       },
@@ -32,9 +31,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response2 = await fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${selectedFilmId}`, {
       method: 'GET',
       headers: {
-         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+         'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
         'Content-Type': 'application/json',
       },
@@ -51,9 +51,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/similars`, {
       method: 'GET',
       headers: {
-         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
         'Content-Type': 'application/json',
       },
@@ -70,9 +71,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response4 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/external_sources?page=1`, {
       method: 'GET',
       headers: {
-         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
         'Content-Type': 'application/json',
       },
@@ -210,37 +212,41 @@ function ShowSimilarMovies(data) {
       if (index == 3) { break }
     }
     if (data.items.length >= 4) {
+      let showFirst = true;
       const MoreSimilarMovies = document.getElementById('more-posters-contanier');
+      const similarMovieBlock = document.querySelector('.similar-movies__container');
+      const MoreSimilarMoviesContainer = document.querySelector('.similar-movies__container-wrapper');
       newBtn = document.createElement('button');
       newBtn.textContent = "Показать еще похожие фильмы";
       newBtn.classList.add('btn-more-similar');
       newBtn.classList.add('btn');
-      MoreSimilarMovies.append(newBtn);
+      similarMovieBlock.append(newBtn);
       const buttonMore = document.querySelector('.btn-more-similar')
       buttonMore.addEventListener('click', function () {
 
-        buttonMore.classList.toggle("no-visible");
-        for (let index = 4; index < data.items.length; index++) {
-          foundSimilarMovies = data.items[index];
-          newLink = document.createElement('a');
-          newDiv = document.createElement('img');
-          newDiv.src = foundSimilarMovies.posterUrl;
-          newLink.setAttribute("href", "/page-movie.html?id=" + foundSimilarMovies.filmId);
-          MoreSimilarMovies.append(newLink);
-          newLink.append(newDiv);
-          newDiv.classList.add("small-pict");
+        if (showFirst) {
+          for (let index = 4; index < data.items.length; index++) {
+            foundSimilarMovies = data.items[index];
+            newLink = document.createElement('a');
+            newDiv = document.createElement('img');
+            newDiv.src = foundSimilarMovies.posterUrl;
+            newLink.setAttribute("href", "/page-movie.html?id=" + foundSimilarMovies.filmId);
+            MoreSimilarMovies.append(newLink);
+            newLink.append(newDiv);
+            newDiv.classList.add("small-pict");
+          }
+          newBtn.textContent = "Скрыть";
+          showFirst = false;
         }
-        const similarMovieBlock = document.querySelector('.similar-movies__container')
-        newBtn2 = document.createElement('button');
-        newBtn2.textContent = "Скрыть";
-        newBtn2.classList.add('btn-less-similar');
-        newBtn2.classList.add('btn');
-        similarMovieBlock.append(newBtn2);
-        const buttonLess = document.querySelector('.btn-less-similar');
-        buttonLess.addEventListener('click', function () {
+        else {
           MoreSimilarMovies.classList.toggle("no-visible");
-        });
+          if (MoreSimilarMovies.classList.contains("no-visible"))
+            newBtn.textContent = "Показать еще похожие фильмы";
+          else
+            newBtn.textContent = "Скрыть";
+        }
       });
+
     }
   }
   else {
@@ -249,7 +255,7 @@ function ShowSimilarMovies(data) {
   }
 }
 
-function ShowSources(data){
+function ShowSources(data) {
   if (data.items.length !== 0) {
     const externalSources = document.getElementById('external-sources');
     let sourcesMovies;

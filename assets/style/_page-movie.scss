@@ -16,6 +16,7 @@
     &__rating-age-limit {
 
         max-width: 6vw;
+        margin-right: 1vw;
 
         @media #{$mobile} {
             max-width: 10vw;
@@ -207,7 +208,7 @@
 }
 
 .movie-sources {
-    margin-bottom: 20px;
+    margin: 30px 20px 10px;
     order: 3;
 
     @media #{$mobile} {
@@ -217,6 +218,13 @@
 
     @media #{$tablet} {
         order: 2;
+    }
+
+    &__sources-wrapper{
+        padding: 30px;
+        width: 150px;
+        border: 3px dashed black;
+        border-radius: 30%;
     }
 
     &__container {
@@ -238,7 +246,7 @@
 
     &__title {
         font-family: $font-titles;
-
+        margin-right: 8vw;
         @media #{$tablet} {
             margin-right: 10vw;
         }

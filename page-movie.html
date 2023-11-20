@@ -12,16 +12,16 @@
     <div class="container">
 
         <section class="block-movie">
-                <div class="block-movie__title-wrapper">
-                    <div>
-                        <h1 class="block-movie__title name-ru"></h1>
-                        <h2 class="block-movie__title name-en"></h2>
-                        <h3 class="block-movie__title name-original"></h3>
-                    </div>
-                    <div class="block-movie__rating-age">
-                        <img class="block-movie__rating-age-limit" src="" alt="age limit"></img>
-                    </div>
+            <div class="block-movie__title-wrapper">
+                <div>
+                    <h1 class="block-movie__title name-ru"></h1>
+                    <h2 class="block-movie__title name-en"></h2>
+                    <h3 class="block-movie__title name-original"></h3>
                 </div>
+                <div class="block-movie__rating-age">
+                    <img class="block-movie__rating-age-limit" src="" alt="age limit"></img>
+                </div>
+            </div>
             <div class="block-movie__main-section">
                 <div class="block-movie__cotanier-wrapper">
                     <div class="block-movie__poster-wrapper">
@@ -74,8 +74,10 @@
                         </div>
                     </div>
                     <div class="block-movie__sources movie-sources">
-                        <h3 class="movie-sources__title">Где смотреть?</h3>
-                        <div id="external-sources" class="movie-sources__container">
+                        <div class="movie-sources__sources-wrapper ">
+                            <h3 class="movie-sources__title">Где смотреть?</h3>
+                            <div id="external-sources" class="movie-sources__container">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,7 +94,10 @@
                 <h2 class="similar-movies__title">Похожие фильмы</h2>
                 <div id="posters-contanier" class="similar-movies__posters-contanier">
                 </div>
-                <div id="more-posters-contanier" class="similar-movies__more-similar-movies"></div>
+                <div class="similar-movies__container-wrapper">
+                    <div id="more-posters-contanier" class="similar-movies__more-similar-movies">
+                    </div>
+                </div>
             </div>
         </section>
     </div>
