@@ -50,26 +50,26 @@ $font-size-desktop: 22px; */
     border: solid black 1px;
     color: $color;
     width: 15vw;
-    height: 7vh; //поиграть с размерами для адаптива
+    height: 7vh; 
     cursor: pointer;
-    font-size: 1.5vw;
+    font-size: 1vw;
+    padding: 0.5vw;
+
 }
 
     @media #{$tablet} {
         .btn {
-        font-size: 5px;
+        font-size: 2vw;
+        width: 23vw;
       }
     }
     @media #{$mobile} {
         .btn {
-        font-size: 5px;
-      }
+        font-size: 2.5vw;
+        width: 30vw;
+             }
     }
    
-
-    
-
-
 .btn:hover {
     background-color: $btnBackGroundHover;
     box-shadow: 5px 5px 5px $color;
@@ -88,3 +88,14 @@ $font-size-desktop: 22px; */
     color: $color;
     border-radius: 4vh 4vh 40vh 4vh;
 }
+@media #{$mobile} {
+    .container{
+        border-radius: 4vh 4vh 20vh 4vh;
+  }
+}
+@media #{$tablet} {
+    .container{
+        border-radius: 4vh 4vh 30vh 4vh;
+  }
+}
+
