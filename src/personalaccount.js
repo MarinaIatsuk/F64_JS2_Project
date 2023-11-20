@@ -111,7 +111,7 @@ const template =  `
  <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
  <div class="filmFavContainer">
      <button class="content-button likeBtn" id="${data.kinopoiskId}">
-         <span class="likeIcon"></span>
+         <span class="liked"></span>
      </button>
  </div>
  </div>
@@ -126,4 +126,47 @@ const template =  `
    
    likeList.appendChild(item); // добавляем элемент в контейнер
 } 
+
+
+    // выбираем все лайки
+    const likeBtns = document.querySelectorAll('.likeBtn');
+    likeBtns.forEach((btn) => {
+        btn.addEventListener('click', async function (event) {
+            event.preventDefault()
+            // Получаю id фильма из каждого "лайка"
+            const filmId = btn.getAttribute('id');
+            let target = event.target; //это «целевой» элемент, на котором произошло событие
+            if (target.tagName === 'SPAN') {
+                removeLike(target);   //удаление лайка
+                console.log(filmId); //Проверка
+                  // Получаю id пользователя из Local storage
+    const objLS = window.localStorage.getItem('client');
+    const accessObj = JSON.parse(objLS).id;
+                console.log(accessObj); //Проверка
+               await setLike(accessObj, filmId, false) 
+               //  удаление фильма из списка избранного 
+               removeMovieFromList(filmId);
+        }
+                       });
+        });
+
+    //лайкаем и добавляем в избранное Нужно ли выносить?
+    function removeLike(span) {
+        span.classList.toggle('likeIcon');
+    }
+
+    async function setLike(user_id, film_id, state) {
+      const data = {};
+      data[`likes.${film_id}`] = state;
+      await db.update("users", user_id, data);
+      
+  };
+// удаление фильма из списка избранного
+
+function removeMovieFromList(filmId) {
+  const movieElement = document.querySelector(`.content-button.likeBtn[id="${filmId}"]`).closest('.content__item');
+  if (movieElement) {
+      movieElement.remove();
+  }
+}
 })
