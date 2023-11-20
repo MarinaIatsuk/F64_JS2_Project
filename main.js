@@ -27,8 +27,8 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     //переменные в которых храним данные к конкретным фильмам
     const movieOne = data.items[1];
     const movieTwo = data.items[2];
-    const movieThree = data.items[5];
-    const movieFour = data.items[6];
+    const movieThree = data.items[7];
+    const movieFour = data.items[4];
 
     //console.log(movieOne,movieTwo,movieThree,movieFour);
 
