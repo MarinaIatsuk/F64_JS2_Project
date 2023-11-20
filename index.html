@@ -8,7 +8,7 @@
                                                                                                                                              
     </head>
     <body>
-      <div class="wrapper">
+      <div class="wrapper"> 
         <header class="header">
             <div class="header__container _container">
             <a href="#" class="header__logo"> MOVIEСервис </a>
@@ -22,22 +22,24 @@
              </li>
              </ul>
             </nav>
-
+             <div class="d1"> 
             <form>
-              <input type="text" class="header__search" placeholder="Поиск" id="filter"> 
+              <input type="text" class="header__search" placeholder="Поиск" id="filter"/> 
               <ul class="list-group list-group-flush" id="list"></ul>
+              <button type="submit" class="search__icon"></button>
              </form>
-
-               <!-- <div class="header__btn-container"> -->
-
+             </div>
+               <div class="header__btn-container"> 
+         <h3 class="user__name">Имя пользователя</h3> 
+        <div class="user__email"></div> 
+        <img  src="./assets/images/avatar.png"  alt="avatar"  id="avatar" class="user__img" onclick="location.href='personalaccount.html'" />
+        <img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img" >
+        <h3 class="exit__name">Выйти</h3> 
+        </div>
               <div class="cont" id="hiUser"> 
               <button class="cont__btn" id="btnOpen">Войти</button>
-
-               <!-- </div>  -->
-              <!-- <h3 class="user__name">Имя пользователя</h3> -->
-            <!-- <div class="user__email"></div> -->
-            <!-- <img  src="./assets./images/avatar.png"  alt="avatar"   class="user__img" onclick="location.href='personalaccount.html'" /> -->
-            </div>
+               </div>  
+                        </div>
             </div>
             </div>
           </header>

@@ -9,7 +9,7 @@
     padding:0px 8px;
     margin: 0px auto;
     box-sizing: content-box;
-    background-color: #f59d9d;
+    background-color: #e9b2b2;
   }
      header{
     position:absolute;
@@ -23,6 +23,8 @@
   min-height: 70px;
   align-items: center;
   }
+  @media screen and (max-width: 769px) {
+  }
     .header__logo{
     font-size: 15px;
     font-weight: 600;
@@ -30,12 +32,16 @@
    font-family: $font-titles;
    color: $dark-frame;
      }
+     @media screen and (max-width: 769px) {
+     //order: ;
+    }
 
      .header__nav{
-      width: 35%;
+      width: 40%;
       height: 25px;
       position: fixed;
       overflow: hidden;
+     
            ul{ 
       display: flex;
       justify-content: space-between;
@@ -43,11 +49,32 @@
       width: 25%;
                     li{
           display:block;
-          padding-left: 70%;
-                 a{ text-decoration: none;
+          padding-left: 80%;
+                          a{ text-decoration: none;
                 }
     }}}
-
+    @media screen and (max-width: 769px) {
+     // top: 80.55px;
+    }
+  
+    @media screen and (max-width: 700px) {
+     // top: 73.6px;
+    }
+  
+    @media screen and (max-width: 534px) {
+    }
+  
+    @media screen and (max-width: 500px) {
+    //  top: 70.4px;
+    }
+  
+    @media screen and (max-width: 492px) {
+    }
+  
+    @media screen and (max-width: 400px) {
+     // top: 67.2px;
+    }
+  
   //  @media screen (max-width:769px){
   //    .header__nav{
   //     flex-direction:column;
@@ -57,14 +84,28 @@
   
   .header__link{
       display: block;
-      color: black;
+      color: $dark-frame;
       font-family:$font-texts;
-      font-weight: 400;
-      text-align:center;
+      font-weight: 600;
+      text-align: center;
       width: 2 rem;
      left: 60px;
       margin-left: 90px;
-    }
+        }
+
+        @media screen and (max-width: 1089px) {
+        //  padding: 15px;
+        }
+      
+        @media screen and (max-width: 919px) {
+        //  padding: 10px;
+        //  font-size: 0.85rem;
+        }
+      
+        @media screen and (max-width: 769px) {
+       //   padding: 15px;
+        }
+      
     // @media  (max-width:769px){
     //   .heder__link{
     //     display:block;
@@ -98,37 +139,84 @@
   //        }
   
     .header__search{
-      width: 250px;
-     height: 25px;
+       width: 250px;
+     height: 30px;
      position: absolute;
-     top: 25px;
+     top: 23px;
      left: 50%;
      margin-left: -65px;
      background-color: #ffccfd;
-     color:#FFF;
+     color:$dark-frame;
      border-radius: 20px;
      font-size: 15px;
      font-family:$font-texts;
      font-weight: 600;
      }
+    //  form {
+    //   // position: relative;
+    //   // width: 300px;
+    //   margin: 0 auto;
+    // }
+    //  button {
+    //   border: none;
+    //   outline: none;
+    //   border-radius: 3px;
+    // }
+    //  button {
+    //   height: 26px;
+    //   width: 26px;
+    //   position: absolute;
+    //   top: 8px;
+    //   right: 8px;
+    //   background: #FFFFFF;
+    //   cursor: pointer;
+    // }
+    // button:before {
+    //   content: "🔍";
+    //   font-family: FontAwesome;
+    //   color: #db3294;
+    //   font-size: 20px;
+    //   font-weight: bold;
+    // }
 
-  //.user__img{
-  //  width: 2rem;
- //   height: 2rem;
- //   position: absolute;
-  //top: 35px;
- // left: 92%;
- // margin-left: -90px;
- // }
-   
-  // .user__name {
-  //     font-size: 12px;
-  //     position: absolute;
-  //     top: 10px;
-  //     left: 90%;
-  //     margin-left: -90px;
-  //     font-family:$font-texts;
-  //   }
+
+
+
+  .user__img{
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 25px;
+  left: 70%;
+  margin-left: -80px;
+   }
+   .exit__img{
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 25px;
+    left: 85%;
+    margin-left: -90px;
+   }
+   .exit__name{
+    font-size: 12px;
+    position: absolute;
+     top: 28px;
+    left: 88%;
+    margin-left: -93px;
+    font-family:$font-texts;
+    color: $dark-frame;
+   }
+   .user__name {
+     font-size: 12px;
+     position: absolute;
+      top: 28px;
+      left: 73%;
+      margin-left: -83px;
+       font-family:$font-texts;
+       color: $dark-frame;
+    }
+
   // // .header__text {
   // //     width: 160px;
   //     height: 20px;
@@ -143,12 +231,12 @@
 
   .cont__btn{
     position:absolute;
-    left: 80%;
+    left: 90%;
     bottom: 1rem;
   }
  
    .cont__btn{
-   background-color:#ffffff;
+   background-color: #ffccfd;
    font-family: $font-btns;
    border-radius: 4vh;
    border: solid black 1px;
@@ -162,3 +250,4 @@
   background-color: $btnBackGroundHover;
   box-shadow: 5px 5px 5px $color;
 }
+ 
