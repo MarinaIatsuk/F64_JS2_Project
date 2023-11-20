@@ -36,7 +36,7 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                "X-API-KEY": "24b15cb0-02d2-47d4-83c9-c601d49f2256",
+                "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
             },
         });
         const data = await response.json();
