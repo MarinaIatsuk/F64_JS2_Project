@@ -1,5 +1,9 @@
 //общие стили сюда
 
+$mobile: "screen and (max-width: 599px)";
+$tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
+$desktop: "screen and (min-width: 1024px)";
+
 //переменные
 // фон  блоков
 $background-color: #990094;
@@ -65,7 +69,8 @@ $font-btns: "Fira Sans Condensed";
     padding-top: 4vh;
     margin: 0 10vw 3vh 3vw;
     background-color: $background-color;
-    height: 100vh;
+    min-height: 100vh; 
+    height: 100%;//чтобы контейнер растягивался на ширину контента
     color: $color;
     border-radius: 4vh 4vh 40vh 4vh;
 }

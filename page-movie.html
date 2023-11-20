@@ -13,17 +13,17 @@
         <section class="block-movie">
             <div class="block-movie__title-wrapper">
                 <div>
-                    <h1 class="block-movie__title nameRu"></h1>
-                    <h2 class="block-movie__title nameEn"></h2>
-                    <h3 class="block-movie__title nameOriginal"></h3>
+                    <h1 class="block-movie__title name-ru"></h1>
+                    <h2 class="block-movie__title name-en"></h2>
+                    <h3 class="block-movie__title name-original"></h3>
                 </div>
-                <img class="block-movie__ratingAgeLimit" src="" alt="age limit"></img>
+                <img class="block-movie__rating-age-limit" src="" alt="age limit"></img>
             </div>
             <div class="block-movie__main-section">
                 <div class="block-movie__cotanier-wrapper">
                     <div class="block-movie__poster-wrapper">
                         <img class="block-movie__poster" src="" alt="poster">
-                        <div class="block-movie__ratingKinopoisk"></div>
+                        <div class="block-movie__rating-kinopoisk"></div>
                     </div>
                     <div class="block-movie__common-info-about">
                         <div class="block-movie__infomation">
@@ -33,7 +33,7 @@
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Год выпуска</a>
-                                <div class="block-movie__item startYear"></div>
+                                <div class="block-movie__item start-year"></div>
                             </div>
 
                             <div class="block-movie__info-wrapper">
@@ -50,7 +50,7 @@
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Время</a>
-                                <div class="block-movie__item filmLength"></div>
+                                <div class="block-movie__item film-length"></div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Режиссер</a>
@@ -61,7 +61,8 @@
                                 <div class="block-movie__item actor"></div>
                             </div>
                             <div class="block-movie__info-wrapper">
-                                 <div id="actorsPhotos" class="block-movie__photos-wrapper "></div>
+                                <a class="block-movie__subtitle"></a>
+                                <div id="actors-photos" class="block-movie__photos-wrapper "></div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <div class="block-movie__subtitle"></div>
@@ -70,16 +71,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="block-movie__info-wrapper description-wrapper">
-                    <div class="block-movie__item description"></div>
-                </div>
+                <details class="description-wrapper">
+                    <summary>Описание фильма</summary>
+                    <p class="block-movie__item description"></p>
+                </details>
                 <div class="block-movie__resourse"></div>
             </div>
         </section>
         <section class="similar-movies">
-            <div class="similar-movies__movie-contanier">
-                <img src="" class="similar-movies__poster" alt="">
-                <div class="similar-movies__title"></div>
+            <h2 class="similar-movies__title">Похожие фильмы</h2>
+            <div id="posters-contanier" class="similar-movies__posters-contanier">
             </div>
         </section>
     </div>
