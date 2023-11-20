@@ -1,14 +1,18 @@
 //import "../page-film.html";
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Получаем id фильма из localStorage
-    const selectedFilmId = localStorage.getItem("selectedFilmId");
+  // Получаем id фильма из localStorage
+  // let selectedFilmId = localStorage.getItem("selectedFilmId");
+
+  let selectedFilmId = new URLSearchParams(window.location.search).get('id');
 
   // получает данные о фильме по ID
   fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
     method: 'GET',
     headers: {
-      'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+      // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+      // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+      'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
       // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
       'Content-Type': 'application/json',
     },
@@ -32,57 +36,60 @@ document.addEventListener("DOMContentLoaded", function () {
       let genres = document.querySelector('.genres');
       let description = document.querySelector('.description');
       let slogan = document.querySelector('.slogan');
-      // let shortDescription = document.querySelector('.shortDescription');
 
-            nameRu.textContent = json.nameRu;
-            nameEn.textContent = json.nameEn;
-            nameOriginal.textContent = json.nameOriginal;
-            if (json.ratingAgeLimits != null)
-                ratingAgeLimit.setAttribute(
-                    "src",
-                    `../assets/images/${json.ratingAgeLimits}.svg`
-                );
-            else ratingAgeLimit.setAttribute("class", "no-visible");
-            poster.setAttribute("src", json.posterUrl);
-            ratingKinopoisk.textContent = json.ratingKinopoisk;
-            startYear.textContent = json.year;
-            if (json.filmLength != null)
-                filmLength.textContent = String(json.filmLength) + " мин.";
-            else filmLength.setAttribute("class", "no-visible");
+      nameRu.textContent = json.nameRu;
+      nameEn.textContent = json.nameEn;
+      nameOriginal.textContent = json.nameOriginal;
+      if (json.ratingAgeLimits != null)
+        ratingAgeLimit.setAttribute(
+          "src",
+          `../assets/images/${json.ratingAgeLimits}.svg`
+        );
+      else ratingAgeLimit.setAttribute("class", "no-visible");
+      poster.setAttribute("src", json.posterUrl);
+      ratingKinopoisk.textContent = json.ratingKinopoisk;
+      startYear.textContent = json.year;
+      if (json.filmLength != null)
+        filmLength.textContent = String(json.filmLength) + " мин.";
+      else filmLength.setAttribute("class", "no-visible");
 
-            slogan.textContent = json.slogan;
-            // shortDescription.textContent = json.shortDescription;
+      slogan.textContent = json.slogan;
 
-            for (let i = 0; i < json.countries.length; i++) {
-                if (!firstCounrty) {
-                    comma = ", ";
-                }
-                allCountry += comma + json.countries[i].country;
-                firstCounrty = false;
-            }
-            countries.textContent = allCountry;
-            let allGenres = "";
-            let firstGenres = true;
-            comma = "";
-            for (let i = 0; i < json.genres.length; i++) {
-                if (!firstGenres) {
-                    comma = ", ";
-                }
-                allGenres += comma + json.genres[i].genre;
-                firstGenres = false;
-            }
-            genres.textContent = allGenres;
-
-            if (json.serial == false) about.textContent = "О фильме";
-            else about.textContent = "О сериале";
-            description.textContent = json.description;
-        })
-        .catch((err) => console.log(err));
+      for (let i = 0; i < json.countries.length; i++) {
+        if (!firstCounrty) {
+          comma = ", ";
+        }
+        allCountry += comma + json.countries[i].country;
+        firstCounrty = false;
+      }
+      countries.textContent = allCountry;
+      let allGenres = "";
+      let firstGenres = true;
+      comma = "";
+      for (let i = 0; i < json.genres.length; i++) {
+        if (!firstGenres) {
+          comma = ", ";
+        }
+        allGenres += comma + json.genres[i].genre;
+        firstGenres = false;
+      }
+      genres.textContent = allGenres;
+      let fullDiscription;
+      if (json.serial == false) about.textContent = "О фильме";
+      else about.textContent = "О сериале";
+      if (json.description !== 0) {
+        description.textContent = json.description;
+      }
+      else description.textContent = json.shotDescription;
+    })
+    .catch((err) => console.log(err));
 
   fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${selectedFilmId}`, {
     method: 'GET',
     headers: {
-      'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+      // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+      // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+      'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
       // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
       'Content-Type': 'application/json',
     },
@@ -125,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         newImg = document.createElement('img');
         newImg.src = photoActor;
         parentElement.append(newImg);
-        newImg.setAttribute("class", "small-pict");
+        newImg.classList.add("tiny-pict");
         console.log(newImg.src);
       }
     })
@@ -135,7 +142,9 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/similars`, {
     method: 'GET',
     headers: {
-      'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+      // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+      // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+      'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
       // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
       'Content-Type': 'application/json',
     },
@@ -145,26 +154,28 @@ document.addEventListener("DOMContentLoaded", function () {
       if (json.items.length !== 0) {
         const parentElement = document.getElementById('posters-contanier');
         let foundSimilarMovies;
-        let newDiv, newDiv2, newDiv3, newDiv4;
+        let newDiv, newLink, newDiv3, newDiv4;
         for (let index = 0; index < json.items.length; index++) {
           foundSimilarMovies = json.items[index];
+          newLink = document.createElement('a');
           newDiv = document.createElement('img');
           newDiv.src = foundSimilarMovies.posterUrl;
-          parentElement.append(newDiv);
-          newDiv.setAttribute("class", "small-pict");
-          if (index == 5) { break }
+          newLink.setAttribute("href", "/page-movie.html?id=" + foundSimilarMovies.filmId  );
+          parentElement.append(newLink);
+          newLink.append(newDiv);
+          newDiv.classList.add("small-pict");
+          if (index == 4) { break }
         }
       }
-      else{
+      else {
         let similarMovies = document.querySelector('.similar-movies');
-        similarMovies.setAttribute("class", "no-visible");
-
+        similarMovies.classList.toggle("no-visible");
       }
     })
     .catch(err => console.log(err))
 
 
-    // Думаю, стоит чистить localStorage после использования, чтобы он там один был
-    //localStorage.removeItem('selectedFilmId');
+  // Думаю, стоит чистить localStorage после использования, чтобы он там один был
+  //localStorage.removeItem('selectedFilmId');
 
 });
