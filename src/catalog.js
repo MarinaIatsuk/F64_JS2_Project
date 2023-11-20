@@ -42,6 +42,7 @@ async function getData(page) {
         const data = await response.json();
         //console.log(data); //Проверка
         updateContainer(data); // отрисовка списка
+        attachLikeButtonsEvent()
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
 
@@ -95,6 +96,11 @@ function createFilmItem(film) {
             <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
             <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
         </div>
+        <div class="filmFavContainer">
+                            <button class="content-button likeBtn" id="${film.kinopoiskId}">
+                                <span class="likeIcon"></span>
+                            </button>
+                        </div>
         `;
 
     item.innerHTML = template;
