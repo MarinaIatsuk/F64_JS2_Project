@@ -36,12 +36,13 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                "X-API-KEY": "24b15cb0-02d2-47d4-83c9-c601d49f2256",
+                "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
             },
         });
         const data = await response.json();
         //console.log(data); //Проверка
         updateContainer(data); // отрисовка списка
+        attachLikeButtonsEvent()
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
 
@@ -95,6 +96,11 @@ function createFilmItem(film) {
             <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
             <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
         </div>
+        <div class="filmFavContainer">
+                            <button class="content-button likeBtn" id="${film.kinopoiskId}">
+                                <span class="likeIcon"></span>
+                            </button>
+                        </div>
         `;
 
     item.innerHTML = template;
