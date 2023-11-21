@@ -12,11 +12,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
       method: 'GET',
       headers: {
-        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-         'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
+        //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         'Content-Type': 'application/json',
       },
     });
@@ -32,10 +31,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       method: 'GET',
       headers: {
         // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-        // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+         'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-         'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
+        //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         'Content-Type': 'application/json',
       },
     });
@@ -53,9 +51,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       headers: {
         // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-        'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
+          'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+        // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         'Content-Type': 'application/json',
       },
     });
@@ -75,7 +72,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'JWBSX1Y-7D8MD39-HFKN9R9-W9BF62Z',     //DEV
         'Content-Type': 'application/json',
       },
     });
@@ -269,7 +265,11 @@ function ShowSources(data) {
       newLink.setAttribute("href", sourcesMovies.url);
       externalSources.append(newLink);
       newLink.append(newImg);
-      if (index == 3) { break }
+      if (index == 4) { break }
     }
+  }
+  else{
+    let movieSources = document.querySelector('.movie-sources');
+    movieSources.classList.toggle("no-visible");
   }
 }
