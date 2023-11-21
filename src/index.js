@@ -52,14 +52,16 @@ const btnLogin = document.querySelector('#btnLogin');//доступ к кноп�
 
 const hiUser = document.querySelector('#hiUser')//приветствие юзера в хэдэр
 
+btnLogin.disabled = true;//кнопка отправки не активна
+
 
 function lsName() {
     let equallyLs = localStorage.hasOwnProperty("client");// содержит ли локальное хранилище данные о "client"
 
     if (equallyLs === true) {
-        btnOpen.style.display = 'none;';//кнопка войти в хэдэр
+        btnOpen.style.display = 'none';//кнопка войти в хэдэр
 
-
+// получаем данные client из ллокального хранилища
         const objLS = window.localStorage.getItem('client');
         const accessObj = JSON.parse(objLS);
 
@@ -72,14 +74,23 @@ function lsName() {
     if (login) openModal();
 }
 
-//при загрузке страницы 
+//при загрузке страницы убрать кнопку Войти
 window.addEventListener('load', lsName);
 
 
 // отмена отправки
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
 })
+
+loginEmail.addEventListener('input', checkInput);// слушатель события-активировать кнопку если input почты и пароля не пустые
+loginPassword.addEventListener('input', checkInput);//слушатель события-активировать кнопку если input почты и пароля не пустые
+
+//функция- активировать кнопку если input почты и пароля не пустые
+function checkInput() {
+    btnLogin.disabled = (loginEmail.value == '' || loginPassword.value == '');
+}
 
 const dialogEmailError = document.querySelector('#dialogEmailError'); //доступ к полю ошибки email
 
@@ -102,7 +113,6 @@ async function examLogin() {
             dialogPasswError.textContent = 'пароль неверный';
 
         } else {
-            console.log('Добро пожаловать');
 
             let date = new Date().getTime(); // дата в миллисек
             const obj = { id: users[0].id, name: users[0].name, time: date };

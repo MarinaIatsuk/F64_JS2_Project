@@ -11,10 +11,16 @@
 @import "./templates";
 @import "./fonts";
 
-%square{
-    background-color: $inputcolor;
-    border: none;
-    border-radius: 20px;
+%display-block {
+    display: flex;
+    flex-direction: column;
+}
+
+%text-block {
+    font-size: 20px;
+    font-family: $font-texts;
+    color: $color;
+    padding: 1%;
 }
 
 .cont {
@@ -38,11 +44,21 @@
         font-family: $font-titles;
         font-size: 60px;
         color: $btnBackGroundHover;
+        text-align: center;
+    }
+
+    &__text-title{
+        font-size: 26px;
+        font-family: $font-titles;
+        color: #644562;
+        width: 90%;
+        text-align: center;
     }
 
     &__text {
         font-family: $font-texts;
         font-size: 25px;
+        text-align: center;
     }
 
 
@@ -50,6 +66,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
     &__close{
@@ -90,35 +107,31 @@
         padding:1% 1.5%;
         border-radius: 50%;
         border: 1px solid rgb(97, 68, 68);
+        cursor: pointer;
     }
 
 }
 
 .dialog-form{
-    background-color: $btnBackGroundHover;
+    &__form {
+        background-color: $btnBackGroundHover;
         width: 90%;
         padding: 4%;
         border-radius: 20px;
         margin-top: 2%;
+    }
 
 
     &__email{
-        display: flex;
-        flex-direction: column;
+        @extend %display-block;
     }
 
     &__email-text{
-        font-size: 20px;
-        font-family: $font-texts;
-        color: $color;
-        padding: 1%;
+        @extend %text-block;
     }
 
     &__password-text{
-        font-size: 20px;
-        font-family: $font-texts;
-        color: $color;
-        padding: 1%;
+        @extend %text-block;
         display: flex;
         justify-content: space-between;
     }
@@ -132,8 +145,7 @@
     }
 
     &__password{
-        display: flex;
-        flex-direction: column;
+        @extend %display-block;
     }
 
     &__email-input{
@@ -152,11 +164,12 @@
         margin-top: 2%;
     }
 
-    // &__btn-text:disabled{
-    //     background-color: #6e356b;
-    //     border: 1px solid rgb(168, 51, 51);
-    //     color: #330031;
-    // }
+    &__btn-text:disabled{
+        background-color: #6e356b;
+        border: 1px solid rgb(168, 51, 51);
+        color: #330031;
+    }
+
     &__email-error{
         @extend %error-text;
     }
@@ -167,5 +180,31 @@
 
     &__password-btn{
         cursor: pointer;
+    }
+
+    &__secret{
+        @extend %display-block;
+    }
+
+    &__secret-text{
+        @extend %text-block;
+    }
+
+    &__secret-input{
+        @extend %square;
+        padding: 1%;
+    }
+
+    &__reappassword{
+        @extend %display-block;
+    }
+
+    &__reappassword-text{
+        @extend %text-block;
+    }
+
+    &__reappassword-input{
+        @extend %square;
+        padding: 1%;
     }
 }
