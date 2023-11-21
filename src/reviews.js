@@ -1,21 +1,25 @@
-// Функция создания разметки поста
+import "./reviews-tabs";
+
+// Функция создания разметки поста с рецензией
 // (получает на вход объект поста и возвращает строку HTML-разметки)
 function createPostMarkup(post) {
     let typeOfReview;
     if (post.type == "POSITIVE") {
-        typeOfReview = "colored-green";
+        typeOfReview = "review-post_type_positive";
     } else if (post.type == "NEGATIVE") {
-        typeOfReview = "colored-red";
+        typeOfReview = "review-post_type_negative";
     } else {
-        typeOfReview = "colored-gray";
+        typeOfReview = "review-post_type_neutral";
     }
     const template = `
-    <div class="review-post ${typeOfReview}">
+    <article class="review-post ${typeOfReview}">
         <h3 class="review-post__title">${post.title}</h3>
         <p class="review-post__body">${post.description}</p>
-        <div class="positive">Полезно ${post.positiveRating}</div>
-        <div class="negative">Нет ${post.negativeRating}</div>
-    </div>
+        <div class="review-post__usefulness usefulness">
+            <div class="usefulness__positive">Полезно ${post.positiveRating}</div>
+            <div class="usefulness__negative">Нет ${post.negativeRating}</div>
+        </div>
+    </article>
     `;
     return template;
 }
@@ -75,5 +79,23 @@ async function getPosts() {
         );
     }
 }
+
+// Функции открытия и закрытия модального окна для отзыва
+
+// const btnOpenReviewModal = document.querySelector("#btnOpenReviewModal");
+const btnOpenReviewModal = document.querySelector(".tabs__title-wrapper_btn");
+// const reviewModal = document.querySelector("#reviewModal");
+const btnCloseReviewModal = document.querySelector("#btnCloseReviewModal");
+
+function openReviewModal() {
+    window.reviewModal.showModal();
+}
+
+function closeReviewModal() {
+    window.reviewModal.close();
+}
+
+btnOpenReviewModal.addEventListener("click", openReviewModal);
+btnCloseReviewModal.addEventListener("click", closeReviewModal);
 
 getPosts();

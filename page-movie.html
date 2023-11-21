@@ -83,29 +83,87 @@
         </section>
 
         <section class="block-reviews">
-            <div class="block-reviews__titles reviews-titles">
-                <div class="block-reviews__title-wrapper block-reviews__title-wrapper_kinopoisk">
-                    <div class="block-reviews__title block-reviews__title_state_active" id="title-kp">Рецензии зрителей Кинопоиска</div>
-                </div>
-                <div class="block-reviews__title-wrapper block-reviews__title-wrapper_ours">
-                    <div class="block-reviews__title block-reviews__title_state_not-active" id="title-ours">Отзывы наших пользователей</div>
-                </div>
+            <div class="block-reviews__form">
+                <!-- <button class="block-reviews__btn" id="btnOpenReviewModal">Оставить отзыв</button> -->
+
+                <!-- Модальное окно -->
+                <dialog class="dialog" id="reviewModal">
+                    <div class="dialog__close">
+                        <button class="dialog__close" id="btnCloseReviewModal">&#10799;</button>
+                    </div>
+                    <div class="dialog__container" id="reviewContainer">
+                        <h2 class="dialog__title">Оставьте отзыв</h2>
+                        <p class="dialog__text">Поделитесь своим мнением о фильме</p>
+                        <form class="dialog-form" name="reviewForm" novalidate>
+                            <div class="dialog-form__content-title">
+                                <input type="text" name="reviewTitle" class="dialog-form__title-input" id="reviewTitle" placeholder="Заголовок">
+                            </div>
+                            <div class="dialog-form__content-text">
+                                <textarea name="reviewText" id="reviewText" cols="30" rows="8" class="dialog-form__text-input" placeholder="Текст отзыва" minlength="8" spellcheck="true" required></textarea>
+                                <p class="error-message"></p>
+                            </div>
+                            <div class="form__btn">
+                                <input class="form__btn-text" type="submit" name="sendReview" id="btnSendReview" value="Отправить">
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+
             </div>
-            <div class="reviews-container">
+
+            <div class="block-reviews__tabs tabs">
+                <div class="tabs__nav">
+                    <div class="tabs__title-wrapper tabs__title-wrapper_kinopoisk">
+                        <div class="tabs__title _active" data-tab="tab_1" id="title-kp">Рецензии зрителей Кинопоиска</div>
+                    </div>
+                    <div class="tabs__title-wrapper tabs__title-wrapper_ours">
+                        <div class="tabs__title" data-tab="tab_2" id="title-ours">Отзывы наших пользователей</div>
+                    </div>
+                    <div class="tabs__title-wrapper tabs__title-wrapper_btn">
+                        <button class="tabs__btn review-btn" id="btnOpenReviewModal">Оставить отзыв +</button>
+                    </div>
+
+                </div>
                 
-                <!-- <div class="reviews-container__total-wrapper total">
-                    <div class="total__count count-text">Всего<span class="count-number count-number_type_all"></span></div>
-                    <div class="total__positive count-text">Положительные<span class="count-number count-number_type_positive"></span></div>
-                    <div class="total__neutral count-text">Нейтральные<span class="count-number count-number_type_neutral"></span></div>
-                    <div class="total__negative count-text">Отрицательные<span class="count-number count-number_type_negative"></span></div>
-                </div> -->
-                <div class="reviews-container__posts-wrapper posts-wrapper"></div>
+                <div class="tabs__content _tab-1-active">
+                    <div class="tabs__item _active" id="tab_1">
+                        <div class="reviews-container">
+                            <!-- <div class="reviews-container__total-wrapper total">
+                                <div class="total__count count-text">Всего<span class="count-number count-number_type_all"></span></div>
+                                <div class="total__positive count-text">Положительные<span class="count-number count-number_type_positive"></span></div>
+                                <div class="total__neutral count-text">Нейтральные<span class="count-number count-number_type_neutral"></span></div>
+                                <div class="total__negative count-text">Отрицательные<span class="count-number count-number_type_negative"></span></div>
+                            </div> -->
+                            <div class="reviews-container__posts-wrapper posts-wrapper">
+                                <!-- <article class="review-post ${typeOfReview}">
+                                    <h3 class="review-post__title">${post.title}</h3>
+                                    <p class="review-post__body">${post.description}</p>
+                                    <div class="review-post__usefulness usefulness">
+                                        <div class="usefulness__positive">Полезно ${post.positiveRating}</div>
+                                        <div class="usefulness__negative">Нет ${post.negativeRating}</div>
+                                    </div>
+                                </article> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tabs__item" id="tab_2">
+                        <div class="comments-container">
+                            <article class="comment-post">
+                                <h3 class="comment-post__title">${post.title}</h3>
+                                <p class="comment-post__text">${post.text}</p>
+                                <p class="comment-post__author">Автор отзыва:${post.name}</p>
+                                <time class="comment-post__date">${formatter.format(post.date)}</time>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
     <!-- <script type="module" src="./main.js"></script> -->
     <script type="module" src="./src/page-movie.js"></script>
-    <!-- <script type="module" src="./src/reviews.js"></script> -->
+
 </body>
 
 </html>
