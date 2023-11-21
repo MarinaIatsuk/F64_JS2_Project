@@ -52,7 +52,7 @@
       </div>
 
       <!-- пользователь вводит свой email и кодовое слово -->
-      <div class="dialog__container" id="examDate">
+      <div class="dialog__container check-input" id="examDate">
         <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при регистрации</h5>
         <form class="dialog-form__form" name="secondForm" novalidate>
           <div class="dialog-form__email">
@@ -76,7 +76,7 @@
       </div>
 
       <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
-      <div class="dialog__container" id="replacePass">
+      <div class="dialog__container new-pass" id="replacePass">
         <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
         <form class="dialog-form__form" name="thirdForm" novalidate>
           <div class="dialog-form__password">
@@ -97,6 +97,14 @@
             <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
           </div>
         </form>
+      </div>
+
+      <!-- Новый пароль успешно зарегестрирован -->
+      <div class="dialog__container ok-block">
+        <div class="ok-block__location">
+          <p class="ok-block__text">Вы успешно изменилии пароль</p>
+          <button class="ok-block__btn">перейти в форму входа</button>
+        </div>
       </div>
 
     </div>

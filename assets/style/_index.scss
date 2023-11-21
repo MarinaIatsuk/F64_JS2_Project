@@ -16,6 +16,8 @@
     flex-direction: column;
 }
 
+
+//заголовок полей воода
 %text-block {
     font-size: 20px;
     font-family: $font-texts;
@@ -30,6 +32,8 @@
         padding: 5px 10px;
     }
 }
+
+
 
 .dialog {
     margin: auto;
@@ -162,6 +166,7 @@
         @extend %square;
         padding: 1% 4%;
         margin-top: 2%;
+        font-family: $font-btns;
     }
 
     &__btn-text:disabled{
@@ -206,5 +211,30 @@
     &__reappassword-input{
         @extend %square;
         padding: 1%;
+    }
+}
+
+.ok-block{
+
+    &__location{
+        background-color: $btnBackGroundHover;
+        width: 90%;
+        padding: 4%;
+        border-radius: 20px;
+        margin-top: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__text{
+        @extend %text-block;
+    }
+
+    &__btn {
+        @extend %square;
+        padding: 1% 4%;
+        margin-top: 2%;
+        font-family: $font-btns;
     }
 }
