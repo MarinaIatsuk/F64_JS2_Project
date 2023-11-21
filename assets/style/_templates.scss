@@ -1,5 +1,12 @@
 //общие стили сюда
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
 $mobile: "screen and (max-width: 599px)";
 $tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
 $desktop: "screen and (min-width: 1024px)";
@@ -19,18 +26,10 @@ $btnBackGroundHover: rgb(85, 14, 73);
 // цвет заголовков по страницам
 $headers: #ffffff;
 
-$dark-frame:#330031;
-
 // переменные для шрифтов
 $font-texts: "Poppins";
 $font-titles: "Rubik";
 $font-btns: "Fira Sans Condensed";
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 .btn {
     //общий класс для кнопок
@@ -40,7 +39,7 @@ $font-btns: "Fira Sans Condensed";
     border: solid black 1px;
     color: $color;
     width: 15vw;
-    height: 7vh; //поиграть с размерами для адаптива
+    height: 5vh; //Уменьшила
     cursor: pointer;
 }
 .btn:hover {
@@ -54,7 +53,7 @@ $font-btns: "Fira Sans Condensed";
     flex-direction: column;
     padding-left: 3vw;
     padding-top: 4vh;
-    margin: 0 10vw 3vh 3vw;
+    margin: 0 3vw 3vh 3vw; //Убралпа правый бок
     background-color: $background-color;
     min-height: 100vh; 
     height: 100%;//чтобы контейнер растягивался на ширину контента
