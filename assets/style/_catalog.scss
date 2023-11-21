@@ -1,25 +1,4 @@
-// Общие стили
-$mobile: "screen and (max-width: 599px)";
-$tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
-$desktop: "screen and (min-width: 1024px)";
 
-$background-color: #990094;
-$backgroundLine: #330031;
-$inputcolor: #D9D9D9;
-$color: #ffccfd;
-$btnBackGround: black;
-$btnBackGroundHover: rgb(85, 14, 73);
-$headers: #ffffff;
-$dark-frame: #330031;
-$font-texts: "Poppins";
-$font-titles: "Rubik";
-$font-btns: "Fira Sans Condensed";
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 // Контейнер каталога
 .catalog__container {
@@ -51,7 +30,7 @@ $font-btns: "Fira Sans Condensed";
                 .catalog__item {
                     background-color: $background-color;
                     border: none;
-                    color: $dark-frame;
+                    color: $backgroundLine;
                     margin-right: 10px;
                     font-size: medium;
 
@@ -103,7 +82,7 @@ $font-btns: "Fira Sans Condensed";
                 .content__title {
                     text-decoration: none;
                     margin-bottom: 2vh;
-                    color: $dark-frame;
+                    color: $backgroundLine;
                     font-family: $font-titles;
                    
                 }
