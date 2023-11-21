@@ -86,7 +86,7 @@
             <div class="block-reviews__form">
                 <!-- <button class="block-reviews__btn" id="btnOpenReviewModal">Оставить отзыв</button> -->
 
-                <!-- Модальное окно -->
+                <!-- Модальное окно для отправки отзыва -->
                 <dialog class="dialog" id="reviewModal">
                     <div class="dialog__close">
                         <button class="dialog__close" id="btnCloseReviewModal">&#10799;</button>
@@ -106,6 +106,32 @@
                                 <input class="form__btn-text" type="submit" name="sendReview" id="btnSendReview" value="Отправить">
                             </div>
                         </form>
+                    </div>
+                </dialog>
+
+                <!-- Модальное окно для неавторизованного пользователя -->
+                <dialog class="dialog" id="redirectionModal">
+                    <div class="dialog__close">
+                        <button class="dialog__close" id="btnCloseRedirectionModal">&#10799;</button>
+                    </div>
+                    <div class="dialog__container" id="redirectionContainer">
+                        <h2 class="dialog__title">Вы не вошли на сайт</h2>
+                        <p class="dialog__text">Авторизуйтесь, чтобы поделиться своим мнением о фильме</p>
+                        <div class="dialog__btn">
+                            <button class="dialog__btn-text" name="redirectToAuthForm" id="btnRedirectToAuth">Авторизоваться</button>
+                        </div>
+                    </div>
+                </dialog>
+
+
+                <!-- Модальное окно успешной отправки отзыва -->
+                <dialog class="dialog" id="successModal">
+                    <!-- <div class="dialog__close">
+                        <button class="dialog__close" id="btnCloSesuccessModal">&#10799;</button>
+                    </div> -->
+                    <div class="dialog__container" id="SuccessContainer">
+                        <h2 class="dialog__title">Спасибо!</h2>
+                        <p class="dialog__text">Ваш отзыв успешно отправлен.</p>
                     </div>
                 </dialog>
 

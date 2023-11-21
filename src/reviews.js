@@ -1,4 +1,4 @@
-// import * as db from "./db";
+import * as db from "./db";
 import { get_query } from "./db"; // Импорт функции из db для работы с БД
 import "./reviews-tabs";
 
@@ -49,7 +49,7 @@ function createCommentMarkup(post) {
     <article class="comment-post">
         <h3 class="comment-post__title">${post.title}</h3>
         <p class="comment-post__text">${post.text}</p>
-        <p class="comment-post__author">Автор отзыва:${post.name}</p>
+        <p class="comment-post__author">Автор отзыва: ${post.name}</p>
         <time class="comment-post__date">${formatter.format(post.date)}</time>
     </article>
     `;
@@ -131,23 +131,137 @@ async function getComments() {
     }
 }
 
-// Функции открытия и закрытия модального окна для отзыва
+// Функции открытия и закрытия модальных окнон
 
 // const btnOpenReviewModal = document.querySelector("#btnOpenReviewModal");
 const btnOpenReviewModal = document.querySelector(".tabs__title-wrapper_btn");
 // const reviewModal = document.querySelector("#reviewModal");
 const btnCloseReviewModal = document.querySelector("#btnCloseReviewModal");
 
+const btnCloseRedirectionModal = document.querySelector(
+    "#btnCloseRedirectionModal"
+);
+
+// Получаем данные пользователя из Local Storage
+let client = localStorage.getItem("client");
+client = client ? JSON.parse(client) : null;
+
 function openReviewModal() {
-    window.reviewModal.showModal();
+    // // Получаем данные пользователя из Local Storage
+    // let client = localStorage.getItem("client");
+    // client = client ? JSON.parse(client) : null;
+    // Если пользователь не авторизован
+    if (client === null) {
+        closeReviewModal();
+        window.redirectionModal.showModal();
+    } else {
+        // Если пользователь авторизован
+        window.reviewModal.showModal();
+        console.log(client);
+        // Передаём данные пользователя в getDataFromReviewForm();
+        // getDataFromReviewForm(client);
+    }
+}
+
+// Функция открываем окна успешной отправки отзыва на 4 секунды
+function openSuccessModal() {
+    window.successModal.showModal();
+    setTimeout(() => window.successModal.close(), 4000);
 }
 
 function closeReviewModal() {
     window.reviewModal.close();
 }
 
+function closeRedirectionModal() {
+    window.redirectionModal.close();
+}
+
 btnOpenReviewModal.addEventListener("click", openReviewModal);
 btnCloseReviewModal.addEventListener("click", closeReviewModal);
+
+btnCloseRedirectionModal.addEventListener("click", closeRedirectionModal);
+
+// Функция добавления отзыва в БД
+
+async function addReview(user_id, user_name, film_id, title, text, date) {
+    const data = {};
+    data.title = title;
+    data.text = text;
+    // data.date = Date.now();
+    data.date = date;
+    data.name = user_name;
+    data.user_id = user_id;
+    data.film_id = film_id;
+    const id = await db.add("comments", data);
+
+    closeReviewModal();
+    // Открываем окно успешного отправления отзыва на несколько секунд
+    openSuccessModal();
+
+    console.log("Ваш отзыв успешно отправлен!");
+    return id;
+}
+
+// Получаем элементы
+// const reviewTitleInput = document.getElementById("reviewTitle");
+// const reviewTextInput = document.getElementById("reviewText");
+const reviewForm = document.forms.reviewForm;
+const reviewTitleInput = reviewForm.elements.reviewTitle;
+const reviewTextInput = reviewForm.elements.reviewText;
+
+// Функция сбора данных из формы и отправки их в нужные поля для БД
+async function getDataFromReviewForm() {
+    // Получаем заголовок отзыва из input
+    const reviewTitle = reviewTitleInput.value.trim();
+    // Получаем текст отзыва из input
+    const reviewText = reviewTextInput.value.trim();
+
+    // // Получаем данные пользователя из Local Storage
+    // let client = localStorage.getItem("client");
+    // client = client ? JSON.parse(client) : null;
+    // Если текст отзыва не пустой и пользователь авторизован
+    if (reviewText !== "" && client) {
+        const date = Date.now();
+        const title = reviewTitle;
+        const text = reviewText;
+
+        // Получаем из локального хранилища id фильма
+        const selectedFilmId = localStorage.getItem("selectedFilmId");
+
+        // Получаем из локального хранилища id и имя пользователя
+        const userId = client.id;
+        const userName = client.name;
+
+        const id = await addReview(
+            userId,
+            userName,
+            selectedFilmId,
+            title,
+            text,
+            date
+        );
+        console.log(
+            "Данные из формы:",
+            userId,
+            userName,
+            selectedFilmId,
+            title,
+            text,
+            date
+        );
+        console.log("Comment added with id:", id);
+        // submitBtn.disabled = false;
+    }
+}
+
+// const reviewForm = document.forms.reviewForm;
+reviewForm.addEventListener("submit", (e) => {
+    e.preventDefault(); //отмена отправки
+
+    getDataFromReviewForm();
+    // checkAll();
+});
 
 getPosts();
 getComments();
