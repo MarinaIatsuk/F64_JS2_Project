@@ -127,7 +127,6 @@ function attachLikeButtonsEvent() {
                 putLike(target);
                 setLike(accessObj, filmId, true);
                 console.log(filmId);
-
             }
         });
     });

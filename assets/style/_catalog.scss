@@ -1,107 +1,131 @@
-.container_catalog {
-    // min-height: 100vh;
-    // height: 100% !important;
-
-    .container__header {
-        flex-basis: 80px;
-        font-size: 50px;
-    }
-
-    .container__list {
-        display: flex;
-
-        .container__box {
-            display: flex;
-            flex-direction: column;
-            font-size: 20px;
-            font-size: larger;
-
-            .container__item {
-                background-color: $background-color;
-                border: none;
-                color: $dark-frame;
-                margin-right: 10px;
-                font-size: medium;
-
-            }
-
-            .container__item:hover {
-                color: $btnBackGroundHover;
-            }
-        }
-
-        .btn-wrapper {
-            padding-left: 100px;
-        }
-    }
-
-    .container__content {
+// Контейнер каталога
+.catalog__container {
+    padding-top: 0vh !important;
+    .catalog__interface {
         display: flex;
         flex-direction: column;
+        position: fixed;
+        padding-top: 4vh;
+        background-color: $background-color;
 
+        .catalog__header {
+            flex-basis: 80px;
+            font-size: 50px;
 
+            @media #{$mobile} {
+                font-size: 30px;
+            }
+        }
+        
+
+        .catalog__boxes {
+            display: flex;
+
+            .catalog__box {
+                display: flex;
+                flex-direction: column;
+                font-size: 20px;
+                font-size: larger;
+
+                .catalog__item {
+                    background-color: $background-color;
+                    border: none;
+                    color: $backgroundLine;
+                    margin-right: 10px;
+                    font-size: medium;
+
+                    @media #{$mobile} {
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .catalog__btn {
+                padding-left: 100px;
+
+                @media #{$mobile} {
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    // Контейнер контента
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding-top: 15%;
         margin-right: 15%;
+        
+
+        @media #{$mobile} {
+            margin-right: 0;
+        }
 
         .content__item {
             display: flex;
             flex-grow: 1;
             padding-top: 30px;
 
-
             .content__poster {
-
                 width: 100px;
                 margin-right: 10px;
 
-                .poster__img {
+                .content__img {
                     width: 100%;
                 }
             }
 
             .content__info {
-
+                display: flex;
+                flex-direction: column;
                 .content__title {
-                    padding-bottom: 2vh;
-                    color: $dark-frame;
+                    text-decoration: none;
+                    margin-bottom: 2vh;
+                    color: $backgroundLine;
+                    font-family: $font-titles;
+                   
+                }
+                .content__title:hover {
+                    color: $color;
+                }
+
+                .content__original-title{
+                    text-decoration: none;
+                    margin-bottom: 2vh;
+                    font-family: $font-titles;
+                    color: $btnBackGroundHover;
+                }
+                .content__original-title:hover {
+                    color: $color;
                 }
 
                 .content__rating {
                     padding-bottom: 0.5vh;
-
                 }
 
                 .content__year {
                     padding-bottom: 0.5vh;
                 }
-
-
             }
-            .content__btn{
+
+            .content__btn {
                 width: 30vw;
                 height: 4vh;
                 align-self: flex-end;
-    
+
+                @media #{$mobile} {
+                    width: 100%;
+                }
             }
         }
     }
-    .container-pagination{
-        padding-top: 10%;
-        margin-bottom: 10%;
-        .prev-page-btn{
-            width: 20vw;
-                height: 4vh
-        }
-        .next-page-btn{
-            width: 20vw;
-                height: 4vh
-        }
-
-    }
 }
 
-//like
+// Кнопка лайка
 .filmFavContainer {
-    padding-top: 1vh;
+    padding-left: 2vh;
 
     .likeBtn {
         background-color: $background-color;
@@ -112,19 +136,52 @@
     }
 
     .likeIcon {
-
         width: 18px;
         height: 18px;
-        background-image: url('../images/likeGray.png');
+        background-image: url('../images/likeEmpty.svg');
         background-size: cover;
         margin-right: 4px;
     }
+    .likeIcon:hover {
+                background-image: url('../images/likeEmpty30.svg');
+                background-size: cover;
+            }
 
     .liked {
-        background-image: url('../images/likePink.png');
+        background-image: url('../images/likeFilledPink.svg');
         background-size: cover;
         width: 18px;
         height: 18px;
         margin-right: 4px;
     }
 }
+
+// .filmFavContainer {
+//     width: 20px;
+//     height: 20px;
+//     padding-left: 2vh;
+
+//     .likeBtn {
+//         background-color: $background-color;
+//         border: none;
+//         cursor: pointer;
+//         display: flex;
+//         align-items: center;
+//     }
+
+//     .likeIcon {
+//         background-image: url('../images/likeEmpty.svg');
+//         background-size: cover;
+//         width: 100%;
+//     }
+//     .likeIcon:hover {
+//         background-image: url('../images/likeEmpty30.svg');
+//         background-size: cover;
+//     }
+
+//     .liked {
+//         background-image: url('../images/likeFilledPink.svg');
+//         background-size: cover;
+//         width: 100%;
+//     }
+// }
