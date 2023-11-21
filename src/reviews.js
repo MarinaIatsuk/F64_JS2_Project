@@ -1,4 +1,23 @@
+// import * as db from "./db";
+import { get_query } from "./db"; // Импорт функции из db для работы с БД
 import "./reviews-tabs";
+
+// TODO Сделать проверку на null заголовков рецензий с КП
+// и на undefined заголовков отзывов из БД
+// Заменять на Heavy Double Turned Comma Quotation Mark Ornament &#10077;
+// или на Horizontal bar &#8213; в случае отсутствия заголовка
+
+// Прописываем локаль и опции для форматирования даты
+const formatter = new Intl.DateTimeFormat("ru-RU", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: false,
+    timeZone: "UTC",
+    timeZoneName: "short",
+});
 
 // Функция создания разметки поста с рецензией
 // (получает на вход объект поста и возвращает строку HTML-разметки)
@@ -19,6 +38,19 @@ function createPostMarkup(post) {
             <div class="usefulness__positive">Полезно ${post.positiveRating}</div>
             <div class="usefulness__negative">Нет ${post.negativeRating}</div>
         </div>
+    </article>
+    `;
+    return template;
+}
+
+// Функция создания разметки поста с отзывом
+function createCommentMarkup(post) {
+    const template = `
+    <article class="comment-post">
+        <h3 class="comment-post__title">${post.title}</h3>
+        <p class="comment-post__text">${post.text}</p>
+        <p class="comment-post__author">Автор отзыва:${post.name}</p>
+        <time class="comment-post__date">${formatter.format(post.date)}</time>
     </article>
     `;
     return template;
@@ -80,6 +112,25 @@ async function getPosts() {
     }
 }
 
+// Функция для получения отзывов из БД
+async function getComments() {
+    try {
+        // const selectedFilmId = "1234"; // Для теста
+        const selectedFilmId = window.localStorage.getItem("selectedFilmId");
+        const key = "film_id";
+        const comments = await get_query("comments", key, selectedFilmId);
+        console.log(comments);
+
+        const commentsContainer = document.querySelector(".comments-container");
+        comments.forEach((comment) => {
+            const commentMarkup = createCommentMarkup(comment);
+            addMarkupToContainer(commentMarkup, commentsContainer);
+        });
+    } catch (error) {
+        console.error("Ошибка при получении данных из БД:", error);
+    }
+}
+
 // Функции открытия и закрытия модального окна для отзыва
 
 // const btnOpenReviewModal = document.querySelector("#btnOpenReviewModal");
@@ -99,3 +150,4 @@ btnOpenReviewModal.addEventListener("click", openReviewModal);
 btnCloseReviewModal.addEventListener("click", closeReviewModal);
 
 getPosts();
+getComments();
