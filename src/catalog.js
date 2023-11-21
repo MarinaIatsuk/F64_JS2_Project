@@ -133,30 +133,39 @@ import MD5 from "crypto-js/md5";
             const filmId = btn.getAttribute('id');
             let target = event.target; //это «целевой» элемент, на котором произошло событие
             if (target.tagName === 'SPAN') {
-                putLike(target);
+
+                target.classList.toggle('liked');   //менякм на краснвй лайк  
+
                 console.log(filmId); //Проверка
                   // Получаю id пользователя из Local storage
     const objLS = window.localStorage.getItem('client');
     const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
-               setLike(accessObj, filmId, true) 
+               setLike(accessObj, filmId, true)  //добавляем в избранное
+               
         }
                        });
         });
 
-
-    //лайкаем и добавляем в избранное Нужно ли выносить?
-    function putLike(span) {
-        span.classList.toggle('liked');
     }
-}
+
  async function setLike(user_id, film_id, state) {
     const data = {};
     data[`likes.${film_id}`] = state;
     await db.update("users", user_id, data);
-    
-};
-    
+    if (!state) {
+        removeMovieFromList(film_id);
+    }
+}
+
+function removeMovieFromList(filmId) {
+    // Реализация удаления фильма из списка в бд
+    const movieElement = document.querySelector(`.content-button.likeBtn[id="${filmId}"]`).closest('.content__item');
+    if (movieElement) {
+        movieElement.style.display = 'none';
+    }
+    console.log(`${filmId} hidden`);
+  }  
 
 
 

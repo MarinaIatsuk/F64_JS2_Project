@@ -82,6 +82,17 @@
   
   
       }
+
+      
+    .likeIcon {
+      width: 18px;
+      height: 18px;
+      background-image: url('../images/likeGray.png');
+      background-size: cover;
+      margin-right: 4px;
+  }
+
+
       .content__btn{
           width: 30vw;
           height: 4vh;
@@ -153,6 +164,7 @@
       }
   
     }
+  
   
   
   

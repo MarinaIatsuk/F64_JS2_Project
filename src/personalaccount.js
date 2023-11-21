@@ -1,3 +1,7 @@
+import "./db";
+import * as db from './db';
+import MD5 from "crypto-js/md5";
+
 import {
   get
 } from './db'; // для работы с БД. Импорт функции из db
@@ -62,9 +66,11 @@ const userId = clientInfo.id; // Получаем id из объекта
 
 get("users", userId) //Вызываем функцию get, которая возвращает промис users-это base, userId-это id
     .then(clientInfo => {
-        console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes
+        console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes, у которых значение равно true
         // Получаем ключи объекта likes
-        const likesKeys = Object.keys(clientInfo.likes); //получили ключи необходимого объекта, так они являются id выбранных пользователем фильмов
+        const likesKeys = Object.keys(clientInfo.likes)
+        .filter(key => clientInfo.likes[key] === true); //получили ключи необходимого объекта, так они являются id выбранных пользователем фильмов
+   
         console.log(likesKeys); //Проверили
         getMovies(likesKeys) //Функция для получения фильмов из АПИ
     })
@@ -97,6 +103,7 @@ try {
 
 
 let likeList = window.document.querySelector('.list__movieList');
+
 function makeList(data) {
 const item = document.createElement("div"); //создаем, например, див
 item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
@@ -125,48 +132,43 @@ const template =  `
    item.innerHTML = template; //вставляем карточку в item
    
    likeList.appendChild(item); // добавляем элемент в контейнер
-} 
+
 
 
     // выбираем все лайки
     const likeBtns = document.querySelectorAll('.likeBtn');
-    likeBtns.forEach((btn) => {
+
+        likeBtns.forEach((btn) => {
         btn.addEventListener('click', async function (event) {
             event.preventDefault()
+           
             // Получаю id фильма из каждого "лайка"
             const filmId = btn.getAttribute('id');
             let target = event.target; //это «целевой» элемент, на котором произошло событие
             if (target.tagName === 'SPAN') {
-                removeLike(target);   //удаление лайка
+              target.classList.toggle('likeIcon'); //
                 console.log(filmId); //Проверка
                   // Получаю id пользователя из Local storage
     const objLS = window.localStorage.getItem('client');
     const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
-               await setLike(accessObj, filmId, false) 
-               //  удаление фильма из списка избранного 
-               removeMovieFromList(filmId);
-        }
+                setLike(accessObj, filmId, false)
+                                  }
                        });
         });
 
-    //лайкаем и добавляем в избранное Нужно ли выносить?
-    function removeLike(span) {
-        span.classList.toggle('likeIcon');
-    }
+   
+    
+    // удаление/add фильма из списка избранного
+  } 
 
-    async function setLike(user_id, film_id, state) {
+  })
+  
+ async function setLike(user_id, film_id, state) {
       const data = {};
       data[`likes.${film_id}`] = state;
       await db.update("users", user_id, data);
       
-  };
-// удаление фильма из списка избранного
+  }; 
 
-function removeMovieFromList(filmId) {
-  const movieElement = document.querySelector(`.content-button.likeBtn[id="${filmId}"]`).closest('.content__item');
-  if (movieElement) {
-      movieElement.remove();
-  }
-}
-})
+
