@@ -1,128 +1,105 @@
+.container_catalog {
+    // min-height: 100vh;
+    // height: 100% !important;
 
+    .container__header {
+        flex-basis: 80px;
+        font-size: 50px;
+    }
 
-// Контейнер каталога
-.catalog__container {
-    .catalog__interface {
+    .container__list {
         display: flex;
-        flex-direction: column;
-        position: fixed;
-        background-color: $background-color;
 
-        .catalog__header {
-            flex-basis: 80px;
-            font-size: 50px;
+        .container__box {
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            font-size: larger;
 
-            @media #{$mobile} {
-                font-size: 30px;
+            .container__item {
+                background-color: $background-color;
+                border: none;
+                color: $dark-frame;
+                margin-right: 10px;
+                font-size: medium;
+
+            }
+
+            .container__item:hover {
+                color: $btnBackGroundHover;
             }
         }
-        
 
-        .catalog__boxes {
-            display: flex;
-
-            .catalog__box {
-                display: flex;
-                flex-direction: column;
-                font-size: 20px;
-                font-size: larger;
-
-                .catalog__item {
-                    background-color: $background-color;
-                    border: none;
-                    color: $backgroundLine;
-                    margin-right: 10px;
-                    font-size: medium;
-
-                    @media #{$mobile} {
-                        width: 100%;
-                        margin-bottom: 10px;
-                    }
-                }
-            }
-
-            .catalog__btn {
-                padding-left: 100px;
-
-                @media #{$mobile} {
-                    padding-left: 0;
-                }
-            }
+        .btn-wrapper {
+            padding-left: 100px;
         }
     }
 
-    // Контейнер контента
-    .content {
+    .container__content {
         display: flex;
         flex-direction: column;
-        padding-top: 20%;
-        margin-right: 15%;
 
-        @media #{$mobile} {
-            margin-right: 0;
-        }
+
+        margin-right: 15%;
 
         .content__item {
             display: flex;
             flex-grow: 1;
             padding-top: 30px;
 
+
             .content__poster {
+
                 width: 100px;
                 margin-right: 10px;
 
-                .content__img {
+                .poster__img {
                     width: 100%;
                 }
             }
 
             .content__info {
-                display: flex;
-                flex-direction: column;
-                .content__title {
-                    text-decoration: none;
-                    margin-bottom: 2vh;
-                    color: $backgroundLine;
-                    font-family: $font-titles;
-                   
-                }
-                .content__title:hover {
-                    color: $color;
-                }
 
-                .content__original-title{
-                    text-decoration: none;
-                    margin-bottom: 2vh;
-                    font-family: $font-titles;
-                    color: $btnBackGroundHover;
-                }
-                .content__original-title:hover {
-                    color: $color;
+                .content__title {
+                    padding-bottom: 2vh;
+                    color: $dark-frame;
                 }
 
                 .content__rating {
                     padding-bottom: 0.5vh;
+
                 }
 
                 .content__year {
                     padding-bottom: 0.5vh;
                 }
-            }
 
-            .content__btn {
+
+            }
+            .content__btn{
                 width: 30vw;
                 height: 4vh;
                 align-self: flex-end;
-
-                @media #{$mobile} {
-                    width: 100%;
-                }
+    
             }
         }
     }
+    .container-pagination{
+        padding-top: 10%;
+        margin-bottom: 10%;
+        .prev-page-btn{
+            width: 20vw;
+                height: 4vh
+        }
+        .next-page-btn{
+            width: 20vw;
+                height: 4vh
+        }
+
+    }
 }
 
-// Кнопка лайка
+//like
 .filmFavContainer {
     padding-top: 1vh;
 
@@ -135,6 +112,7 @@
     }
 
     .likeIcon {
+
         width: 18px;
         height: 18px;
         background-image: url('../images/likeGray.png');
