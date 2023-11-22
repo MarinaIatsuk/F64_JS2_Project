@@ -125,9 +125,7 @@ const template =  `
        ` 
 
    item.innerHTML = template; //вставляем карточку в item
-   
-   likeList.appendChild(item); // добавляем элемент в контейнер
-
+  likeList.appendChild(item); // добавляем элемент в контейнер
 
     // выбираем все лайки
     const likeBtns = document.querySelectorAll('.likeBtn');
@@ -158,13 +156,37 @@ if (movieRemove) {
         });
   });
 }
-});
+
+
+
+async function updateFavoritesList(user_id) {
+  // Получаем актуальные данные из базы
+  const updatedClientInfo = await db.get("users", user_id);
+
+  // Получаем ключи объекта likes, у которых значение равно true
+  const likesKeys = Object.keys(updatedClientInfo.likes)
+      .filter(key => updatedClientInfo.likes[key] === true);
+  // Очищаем текущий список в избранном
+  likeList.innerHTML = "";
+  // Обновляем список фильмов в избранном
+  await getMovies(likesKeys);
+}
 
  async function setLike(user_id, film_id, state) {
       const data = {};
       data[`likes.${film_id}`] = state;
       await db.update("users", user_id, data);
-      
-  }; 
+      updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД
+        }; 
+
+
+
+
+        
+});
+
+
+
+
 
 

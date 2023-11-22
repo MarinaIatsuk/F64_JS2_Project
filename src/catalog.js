@@ -126,14 +126,16 @@ function attachLikeButtonsEvent() {
 
             if (target.tagName === 'SPAN') {
                 target.classList.toggle('liked'); // Меняем класс на "Лайк"  
-                setLike(accessObj, filmId, true); //добавляем в БД
+                const objLS = window.localStorage.getItem('client');
+                const accessObj = JSON.parse(objLS).id;
+                console.log(accessObj); //Проверка
+                setLike(accessObj, filmId, target.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
                 console.log(filmId);
-            }
+
+             }
         });
     });
 }
-
-// Лайкаем и добавляем в избранное
 
 // Функция для работы с БД
 async function setLike(user_id, film_id, state) {
@@ -146,3 +148,5 @@ async function setLike(user_id, film_id, state) {
         await db.removeSubfield("users", user_id, subfield);
     }
 }
+
+
