@@ -3,6 +3,8 @@ import "./db";
 import * as db from './db';
 import MD5 from "crypto-js/md5";
 
+let TYPE_FILM;
+
 document.addEventListener("DOMContentLoaded", async function () {
 
   let selectedFilmId = new URLSearchParams(window.location.search).get('id');
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}`, {
       method: 'GET',
       headers: {
-         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+        'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       },
     });
     const dataMovie = await response.json();
+    TYPE_FILM = dataMovie.serial;
     console.log(dataMovie);
     ShowPageMovie(dataMovie);
   }
@@ -31,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       method: 'GET',
       headers: {
         // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-         'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+        'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         'Content-Type': 'application/json',
@@ -44,28 +47,68 @@ document.addEventListener("DOMContentLoaded", async function () {
   catch (error) {
     console.error("Error fetching data:", error);
   }
-
-  try {
-    const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/similars`, {
-      method: 'GET',
-      headers: {
-        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-        // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+  if (TYPE_FILM == false) {
+    try {
+      const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/similars`, {
+        method: 'GET',
+        headers: {
+          // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+          // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
           'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-        // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        'Content-Type': 'application/json',
-      },
-    });
-    const dataSimilarMovies = await response3.json();
-    console.log(dataSimilarMovies);
-    ShowSimilarMovies(dataSimilarMovies);
+          // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+          'Content-Type': 'application/json',
+        },
+      });
+      const dataSimilarMovies = await response3.json();
+      console.log(dataSimilarMovies);
+      ShowSimilarMovies(dataSimilarMovies);
+    }
+    catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
-  catch (error) {
-    console.error("Error fetching data:", error);
+  else {
+    try {
+      const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/similars`, {
+        method: 'GET',
+        headers: {
+          // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+          // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+          'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+          // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+          'Content-Type': 'application/json',
+        },
+      });
+      const dataSimilarMovies = await response3.json();
+      console.log(dataSimilarMovies);
+      ShowSimilarMovies(dataSimilarMovies);
+    }
+    catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
+    try {
+      const response4 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/seasons`, {
+        method: 'GET',
+        headers: {
+          // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+          // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+          'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+          // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+          'Content-Type': 'application/json',
+        },
+      });
+      const dataSeasons = await response4.json();
+      console.log(dataSeasons);
+      ShowSeason(dataSeasons);
+    }
+    catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
   try {
-    const response4 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/external_sources?page=1`, {
+    const response5 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/external_sources?page=1`, {
       method: 'GET',
       headers: {
         // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
@@ -75,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         'Content-Type': 'application/json',
       },
     });
-    const dataSources = await response4.json();
+    const dataSources = await response5.json();
     console.log(dataSources);
     ShowSources(dataSources);
   }
@@ -192,7 +235,15 @@ function ShowStaffMovie(data) {
 
 
 function ShowSimilarMovies(data) {
+  let titleSimilarMovies = document.querySelector('.similar-movies__title');
   if (data.items.length !== 0) {
+
+    if (TYPE_FILM == false)
+      titleSimilarMovies.textContent = "Похожие фильмы";
+    else
+      titleSimilarMovies.textContent = "Похожие сериалы";
+
+    let similarMovies = document.querySelector('.similar-movies');
     const parentElement = document.getElementById('posters-contanier');
     let foundSimilarMovies;
     let newDiv, newLink, newBtn, newBtn2;
@@ -213,7 +264,7 @@ function ShowSimilarMovies(data) {
       const similarMovieBlock = document.querySelector('.similar-movies__container');
       const MoreSimilarMoviesContainer = document.querySelector('.similar-movies__container-wrapper');
       newBtn = document.createElement('button');
-      newBtn.textContent = "Показать еще похожие фильмы";
+      newBtn.textContent = "Показать еще";
       newBtn.classList.add('btn-more-similar');
       newBtn.classList.add('btn');
       similarMovieBlock.append(newBtn);
@@ -237,7 +288,7 @@ function ShowSimilarMovies(data) {
         else {
           MoreSimilarMovies.classList.toggle("no-visible");
           if (MoreSimilarMovies.classList.contains("no-visible"))
-            newBtn.textContent = "Показать еще похожие фильмы";
+            newBtn.textContent = "Показать еще";
           else
             newBtn.textContent = "Скрыть";
         }
@@ -246,8 +297,37 @@ function ShowSimilarMovies(data) {
     }
   }
   else {
+    titleSimilarMovies.textContent = "";
     let similarMovies = document.querySelector('.similar-movies');
     similarMovies.classList.toggle("no-visible");
+  }
+}
+
+function ShowSeason(data) {
+  if (data.items.length !== 0) {
+    let seasonsWrapper = document.querySelector('.block-movie__seasons-wrapper');
+    seasonsWrapper.classList.toggle("no-visible");
+    let seasonsParent = document.getElementById('seasons');
+    let foundSeasons, newDivSeason, newDivEpisod, episode, detailsSeason;
+    for (let index = 0; index < data.items.length; index++) {
+      foundSeasons = data.items[index];
+      detailsSeason = document.createElement('details');
+      newDivSeason  = document.createElement('summary');
+      newDivSeason.classList.add("titleSeason")
+      newDivSeason.textContent = "СЕЗОН " + foundSeasons.episodes[0].seasonNumber;
+      detailsSeason.append(newDivSeason);
+      seasonsParent.append(detailsSeason);
+
+      for (let i = 0; i < foundSeasons.episodes.length; i++) {
+        episode = foundSeasons.episodes[i];
+        newDivEpisod = document.createElement('p');
+        newDivEpisod.classList.add('episod');
+        newDivEpisod.textContent = `ЭПИЗОД ${episode.episodeNumber}. ${episode.nameRu?episode.nameRu:episode.nameEn}. ${episode.synopsis}`;
+        detailsSeason.append(newDivEpisod);
+      }
+
+      if (index == 1) { break }
+    }
   }
 }
 
@@ -268,7 +348,7 @@ function ShowSources(data) {
       if (index == 4) { break }
     }
   }
-  else{
+  else {
     let movieSources = document.querySelector('.movie-sources');
     movieSources.classList.toggle("no-visible");
   }
