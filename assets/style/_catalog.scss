@@ -20,6 +20,9 @@
 
         .catalog__boxes {
             display: flex;
+            @media #{$mobile} {
+                flex-direction: column;
+            }
 
             .catalog__box {
                 display: flex;
