@@ -125,7 +125,7 @@ function attachLikeButtonsEvent() {
             const accessObj = JSON.parse(objLS).id;
 
             if (target.tagName === 'SPAN') {
-                span.classList.toggle('liked'); // Меняем класс на "Лайк"  
+                target.classList.toggle('liked'); // Меняем класс на "Лайк"  
                 setLike(accessObj, filmId, true); //добавляем в БД
                 console.log(filmId);
             }
