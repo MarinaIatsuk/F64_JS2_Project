@@ -118,25 +118,22 @@ function attachLikeButtonsEvent() {
             // Проверка авторизации
             const objLS = window.localStorage.getItem('client'); // Получили id пользователя из бд
             if (!objLS) {// Если пользователь не авторизован, останавливаем функцию
+                alert('Чтобы использовать опцию "Избранное" необходимо авторизироваться')
                 return;
             }
 
             const accessObj = JSON.parse(objLS).id;
 
             if (target.tagName === 'SPAN') {
-                putLike(target);
-                setLike(accessObj, filmId, true);
+                span.classList.toggle('liked'); // Меняем класс на "Лайк"  
+                setLike(accessObj, filmId, true); //добавляем в БД
                 console.log(filmId);
-
             }
         });
     });
 }
 
 // Лайкаем и добавляем в избранное
-function putLike(span) {
-    span.classList.toggle('liked');
-}
 
 // Функция для работы с БД
 async function setLike(user_id, film_id, state) {
