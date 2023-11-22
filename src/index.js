@@ -25,11 +25,17 @@ const btnClose = document.querySelector('#btnClose');
 
 function openModal() {
     window.windModal.showModal();
+
+    mainForm.style.display = 'flex';//при нажатии на кнопку Войти в хэдэр видна первая форма модального окна
+    checkInputSecond.style.display = 'none';//закрыта вторая форма модального окна
+    newPass.style.display = 'none';//закрыта третья форма модального окна
+    okBlock.style.display = 'none';//закрыта четвертая форма модального окна
 }
 
 function closeModal() {
     window.windModal.close();
 }
+
 
 
 btnOpen.addEventListener('click', openModal);
@@ -61,17 +67,31 @@ function lsName() {
     if (equallyLs === true) {
         btnOpen.style.display = 'none';//кнопка войти в хэдэр
 
-// получаем данные client из ллокального хранилища
+        // получаем данные client из локального хранилища
         const objLS = window.localStorage.getItem('client');
         const accessObj = JSON.parse(objLS);
 
+        console.log(accessObj);
+
         hiUser.innerHTML = `<p class="cont__text-name"> Привет, ${accessObj.name}</p>`;//вместо кнопки войти в хэдэре
+
+
+        let nowDateMs = new Date().getTime();//текущая дата
+
+        //выход из ЛК через месяц
+        if (nowDateMs - accessObj.time > 30*24*60*60*1000) {
+            window.localStorage.removeItem('client');//удаление локального хранилища если юзера не было больше месяца на сайте
+            btnOpen.style.display = 'flex';
+        } else {
+            accessObj.time = new Date().getTime();//обновляется время в локальном хранилище если он зашел на сайт раньше, чем автоматический выход из сайта его разлогинил
+            window.localStorage.setItem('client', JSON.stringify(accessObj));
+        }
     } else {
         btnOpen.style.display = 'flex';
     }
 
     let login = new URLSearchParams(window.location.search).get('login');//если login=true, то открывается модальное окно
-    if (login) openModal();
+    if (login && !localStorage.hasOwnProperty("client")) openModal();
 }
 
 //при загрузке страницы убрать кнопку Войти
@@ -106,7 +126,7 @@ async function examLogin() {
 
     const users = await db.get_query("users", "email", loginEmail.value);
 
-    if (users == 0) {
+    if (users.length == 0) {
         dialogEmailError.textContent = `Пользователь с таким email не зарегестрирован. Создайте свой аккаунт в форме регистрации`;
     } else {
         if (users[0].password != pas) {
@@ -139,7 +159,220 @@ btnLogin.addEventListener("click", examLogin); //клик на Войти в м�
 
 
 
-//ДОДЕЛАТЬ Забыли пароль!!!!
+
+// Валидация прописанная
+function checkValidityAll(input) {
+    function setError(text) {
+        input.nextElementSibling.textContent = text;
+        input.classList.add('error');
+    }
+
+    setError('');
+    input.classList.remove('error');
+
+    let validity = input.validity;
+
+    if (validity.rangeUnderflow) {
+        setError('Значение меньше минимально допустимого');
+        return false;
+    }
+
+    if (validity.rangeOverflow) {
+        setError('Значение больше максимального допустимого');
+        return false;
+    }
+
+    if (validity.tooShort) {
+        setError('Значение слишком короткое');
+        return false;
+    }
+
+    if (validity.tooLong) {
+        setError('Значение слишком длинное');
+        return false;
+    }
+
+    if (validity.valueMissing) {
+        setError('Необходимо заполнить поле');
+        return false;
+    }
+
+    if (validity.patternMismatch) {
+        setError('Неверный формат заполнения');
+        return false;
+    }
+
+    return true;
+}
+
+
+
+const thirdPassword = document.getElementById('thirdPassword');//доступ к input введи новый пароль
+
+const thirdReappassword = document.getElementById('thirdReappassword');//доступ к input повтори пароль
+
+
+const thirdForm = document.forms.thirdForm;//доступ к форме с новым паролем
+
+const secondEmail = document.querySelector('#secondEmail');//доступ к input email в форме подтверждения кодового слова для замены пароля
+
+const secondSecret = document.querySelector('#secondSecret');//доступ к input Кодовое слово в форме подтверждения кодового слова для замены пароля
+
+
+const secondBtn = document.querySelector('#secondBtn');//доступ к кнопке с проверкой юзера с кодовым словом
+secondBtn.disabled = true;//кнопка отправки не активна в форме с проверкой юзера с кодовым словом
+
+
+const thirdBtn = document.querySelector('#thirdBtn');//доступ к кнопке в форме с новым паролем
+thirdBtn.disabled = true;//кнопка отправки не активна в форме с новым паролем
+
+
+const inputsNewPass = document.querySelectorAll('input[name="thirdCheckOk"]');
+const allInputsArray = Array.from(inputsNewPass);
+
+
+//проверка всех input в форме с новым паролем
+function checkAllPass() {
+    let ok = true;
+
+    for (let input of allInputsArray) {
+        if (!checkValidityAll(input)) ok = false;
+    }
+
+    //Проверка совпадения паролей
+
+    if (thirdReappassword.value !== thirdPassword.value) {
+        thirdReappassword.nextElementSibling.textContent = 'Пароли не совпадают';
+        ok = false;
+    }
+
+    return ok;
+}
+
+thirdForm.addEventListener('submit', (e) => {
+    e.preventDefault();//отмена отправки
+
+    checkAllPass();
+});
+
+
+//функция - активировать кнопку если input email и кодовое слово не пустые
+function checkInputSecondForm() {
+    secondBtn.disabled = (secondEmail.value == '' || secondSecret.value == '');
+}
+
+secondEmail.addEventListener('input', checkInputSecondForm);//слушатель события- активировать кнопку если input email и кодовое слово не пустые
+secondSecret.addEventListener('input', checkInputSecondForm);//слушатель события- активировать кнопку если input email и кодовое слово не пустые
+
+
+//функция - активировать кнопку если input Введите новый пароль, повторите пароль не пустые
+function checkInputThirdForm() {
+    thirdBtn.disabled = (thirdReappassword.value == '' || thirdPassword.value == '');
+}
+
+
+thirdPassword.addEventListener('input', checkInputThirdForm);
+
+thirdReappassword.addEventListener('input', checkInputThirdForm);
+
+const secondEmailErr = document.querySelector('#secondEmailErr');//доступ к ошибка в поле email во второй форме
+
+const secondSecretErr = document.querySelector('#secondSecretErr');//доступ к ошибка в поле Кодовое слово во второй форме
+
+// const examDate = document.querySelector('#examDate');// доступ ко второму блоку ID
+
+// const replacePass = document.querySelector('#replacePass');//доступ к третьему блоку ID
+
+const checkInputSecond = document.querySelector('.check-input');// доступ ко второму блоку class
+
+const newPass = document.querySelector('.new-pass');//доступ к третьему блоку class
+
+const okBlock = document.querySelector('.ok-block');//доступ к четвертому блоку class
+
+const mainForm = document.querySelector('.main-form');//доступ к первому блоку id
+
+const newComeIn = document.querySelector('#newComwIn');
+
+let userPassId = '';
+
+
+const passwordBtn = document.querySelector('#passwordBtn');//доступ к кнопке Забыли пароль
+
+function closeOneBlock() {
+    mainForm.style.display = 'none';//закрытие первого блока
+    checkInputSecond.style.display = 'flex';//открывается второй блок
+}
+
+
+passwordBtn.addEventListener('click', closeOneBlock);
+
+// проверка email и кодового слова во второй форме
+async function checkInfoSecondForm() {
+    secondBtn.disabled = true;
+
+    let secretText = MD5(secondSecret.value).toString();
+
+    const users = await db.get_query("users", "email", secondEmail.value);
+
+    if (users.length == 0) {
+        secondEmailErr.textContent = `Пользователь с таким email не зарегестрирован. Создайте свой аккаунт в форме регистрации`;
+    } else {
+        if (users[0].secret != secretText) {
+            secondSecretErr.textContent = 'кодовое слово неверное';
+
+        } else {
+
+            checkInputSecond.style.display = 'none';//закрывается второй блок
+
+            newPass.style.display = 'flex';//открывается третий блок
+            userPassId = users[0].id;
+        }
+    }
+    secondBtn.disabled = false;//разблокирована
+}
+
+
+
+secondBtn.addEventListener('click', checkInfoSecondForm) //слушатель события- во второй форме
+
+
+thirdBtn.addEventListener('click', async () => {
+    if (!checkAllPass()) return;
+    thirdBtn.disabled = true;
+
+    const newPassUser = {
+        password: MD5(thirdReappassword.value).toString()
+    }
+
+    await db.update("users", userPassId, newPassUser);
+    userPassId = '';//очищение информации id юзера, в чью базу мы заливаем новый пароль
+
+    newPass.style.display = 'none';//закрывается третий
+    okBlock.style.display = 'flex';//открывается четвертый
+
+})
+
+
+
+newComeIn.addEventListener('click', () => {
+    okBlock.style.display = 'none';//закрывается четвертый блок
+    mainForm.style.display = 'flex';//открывается первый
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ====================================================================
 async function testtt() {
@@ -182,14 +415,14 @@ async function setRating(user_id, film_id, value) {
 }
 
 // функция для добавления комментария, text - текст комментария
-async function addComment(user_id, user_name, film_id, text,title) {
+async function addComment(user_id, user_name, film_id, text, title) {
     const data = {};
     data.text = text;
     data.name = user_name;
     data.user_id = user_id;
     data.film_id = film_id;
     data.date = new Date().getTime();
-    data.title= title;
+    data.title = title;
     const id = await db.add("comments", data);
     return id;
 }

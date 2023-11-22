@@ -3,8 +3,6 @@ import MD5 from "crypto-js/md5";
 
 const myForm = document.forms.oneForm;
 
-
-
 // Валидация прописанная
 function checkValidity(input) {
     function setError(text) {
@@ -79,10 +77,8 @@ function checkAll() {
 
 
 
-
 //отмена отправки если не отметить чекбокс
 const choceCheck = myForm.elements.secondCheckbox; //доступ чекбокс
-
 
 const submButton = document.querySelector('#btnText'); // доступ к кнопке
 submButton.disabled = 1;
@@ -134,7 +130,6 @@ submButton.addEventListener('click', async () => {
         errErrorEmail.textContent ="пользователь с таким email существует";
     } else {
         let uid = await db.add("users", newClient);
-        console.log("юзер зарегестрирован");
 
         invisibleOne.style.display = 'none';
         invisibleTwo.style.display = 'none';

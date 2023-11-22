@@ -32,11 +32,51 @@ $font-btns: "Fira Sans Condensed";
     padding: 0;
 }
 
-//для инпутов форма взода, регистрации + кнопки
+//расположение текста и инпута
+%display-block {
+    display: flex;
+    flex-direction: column;
+}
+
+
+//большие блоки в форме входа
+%display-maxblock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+//заголовок полей ввода
+%text-block {
+    font-size: 20px;
+    font-family: $font-texts;
+    color: $color;
+    padding: 1%;
+
+    @media #{$tablet}{
+        font-size: 18px;
+    }
+
+    @media #{$mobile} {
+        font-size: 16px;
+    }
+}
+
+//для инпутов форма ввода, регистрации + кнопки
 %square{
     background-color: $inputcolor;
     border: none;
     border-radius: 20px;
+
+    @media #{$tablet}{
+        font-size: 11px;
+    }
+
+    @media #{$mobile} {
+        font-size: 9px;
+    }
 }
 
 
