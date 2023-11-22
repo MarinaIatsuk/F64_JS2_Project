@@ -122,17 +122,11 @@ const template =  `
      </button>
  </div>
  </div>
- <div class="content-btn">
- <button class="content__btn btn" id="${data.kinopoiskId}">
-     Показать информацию о фильме
- </button>
- </div>
        ` 
 
    item.innerHTML = template; //вставляем карточку в item
    
    likeList.appendChild(item); // добавляем элемент в контейнер
-
 
 
     // выбираем все лайки
@@ -146,24 +140,26 @@ const template =  `
             const filmId = btn.getAttribute('id');
             let target = event.target; //это «целевой» элемент, на котором произошло событие
             if (target.tagName === 'SPAN') {
-              target.classList.toggle('likeIcon'); //
+              target.classList.toggle('likeIcon'); 
+              
                 console.log(filmId); //Проверка
                   // Получаю id пользователя из Local storage
     const objLS = window.localStorage.getItem('client');
     const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
-                setLike(accessObj, filmId, false)
+                setLike(accessObj, filmId, false);
+// Находим родительский элемент лайка и удаляем его
+const movieRemove = btn.closest('.content__item');
+if (movieRemove) {
+    movieRemove.remove();
+}
                                   }
-                       });
+                       
         });
+  });
+}
+});
 
-   
-    
-    // удаление/add фильма из списка избранного
-  } 
-
-  })
-  
  async function setLike(user_id, film_id, state) {
       const data = {};
       data[`likes.${film_id}`] = state;

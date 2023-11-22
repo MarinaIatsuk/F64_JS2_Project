@@ -42,7 +42,7 @@
   
   
    &__movieList {
-  padding-left: 10vw;
+  padding: 0 0 5vw  10vw;
   font-family:$font-titles;
   padding-top: 1vh;
   display: flex;
@@ -68,7 +68,7 @@
         margin-right: 8vw;
           .content__title {
               padding-bottom: 2vh;
-              color: $dark-frame;
+              color: $backgroundLine;
           }
   
           .content__rating {
