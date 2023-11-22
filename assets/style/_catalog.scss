@@ -1,12 +1,13 @@
 // Контейнер каталога
 .catalog__container {
-    padding-top: 0vh !important;
+    //padding-top: 0vh !important;
     .catalog__interface {
         display: flex;
         flex-direction: column;
-        position: fixed;
+        position: sticky;
         padding-top: 4vh;
         background-color: $background-color;
+        top: 0;
 
         .catalog__header {
             flex-basis: 80px;
@@ -20,7 +21,7 @@
 
         .catalog__boxes {
             display: flex;
-            @media #{$mobile} {
+            @media screen and (max-width: 800px) {
                 flex-direction: column;
             }
 
@@ -47,9 +48,12 @@
             .catalog__btn {
                 padding-left: 100px;
 
-                @media #{$mobile} {
+                @media screen and (max-width: 800px) {
+                    padding-top: 20px;
                     padding-left: 0;
                 }
+
+                
             }
         }
     }
