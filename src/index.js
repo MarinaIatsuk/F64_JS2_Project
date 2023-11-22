@@ -30,6 +30,10 @@ function openModal() {
     checkInputSecond.style.display = 'none';//закрыта вторая форма модального окна
     newPass.style.display = 'none';//закрыта третья форма модального окна
     okBlock.style.display = 'none';//закрыта четвертая форма модального окна
+
+    //поля ввода пустые
+    loginEmail.value='';
+    loginPassword.textContent='';
 }
 
 function closeModal() {
