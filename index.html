@@ -11,7 +11,19 @@
       <div class="wrapper"> 
         <header class="header">
             <div class="header__container _container">
+              <!-- <div class="header__body"> -->
             <a href="#" class="header__logo"> MOVIEСервис </a>
+
+             <!-- hamburger icon -->
+             <div class="header__burger">
+             <span></span>
+             </div>
+
+
+        <!-- <input class="header__s" type="checkbox" id="side-menu" />
+        <label class="header__hamb" for="side-menu" >
+          <span class="header__hamb-line"></span  ></label>
+             -->
             <nav class="header__nav ">
             <ul class="header__menu">
            <li class="menu__item">
@@ -22,13 +34,14 @@
              </li>
              </ul>
             </nav>
-             <div class="d1"> 
-            <form>
-              <input type="text" class="header__search" placeholder="Поиск" id="filter"/> 
-              <ul class="list-group list-group-flush" id="list"></ul>
-              <button type="submit" class="search__icon"></button>
-             </form>
-             </div>
+             <div class="search-box">    
+            <form >
+              <input type="text"  class="header__search" placeholder="Поиск" id="filter"/> 
+              <ul class="header__search-list" id="list"> </ul> 
+              <!-- <li>Фильм</li> -->
+            </form>
+             </div>   
+
                <div class="header__btn-container"> 
          <h3 class="user__name">Имя пользователя</h3> 
         <div class="user__email"></div> 

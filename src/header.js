@@ -10,7 +10,8 @@ document.querySelector('#avatar').onclick = function(){
  
  const filter = document.querySelector("#filter");
  const list = document.querySelector("#list");
-
+ let FILMS = [];
+ 
  filter.addEventListener("input", (event) => {
          var keyword = event.target.value.toLowerCase();
          fetch(
@@ -36,11 +37,16 @@ document.querySelector('#avatar').onclick = function(){
                  })
                  .catch((err) => console.log(err));
  });
-
-
-const btnOpen =  function() {
+ 
+ const btnOpen =  function() {
    document.querySelector('#btnOpen').style.display="none";
 }
-
 const avatar = document.getElementById("avatarId");
 avatar.style.display = "none";
+
+// $(documnet).ready(function() {
+//         $('.header__burger').click(function(event){
+//                 $('.header__burger,. header__nav').toggleClass('active');
+//                 $('body').toggleClass('lock');
+//         });
+// });
