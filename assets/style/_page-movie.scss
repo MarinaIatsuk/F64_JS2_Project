@@ -1,6 +1,9 @@
 .block-movie {
+
     &__wrapper {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     &__title-wrapper {
@@ -144,7 +147,7 @@
     &__subtitle {
         display: flex;
         flex-direction: column;
-        width: 190px;
+        width: 12vw;
         text-decoration-line: none;
 
         @media #{$mobile} {
@@ -174,7 +177,7 @@
     &__description-wrapper {
         max-width: 60%;
         display: flex;
-        // flex-direction: column;
+         // flex-direction: column;
         text-align: justify;
 
         @media #{$mobile} {
@@ -252,6 +255,9 @@
         border: 3px dashed black;
         border-radius: 20%;
         @media #{$mobile} {
+            display: flex;
+            flex-direction: row;
+            gap: 5vw;
             width: fit-content;
             margin-top: 1px;
         }
@@ -283,27 +289,51 @@
     }
 }
 
-.titleSeason{
-    $font-btns: 'Fira Sans Condensed';
-}
+// .titleSeason{
+//     $font-btns: 'Fira Sans Condensed';
+
+// }
 
 #seasons{
     margin-left: 20px;
-    max-width: 60%;
+    max-width: 80vw;
     @media #{$tablet} {
-        max-width: 80%;
+        max-width: 90%;
     }
 
     @media #{$mobile} {
-        max-width: 80%;
+        max-width: 90%;
     }
+}
+.episod-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.episod-wrapper {
+    display: flex;
+    margin-top: 2vh;
+    gap: 2vw;
+}
+.title-episod{
+    margin-left: 2vw;
+    min-width: 20vw;
+    @media #{$tablet} {
+     min-width: 30vw;
+    }
+
+    @media #{$mobile} {
+    min-width: 30vw;
+    }
+    font-family: $font-titles;
+
 }
 .episod{
     $font-texts: 'Poppins';
-    max-width: 60%;
+    // max-width: 60%;
     display: flex;
     text-align: justify;
-    margin-top: 5px;
+
     @media #{$tablet} {
         max-width: 100%;
     }
@@ -312,6 +342,14 @@
         max-width: 100%;
     }
 }
+.likeBtn {
+    background-color: $background-color;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
 .block-wrapper {
     display: flex;
 }

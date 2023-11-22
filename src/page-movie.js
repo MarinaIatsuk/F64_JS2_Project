@@ -53,9 +53,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         method: 'GET',
         headers: {
           // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-          // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-          'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+           'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+          // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+
           'Content-Type': 'application/json',
         },
       });
@@ -74,8 +75,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         headers: {
           // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
           // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-          'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+          // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+          'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
           'Content-Type': 'application/json',
         },
       });
@@ -93,8 +95,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         headers: {
           // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
           // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-          'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+          // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+          'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
           'Content-Type': 'application/json',
         },
       });
@@ -162,6 +165,7 @@ function ShowPageMovie(data) {
     filmLength.textContent = String(data.filmLength) + " мин.";
   else filmLength.setAttribute("class", "no-visible");
 
+  if(data.slogan!==null)
   slogan.textContent = data.slogan;
 
   for (let i = 0; i < data.countries.length; i++) {
@@ -308,25 +312,33 @@ function ShowSeason(data) {
     let seasonsWrapper = document.querySelector('.block-movie__seasons-wrapper');
     seasonsWrapper.classList.toggle("no-visible");
     let seasonsParent = document.getElementById('seasons');
-    let foundSeasons, newDivSeason, newDivEpisod, episode, detailsSeason;
+    let foundSeasons, newDivSeason, newDivEpisod, newDivTitleEpisod, episode, detailsSeason, divWrapper, divWrapper2;
     for (let index = 0; index < data.items.length; index++) {
       foundSeasons = data.items[index];
       detailsSeason = document.createElement('details');
       newDivSeason  = document.createElement('summary');
       newDivSeason.classList.add("titleSeason")
-      newDivSeason.textContent = "СЕЗОН " + foundSeasons.episodes[0].seasonNumber;
+      newDivSeason.textContent = "СЕЗОН " + Number(index+1);
       detailsSeason.append(newDivSeason);
-      seasonsParent.append(detailsSeason);
+      divWrapper = document.createElement('div');
+      divWrapper.classList.add('episod-container');
+      detailsSeason.append(divWrapper);
 
       for (let i = 0; i < foundSeasons.episodes.length; i++) {
         episode = foundSeasons.episodes[i];
-        newDivEpisod = document.createElement('p');
-        newDivEpisod.classList.add('episod');
-        newDivEpisod.textContent = `ЭПИЗОД ${episode.episodeNumber}. ${episode.nameRu?episode.nameRu:episode.nameEn}. ${episode.synopsis}`;
-        detailsSeason.append(newDivEpisod);
+        divWrapper2 = document.createElement('div');
+        divWrapper2.classList.add('episod-wrapper');
+        newDivEpisod = document.createElement('div');
+        newDivEpisod.classList.add('title-episod');
+        newDivEpisod.textContent = `СЕРИЯ ${Number(i+1)}. ${episode.nameRu?episode.nameRu:episode.nameEn}.`;
+        divWrapper2.append(newDivEpisod);
+        newDivTitleEpisod = document.createElement('p');
+        newDivTitleEpisod.classList.add('episod');
+        newDivTitleEpisod.textContent = `${episode.synopsis}`;
+        divWrapper2.append(newDivTitleEpisod);
+        divWrapper.append(divWrapper2);
       }
-
-      if (index == 1) { break }
+      seasonsParent.append(detailsSeason);
     }
   }
 }
