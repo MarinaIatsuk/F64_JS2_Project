@@ -1,3 +1,13 @@
+import "./db";
+import * as db from './db';
+import MD5 from "crypto-js/md5";
+
+import {
+  get
+} from './db'; // для работы с БД. Импорт функции из db
+
+document.addEventListener("DOMContentLoaded", function () {
+  
 const listInput = document.querySelector("#listInput");
 const listItem = document.querySelector(".list__title");
 let createListBtn = document.querySelector(".lk__btn");
@@ -50,9 +60,115 @@ listInput.addEventListener('keyup', (event) => {
 });
 
 
-// Добавляем в список фильмов
-//Пример: import{btn} from './vars.js'.
+const clientId = window.localStorage.getItem('client')
+const clientInfo = JSON.parse(clientId); // Парсим строку JSON в объект
+const userId = clientInfo.id; // Получаем id из объекта
 
-function addToFavList(){
+get("users", userId) //Вызываем функцию get, которая возвращает промис users-это base, userId-это id
+    .then(clientInfo => {
+        console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes, у которых значение равно true
+        // Получаем ключи объекта likes
+        const likesKeys = Object.keys(clientInfo.likes)
+        .filter(key => clientInfo.likes[key] === true); //получили ключи необходимого объекта, так они являются id выбранных пользователем фильмов
+   
+        console.log(likesKeys); //Проверили
+        getMovies(likesKeys) //Функция для получения фильмов из АПИ
+    })
+    .catch(error => {
+        console.error('Ошибка при получении данных из БД:', error);
+    });
+
+//тут мы проходим по массиву и по id в массиве и находим в АПИ инфу по этому id
+ async function getMovies(likesKeys) {
+try {
+    for (const id of likesKeys) { //Проходим по массиву и получаем инфу от АПИ
+        const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`, {
+            method: "GET",
+            headers: {
+                'content-type': "application/json",
+                'X-API-KEY': "ee5367e9-c264-44b7-93b8-dab17fafadc7",
+                               },
+        });
+        const data = await response.json();
+       console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
+       makeList(data); // функция отрисовка списка, которая ниже
+       
+    }
+   
+} catch (error) {
+    console.error("Ошибка загрузки:", error);
+}
 
 }
+
+
+let likeList = window.document.querySelector('.list__movieList');
+
+function makeList(data) {
+const item = document.createElement("div"); //создаем, например, див
+item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
+const template =  `
+<div class="content__poster">
+<img src="${data.posterUrlPreview}" alt="poster" class="poster__img">
+</div>
+<div class="content__info">
+ <h3 class="content__title"><a href="page-movie.html?id=${data.kinopoiskId}" class="favorites_title">${data.nameRu}</a></h3> 
+ <div class="content__year">Год выхода фильма: ${data.year}</div>
+ <div class="content__rating">Рейтинг по кинопоиску: ${data.ratingKinopoisk}</div>
+ <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
+ <div class="filmFavContainer">
+     <button class="content-button likeBtn" id="${data.kinopoiskId}">
+         <span class="liked"></span>
+     </button>
+ </div>
+ </div>
+ <div class="content-btn">
+ <button class="content__btn btn" id="${data.kinopoiskId}">
+     Показать информацию о фильме
+ </button>
+ </div>
+       ` 
+
+   item.innerHTML = template; //вставляем карточку в item
+   
+   likeList.appendChild(item); // добавляем элемент в контейнер
+
+
+
+    // выбираем все лайки
+    const likeBtns = document.querySelectorAll('.likeBtn');
+
+        likeBtns.forEach((btn) => {
+        btn.addEventListener('click', async function (event) {
+            event.preventDefault()
+           
+            // Получаю id фильма из каждого "лайка"
+            const filmId = btn.getAttribute('id');
+            let target = event.target; //это «целевой» элемент, на котором произошло событие
+            if (target.tagName === 'SPAN') {
+              target.classList.toggle('likeIcon'); //
+                console.log(filmId); //Проверка
+                  // Получаю id пользователя из Local storage
+    const objLS = window.localStorage.getItem('client');
+    const accessObj = JSON.parse(objLS).id;
+                console.log(accessObj); //Проверка
+                setLike(accessObj, filmId, false)
+                                  }
+                       });
+        });
+
+   
+    
+    // удаление/add фильма из списка избранного
+  } 
+
+  })
+  
+ async function setLike(user_id, film_id, state) {
+      const data = {};
+      data[`likes.${film_id}`] = state;
+      await db.update("users", user_id, data);
+      
+  }; 
+
+
