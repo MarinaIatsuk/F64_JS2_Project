@@ -113,21 +113,17 @@ function attachLikeButtonsEvent() {
     likeBtns.forEach((btn) => {
         btn.addEventListener('click', function (event) {
             event.preventDefault();
+
+            showAlertNeedRegistration();  // Проверка авторизации
+
             const filmId = btn.getAttribute('id');
             let target = event.target;
-            // Проверка авторизации
-            const objLS = window.localStorage.getItem('client'); // Получили id пользователя из бд
-            if (!objLS) {// Если пользователь не авторизован, останавливаем функцию
-                alert('Чтобы использовать опцию "Избранное" необходимо авторизироваться')
-                return;
-            }
-
-            const accessObj = JSON.parse(objLS).id;
+   
+            const objLS = window.localStorage.getItem('client');
+            const accessObj = JSON.parse(objLS).id;  
 
             if (target.tagName === 'SPAN') {
                 target.classList.toggle('liked'); // Меняем класс на "Лайк"  
-                const objLS = window.localStorage.getItem('client');
-                const accessObj = JSON.parse(objLS).id;
                 console.log(accessObj); //Проверка
                 setLike(accessObj, filmId, target.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
                 console.log(filmId);
@@ -136,6 +132,20 @@ function attachLikeButtonsEvent() {
         });
     });
 }
+
+function showAlertNeedRegistration() {
+    const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
+      
+    if (!isUserAuthenticated) {
+        const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
+
+        if (confirmation) {
+            // Redirect the user to the registration page
+            window.location.href = 'registr.html';
+        }
+    }
+   }
+
 
 // Функция для работы с БД
 async function setLike(user_id, film_id, state) {

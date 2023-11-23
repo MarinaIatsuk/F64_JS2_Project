@@ -151,8 +151,10 @@ const movieRemove = btn.closest('.content__item');
 if (movieRemove) {
     movieRemove.remove();
 }
-                                  }
-                       
+        
+                                  
+                                   }
+                                  
         });
   });
 }
@@ -167,7 +169,7 @@ async function updateFavoritesList(user_id) {
   const likesKeys = Object.keys(updatedClientInfo.likes)
       .filter(key => updatedClientInfo.likes[key] === true);
   // Очищаем текущий список в избранном
-  likeList.innerHTML = "";
+  likeList.textContent = "";
   // Обновляем список фильмов в избранном
   await getMovies(likesKeys);
 }
@@ -176,11 +178,8 @@ async function updateFavoritesList(user_id) {
       const data = {};
       data[`likes.${film_id}`] = state;
       await db.update("users", user_id, data);
-      updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД
+   updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД */
         }; 
-
-
-
 
         
 });
