@@ -353,6 +353,7 @@ function ShowSources(data) {
       newImg.classList.add("small-icon")
       newImg.src = sourcesMovies.logoUrl;
       newLink.setAttribute("href", sourcesMovies.url);
+      newLink.setAttribute("target","_blank");
       externalSources.append(newLink);
       newLink.append(newImg);
       if (index == 4) { break }
