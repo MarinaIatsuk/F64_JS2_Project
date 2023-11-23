@@ -25,6 +25,7 @@ const btnClose = document.querySelector('#btnClose');
 
 function openModal() {
     window.windModal.showModal();
+    document.body.classList.add('scroll-lock');//блокирует скрол
 
     mainForm.style.display = 'flex';//при нажатии на кнопку Войти в хэдэр видна первая форма модального окна
     checkInputSecond.style.display = 'none';//закрыта вторая форма модального окна
@@ -38,6 +39,7 @@ function openModal() {
 
 function closeModal() {
     window.windModal.close();
+    document.body.classList.remove('scroll-lock');
 }
 
 
@@ -162,55 +164,6 @@ btnLogin.addEventListener("click", examLogin); //клик на Войти в м�
 
 
 
-
-
-// Валидация прописанная
-function checkValidityAll(input) {
-    function setError(text) {
-        input.nextElementSibling.textContent = text;
-        input.classList.add('error');
-    }
-
-    setError('');
-    input.classList.remove('error');
-
-    let validity = input.validity;
-
-    if (validity.rangeUnderflow) {
-        setError('Значение меньше минимально допустимого');
-        return false;
-    }
-
-    if (validity.rangeOverflow) {
-        setError('Значение больше максимального допустимого');
-        return false;
-    }
-
-    if (validity.tooShort) {
-        setError('Значение слишком короткое');
-        return false;
-    }
-
-    if (validity.tooLong) {
-        setError('Значение слишком длинное');
-        return false;
-    }
-
-    if (validity.valueMissing) {
-        setError('Необходимо заполнить поле');
-        return false;
-    }
-
-    if (validity.patternMismatch) {
-        setError('Неверный формат заполнения');
-        return false;
-    }
-
-    return true;
-}
-
-
-
 const thirdPassword = document.getElementById('thirdPassword');//доступ к input введи новый пароль
 
 const thirdReappassword = document.getElementById('thirdReappassword');//доступ к input повтори пароль
@@ -239,8 +192,12 @@ const allInputsArray = Array.from(inputsNewPass);
 function checkAllPass() {
     let ok = true;
 
-    for (let input of allInputsArray) {
-        if (!checkValidityAll(input)) ok = false;
+
+    let re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+    if(!re.test(thirdPassword.value)) {
+        ok = false;
+        document.getElementById('thirdPasswordErr').innerHTML = ` Пароль должен: содержать хотя бы одну большую букву, хотя бы одну маленькую букву, хотя бы одну цифру, хотя бы один спецсимвол(!@#$%^&*);`
     }
 
     //Проверка совпадения паролей

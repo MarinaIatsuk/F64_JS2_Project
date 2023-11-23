@@ -2,6 +2,10 @@ import * as db from './db';
 import MD5 from "crypto-js/md5";
 
 const myForm = document.forms.oneForm;
+const newPassword = document.getElementById('secondPassword');//поле ввода пароль
+const passwordTwo = document.getElementById('repeatPassword');//поле ввода Повторите пароль
+const onePass = document.querySelector('.form__password-error');//class ошибка под input пароль
+const valueEmail = document.querySelector('.form__email-error');//class ошибка под input email
 
 // Валидация прописанная
 function checkValidity(input) {
@@ -51,7 +55,6 @@ function checkValidity(input) {
 
 //проверка каждого input на валидность
 
-// const inputs = document.querySelectorAll('input');
 const inputs = document.querySelectorAll('input[name="secondName"]');
 const allInputs = Array.from(inputs);
 
@@ -62,15 +65,35 @@ function checkAll() {
         if (!checkValidity(input)) ok = false;
     }
 
+
+    const regexp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;//регулярное выражение для пароля
+
+    const regexpEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]$/; //регулярное выражение для почты
+
+
+        //проверка на валидность для пароля
+    if(!regexp.test(newPassword.value)) {
+        ok = false;
+        onePass.innerHTML = ` Пароль должен: содержать хотя бы одну большую букву, хотя бы одну маленькую букву, хотя бы одну цифру, хотя бы один спецсимвол(!@#$%^&*);`;
+        newPassword.classList.add('error');
+    }
+
+    // проверка на валидность для почты
+    if(!regexpEmail.test(userEmail.value)){
+        ok = false;
+        valueEmail.innerHTML=`Неверный формат заполнения`;
+    }
+
+
+
     //Проверка совпадения паролей
 
-    const newPassword = document.getElementById('secondPassword');
-    const passwordTwo = document.getElementById('repeatPassword');
 
     if (passwordTwo.value !== newPassword.value) {
         passwordTwo.nextElementSibling.textContent = 'Пароли не совпадают';
+        passwordTwo.classList.add('error');
         ok = false;
-    }
+    }else
 
     return ok;
 }

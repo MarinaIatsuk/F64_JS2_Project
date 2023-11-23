@@ -12,6 +12,14 @@
 @import "./fonts";
 
 
+body {
+    scrollbar-gutter: stable;
+}
+
+.scroll-lock {
+    overflow: hidden;
+}
+
 .error {
     box-shadow: 0 0 15px red;
 }
@@ -39,6 +47,15 @@
 
 .ok-block{
     display: none;
+}
+
+input:focus{
+    outline: 2px solid black;
+    box-shadow: 0 0 15px rgb(226, 190, 190);
+}
+
+input:active{
+    outline: 2px solid rgb(107, 100, 100);
 }
 
 .dialog {
@@ -222,11 +239,17 @@
         padding: 1%;
     }
 
+    &__btn{
+        display: flex;
+        justify-content: center;
+        margin-top: 4%
+    }
+
     &__btn-text {
         @extend %square;
-        padding: 1% 4%;
-        margin-top: 2%;
+        padding: 1.5%;
         font-family: $font-btns;
+        width: 80%; //ширина кнопки
     }
 
     &__btn-text:disabled {
