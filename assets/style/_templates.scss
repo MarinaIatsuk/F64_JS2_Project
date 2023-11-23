@@ -1,5 +1,12 @@
 //общие стили сюда
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
 $mobile: "screen and (max-width: 599px)";
 $tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
 $desktop: "screen and (min-width: 1024px)";
@@ -18,14 +25,22 @@ $btnBackGroundHover: rgb(85, 14, 73);
 
 // цвет заголовков по страницам
 $headers: #ffffff;
-
-$dark-frame:#330031;
-
+$main-header: #5E0E5A; // заголовок для главной страницы
 // переменные для шрифтов
 $font-texts: "Poppins";
 $font-titles: "Rubik";
 $font-btns: "Fira Sans Condensed";
 
+// переменные для размера экрана
+
+$mobile: "screen and (max-width: 599px)";
+$tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
+$desktop: "screen and (min-width: 1024px)";
+
+// переменные для размера шрифтов
+/* $font-size-mobile: 15px;
+$font-size-tablet: 18px;
+$font-size-desktop: 22px; */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -40,9 +55,26 @@ $font-btns: "Fira Sans Condensed";
     border: solid black 1px;
     color: $color;
     width: 15vw;
-    height: 7vh; //поиграть с размерами для адаптива
+    height: 7vh; 
     cursor: pointer;
+    font-size: 1vw;
+    padding: 0.5vw;
+
 }
+
+    @media #{$tablet} {
+        .btn {
+        font-size: 2vw;
+        width: 23vw;
+      }
+    }
+    @media #{$mobile} {
+        .btn {
+        font-size: 2.5vw;
+        width: 30vw;
+             }
+    }
+   
 .btn:hover {
     background-color: $btnBackGroundHover;
     box-shadow: 5px 5px 5px $color;
@@ -54,10 +86,21 @@ $font-btns: "Fira Sans Condensed";
     flex-direction: column;
     padding-left: 3vw;
     padding-top: 4vh;
-    margin: 0 10vw 3vh 3vw;
+    margin: 0 3vw 3vh 3vw; //Убралпа правый бок
     background-color: $background-color;
     min-height: 100vh; 
     height: 100%;//чтобы контейнер растягивался на ширину контента
     color: $color;
     border-radius: 4vh 4vh 40vh 4vh;
 }
+@media #{$mobile} {
+    .container{
+        border-radius: 4vh 4vh 20vh 4vh;
+  }
+}
+@media #{$tablet} {
+    .container{
+        border-radius: 4vh 4vh 30vh 4vh;
+  }
+}
+
