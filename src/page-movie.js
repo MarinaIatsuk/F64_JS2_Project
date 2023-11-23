@@ -1,7 +1,6 @@
 //import "../page-film.html";
 import "./db";
 import * as db from './db';
-import MD5 from "crypto-js/md5";
 
 let TYPE_FILM;
 
@@ -56,7 +55,6 @@ document.addEventListener("DOMContentLoaded", async function () {
            'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
           // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-
           'Content-Type': 'application/json',
         },
       });
@@ -135,19 +133,19 @@ function ShowPageMovie(data) {
   let allCountry = "";
   let firstCounrty = true;
   let comma = "";
-  let nameRu = document.querySelector('.name-ru');
-  let nameEn = document.querySelector('.name-en');
-  let nameOriginal = document.querySelector('.name-original');
-  let poster = document.querySelector('.block-movie__poster');
-  let ratingAgeLimit = document.querySelector('.block-movie__rating-age-limit');
-  let ratingKinopoisk = document.querySelector('.block-movie__rating-kinopoisk');
-  let startYear = document.querySelector('.start-year');
-  let filmLength = document.querySelector('.film-length');
-  let about = document.querySelector('.about');
-  let countries = document.querySelector('.countries');
-  let genres = document.querySelector('.genres');
-  let description = document.querySelector('.description');
-  let slogan = document.querySelector('.slogan');
+  const nameRu = document.querySelector('.name-ru');
+  const nameEn = document.querySelector('.name-en');
+  const nameOriginal = document.querySelector('.name-original');
+  const poster = document.querySelector('.block-movie__poster');
+  const ratingAgeLimit = document.querySelector('.block-movie__rating-age-limit');
+  const ratingKinopoisk = document.querySelector('.block-movie__rating-kinopoisk');
+  const startYear = document.querySelector('.start-year');
+  const filmLength = document.querySelector('.film-length');
+  const about = document.querySelector('.about');
+  const countries = document.querySelector('.countries');
+  const genres = document.querySelector('.genres');
+  const description = document.querySelector('.description');
+  const slogan = document.querySelector('.slogan');
 
   nameRu.textContent = data.nameRu;
   nameEn.textContent = data.nameEn;
@@ -161,11 +159,11 @@ function ShowPageMovie(data) {
   poster.setAttribute("src", data.posterUrl);
   ratingKinopoisk.textContent = data.ratingKinopoisk;
   startYear.textContent = data.year;
-  if (data.filmLength != null)
+  if (data.filmLength !== null)
     filmLength.textContent = String(data.filmLength) + " мин.";
   else filmLength.setAttribute("class", "no-visible");
 
-  if(data.slogan!==null)
+  if(data.slogan !== null)
   slogan.textContent = data.slogan;
 
   for (let i = 0; i < data.countries.length; i++) {
@@ -197,8 +195,8 @@ function ShowPageMovie(data) {
 }
 
 function ShowStaffMovie(data) {
-  let director = document.querySelector('.director');
-  let actor = document.querySelector('.actor');
+  const director = document.querySelector('.director');
+  const actor = document.querySelector('.actor');
   let allDirectors = "";
   let firstDirector = true;
   let allActors = "";
@@ -239,7 +237,7 @@ function ShowStaffMovie(data) {
 
 
 function ShowSimilarMovies(data) {
-  let titleSimilarMovies = document.querySelector('.similar-movies__title');
+  const titleSimilarMovies = document.querySelector('.similar-movies__title');
   if (data.items.length !== 0) {
 
     if (TYPE_FILM == false)
@@ -302,16 +300,16 @@ function ShowSimilarMovies(data) {
   }
   else {
     titleSimilarMovies.textContent = "";
-    let similarMovies = document.querySelector('.similar-movies');
+    const similarMovies = document.querySelector('.similar-movies');
     similarMovies.classList.toggle("no-visible");
   }
 }
 
 function ShowSeason(data) {
   if (data.items.length !== 0) {
-    let seasonsWrapper = document.querySelector('.block-movie__seasons-wrapper');
+    const seasonsWrapper = document.querySelector('.block-movie__seasons-wrapper');
     seasonsWrapper.classList.toggle("no-visible");
-    let seasonsParent = document.getElementById('seasons');
+    const seasonsParent = document.getElementById('seasons');
     let foundSeasons, newDivSeason, newDivEpisod, newDivTitleEpisod, episode, detailsSeason, divWrapper, divWrapper2;
     for (let index = 0; index < data.items.length; index++) {
       foundSeasons = data.items[index];
@@ -334,7 +332,7 @@ function ShowSeason(data) {
         divWrapper2.append(newDivEpisod);
         newDivTitleEpisod = document.createElement('p');
         newDivTitleEpisod.classList.add('episod');
-        newDivTitleEpisod.textContent = `${episode.synopsis}`;
+        newDivTitleEpisod.textContent = episode.synopsis;
         divWrapper2.append(newDivTitleEpisod);
         divWrapper.append(divWrapper2);
       }
@@ -361,7 +359,7 @@ function ShowSources(data) {
     }
   }
   else {
-    let movieSources = document.querySelector('.movie-sources');
+    const movieSources = document.querySelector('.movie-sources');
     movieSources.classList.toggle("no-visible");
   }
 }
