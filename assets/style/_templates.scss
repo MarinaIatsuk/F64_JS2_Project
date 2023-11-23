@@ -41,8 +41,8 @@ $font-btns: "Fira Sans Condensed";
     border-radius: 4vh;
     border: solid black 1px;
     color: $color;
-    width: 15vw;
-    height: 7vh; //поиграть с размерами для адаптива
+    max-width: 15vw;
+    min-height: 7vh; //поиграть с размерами для адаптива
     cursor: pointer;
 }
 .btn:hover {
