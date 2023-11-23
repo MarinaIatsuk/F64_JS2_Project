@@ -9,11 +9,10 @@
 
 //главная страница
 
-const upperPosters = document.getElementById('upper-posters');
-const downPosters = document.getElementById('down-posters');
+//Получаем переменные из файла vars.js
+import{upperPosters, downPosters, div, divTwo} from "./vars";
 
-const div = document.createElement('div');
-const divTwo = document.createElement('div');
+
 
 fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1', {
   method: 'GET',
