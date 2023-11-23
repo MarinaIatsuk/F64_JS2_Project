@@ -266,7 +266,7 @@ function ShowSimilarMovies(data) {
       const similarMovieBlock = document.querySelector('.similar-movies__container');
       const MoreSimilarMoviesContainer = document.querySelector('.similar-movies__container-wrapper');
       newBtn = document.createElement('button');
-      newBtn.textContent = "Показать еще";
+      newBtn.textContent = "Еще похожие";
       newBtn.classList.add('btn-more-similar');
       newBtn.classList.add('btn');
       similarMovieBlock.append(newBtn);
@@ -290,7 +290,7 @@ function ShowSimilarMovies(data) {
         else {
           MoreSimilarMovies.classList.toggle("no-visible");
           if (MoreSimilarMovies.classList.contains("no-visible"))
-            newBtn.textContent = "Показать еще";
+            newBtn.textContent = "Еще похожие";
           else
             newBtn.textContent = "Скрыть";
         }
@@ -328,11 +328,11 @@ function ShowSeason(data) {
         divWrapper2.classList.add('episod-wrapper');
         newDivEpisod = document.createElement('div');
         newDivEpisod.classList.add('title-episod');
-        newDivEpisod.textContent = `СЕРИЯ ${Number(i+1)}. ${episode.nameRu?episode.nameRu:episode.nameEn}.`;
+        newDivEpisod.textContent = `СЕРИЯ ${Number(i+1)}. ${episode.nameRu?episode.nameRu:episode.nameEn?episode.nameEn:""}`;
         divWrapper2.append(newDivEpisod);
         newDivTitleEpisod = document.createElement('p');
         newDivTitleEpisod.classList.add('episod');
-        newDivTitleEpisod.textContent = episode.synopsis;
+        newDivTitleEpisod.textContent = `${episode.synopsis?episode.synopsis:""}`;
         divWrapper2.append(newDivTitleEpisod);
         divWrapper.append(divWrapper2);
       }
