@@ -1,0 +1,195 @@
+//Стили к Главной странице
+
+
+.main-block {
+    // max-width: 1377px;
+    // width: 100%;
+    padding-left: 3vw;
+    padding-top: 4vh;
+    margin: 0 10vw 3vh 3vw;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #CA26FF 30%, #F4CAC0, #FFF3B0);
+    border-radius: 4vh 4vh 40vh 4vh;
+
+    //Главный wrapper
+    .main-page__wrapper {
+        display: flex;
+        padding-top: 50px;
+
+        @media #{$tablet,$mobile} {
+            display: flex;
+            flex-direction: column;
+        }
+
+        //Левый wrapper
+        .left-wrapper {
+            display: flex;
+            flex-basis: 55%;
+
+            @media #{$tablet} {
+                justify-content: center;
+                margin-left: 0;
+            }
+        }
+    }
+
+}
+
+//Блок с информацией: заголовок, текст, кнопки
+.block-info {
+    padding-left: 10%;
+
+    @media #{$tablet,$mobile} {
+        padding-left: 0;
+    }
+
+    .title {
+        margin-bottom: 15px;
+        letter-spacing: 0.12rem;
+        font-family: $font-titles;
+        font-weight: 400;
+        font-size: 60px;
+        color: $main-header;
+
+    }
+
+    .subtitle {
+
+        margin-bottom: 40px;
+        font-family: $font-texts;
+        font-size: 30px;
+        font-weight: 400;
+        letter-spacing: 10px;
+        color: $headers;
+
+        @media #{$mobile} {
+            font-size: 27px;
+        }
+
+    }
+
+    .text {
+        max-width: 80%;
+        margin-bottom: 25px;
+        font-family: $font-texts;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 29.9px;
+        color: $headers;
+
+    }
+}
+
+//правая часть страницы с постерами к фильмам, правый wrapper
+
+.right-wrapper {
+    display: flex;
+    flex-grow: 1;
+    padding-left: 50px;
+
+    @media #{$tablet} {
+        justify-content: center;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .block__posters {
+        display: flex;
+        flex-direction: row;
+
+        .upper-posters {
+            margin-right: 1rem;
+
+        }
+
+        .poster-info {
+
+            .film__img {
+                max-width: 70%;
+                width: 230px;
+                margin-bottom: 15px;
+                border-radius: 30px;
+
+                @media #{$tablet} {
+                    max-width: 70%;
+                    width: 300px;
+                }
+
+            }
+
+            .film__title-wrapper {
+
+                max-width: 12vw;
+                min-height: 5vh;
+                border-radius: 10px;
+                text-align: center;
+
+                @media #{$tablet} {
+                    max-width: 15vw;
+                    min-height: 7vh;
+                    padding-left: 35px;
+                }
+
+                @media #{$mobile} {
+                    max-width: 22vw;
+                    min-height: 8vh;
+                    padding-left: 20px;
+                }
+
+                .film__title {
+                    display: block;
+                    border-radius: 5px;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 18.5px;
+                    color: $btnBackGround;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    @media #{$tablet} {
+                        font-size: 20px;
+                    }
+
+                    @media #{$mobile} {
+                        font-size: 20px;
+                    }
+                }
+
+                .film__title:hover {
+                    background-color: $color;
+                    box-shadow: 5px 5px 5px $btnBackGround;
+
+                }
+            }
+        }
+
+    }
+}
+
+.poster-info:not(:last-child) {
+    margin-bottom: 20px;
+
+}
+
+//Блок с кнопкой
+.block-button {
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+
+    @media #{$mobile, $tablet} {
+        padding-bottom: 20px;
+    }
+
+    .main-page__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media #{$mobile, $tablet} {
+            max-width: 30vw;
+            min-height: 6vh;
+            padding: 0 4px 0 4px;
+        }
+    }
+}
