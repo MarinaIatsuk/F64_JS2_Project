@@ -17,7 +17,6 @@
                 font-size: 30px;
             }
         }
-        
 
         .catalog__boxes {
             display: flex;
@@ -92,13 +91,12 @@
                     margin-bottom: 2vh;
                     color: $backgroundLine;
                     font-family: $font-titles;
-                   
                 }
                 .content__title:hover {
                     color: $color;
                 }
 
-                .content__original-title{
+                .content__original-title {
                     text-decoration: none;
                     margin-bottom: 2vh;
                     font-family: $font-titles;
@@ -135,7 +133,7 @@
     padding-left: 2vh;
 
     .likeBtn {
-        background-color: $background-color;
+        background-color: rgba($color: $background-color, $alpha: 0);
         border: none;
         cursor: pointer;
         display: flex;
@@ -143,23 +141,40 @@
     }
 
     .likeIcon {
-        width: 18px;
-        height: 18px;
-        background-image: url('../images/likeEmpty.svg');
+        width: 24px;
+        height: 24px;
+        background-image: url("../images/likeEmpty30.svg");
         background-size: cover;
         margin-right: 4px;
+        transition: background-image 0.9s ease-out;
     }
-    .likeIcon:hover {
-                background-image: url('../images/likeEmpty30.svg');
-                background-size: cover;
-            }
 
     .liked {
-        background-image: url('../images/likeFilledPink.svg');
+        background-image: url("../images/likeFilledPink.svg");
         background-size: cover;
-        width: 18px;
-        height: 18px;
+        width: 24px;
+        height: 24px;
         margin-right: 4px;
+        transition: background-image 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    .likeIcon:hover {
+        background-image: url("../images/likeOnfocus.svg");
+        background-size: cover;
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        transition: background-image 0.6s ease-in;
+    }
+
+    .liked:hover {
+        background-image: url("../images/likeOnfocus.svg");
+        background-size: cover;
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        filter: drop-shadow(6px -4px 0px #af464580);
+        transition: background-image 0.6s ease-in;
     }
 }
 

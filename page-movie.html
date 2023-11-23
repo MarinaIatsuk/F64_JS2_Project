@@ -26,7 +26,14 @@
                 <div class="block-movie__cotanier-wrapper">
                     <div class="block-movie__poster-wrapper">
                         <img class="block-movie__poster" src="" alt="poster">
-                        <div class="block-movie__rating-kinopoisk"></div>
+                        <div class="block-movie__wrapper">
+                            <div class="block-movie__rating-kinopoisk"></div>
+                            <div class="block-movie__like-wrapper filmFavContainer">
+                                <button class="block-movie__like-button likeBtn">
+                                    <span class="block-movie__like-icon">like</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="block-movie__common-info-about">
                         <div class="block-movie__infomation">
@@ -36,40 +43,36 @@
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Год выпуска</a>
-                                <div class="block-movie__item start-year"></div>
+                                <div class="block-movie__item start-year">&mdash;</div>
                             </div>
 
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Страна происхождения</a>
-                                <div class="block-movie__item countries"></div>
+                                <div class="block-movie__item countries">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Жанры</a>
-                                <div class="block-movie__item genres"></div>
+                                <div class="block-movie__item genres">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Слоган</a>
-                                <div class="block-movie__item slogan"></div>
+                                <div class="block-movie__item slogan">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Время</a>
-                                <div class="block-movie__item film-length"></div>
+                                <div class="block-movie__item film-length">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Режиссер</a>
-                                <div class="block-movie__item director"></div>
+                                <div class="block-movie__item director">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Актеры</a>
-                                <div class="block-movie__item actor"></div>
+                                <div class="block-movie__item actor">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle"></a>
+                                <a class="block-movie__subtitle actors-subtitle"></a>
                                 <div id="actors-photos" class="block-movie__photos-wrapper "></div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <div class="block-movie__subtitle"></div>
-                                <div class="block-movie__item"></div>
                             </div>
                         </div>
                     </div>
@@ -81,11 +84,14 @@
                         </div>
                     </div>
                 </div>
-                <details class="description-wrapper">
-                    <summary>Описание фильма</summary>
+                <details class="block-movie__description-wrapper">
+                    <summary>Описание</summary>
                     <p class="block-movie__item description"></p>
                 </details>
-                <div class="block-movie__resourse"></div>
+                <details class="block-movie__seasons-wrapper no-visible">
+                    <summary class="block-movie__seasons seasons">Сезоны</summary>
+                    <div id="seasons"></div>
+                </details>
             </div>
         </section>
 
