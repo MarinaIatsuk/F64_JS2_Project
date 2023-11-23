@@ -1,96 +1,162 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Обработчик события клика на кнопку поиска
-    document.querySelector(".btn").addEventListener("click", getData);
+import * as db from './db'; // для работы с БД
 
-    // Функция для выполнения запроса к API
-    async function getData() {
-        const genre = document.getElementById("genre").value;
-        const country = document.getElementById("country").value;
-        const movieSerial = document.getElementById("movie-serial").value;
+let currentPage = 1; // Флаг для пагинации
+let loading = false; // Флаг для загрузки данных
 
-        try {
-            const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films?countries=${country}&genres=${genre}&order=RATING&type=${movieSerial}&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1`, {
-                method: "GET",
-                headers: {
-                    'content-type': "application/json",
-                    "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
-                },
-            });
-            const data = await response.json();
-            console.log(data);
-            updateContainer(data)
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }
+// Обработчик события клика на кнопку поиска
+document.querySelector(".btn").addEventListener("click", function (event) {
+    event.preventDefault(); // Остановить перезагрузку страницы
+    currentPage = 1; // Сбрасываем текущую страницу при новом поиске
+    const container = document.querySelector(".content");
+    container.innerHTML = ""; // Очищаем содержимое контейнера перед загрузкой новых данных
+    getData(currentPage); // Вызов функции для получения данных с текущей страницы
 
-    function updateContainer(data) {
-        // Очищаем предыдущие данные
-        const container = document.querySelector(".container__content");
-        container.textContent = ""; /* container.innerHTML = ""; для новых данных, а не для полного очищения контейнера. Более безопасно  container.textContent */
+     window.scrollTo({ // Возвращаем скролл в начало страницы
+        top: 0,
+        behavior: 'smooth' // плавный эффект прокрутки
+    });
+});
 
-        // Проходимся по массиву фильмов и добавляем информацию в контейнер
-        data.items.forEach((film) => {
-            const item = document.createElement("div");
-            item.classList.add("content__item");
-            const template =
-                `
-                <div class="content__poster">
-                    <img src=" ${film.posterUrlPreview}" alt="poster" class="poster__img">
-                </div>
-                <div class="content__info">
-                    <h3 class="content__title">${film.nameRu}</h3>
-                    <div class="content__year">Год выхода фильма: ${film.year}</div>
-                    <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-                    <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
-                    <div class="filmFavContainer">
-                        <button  class="content-button likeBtn">
-                            <span  class="likeIcon"></span>
-                        </button>
-                    </div>
-                </div>
-                <div class="content-btn">
-                    <button  class="infoBTN" id=${film.kinopoiskId}>
-                        Показать информацию о фильме
-                    </button>
-                </div>
-        `
-
-            item.innerHTML = template;
-            container.appendChild(item);
-        });
-//при нажатии на кнопку, переходим на страницу с фильмрм и id выбранного фильма сохраняем в local storage, чтобы по нему отрисовать инфу о фильме
-
-        //находим все кнопки
-        const buttonInfo = document.querySelectorAll('.infoBTN')
-
-        buttonInfo.forEach(function (button) {
-            button.addEventListener('click', function () {
-                // Получаю id фильма из атрибута ID
-                const filmId = button.getAttribute('id');
-
-                // Сохранение id фильма в localStorage
-                localStorage.setItem('selectedFilmId', filmId);
-
-                // Переход на страницу film.html
-                window.location.href = 'page-movie.html';
-            });
-        });
-
-//функция для лайков
-        // выбираем все лайки
-        const likeBtns = document.querySelectorAll('.likeBtn');
-        likeBtns.forEach((btn) => {
-            btn.addEventListener('click', function (event) {
-                let target = event.target; //это «целевой» элемент, на котором произошло событие
-                if (target.tagName === 'SPAN') {
-                    putLike(target);
-                }
-            });
-        });
-        //лайкаем и добавляем в избранное
-        function putLike(span) {
-            span.classList.toggle('liked');
-        }
+// Обработчик события прокрутки страницы
+window.addEventListener('scroll', function () {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !loading) { //проверяем, достиг ли пользователь конца документа
+        loading = true; // Достигнут конец страницы, загружаем следующую порцию данных
+        getData(currentPage + 1);
     }
 });
+
+// Функция для выполнения запроса к API
+async function getData(page) {
+    const genre = document.getElementById("genre").value;
+    const country = document.getElementById("country").value;
+    const movieSerial = document.getElementById("movie-serial").value;
+
+    try {
+        const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films?countries=${country}&genres=${genre}&order=RATING&type=${movieSerial}&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=${page}`, {
+            method: "GET",
+            headers: {
+                'content-type': "application/json",
+                "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+            },
+        });
+        const data = await response.json();
+        //console.log(data); //Проверка
+        updateContainer(data); // отрисовка списка
+        attachLikeButtonsEvent()
+        currentPage = page;
+        loading = false; // разрешаем загрузку следующей порции данных
+
+    } catch (error) {
+        console.error("Ошибка загрузки:", error);
+        loading = false; // обработка ошибки, разрешаем загрузку следующей порции данных
+    }
+}
+
+// Функция, которая отрисовывает список фильмов
+function updateContainer(data) {
+    const container = document.querySelector(".content");
+
+    if (data && data.items && Array.isArray(data.items)) {
+        data.items.forEach((film) => {
+            const item = createFilmItem(film); // Создает элемент фильма
+            container.appendChild(item);
+        });
+    } else {
+        console.error('Неверный формат данных:', data);
+    }
+}
+
+// Создает элемент фильма. Проходимся по массиву фильмов и добавляем информацию в контейнер
+function createFilmItem(film) {
+    const item = document.createElement("div");
+    item.classList.add("content__item");
+
+    let titleLink = '';
+    let originalTitleLink = '';
+
+    // Проверка на null или undefined для film.nameRu
+    if (film.nameRu !== null && film.nameRu !== undefined) {
+        titleLink = `<a class="content__title" href="page-movie.html?id=${film.kinopoiskId}">${film.nameRu}</a>`;
+    }
+
+    // Проверка на null или undefined для film.nameOriginal
+    if (film.nameOriginal !== null && film.nameOriginal !== undefined) {
+        originalTitleLink = `<a class="content__original-title" href="page-movie.html?id=${film.kinopoiskId}">${film.nameOriginal}</a>`;
+    }
+
+    const template =
+        `
+        <div class="content__poster">
+            <img src="${film.posterUrlPreview}" alt="poster" class="content__img">
+        </div>
+        <div class="content__info">
+            ${titleLink}
+            ${originalTitleLink}
+            <div class="content__year">Год выхода фильма: ${film.year}</div>
+            <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
+            <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
+        </div>
+        <div class="filmFavContainer">
+                            <button class="content-button likeBtn" id="${film.kinopoiskId}">
+                                <span class="likeIcon"></span>
+                            </button>
+                        </div>
+        `;
+
+    item.innerHTML = template;
+    return item;
+}
+
+// Обработчик события клика на кнопках лайков
+function attachLikeButtonsEvent() {
+    const likeBtns = document.querySelectorAll('.likeBtn');
+    likeBtns.forEach((btn) => {
+        btn.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            showAlertNeedRegistration();  // Проверка авторизации
+
+            const filmId = btn.getAttribute('id');
+            let target = event.target;
+   
+            const objLS = window.localStorage.getItem('client');
+            const accessObj = JSON.parse(objLS).id;  
+
+            if (target.tagName === 'SPAN') {
+                target.classList.toggle('liked'); // Меняем класс на "Лайк"  
+                console.log(accessObj); //Проверка
+                setLike(accessObj, filmId, target.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
+                console.log(filmId);
+
+             }
+        });
+    });
+}
+
+function showAlertNeedRegistration() {
+    const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
+      
+    if (!isUserAuthenticated) {
+        const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
+
+        if (confirmation) {
+            // Redirect the user to the registration page
+            window.location.href = 'registr.html';
+        }
+    }
+   }
+
+
+// Функция для работы с БД
+async function setLike(user_id, film_id, state) {
+    let subfield = `likes.${film_id}`;
+    if (state) {
+        const data = {};
+        data[subfield] = true;
+        await db.update("users", user_id, data);
+    } else {
+        await db.removeSubfield("users", user_id, subfield);
+    }
+}
+
+

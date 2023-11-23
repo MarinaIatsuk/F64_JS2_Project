@@ -1,4 +1,11 @@
 .block-movie {
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     &__title-wrapper {
         font-family: $font-titles;
         display: flex;
@@ -9,17 +16,34 @@
         padding-bottom: 1vw;
     }
 
-    &__ratingAgeLimit {
+    &__rating-age-limit {
+
         max-width: 6vw;
-        margin-right: 5vw;
+        margin-right: 1vw;
+
+        @media #{$mobile} {
+            max-width: 10vw;
+        }
+
+        @media #{$tablet} {
+            max-width: 8vw;
+        }
     }
 
-    &__ratingKinopoisk {
+    &__rating-age {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__rating-kinopoisk {
         font-family: $font-titles;
         width: fit-content;
         border: 2px solid black;
         color: black;
         padding: 3px;
+        margin: 20px 20px 20px;
     }
 
     &__main-section {
@@ -29,12 +53,33 @@
 
     &__cotanier-wrapper {
         display: flex;
+
+        @media #{$mobile} {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media #{$tablet} {
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
     }
 
     &__poster-wrapper {
+        order: 1;
         display: flex;
         flex-direction: column;
         column-gap: 15px;
+
+        @media #{$mobile} {
+            column-gap: 5px;
+
+        }
+
+        @media #{$tablet} {
+            column-gap: 9px;
+
+        }
     }
 
     &__poster {
@@ -43,71 +88,306 @@
     }
 
     &__common-info-about {
+        order: 2;
+
+        @media #{$mobile} {
+            order: 3;
+        }
+
+        @media #{$tablet} {
+            order: 3;
+        }
+
         display: flex;
         flex-grow: 1;
     }
 
-    &__info-wrapper
-    {
-    display: flex;
-    margin: 0 20px 15px;
+    &__info-wrapper {
+        display: flex;
+        margin: 0 10px 15px;
+
+        @media #{$mobile} {
+            margin: 0 0 5px;
+        }
+
+        @media #{$tablet} {
+            margin: 0 0 5px;
+        }
     }
 
-&__ratingKinopoisk {
-    margin: 20px 20px 20px;
+
+    &__infomation {
+        display: flex;
+        flex-direction: column;
+        // width: 100%;
+    }
+
+    &__item {
+
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        max-width: 50%;
+
+        @media #{$mobile} {
+            max-width: 80%;
+        }
+
+        @media #{$tablet} {
+            max-width: 800%;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    &__subtitle {
+        display: flex;
+        flex-direction: column;
+        width: 12vw;
+        text-decoration-line: none;
+
+        @media #{$mobile} {
+            width: 100px;
+        }
+
+        @media #{$tablet} {
+            width: 100px;
+        }
+
+    }
+
+    &__photos-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: end;
+        gap: 20px;
+
+        @media #{$mobile} {
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        @media #{$tablet} {
+            gap: 9px;
+        }
+    }
+
+    &__description-wrapper {
+        max-width: 60%;
+        display: flex;
+         // flex-direction: column;
+        text-align: justify;
+
+        @media #{$mobile} {
+            max-width: 100%;
+        }
+
+        @media #{$tablet} {
+            max-width: 100%;
+        }
+    }
+    &__seasons{
+        max-width: 60%;
+    }
 }
 
-&__infomation {
+.similar-movies {
+    margin-top: 20px;
+
+    &__posters-contanier {
+        display: flex;
+        gap: 30px;
+
+        @media #{$mobile} {
+            gap: 5px;
+            overflow: hidden;
+        }
+
+        @media #{$tablet} {
+            gap: 12px;
+        }
+    }
+
+    &__more-similar-movies {
+        margin-top: 20px;
+        max-width: 40vw;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+
+        @media #{$mobile} {
+            gap: 5px;
+            max-width: 100vw;
+        }
+
+        @media #{$tablet} {
+            gap: 12px;
+            max-width: 100vw;
+        }
+    }
+    &__title {
+        font-family: $font-titles;
+        @media #{$tablet} {
+            // margin-right: 10vw;
+        }
+    }
+}
+
+.movie-sources {
+    width: 16vw;
+    margin: 30px 20px 10px;
+    order: 3;
+
+    @media #{$mobile} {
+        display: flex;
+        margin: 15px 10px 5px;
+        order: 2;
+    }
+
+    @media #{$tablet} {
+        order: 2;
+    }
+
+    &__sources-wrapper{
+        padding: 15px;
+        margin-top: 10px;
+        width:  fit-content;
+        border: 3px dashed black;
+        border-radius: 20%;
+        @media #{$mobile} {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 5vw;
+            width: fit-content;
+            margin-top: 1px;
+        }
+    }
+
+    &__container {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        @media #{$tablet} {
+            // margin-right: 10vw;
+        }
+
+        @media #{$mobile} {
+            margin-top: 0;
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    &__title {
+        font-family: $font-titles;
+        // margin-right: 8vw;
+        @media #{$tablet} {
+            // margin-right: 10vw;
+        }
+    }
+}
+
+// .titleSeason{
+//     $font-btns: 'Fira Sans Condensed';
+
+// }
+
+#seasons{
+    margin-left: 20px;
+    max-width: 80vw;
+    @media #{$tablet} {
+        max-width: 90%;
+    }
+
+    @media #{$mobile} {
+        max-width: 90%;
+    }
+}
+.episod-container{
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
-&__item {
-
+.episod-wrapper {
     display: flex;
-    flex-direction: column;
-    justify-items: center;
-    max-width: 50%;
+    margin-top: 2vh;
+    gap: 2vw;
 }
+.title-episod{
+    margin-left: 2vw;
+    min-width: 20vw;
+    @media #{$tablet} {
+     min-width: 30vw;
+    }
 
-&__info {
+    @media #{$mobile} {
+    min-width: 30vw;
+    }
+    font-family: $font-titles;
+
+}
+.episod{
+    $font-texts: 'Poppins';
+    // max-width: 60%;
     display: flex;
-    flex-direction: column;
+    text-align: justify;
 
+    @media #{$tablet} {
+        max-width: 100%;
+    }
+
+    @media #{$mobile} {
+        max-width: 100%;
+    }
 }
-
-&__subtitle {
+.likeBtn {
+    background-color: $background-color;
+    border: none;
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
-    width: 200px;
-    text-decoration-line: none;
-
+    align-items: center;
 }
 
-&__photos-wrapper {
+.block-wrapper {
     display: flex;
-    justify-content: end;
-    gap: 20px;
 }
+.actors-subtitle{
+    @media #{$mobile} {
+        max-width: 0;
+    }
+}
+.small-pict {
+    max-height: 150px;
+    border-radius: 10%;
+    @media #{$mobile} {
+        max-height: 120px;
+        border-radius: 8%;
+    }
 }
 
-.smallPict {
-    max-width: 100px;
+.tiny-pict {
+    max-height: 90px;
     border-radius: 10%;
 }
 
-.about {
+.about,
+summary {
     font-family: $font-titles;
 }
 
-.description-wrapper {
-    max-width: 60%;
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
+.no-visible {
+    display: none;
 }
 
-.no-visible{
-    display: none;
+.small-icon {
+    max-height: 50px;
+    border-radius: 50%;
 }

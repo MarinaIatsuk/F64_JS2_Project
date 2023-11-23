@@ -1,109 +1,169 @@
-.container_catalog {
-    min-height: 100vh;
-    height: 100%;
-
-    .container__header {
-        flex-basis: 80px;
-        font-size: 50px;
-    }
-
-    .container__list {
-        display: flex;
-
-        .container__box {
-            display: flex;
-            flex-direction: column;
-            font-size: 20px;
-            font-size: larger;
-
-            .container__item {
-                background-color: $background-color;
-                border: none;
-                color: $dark-frame;
-                margin-right: 10px;
-                font-size: medium;
-
-            }
-
-            .container__item:hover {
-                color: $btnBackGroundHover;
-            }
-        }
-
-        .btn-wrapper {
-            padding-left: 100px;
-        }
-    }
-
-    .container__content {
+// Контейнер каталога
+.catalog__container {
+    .catalog__interface {
         display: flex;
         flex-direction: column;
-     
+        position: fixed;
+        background-color: $background-color;
 
+        .catalog__header {
+            flex-basis: 80px;
+            font-size: 50px;
+
+            @media #{$mobile} {
+                font-size: 30px;
+            }
+        }
+
+        .catalog__boxes {
+            display: flex;
+
+            .catalog__box {
+                display: flex;
+                flex-direction: column;
+                font-size: 20px;
+                font-size: larger;
+
+                .catalog__item {
+                    background-color: $background-color;
+                    border: none;
+                    color: $backgroundLine;
+                    margin-right: 10px;
+                    font-size: medium;
+
+                    @media #{$mobile} {
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .catalog__btn {
+                padding-left: 100px;
+
+                @media #{$mobile} {
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    // Контейнер контента
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20%;
         margin-right: 15%;
+
+        @media #{$mobile} {
+            margin-right: 0;
+        }
 
         .content__item {
             display: flex;
             flex-grow: 1;
             padding-top: 30px;
-            
 
             .content__poster {
-
                 width: 100px;
                 margin-right: 10px;
 
-                .poster__img {
+                .content__img {
                     width: 100%;
                 }
             }
 
             .content__info {
-                             
+                display: flex;
+                flex-direction: column;
                 .content__title {
-                 padding-bottom: 2vh;
-                 color: $dark-frame;
+                    text-decoration: none;
+                    margin-bottom: 2vh;
+                    color: $backgroundLine;
+                    font-family: $font-titles;
                 }
-                .content__rating{
-                    padding-bottom: 0.5vh;
-
-                }
-                .content__year{
-                    padding-bottom: 0.5vh;
+                .content__title:hover {
+                    color: $color;
                 }
 
-            
-                           }
+                .content__original-title {
+                    text-decoration: none;
+                    margin-bottom: 2vh;
+                    font-family: $font-titles;
+                    color: $btnBackGroundHover;
+                }
+                .content__original-title:hover {
+                    color: $color;
+                }
+
+                .content__rating {
+                    padding-bottom: 0.5vh;
+                }
+
+                .content__year {
+                    padding-bottom: 0.5vh;
+                }
+            }
+
+            .content__btn {
+                width: 30vw;
+                height: 4vh;
+                align-self: flex-end;
+
+                @media #{$mobile} {
+                    width: 100%;
+                }
+            }
         }
     }
-
 }
 
-//like
-.filmFavContainer{
+// Кнопка лайка
+.filmFavContainer {
     padding-top: 1vh;
 
     .likeBtn {
-      background-color: $background-color;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      }
-    
+        background-color: rgba($color: $background-color, $alpha: 0);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
     .likeIcon {
-      
-      width: 18px;
-      height: 18px;
-      background-image: url('../images/likeGray.png'); 
-          background-size: cover;
-      margin-right: 4px;
-      }
-      .liked {
-        background-image: url('../images/likePink.png');
+        width: 24px;
+        height: 24px;
+        background-image: url("../images/likeEmpty30.svg");
         background-size: cover;
-        width: 18px;
-        height: 18px;
         margin-right: 4px;
-}
+        transition: background-image 0.9s ease-out;
+    }
+
+    .liked {
+        background-image: url("../images/likeFilledPink.svg");
+        background-size: cover;
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        transition: background-image 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    .likeIcon:hover {
+        background-image: url("../images/likeOnfocus.svg");
+        background-size: cover;
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        transition: background-image 0.6s ease-in;
+    }
+
+    .liked:hover {
+        background-image: url("../images/likeOnfocus.svg");
+        background-size: cover;
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        filter: drop-shadow(6px -4px 0px #af464580);
+        transition: background-image 0.6s ease-in;
+    }
 }

@@ -10,20 +10,30 @@
 
 <body>
     <div class="container">
+
         <section class="block-movie">
             <div class="block-movie__title-wrapper">
                 <div>
-                    <h1 class="block-movie__title nameRu"></h1>
-                    <h2 class="block-movie__title nameEn"></h2>
-                    <h3 class="block-movie__title nameOriginal"></h3>
+                    <h1 class="block-movie__title name-ru"></h1>
+                    <h2 class="block-movie__title name-en"></h2>
+                    <h3 class="block-movie__title name-original"></h3>
                 </div>
-                <img class="block-movie__ratingAgeLimit" src="" alt="age limit"></img>
+                <div class="block-movie__rating-age">
+                    <img class="block-movie__rating-age-limit" src="" alt="age limit"></img>
+                </div>
             </div>
             <div class="block-movie__main-section">
                 <div class="block-movie__cotanier-wrapper">
                     <div class="block-movie__poster-wrapper">
                         <img class="block-movie__poster" src="" alt="poster">
-                        <div class="block-movie__ratingKinopoisk"></div>
+                        <div class="block-movie__wrapper">
+                            <div class="block-movie__rating-kinopoisk"></div>
+                            <div class="block-movie__like-wrapper filmFavContainer">
+                                <button class="block-movie__like-button likeBtn">
+                                    <span class="block-movie__like-icon">like</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="block-movie__common-info-about">
                         <div class="block-movie__infomation">
@@ -33,53 +43,67 @@
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Год выпуска</a>
-                                <div class="block-movie__item startYear"></div>
+                                <div class="block-movie__item start-year">&mdash;</div>
                             </div>
 
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Страна происхождения</a>
-                                <div class="block-movie__item countries"></div>
+                                <div class="block-movie__item countries">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Жанры</a>
-                                <div class="block-movie__item genres"></div>
+                                <div class="block-movie__item genres">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Слоган</a>
-                                <div class="block-movie__item slogan"></div>
+                                <div class="block-movie__item slogan">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle ">Время</a>
-                                <div class="block-movie__item filmLength"></div>
+                                <div class="block-movie__item film-length">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Режиссер</a>
-                                <div class="block-movie__item director"></div>
+                                <div class="block-movie__item director">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
                                 <a class="block-movie__subtitle">Актеры</a>
-                                <div class="block-movie__item actor"></div>
+                                <div class="block-movie__item actor">&mdash;</div>
                             </div>
                             <div class="block-movie__info-wrapper">
-                                 <div id="actorsPhotos" class="block-movie__photos-wrapper "></div>
+                                <a class="block-movie__subtitle actors-subtitle"></a>
+                                <div id="actors-photos" class="block-movie__photos-wrapper "></div>
                             </div>
-                            <div class="block-movie__info-wrapper">
-                                <div class="block-movie__subtitle"></div>
-                                <div class="block-movie__item"></div>
+                        </div>
+                    </div>
+                    <div class="block-movie__sources movie-sources">
+                        <div class="movie-sources__sources-wrapper ">
+                            <h3 class="movie-sources__title">Где смотреть?</h3>
+                            <div id="external-sources" class="movie-sources__container">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="block-movie__info-wrapper description-wrapper">
-                    <div class="block-movie__item description"></div>
-                </div>
-                <div class="block-movie__resourse"></div>
+                <details class="block-movie__description-wrapper">
+                    <summary>Описание</summary>
+                    <p class="block-movie__item description"></p>
+                </details>
+                <details class="block-movie__seasons-wrapper no-visible">
+                    <summary class="block-movie__seasons seasons">Сезоны</summary>
+                    <div id="seasons"></div>
+                </details>
             </div>
         </section>
+
         <section class="similar-movies">
-            <div class="similar-movies__movie-contanier">
-                <img src="" class="similar-movies__poster" alt="">
-                <div class="similar-movies__title"></div>
+            <div class="similar-movies__container">
+                <h2 class="similar-movies__title">Похожие фильмы</h2>
+                <div id="posters-contanier" class="similar-movies__posters-contanier">
+                </div>
+                <div class="similar-movies__container-wrapper">
+                    <div id="more-posters-contanier" class="similar-movies__more-similar-movies">
+                    </div>
+                </div>
             </div>
         </section>
     </div>

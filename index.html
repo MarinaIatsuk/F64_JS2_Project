@@ -1,102 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite App</title>
-        <link rel="stylesheet" href="./assets/style/main.scss" /> 
-                                                                                                                                             
-    </head>
-    <body>
-      <div class="wrapper"> 
-        <header class="header">
-            <div class="header__container _container">
-          
-            <a href="#" class="header__logo"> MOVIEСервис </a>
 
-            
-             <div class="header__burger">
-             <span></span>
-             </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+   <link rel="stylesheet" href="./assets/style/main.scss" />
+  <link rel="stylesheet" href="./assets/style/_index.scss">
+</head>
+
+<body>
+  <!-- Кнопка временная -->
+  <div class="cont" id="hiUser">
+    <button class="cont__btn" id="btnOpen">Войти</button>
+  </div>
 
 
-      
-            <nav class="header__nav ">
-            <ul class="header__menu">
-           <li class="menu__item">
-           <a href="#" class="header__link" >Фильмы</a>
-           </li>
-            <li class="header__item">
-            <a href="#" class="header__link">Сериалы</a>
-             </li>
-             </ul>
-            </nav>
-             <div class="search-box">    
-            <form >
-              <input type="text"  class="header__search" placeholder="Поиск" id="filter"/> 
-              <ul class="header__search-list" id="list"> </ul> 
-              <!-- <li>Фильм</li> -->
-            </form>
-             </div>   
+  <!-- Модальное окно -->
+  <dialog class="dialog" id="windModal">
+    <div class="dialog__close">
+      <button class="dialog__close" id="btnClose">X</button>
+    </div>
+    <div class="dialog__container" id="formContainer">
+      <h2 class="dialog__title">MOVIE Сервис</h2>
+      <p class="dialog__text">Войти в личный кабинет</p>
+      <form class="dialog-form" name="loginForm" novalidate>
+        <div class="dialog-form__email">
+          <label for="secondEmail" class="dialog-form__email-text">Email</label>
+          <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
+            pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
 
-               <div class="header__btn-container"> 
-         <h3 class="user__name">Имя пользователя</h3> 
-        <div class="user__email"></div> 
-        <img  src="./assets/images/avatar.png"  alt="avatar"  id="avatar" class="user__img" onclick="location.href='personalaccount.html'" />
-        <img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img" >
-        <h3 class="exit__name">Выйти</h3> 
+          <p class="dialog-form__email-error"></p>
         </div>
-              <div class="cont" id="hiUser"> 
-              <button class="cont__btn" id="btnOpen">Войти</button>
-               </div>  
-                        </div>
-            </div>
-            </div>
-          </header>
-    
+        <div class="dialog-form__password">
+          <label for="secondPassword">Пароль</label>
+          <input name="newPassword" type="password" id="loginPassword" placeholder="Введите пароль..." minlength="8"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
 
-        
-      <!-- Модальное окно -->
-      <dialog class="dialog" id="windModal">
-        <div class="dialog__close">
-          <button class="dialog__close" id="btnClose">X</button>
+          <p class="error-message"></p>
         </div>
-        <div class="dialog__container" id="formContainer">
-          <h2 class="dialog__title">MOVIE Сервис</h2>
-          <p class="dialog__text">Войти в личный кабинет</p>
-          <form class="dialog-form" name="loginForm" novalidate>
-            <div class="dialog-form__email">
-              <label for="secondEmail" class="dialog-form__email-text">Email</label>
-              <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail" pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$"
-                placeholder="Введите email..." required>
-    
-              <p class="dialog-form__email-error"></p>
+        <div class="form__btn">
+          <input class="form__btn-text" type="submit" name="sendForm" id="btnLogin" value="Войти">
+        </div>
+      </form>
+
+      <div>
+        <p>Новенький?</p>
+        <a href="">Создай аккаунт</a>
+      </div>
+    </div>
+  </dialog>
+
+  <a href="./registr.html">перейти</a>
+
+  <!--Начало главной страницы-->
+  <main class="block-main">
+    <div class="main-page">
+      <!--Контейнер-->
+      <div class="main-page__main-block main-block">
+        <div class="main-page__wrapper">
+          <!--Левая часть страницы с заголовком текстом и кнопками-->
+          <div class="main-page__left-wrapper left-wrapper">
+            <div class="block-info">
+              <!--Заголовок-->
+              <h1 class="block-info__title title">MOVIEСервис</h1>
+              <!--Подзаголовок-->
+              <h2 class="block-info__subtitle subtitle">насладись просмотром</h2>
+              <p class="block-info__text text"> Загляните в увлекательный мир кино на нашем сайте KinoMania! У нас вы
+                найдете обширную информацию о фильмах, читайте отзывы и рецензии от экспертов и делитесь своими
+                впечатлениями с другими пользователями. Возьмите под контроль свою коллекцию фильмов, добавляйте их в
+                Избранное и создавайте персональные списки для каждого настроения. Расширенный поиск с фильтрами поможет
+                вам найти желаемое кино быстро и легко. Зарегистрируйтесь или войдите в свою учетную запись, чтобы
+                насладиться всеми возможностями KinoMania!</p>
+
             </div>
-            <div class="dialog-form__password">
-              <label for="secondPassword">Пароль</label>
-              <input name="newPassword" type="password" id="loginPassword" placeholder="Введите пароль..." minlength="8"
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
-    
-              <p class="error-message"></p>
+
+          </div>
+          <!--Правая часть страницы куда мы внесем постеры к фильмам-->
+          <div class="main-page__right-wrapper right-wrapper">
+            <div class="block__posters" id="block-posters">
+              <div class="block__upper-posters upper-posters" id="upper-posters"></div>
+              <div class="block__down-posters down-posters" id="down-posters"></div>
             </div>
-            <div class="form__btn">
-              <input class="form__btn-text" type="submit" name="sendForm" id="btnLogin" value="Войти">
-            </div>
-          </form>
-    
-          <div>
-            <p>Новенький?</p>
-            <a href="">Создай аккаунт</a>
           </div>
         </div>
-      </dialog>
-    
-      <a href="./registr.html">перейти</a>
+
+        <div class="main-page__block-button block-button">
+          <div class="main-page__button btn">Начать прямо сейчас!</div>
+        </div>
+
+      </div>
+
+    </div>
+    <a href=""></a>
+  </main>
+  <!--Конец главной страницы-->
 
 
 
-      <script type="module" src="./src/db.js"></script>
-        <script type="module" src="./main.js"></script>
-        <script type="module" src="./src/index.js"></script>
-    </body>
+  <script type="module" src="./src/main-page.js"></script>
+  <script type="module" src="./src/db.js"></script>
+  <!-- <script type="module" src="./main.js"></script> -->
+  <script type="module" src="./src/index.js"></script>
+</body>
+
 </html>
