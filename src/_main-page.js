@@ -83,3 +83,4 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     .catch((err) => {
         console.log(err);
     })
+

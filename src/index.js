@@ -162,3 +162,4 @@ async function addComment(user_id, user_name, film_id, text) {
 
 //ПРИМЕР получить комментарии к фильму
 // db.get_query("comments", "film_id", "film id 123").then(r => console.log(r));
+

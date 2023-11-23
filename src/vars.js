@@ -6,4 +6,3 @@ export const upperPosters = document.getElementById('upper-posters');
 export const downPosters = document.getElementById('down-posters');
 export const div = document.createElement('div');
 export const divTwo = document.createElement('div');
-
