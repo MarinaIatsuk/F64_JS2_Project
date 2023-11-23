@@ -178,32 +178,9 @@
     }
 }
 
-// .filmFavContainer {
-//     width: 20px;
-//     height: 20px;
-//     padding-left: 2vh;
-
-//     .likeBtn {
-//         background-color: $background-color;
-//         border: none;
-//         cursor: pointer;
-//         display: flex;
-//         align-items: center;
-//     }
-
-//     .likeIcon {
-//         background-image: url('../images/likeEmpty.svg');
-//         background-size: cover;
-//         width: 100%;
-//     }
-//     .likeIcon:hover {
-//         background-image: url('../images/likeEmpty30.svg');
-//         background-size: cover;
-//     }
-
-//     .liked {
-//         background-image: url('../images/likeFilledPink.svg');
-//         background-size: cover;
-//         width: 100%;
-//     }
-// }
+.catalog__image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 450px;
+}
