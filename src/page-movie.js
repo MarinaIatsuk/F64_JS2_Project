@@ -332,7 +332,7 @@ function ShowSeason(data) {
         divWrapper2.append(newDivEpisod);
         newDivTitleEpisod = document.createElement('p');
         newDivTitleEpisod.classList.add('episod');
-        newDivTitleEpisod.textContent = ${episode.synopsis?episode.synopsis:"";
+        newDivTitleEpisod.textContent = `${episode.synopsis?episode.synopsis:""}`;
         divWrapper2.append(newDivTitleEpisod);
         divWrapper.append(divWrapper2);
       }
