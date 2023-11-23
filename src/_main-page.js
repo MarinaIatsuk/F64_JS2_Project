@@ -2,6 +2,7 @@
 //Получаем переменные из файла vars.js
 import{upperPosters, downPosters, div, divTwo} from "./vars";
 
+
 //Создаем функцию fetch с api адресом
 
 fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1', {
@@ -59,6 +60,7 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
    
     </div>`;
 
+
         const htmlTwo = `
 
   <div class="poster-info post-one">
@@ -83,4 +85,3 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     .catch((err) => {
         console.log(err);
     })
-
