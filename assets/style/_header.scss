@@ -42,7 +42,7 @@
     font-weight: 600;
     text-decoration: none;
    font-family: $font-titles;
-   color: $dark-frame;
+   color: $backgroundLine;
    position:relative;
    z-index: 3;
      }
@@ -69,7 +69,7 @@
           
      .header__burger span{
       position: absolute;
-      background-color: $dark-frame;
+      background-color: $backgroundLine;
       left:0;
       width:100%;
       height: 2px;
@@ -78,7 +78,7 @@
      .header__burger:before,
      .header__burger:after{
       content:'';
-      background-color: $dark-frame;
+      background-color: $backgroundLine;
       position:absolute;
       width: 100%;
       height: 2px;
@@ -140,7 +140,7 @@
   
   .header__link{
       display: block;
-      color: $dark-frame;
+      color: $backgroundLine;
       font-family:$font-texts;
       font-weight: 600;
       text-align: center;
@@ -159,7 +159,7 @@
       left: 45%;
       margin-left: -60px;
      background-color: #ffccfd;
-     color:$dark-frame;
+     color: $backgroundLine;
      border-radius: 20px;
      font-size: 15px;
      font-family:$font-texts;
@@ -169,7 +169,7 @@
    
      .header__search-list{
       font-family:$font-texts;
-      color: $dark-frame;
+      color: $backgroundLine;
       list-style: none;
      }
     
@@ -197,7 +197,7 @@
     left: 88%;
     margin-left: -93px;
     font-family:$font-texts;
-    color: $dark-frame;
+    color: $backgroundLine;
    }
    .user__name {
      font-size: 12px;
@@ -206,7 +206,7 @@
       left: 73%;
       margin-left: -83px;
        font-family:$font-texts;
-       color: $dark-frame;
+       color: $backgroundLine;
     }
 
   // // .header__text {
