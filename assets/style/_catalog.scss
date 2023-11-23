@@ -20,7 +20,7 @@
 
         .catalog__boxes {
             display: flex;
-            @media screen and (max-width: 800px) {
+            @media screen and (max-width: 910px) {
                 flex-direction: column;
             }
 
@@ -37,6 +37,10 @@
                     margin-right: 10px;
                     font-size: medium;
 
+                    @media screen and (max-width: 910px) {
+                        font-size: small;
+                        max-height: 70%;
+                    }
                     @media #{$mobile} {
                         width: 100%;
                         margin-bottom: 10px;
@@ -47,7 +51,7 @@
             .catalog__btn {
                 padding-left: 100px;
 
-                @media screen and (max-width: 800px) {
+                @media screen and (max-width: 910px) {
                     padding-top: 20px;
                     padding-left: 0;
                 }
@@ -61,7 +65,7 @@
     .content {
         display: flex;
         flex-direction: column;
-        padding-top: 15%;
+        padding-top: 5%;
         margin-right: 15%;
         
 
@@ -72,7 +76,8 @@
         .content__item {
             display: flex;
             flex-grow: 1;
-            padding-top: 30px;
+            padding-top: 15px;
+            margin-bottom: 15px;
 
             .content__poster {
                 width: 100px;
@@ -177,10 +182,17 @@
         transition: background-image 0.6s ease-in;
     }
 }
-
+//космонавт
 .catalog__image{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 450px;
+    min-height: 400px;
+    .image_img{
+        padding-top: 100px;
+        margin-right: 100px;
+    }
+    @media screen and (max-width: 690px) {
+        display: none;
+    }
 }
