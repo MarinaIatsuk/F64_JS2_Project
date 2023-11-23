@@ -2,9 +2,12 @@ import * as db from './db'; // для работы с БД
 
 let currentPage = 1; // Флаг для пагинации
 let loading = false; // Флаг для загрузки данных
+let dataLoaded = false;
+const mainPicture=document.querySelector('.catalog__image')
 
 // Обработчик события клика на кнопку поиска
 document.querySelector(".btn").addEventListener("click", function (event) {
+    mainPicture.style.display = "none"
     event.preventDefault(); // Остановить перезагрузку страницы
     currentPage = 1; // Сбрасываем текущую страницу при новом поиске
     const container = document.querySelector(".content");
@@ -15,10 +18,14 @@ document.querySelector(".btn").addEventListener("click", function (event) {
         top: 0,
         behavior: 'smooth' // плавный эффект прокрутки
     });
+    dataLoaded = true;
 });
 
 // Обработчик события прокрутки страницы
 window.addEventListener('scroll', function () {
+    if (!dataLoaded) { // Если не были загружены данные, останавливаем функцию
+        return;
+    }
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !loading) { //проверяем, достиг ли пользователь конца документа
         loading = true; // Достигнут конец страницы, загружаем следующую порцию данных
         getData(currentPage + 1);
@@ -72,17 +79,17 @@ function createFilmItem(film) {
     item.classList.add("content__item");
 
     let titleLink = '';
-    let originalTitleLink = '';
 
-    // Проверка на null или undefined для film.nameRu
-    if (film.nameRu !== null && film.nameRu !== undefined) {
-        titleLink = `<a class="content__title" href="page-movie.html?id=${film.kinopoiskId}">${film.nameRu}</a>`;
+   
+    const filmTitle = film.nameRu || film.nameOriginal; 
+
+   
+    if (filmTitle !== null && filmTitle !== undefined) {  // Проверка на null или undefined для filmTitle
+        titleLink = `<a class="content__title" href="page-movie.html?id=${film.kinopoiskId}">${filmTitle}</a>`;
     }
 
-    // Проверка на null или undefined для film.nameOriginal
-    if (film.nameOriginal !== null && film.nameOriginal !== undefined) {
-        originalTitleLink = `<a class="content__original-title" href="page-movie.html?id=${film.kinopoiskId}">${film.nameOriginal}</a>`;
-    }
+    
+    const imdbRating = film.ratingImdb !== null ? film.ratingImdb : '-'; // Проверка на null для рейтинга по IMDb
 
     const template =
         `
@@ -91,10 +98,9 @@ function createFilmItem(film) {
         </div>
         <div class="content__info">
             ${titleLink}
-            ${originalTitleLink}
             <div class="content__year">Год выхода фильма: ${film.year}</div>
             <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-            <div class="content__ratingImdb">Рейтинг по Imdb: ${film.ratingImdb}</div>
+            <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
         </div>
         <div class="filmFavContainer">
                             <button class="content-button likeBtn" id="${film.kinopoiskId}">
@@ -127,7 +133,6 @@ function attachLikeButtonsEvent() {
                 console.log(accessObj); //Проверка
                 setLike(accessObj, filmId, target.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
                 console.log(filmId);
-
              }
         });
     });
