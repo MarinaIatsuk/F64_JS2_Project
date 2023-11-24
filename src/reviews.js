@@ -46,7 +46,7 @@ function createPostMarkup(post) {
 // Функция создания разметки поста с отзывом
 function createCommentMarkup(post) {
     const template = `
-    <article class="comment-post">
+    <article class="comments-container__comment-post comment-post">
         <h3 class="comment-post__title">${post.title}</h3>
         <p class="comment-post__text">${post.text}</p>
         <p class="comment-post__author">Автор отзыва: ${post.name}</p>
@@ -64,13 +64,13 @@ function addMarkupToContainer(markup, container) {
 // Функция добавления кол-ва отзывов в контейнер
 function addTotalToContainer(posts, container) {
     const totalContainer = document.createElement("div");
-    totalContainer.classList.add("block-reviews__total-wrapper", "total");
+    totalContainer.classList.add("reviews-container__total-wrapper", "total-wrapper");
     const totalReviwesTemplate = `
-    <div class="reviews-container__total-wrapper total">
-        <div class="total__count count-text">Всего<span class="count-number count-number_type_all">${posts.total}</span></div>
-        <div class="total__positive count-text">Положительные<span class="count-number count-number_type_positive">${posts.totalPositiveReviews}</span></div>
-        <div class="total__neutral count-text">Нейтральные<span class="count-number count-number_type_neutral">${posts.totalNeutralReviews}</span></div>
-        <div class="total__negative count-text">Отрицательные<span class="count-number count-number_type_negative">${posts.totalNegativeReviews}</span></div>
+    <div class="total-wrapper__total total">
+        <div class="total__count count-text">Всего <span class="count-number count-number_type_all">${posts.total}</span></div>
+        <div class="total__positive count-text">Положительные <span class="count-number count-number_type_positive">${posts.totalPositiveReviews}</span></div>
+        <div class="total__neutral count-text">Нейтральные <span class="count-number count-number_type_neutral">${posts.totalNeutralReviews}</span></div>
+        <div class="total__negative count-text">Отрицательные <span class="count-number count-number_type_negative">${posts.totalNegativeReviews}</span></div>
     </div>
     `;
     container.before(totalContainer);
@@ -80,7 +80,8 @@ function addTotalToContainer(posts, container) {
 // Функция, которая делает GET-запрос и добавляет посты на страницу
 async function getPosts() {
     try {
-        const selectedFilmId = window.localStorage.getItem("selectedFilmId");
+        // const selectedFilmId = window.localStorage.getItem("selectedFilmId");
+        let selectedFilmId = new URLSearchParams(window.location.search).get('id');
         const response = await fetch(
             `https://kinopoiskapiunofficial.tech/api/v2.2/films/${selectedFilmId}/reviews`,
             {
@@ -116,7 +117,8 @@ async function getPosts() {
 async function getComments() {
     try {
         // const selectedFilmId = "1234"; // Для теста
-        const selectedFilmId = window.localStorage.getItem("selectedFilmId");
+        // const selectedFilmId = window.localStorage.getItem("selectedFilmId");
+        let selectedFilmId = new URLSearchParams(window.location.search).get('id');
         const key = "film_id";
         const comments = await get_query("comments", key, selectedFilmId);
         console.log(comments);
@@ -226,8 +228,9 @@ async function getDataFromReviewForm() {
         const title = reviewTitle;
         const text = reviewText;
 
-        // Получаем из локального хранилища id фильма
-        const selectedFilmId = localStorage.getItem("selectedFilmId");
+        // Получаем id фильма
+        // const selectedFilmId = localStorage.getItem("selectedFilmId");
+        let selectedFilmId = new URLSearchParams(window.location.search).get('id');
 
         // Получаем из локального хранилища id и имя пользователя
         const userId = client.id;

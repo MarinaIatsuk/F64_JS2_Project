@@ -63,8 +63,13 @@
 
     &__content {
         background-color: white;
-        padding: 1vw 2vw;
+        padding: 1vw 0;
         border-radius: 20px 20px 30px;
+
+        width: 80vw;
+
+        display: flex;
+        justify-content: center;
     }
 
     &__content._tab-1-active {
@@ -77,7 +82,8 @@
 
     &__item {
         // background-color: white;
-        padding: 1vw;
+        // padding: 1vw;
+        width: 70vw;
     }
 
     &__btn {
@@ -118,9 +124,25 @@
 }
 
 .reviews-container {
-    padding: 1vw 2vw;
+    display: flex;
+    flex-direction: row-reverse;
+    // flex-direction: row;
+
+    justify-content: start;
+    gap: 0.5vw;
+
+    @media #{$tablet} {
+        flex-direction: column;
+        font-size: 2vw;
+
+    }
+    @media #{$mobile} {
+        flex-direction: column;
+        font-size: 2.5vw;
+    }
+
     &__total-wrapper {
-        margin: 1vw 1vw;
+        margin: 1vw 3vw 0 2vw;
     }
 
     &__posts-wrapper {
@@ -130,12 +152,55 @@
         align-items: center;
         justify-content: space-evenly;
         gap: 1.5vw;
+        width: 70%;
+
+        @media #{$tablet} {
+            margin: 0;
+            width: 100%;
+        }
+
+        @media #{$mobile} {
+            margin: 0;
+            width: 100%;
+        }
     }
 }
 
-.posts-wrapper {
-    padding: 1vw 2vw;
+.total-wrapper__total {
+    position: sticky;
+    top: 3vw;
 }
+
+// .total {
+//     &__negative {
+//         color:#B83D3D;
+//     }
+//     &__positive {
+//         color:#319331;
+//     }
+//     &__neutral {
+//         color:#bebebe;
+//     }
+// }
+
+// .posts-wrapper {
+//     padding: 1vw 2vw;
+// }
+
+.count-number {
+    color:#800080;
+
+    &_type_negative {
+        color:#B83D3D;
+    }
+    &_type_positive {
+        color:#319331;
+    }
+    &_type_neutral {
+        color:#bebebe;
+    }
+}
+
 
 .review-post {
     padding: 1vw 2vw;
@@ -144,8 +209,58 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 5vw;
 
+    &_type_negative {
+        position: relative;
+    }
+
+    &_type_negative::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 6px solid #B83D3D;
+    }
+
+    &_type_positive {
+        position: relative;
+    }
+
+    &_type_positive::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 6px solid #319331;
+    }
+
+    &_type_neutral {
+        position: relative;
+    }
+
+    &_type_neutral::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 6px solid #bebebe;
+    }
+
     &__title {
         margin: 1vw 1vw;
+    }
+
+    &__body {
+        text-align: justify;
+
+        @media #{$mobile} {
+            text-align: left;
+        }
     }
 }
 
@@ -157,10 +272,35 @@
 
     &__positive {
         background-color: green;
+        border-radius: 5px 5px 0 0;
+        padding: 5px 5px 0 5px;
+        position: relative;
+    }
+    &__positive::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 6px solid #319331;
     }
 
     &__negative {
-        background-color: orangered;
+        background-color: #B83D3D;
+        border-radius: 5px 5px 0 0;
+        padding: 5px 5px 0 5px;
+        position: relative;
+    }
+
+    &__negative::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 6px solid orangered;
     }
 }
 
@@ -169,9 +309,27 @@
 
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     justify-content: space-evenly;
     gap: 1.5vw;
+
+    @media #{$tablet} {
+        padding: 2vw 0;
+    }
+    @media #{$mobile} {
+        padding: 3vw 0;
+        gap: 2vw;
+    }
+
+    &__comment-post {
+        width: 75%;
+        @media #{$tablet} {
+            width: 100%;
+        }
+        @media #{$mobile} {
+            width: 100%
+        }
+    }
 }
 
 .comment-post {
@@ -193,6 +351,11 @@
     &__text {
         margin: 1vw 0.5vw;
         color: white;
+        text-align: justify;
+
+        @media #{$mobile} {
+            text-align: left;
+        }
     }
 
     &__author {
