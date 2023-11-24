@@ -1,28 +1,3 @@
-// .block-reviews {
-//     display: flex;
-//     flex-direction: column;
-//     &__title-wrapper {
-//         font-family: $font-titles;
-//         border-radius: 3px;
-//         background-color: #dc8cd9;
-//         padding: 12px;
-//     }
-//     &__title_state_active {
-//         color: $dark-frame;
-//         border-bottom: 2px solid $backgroundLine;
-//     }
-//     &__title_state_not-active {
-//         color: gray;
-//         border: none;
-//     }
-// }
-
-// .reviews-titles {
-//     display: flex;
-//     flex-direction: row;
-//     gap: 1vw;
-// }
-
 .block-reviews {
     padding-top: 2vw;
 
@@ -82,25 +57,8 @@
     }
 
     &__item {
-        // background-color: white;
-        // padding: 1vw;
         width: 70vw;
     }
-}
-
-.review-btn {
-    cursor: pointer;
-    color: $color;
-    background: rgba(0, 0, 0, 0);
-    border: none;
-    font-family: $font-btns;
-    font-size: 500;
-
-    // &:hover {
-    //     color: white;
-    //     // border-bottom: 4px solid currentColor;
-    //     transition: color 0.1s;
-    // }
 }
 
 .reviews-container {
@@ -259,6 +217,7 @@
     }
 
     &__expand-button {
+        cursor: pointer;
         background-color: #ffffff00;
         border: none;
         color: white;
@@ -376,6 +335,7 @@
     }
 
     &__expand-button {
+        cursor: pointer;
         background-color: #ffffff00;
         border: none;
     }
@@ -386,5 +346,83 @@
 
     &__date {
         align-self: end;
+    }
+}
+
+.review-form {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 1vw;
+        padding: 1vw 3vw 4vw;
+    }
+
+    &__title {
+        color: $background-color;
+        font-family: $font-titles;
+    }
+
+    &__text {
+        color: $background-color;
+        font-family: $font-texts;
+    }
+
+    &__btn {
+        width: 100%;
+    }
+
+    &__btn-text {
+        cursor: pointer;
+        font-family: $font-btns;
+        color: $color;
+        border: 2px solid $btnBackGround;
+        background-color: $btnBackGround;
+        border-radius: 5px;
+        width: 100%;
+        &:hover {
+            background-color: $btnBackGroundHover;
+            box-shadow: 5px 5px 5px $color;
+        }
+    }
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.8vw;
+
+    width: 40vw;
+
+    @media #{$tablet} {
+        width: 70vw;
+        font-size: 2vw;
+
+    }
+    @media #{$mobile} {
+        width: 70vw;
+        font-size: 2.5vw;
+    }
+
+    &__content-title, &__content-text {
+        width: 100%;
+    }
+    &__title-input, &__text-input {
+        border: 3px solid #990094;
+        border-radius: 10px;
+        width: 100%;
+        padding: 10px;
+        font-family: $font-titles;
+
+        @media #{$tablet} {
+            font-size: 2vw;
+    
+        }
+        @media #{$mobile} {
+            font-size: 2.5vw;
+        }
     }
 }

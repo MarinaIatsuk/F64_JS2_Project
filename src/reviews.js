@@ -109,7 +109,7 @@ function expandCommentText(event) {
         body.classList.remove('comment-post__text_collapsed');
         remainingTextElement.classList.remove("_hidden");
         remainingTextElement.classList.add('_visible');
-        event.target.innerHTML = `&#10229; Свернуть`;
+        event.target.innerHTML = `&nbsp;&nbsp;&nbsp;&#10229; Свернуть`;
     } else {
         body.classList.add('comment-post__text_collapsed');
         remainingTextElement.classList.remove("_visible");
@@ -126,7 +126,7 @@ function expandReviewText(event) {
         body.classList.remove('review-post__body_collapsed');
         remainingTextElement.classList.remove("_hidden");
         remainingTextElement.classList.add('_visible');
-        event.target.innerHTML = `&#10229; Свернуть`;
+        event.target.innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&#10229; Свернуть`;
     } else {
         body.classList.add('review-post__body_collapsed');
         remainingTextElement.classList.remove("_visible");
