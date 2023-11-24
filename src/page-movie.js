@@ -3,6 +3,7 @@ import "./db";
 import * as db from './db';
 
 let TYPE_FILM;
+import "./reviews";
 
 document.addEventListener("DOMContentLoaded", async function () {
 
