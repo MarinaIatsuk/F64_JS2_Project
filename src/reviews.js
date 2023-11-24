@@ -30,9 +30,17 @@ function createPostMarkup(post) {
     } else {
         typeOfReview = "review-post_type_neutral";
     }
+
+    let title;
+    if (post.title === null) {
+        title = "&#10077";
+    } else {
+        title = post.title;
+    }
+
     const template = `
     <article class="review-post ${typeOfReview}">
-        <h3 class="review-post__title">${post.title}</h3>
+        <h3 class="review-post__title">${title}</h3>
         <p class="review-post__body">${post.description}</p>
         <div class="review-post__usefulness usefulness">
             <div class="usefulness__positive">Полезно ${post.positiveRating}</div>
@@ -45,9 +53,15 @@ function createPostMarkup(post) {
 
 // Функция создания разметки поста с отзывом
 function createCommentMarkup(post) {
+    let title;
+    if (post.title === undefined) {
+        title = "&#10077";
+    } else {
+        title = post.title;
+    }
     const template = `
     <article class="comments-container__comment-post comment-post">
-        <h3 class="comment-post__title">${post.title}</h3>
+        <h3 class="comment-post__title">${title}</h3>
         <p class="comment-post__text">${post.text}</p>
         <p class="comment-post__author">Автор отзыва: ${post.name}</p>
         <time class="comment-post__date">${formatter.format(post.date)}</time>

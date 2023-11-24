@@ -211,6 +211,7 @@
 
     &_type_negative {
         position: relative;
+        z-index: 0;
     }
 
     &_type_negative::before {
@@ -221,10 +222,12 @@
         top: 0;
         left: 0;
         border-bottom: 6px solid #B83D3D;
+        z-index: -1;
     }
 
     &_type_positive {
         position: relative;
+        z-index: 0;
     }
 
     &_type_positive::before {
@@ -235,10 +238,12 @@
         top: 0;
         left: 0;
         border-bottom: 6px solid #319331;
+        z-index: -1;
     }
 
     &_type_neutral {
         position: relative;
+        z-index: 0;
     }
 
     &_type_neutral::before {
@@ -249,6 +254,7 @@
         top: 0;
         left: 0;
         border-bottom: 6px solid #bebebe;
+        z-index: -1;
     }
 
     &__title {
@@ -275,6 +281,7 @@
         border-radius: 5px 5px 0 0;
         padding: 5px 5px 0 5px;
         position: relative;
+        z-index: 0;
     }
     &__positive::before {
         content: "";
@@ -284,6 +291,7 @@
         top: 0;
         left: 0;
         border-bottom: 6px solid #319331;
+        z-index: -1;
     }
 
     &__negative {
@@ -291,6 +299,7 @@
         border-radius: 5px 5px 0 0;
         padding: 5px 5px 0 5px;
         position: relative;
+        z-index: 0;
     }
 
     &__negative::before {
@@ -301,6 +310,7 @@
         top: 0;
         left: 0;
         border-bottom: 6px solid orangered;
+        z-index: -1;
     }
 }
 
