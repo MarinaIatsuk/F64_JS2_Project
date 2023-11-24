@@ -2,11 +2,6 @@ import * as db from "./db";
 import { get_query } from "./db"; // Импорт функции из db для работы с БД
 import "./reviews-tabs";
 
-// TODO Сделать проверку на null заголовков рецензий с КП
-// и на undefined заголовков отзывов из БД
-// Заменять на Heavy Double Turned Comma Quotation Mark Ornament &#10077;
-// или на Horizontal bar &#8213; в случае отсутствия заголовка
-
 // Прописываем локаль и опции для форматирования даты
 const formatter = new Intl.DateTimeFormat("ru-RU", {
     year: "numeric",
@@ -22,6 +17,23 @@ const formatter = new Intl.DateTimeFormat("ru-RU", {
 // Функция создания разметки поста с рецензией
 // (получает на вход объект поста и возвращает строку HTML-разметки)
 function createPostMarkup(post) {
+    const maxTextLength = 1400;
+    const originalDescription = post.description;
+    let remainingDescription = "";
+    let description;
+    let btn = "";
+    let classModifier = "";
+    
+    if (originalDescription.length > maxTextLength) {
+        description = originalDescription.slice(0, maxTextLength);
+        remainingDescription = originalDescription.slice(maxTextLength);
+        classModifier = ` review-post__body_collapsed`
+        btn = `<button class="review-post__expand-button">... &#10230;</button>`;
+        // btn = `<button class="review-post__expand-button expand-button">... Развернуть</button>`;
+    } else {
+        description = originalDescription;
+    }
+
     let typeOfReview;
     if (post.type == "POSITIVE") {
         typeOfReview = "review-post_type_positive";
@@ -41,7 +53,7 @@ function createPostMarkup(post) {
     const template = `
     <article class="review-post ${typeOfReview}">
         <h3 class="review-post__title">${title}</h3>
-        <p class="review-post__body">${post.description}</p>
+        <p class="review-post__body${classModifier}">${description}<span class="review-post__remaining-text _hidden">${remainingDescription}</span>${btn}</p>
         <div class="review-post__usefulness usefulness">
             <div class="usefulness__positive">Полезно ${post.positiveRating}</div>
             <div class="usefulness__negative">Нет ${post.negativeRating}</div>
@@ -53,22 +65,84 @@ function createPostMarkup(post) {
 
 // Функция создания разметки поста с отзывом
 function createCommentMarkup(post) {
+    const maxTextLength = 200;
+    const originalText = post.text;
+    let remainingText = "";
+    let text;
+    let btn = "";
+    let classModifier = "";
+
+    if (originalText.length > maxTextLength) {
+        text = originalText.slice(0, maxTextLength);
+        remainingText = originalText.slice(maxTextLength);
+        classModifier = ` comment-post__text_collapsed`
+        btn = `<button class="comment-post__expand-button">... &#10230;</button>`;
+        // btn = `<button class="comment-post__expand-button expand-button">... Развернуть</button>`;
+    } else {
+        text = originalText;
+    }
+
     let title;
     if (post.title === undefined) {
         title = "&#10077";
     } else {
         title = post.title;
     }
+
     const template = `
     <article class="comments-container__comment-post comment-post">
         <h3 class="comment-post__title">${title}</h3>
-        <p class="comment-post__text">${post.text}</p>
+        <p class="comment-post__text${classModifier}">${text}<span class="comment-post__remaining-text _hidden">${remainingText}</span>${btn}</p>
         <p class="comment-post__author">Автор отзыва: ${post.name}</p>
         <time class="comment-post__date">${formatter.format(post.date)}</time>
     </article>
     `;
+
     return template;
 }
+
+// Функция развертывания текста отзыва
+function expandCommentText(event) {
+    const body = event.target.closest('.comment-post__text');
+    const remainingTextElement = body.querySelector('.comment-post__remaining-text');
+    if (body.classList.contains('comment-post__text_collapsed')) {
+        body.classList.remove('comment-post__text_collapsed');
+        remainingTextElement.classList.remove("_hidden");
+        remainingTextElement.classList.add('_visible');
+        event.target.innerHTML = `&#10229; Свернуть`;
+    } else {
+        body.classList.add('comment-post__text_collapsed');
+        remainingTextElement.classList.remove("_visible");
+        remainingTextElement.classList.add("_hidden");
+        event.target.innerHTML = `... Развернуть &#10230;`;
+    }
+}
+
+// Функция развертывания текста рецензии
+function expandReviewText(event) {
+    const body = event.target.closest('.review-post__body');
+    const remainingTextElement = body.querySelector('.review-post__remaining-text');
+    if (body.classList.contains('review-post__body_collapsed')) {
+        body.classList.remove('review-post__body_collapsed');
+        remainingTextElement.classList.remove("_hidden");
+        remainingTextElement.classList.add('_visible');
+        event.target.innerHTML = `&#10229; Свернуть`;
+    } else {
+        body.classList.add('review-post__body_collapsed');
+        remainingTextElement.classList.remove("_visible");
+        remainingTextElement.classList.add("_hidden");
+        event.target.innerHTML = `... Развернуть &#10230;`;
+    }
+}
+
+// Делегирование событий для управления развертыванием и сворачиванием текста
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.comment-post__expand-button')) {
+        expandCommentText(event);
+    } else if (event.target.matches('.review-post__expand-button')) {
+        expandReviewText(event);
+    }
+});
 
 // Функция добавления разметки в контейнер
 function addMarkupToContainer(markup, container) {

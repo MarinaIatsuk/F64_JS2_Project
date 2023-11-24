@@ -263,10 +263,29 @@
 
     &__body {
         text-align: justify;
+        padding-bottom: 1.5vw;
 
         @media #{$mobile} {
             text-align: left;
         }
+    }
+
+    &__remaining-text._visible {
+        display: inline;
+    }
+
+    &__remaining-text._hidden {
+        display: none;
+    }
+
+    &__expand-button {
+        background-color: #ffffff00;
+        border: none;
+        color: white;
+    }
+
+    &__usefulness {
+        padding-bottom: 1vw;
     }
 }
 
@@ -366,6 +385,19 @@
         @media #{$mobile} {
             text-align: left;
         }
+    }
+
+    &__remaining-text._visible {
+        display: inline;
+    }
+
+    &__remaining-text._hidden {
+        display: none;
+    }
+
+    &__expand-button {
+        background-color: #ffffff00;
+        border: none;
     }
 
     &__author {
