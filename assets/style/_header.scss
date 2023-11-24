@@ -1,271 +1,155 @@
-.wrapper {
-  min-height: 100%;
-  overflow: hidden;
-}
-
-._container {
-  max-width: 1230px;
-  padding: 0px 8px;
-  margin: 0px auto;
-  box-sizing: content-box;
-  background-color: #ffffff;
-}
-
-header {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 50;
-}
-
-
-//блок с выйти и переход в ЛК
-.header__btn-container{
-  display: none;
-}
-
-.header:before {
-  content: '';
-  // position:absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-
-
-.header__container {
+.header {
   display: flex;
-  min-height: 70px;
+  justify-content: space-between;
   align-items: center;
+  height: 10vh;
+  width: 90%;
+  padding-left: 3vw;
+  padding-top: 2vh;
+  margin-right: 3.5vh;
+  font-size: larger;
 }
-
-@media screen and (max-width: 767px) {}
 
 .header__logo {
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  font-family: $font-titles;
-  color: $backgroundLine;
-  position: relative;
-  z-index: 3;
-}
-
-
-
-.header__burger {
-  display: none;
-}
-
-@media screen and (max-width: 767px) {
-  body.lock {
-    overflow: hidden;
-  }
-
-  .header__logo {
-    flex: 0 0 40px;
-  }
-
-  .header__burger {
-    display: block;
+  .logo__item {
+    font-size: larger;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: $font-titles;
+    color: $backgroundLine;
     position: relative;
-    width: 30px;
-    height: 20px;
     z-index: 3;
-    position: relative;
-  }
-
-  .header__burger span {
-    position: absolute;
-    background-color: $backgroundLine;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    top: 9px;
-  }
-
-  .header__burger:before,
-  .header__burger:after {
-    content: '';
-    background-color: $backgroundLine;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0;
-  }
-
-  .header__burger:before {
-    top: 0;
-  }
-
-  .header__burger:after {
-    bottom: 0;
-  }
-
-  .header__search {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .header__nav {
-    position: fixed;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: aliceblue;
-    padding: 70px 0px 0px 0px;
-  }
-
-  .header__item {
-    display: block;
-  }
-
-  li {
-    margin-bottom: 0px 0px 20px 0px;
+    cursor: pointer;
   }
 }
 
-.header__nav {
-  width: 40%;
-  height: 25px;
-  position: fixed;
-  overflow: hidden;
+.header__links {
+  display: flex;
 
-  ul {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    width: 25%;
-    position: relative;
-    z-index: 2;
+  .link__item {
+    text-decoration: none;
+    color: $backgroundLine;
+    font-family: $font-texts;
+    font-weight: 600;
+    text-align: center;
+    width: 2rem;
+    left: 60px;
+    cursor: pointer;
 
-    li {
-      display: block;
-      padding-left: 60%;
+  }
+}
 
-      a {
+.header__search {
+  display: flex;
+  flex-direction: column;
+
+  .search__input {
+    width: 300px;
+    height: 40px;
+    top: 23px;
+    left: 45%;
+    background-color: #ffccfd;
+    color: $backgroundLine;
+    border-radius: 20px;
+    font-size: large;
+    font-family: $font-texts;
+    font-weight: 600;
+
+  }
+
+  .search__list {
+    max-width: 400px;
+    color: $backgroundLine;
+    list-style: none;
+    position: absolute;
+    top: 10%;
+    background-color: #ffffffd3;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    /* Чтобы список был поверх остальных элементов */
+    display: none;
+
+    .list__item {
+      padding-top: 1%;
+      padding-left: 3%;
+      margin-left: 3%;
+      margin-bottom: 2%;
+      
+      .list__link{
         text-decoration: none;
+        cursor: pointer;
+        font-family: $font-texts;
       }
     }
   }
 }
 
+.header__account {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
 
-.header__item {
-  list-style: none;
-}
+  .account__personal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-.header__link {
-  display: block;
-  color: $backgroundLine;
-  font-family: $font-texts;
-  font-weight: 600;
-  text-align: center;
-  width: 2rem;
-  left: 60px;
-  margin-left: 90px;
-}
+    .account__greeting {
+      font-size: 12px;
+      top: 28px;
+      left: 73%;
+      font-family: $font-texts;
+      color: $backgroundLine;
+      margin-right: 7px;
+      font-size: large;
 
+    }
 
+    .account__avatar {
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+  }
 
-.header__search {
-  width: 250px;
-  height: 20px;
-  top: 23px;
-  position: absolute;
-  left: 45%;
-  margin-left: -60px;
-  background-color: #ffccfd;
-  color: $backgroundLine;
-  border-radius: 20px;
-  font-size: 15px;
-  font-family: $font-texts;
-  font-weight: 600;
-}
-
-
-.header__search-list {
-  font-family: $font-texts;
-  color: $backgroundLine;
-  list-style: none;
-}
-
-
-.user__img {
-  width: 2rem;
+  .account__exit {
+    display: flex;
+    align-items: center;
+    .exit__img {
+      width: 2rem;
   height: 2rem;
-  position: absolute;
-  top: 25px;
-  left: 70%;
-  margin-left: -80px;
-}
-
-.exit__img {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
   top: 25px;
   left: 85%;
-  margin-left: -90px;
-}
-
-.exit__name {
-  font-size: 12px;
-  position: absolute;
-  top: 28px;
-  left: 88%;
-  margin-left: -93px;
-  font-family: $font-texts;
-  color: $backgroundLine;
-}
-
-.user__name {
-  font-size: 12px;
-  position: absolute;
-  top: 28px;
-  left: 73%;
-  margin-left: -83px;
-  font-family: $font-texts;
-  color: $backgroundLine;
-}
-
-// // .header__text {
-// //     width: 160px;
-//     height: 20px;
-//     position: absolute;
-//     top: 38px;
-//     left: 73%;
-//     margin-left: -80px;
-//     font-size: 15px;
-//     font-family:$font-texts;
-//   //  line-height: 30px;
-// }
-
-.cont__btn {
-  position: absolute;
-  left: 90%;
-  bottom: 1rem;
-}
-
-.cont__btn {
-  background-color: #ffccfd;
-  font-family: $font-btns;
-  border-radius: 4vh;
-  border: solid black 1px;
-  color: black;
-  // padding: 1% 2%;
-   width: 10vh;
-   height: 5vh; //поиграть с размерами для адаптива
   cursor: pointer;
 
-}
+    }
 
-.cont__btn:hover {
-  background-color: $btnBackGroundHover;
-  box-shadow: 5px 5px 5px $color;
+    .exit__text {
+      
+  top: 28px;
+  left: 88%;
+  font-family: $font-texts;
+  color: $backgroundLine;
+
+    }
+  }
+
+  .account__enter {
+    .account__btn {background-color: #ffccfd;
+      font-family: $font-btns;
+      border-radius: 4vh;
+      border: solid black 1px;
+      color: black;
+      // padding: 1% 2%;
+       width: 10vh;
+       height: 5vh; //поиграть с размерами для адаптива
+      cursor: pointer;
+    }
+    .account__btn:hover {
+      background-color: $btnBackGroundHover;
+      box-shadow: 5px 5px 5px $color;
+    }
+    
+  }
 }

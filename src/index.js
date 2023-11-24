@@ -68,7 +68,7 @@ const seeBlockHeaderClass = document.querySelector('.header__btn-container');// 
 
 const hiNameUser = document.querySelector('#hiNameUser');//приветствие юзера в хэдэр
 
-const hiUser = document.querySelector('#hiUser');//блок кнопки Войти в хэдэр
+const hiUser = document.querySelector('.account__enter');//блок кнопки Войти в хэдэр
 
 btnLogin.disabled = true;//кнопка отправки не активна
 
@@ -124,6 +124,21 @@ loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
 })
+
+//Выйти из ЛК в хэдэре
+
+// function exitUserLC() {
+//     window.localStorage.removeItem('client');// удаление локального хранилища client
+//     seeBlockHeaderClass.style.display = 'none';//блок Личный кабинет и Выйти в хэдэре сделать невидимым
+
+
+//     // btnOpen.style.display = 'flex';//кнока Войти в хэдэре видимая
+
+//     hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
+// }
+
+
+// door.addEventListener('click', exitUserLC)
 
 loginEmail.addEventListener('input', checkInput);// слушатель события-активировать кнопку если input почты и пароля не пустые
 loginPassword.addEventListener('input', checkInput);//слушатель события-активировать кнопку если input почты и пароля не пустые
@@ -345,21 +360,6 @@ newComeIn.addEventListener('click', () => {
 })
 
 
-//Выйти из ЛК в хэдэре
-const exitWind = document.querySelector('#exitWind');
-
-function exitUserLC() {
-    window.localStorage.removeItem('client');// удаление локального хранилища client
-    seeBlockHeaderClass.style.display = 'none';//блок Личный кабинет и Выйти в хэдэре сделать невидимым
-
-
-    // btnOpen.style.display = 'flex';//кнока Войти в хэдэре видимая
-
-    hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
-}
-
-
-exitWind.addEventListener('click', exitUserLC)
 
 
 
