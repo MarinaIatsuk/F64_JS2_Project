@@ -24,37 +24,37 @@ body {
     box-shadow: 0 0 15px red;
 }
 
-.error-text{
+.error-text {
     @extend %error-text;
 }
 
-.cont {
-    display: flex;
-    justify-content: end;
+// .cont {
+//     display: flex;
+//     justify-content: end;
 
-    &__btn {
-        padding: 5px 10px;
-    }
-}
+//     &__btn {
+//         padding: 5px 10px;
+//     }
+// }
 
-.check-input{
+.check-input {
     display: none;
 }
 
-.new-pass{
+.new-pass {
     display: none;
 }
 
-.ok-block{
+.ok-block {
     display: none;
 }
 
-input:focus{
+input:focus {
     outline: 2px solid black;
     box-shadow: 0 0 15px rgb(226, 190, 190);
 }
 
-input:active{
+input:active {
     outline: 2px solid rgb(107, 100, 100);
 }
 
@@ -66,7 +66,7 @@ input:active{
     border: none;
     border-radius: 20px;
 
-    @media #{$tablet}{
+    @media #{$tablet} {
         max-width: 539px;
     }
 
@@ -100,7 +100,7 @@ input:active{
         color: $btnBackGroundHover;
         text-align: center;
 
-        @media #{$tablet}{
+        @media #{$tablet} {
             font-size: 50px;
         }
 
@@ -116,7 +116,7 @@ input:active{
         width: 90%;
         text-align: center;
 
-        @media #{$tablet}{
+        @media #{$tablet} {
             font-size: 18px;
         }
 
@@ -129,7 +129,7 @@ input:active{
         font-family: $font-texts;
         font-size: 25px;
 
-        @media #{$tablet}{
+        @media #{$tablet} {
             font-size: 23px;
         }
 
@@ -170,10 +170,10 @@ input:active{
         font-family: $font-texts;
         color: rgb(105, 131, 245);
 
-        @media #{$tablet}{
+        @media #{$tablet} {
             font-size: 18px;
         }
-    
+
         @media #{$mobile} {
             font-size: 16px;
         }
@@ -239,7 +239,7 @@ input:active{
         padding: 1%;
     }
 
-    &__btn{
+    &__btn {
         display: flex;
         justify-content: center;
         margin-top: 4%

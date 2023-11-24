@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
-   <link rel="stylesheet" href="./assets/style/main.scss" />
+  <link rel="stylesheet" href="./assets/style/main.scss" />
   <link rel="stylesheet" href="./assets/style/_index.scss">
 </head>
 
@@ -14,56 +14,61 @@
   <header class="header">
     <div class="header__container _container">
       <!-- <div class="header__body"> -->
-    <a href="#" class="header__logo"> MOVIEСервис </a>
+      <a href="#" class="header__logo"> MOVIEСервис </a>
 
-     <!-- hamburger icon -->
-     <div class="header__burger">
-     <span></span>
-     </div>
+      <!-- hamburger icon -->
+      <div class="header__burger">
+        <span></span>
+      </div>
 
-<!-- <input class="header__s" type="checkbox" id="side-menu" />
+      <!-- <input class="header__s" type="checkbox" id="side-menu" />
 <label class="header__hamb" for="side-menu" >
   <span class="header__hamb-line"></span  ></label>
      -->
-    <nav class="header__nav ">
-    <ul class="header__menu">
-   <li class="menu__item">
-   <a href="#" class="header__link" >Фильмы</a>
-   </li>
-    <li class="header__item">
-    <a href="#" class="header__link">Сериалы</a>
-     </li>
-     </ul>
-    </nav>
-     <div class="search-box">
-    <form >
-      <input type="text"  class="header__search" placeholder="Поиск" id="filter"/>
-      <ul class="header__search-list" id="list"> </ul>
-      <!-- <li>Фильм</li> -->
-    </form>
-     </div>
+      <nav class="header__nav ">
+        <ul class="header__menu">
+          <li class="menu__item">
+            <a href="#" class="header__link">Фильмы</a>
+          </li>
+          <li class="header__item">
+            <a href="#" class="header__link">Сериалы</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="search-box">
+        <form>
+          <input type="text" class="header__search" placeholder="Поиск" id="filter" />
+          <ul class="header__search-list" id="list"> </ul>
+          <!-- <li>Фильм</li> -->
+        </form>
+      </div>
 
-       <div class="header__btn-container">
- <h3 class="user__name">Имя пользователя</h3>
-<div class="user__email"></div>
-<img  src="./assets/images/avatar.png"  alt="avatar"  id="avatar" class="user__img" onclick="location.href='personalaccount.html'" />
-<img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img" >
-<h3 class="exit__name">Выйти</h3>
-</div>
+      <div class="header__btn-container" id="seeBlockHeader">
+
+        <h3 class="user__name" id="hiNameUser"></h3>
+
+        <div class="user__email"></div>
+        <img src="./assets/images/avatar.png" alt="avatar" id="avatar" class="user__img"
+          onclick="location.href='personalaccount.html'" />
+        <img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img">
+
+
+        <button class="exit__name" id="exitWind">Выйти</button>
+      </div>
       <div class="cont" id="hiUser">
-      <button class="cont__btn" id="btnOpen">Войти</button>
-       </div>
-                </div>
+        <button class="cont__btn" id="btnOpen">Войти</button>
+      </div>
+    </div>
     </div>
     </div>
   </header>
 
   <!-- Кнопка временная -->
-  <div class="cont" id="hiUser">
+  <!-- <div class="cont" id="hiUser">
     <button class="cont__btn" id="btnOpen">Войти</button>
-  </div>
+  </div> -->
 
-  <a href="./registr.html">перейти</a>
+  <!-- <a href="./registr.html">перейти</a> -->
 
 
 
@@ -138,13 +143,15 @@
         <form class="dialog-form__form" name="thirdForm" novalidate>
           <div class="dialog-form__password">
             <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
-            <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword" placeholder="Введите новый пароль..." minlength="8" required>
+            <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword"
+              placeholder="Введите новый пароль..." minlength="8" required>
 
             <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
           </div>
           <div class="dialog-form__reappassword">
             <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
-            <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword" placeholder="Повторите пароль..." minlength="8" required>
+            <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword"
+              placeholder="Повторите пароль..." minlength="8" required>
 
             <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
           </div>
@@ -166,19 +173,6 @@
 
     </div>
   </dialog>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -217,27 +211,7 @@
               <div class="block__down-posters down-posters" id="down-posters"></div>
             </div>
           </div>
-          <div class="dialog-form__secret">
-            <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
-            <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
-              class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
-
-            <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
-          </div>
-          <div class="dialog-form__btn">
-            <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
-
-
-     
-
-
-
-
+        </div>
 
         <div class="main-page__block-button block-button">
           <div class="main-page__button btn">Начать прямо сейчас!</div>
@@ -249,6 +223,7 @@
     <a href=""></a>
   </main>
   <!--Конец главной страницы-->
+
 
 
 

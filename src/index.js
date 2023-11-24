@@ -62,7 +62,13 @@ const loginEmail = document.querySelector('#loginEmail');//доступ к input
 const loginPassword = document.querySelector('#loginPassword');//доступ к input пароль
 const btnLogin = document.querySelector('#btnLogin');//доступ к кнопке войти
 
-const hiUser = document.querySelector('#hiUser')//приветствие юзера в хэдэр
+
+
+const seeBlockHeaderClass = document.querySelector('.header__btn-container');// класс блока Выйти и Личный кабинет, для настройки видимости или невидимости
+
+const hiNameUser = document.querySelector('#hiNameUser');//приветствие юзера в хэдэр
+
+const hiUser = document.querySelector('#hiUser');//блок кнопки Войти в хэдэр
 
 btnLogin.disabled = true;//кнопка отправки не активна
 
@@ -71,7 +77,13 @@ function lsName() {
     let equallyLs = localStorage.hasOwnProperty("client");// содержит ли локальное хранилище данные о "client"
 
     if (equallyLs === true) {
-        btnOpen.style.display = 'none';//кнопка войти в хэдэр
+        // btnOpen.style.display = 'none';//кнопка войти в хэдэр
+
+
+        hiUser.style.display = 'none';//Блок кнопки Войти в хэдэр
+
+
+        seeBlockHeaderClass.style.display = 'flex';
 
         // получаем данные client из локального хранилища
         const objLS = window.localStorage.getItem('client');
@@ -79,7 +91,8 @@ function lsName() {
 
         console.log(accessObj);
 
-        hiUser.innerHTML = `<p class="cont__text-name"> Привет, ${accessObj.name}</p>`;//вместо кнопки войти в хэдэре
+        // тут доделать
+        hiNameUser.textContent = ` Привет, ${accessObj.name}`;
 
 
         let nowDateMs = new Date().getTime();//текущая дата
@@ -87,13 +100,15 @@ function lsName() {
         //выход из ЛК через месяц
         if (nowDateMs - accessObj.time > 30*24*60*60*1000) {
             window.localStorage.removeItem('client');//удаление локального хранилища если юзера не было больше месяца на сайте
-            btnOpen.style.display = 'flex';
+            // btnOpen.style.display = 'flex';
+            hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
         } else {
             accessObj.time = new Date().getTime();//обновляется время в локальном хранилище если он зашел на сайт раньше, чем автоматический выход из сайта его разлогинил
             window.localStorage.setItem('client', JSON.stringify(accessObj));
         }
     } else {
-        btnOpen.style.display = 'flex';
+        // btnOpen.style.display = 'flex';
+        hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
     }
 
     let login = new URLSearchParams(window.location.search).get('login');//если login=true, то открывается модальное окно
@@ -148,12 +163,16 @@ async function examLogin() {
 
             window.windModal.close();//закрыть модальное окно
 
-            btnOpen.style.display = 'none;';//кнопка войти в хэдэр
+            // btnOpen.style.display = 'none';//кнопка войти в хэдэр
+            hiUser.style.display = 'none';//Блок кнопки Войти в хэдэр
+
+            // ИЛИ ПЕРЕДЕЛАТЬ НА block
+            seeBlockHeaderClass.style.display = 'flex';
 
             const objLS = window.localStorage.getItem('client');
             const accessObj = JSON.parse(objLS);
 
-            hiUser.innerHTML = `<p class="cont__text-name"> Привет, ${accessObj.name}</p>`;
+            hiNameUser.textContent = ` Привет, ${accessObj.name}`;
         }
     }
     btnLogin.disabled = false;
@@ -262,6 +281,9 @@ const passwordBtn = document.querySelector('#passwordBtn');//доступ к к�
 function closeOneBlock() {
     mainForm.style.display = 'none';//закрытие первого блока
     checkInputSecond.style.display = 'flex';//открывается второй блок
+
+    secondEmail.value= '';
+    secondSecret.value='';
 }
 
 
@@ -269,6 +291,8 @@ passwordBtn.addEventListener('click', closeOneBlock);
 
 // проверка email и кодового слова во второй форме
 async function checkInfoSecondForm() {
+
+
     secondBtn.disabled = true;
 
     let secretText = MD5(secondSecret.value).toString();
@@ -321,6 +345,21 @@ newComeIn.addEventListener('click', () => {
 })
 
 
+//Выйти из ЛК в хэдэре
+const exitWind = document.querySelector('#exitWind');
+
+function exitUserLC() {
+    window.localStorage.removeItem('client');// удаление локального хранилища client
+    seeBlockHeaderClass.style.display = 'none';//блок Личный кабинет и Выйти в хэдэре сделать невидимым
+
+
+    // btnOpen.style.display = 'flex';//кнока Войти в хэдэре видимая
+
+    hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
+}
+
+
+exitWind.addEventListener('click', exitUserLC)
 
 
 
