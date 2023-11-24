@@ -8,7 +8,7 @@
 </head>
 <body>
     <main class="main-reg">
-        <div class="main-reg__container">
+        <div class="main-reg__container" id="invisibleOne">
             <h2 class="main-reg__title">MOVIE Сервис</h2>
             <p class="main-reg__text">Зарегестрироваться</p>
             <div class="main-reg__container-form">
@@ -17,49 +17,49 @@
                         <label for="textName" class="form__name-text text">Имя пользователя</label>
                         <input type="text" placeholder="Введите имя..." name="secondName" class="form__name-input" id="textName" minlength="2" pattern="^[А-Яа-яЁёa-zA-Z]+$" required>
 
-                        <p class="form__name-error"></p>
+                        <p class="form__name-error error-text"></p>
                     </div>
                     <div class="form__email location">
                         <label for="textEmail" class="form__email-text text">Email</label>
-                        <input type="email" name="secondEmail" class="form__email-input" id="textEmail" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" placeholder="Введите email..." required>
+                        <input type="email" name="secondName" class="form__email-input" id="textEmail" pattern="" placeholder="Введите email..." required>
 
-                        <p class="form__email-error"></p>
+                        <p class="form__email-error error-text"></p>
                     </div>
                     <div class="form__password location">
                         <label for="secondPassword" class="form__password-text text">Пароль</label>
-                        <input name="newPassword" type="password" class="form__password-input" id="secondPassword" placeholder="Введите пароль..." minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
+                        <input name="secondName" type="password" class="form__password-input" id="secondPassword" placeholder="Введите пароль..." minlength="8" required>
 
-                        <p class="form__password-error"></p>
+                        <p class="form__password-error error-text"></p>
                     </div>
                     <div class="form__passrep location">
                         <label for="repeatPassword" class="form__passrep-text text">Повторите пароль</label>
-                        <input type="password" name="repPassword" class="form__passrep-input" id="repeatPassword"  placeholder="Повторите пароль..."  minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" name="passwordTwo" required>
+                        <input type="password" name="secondName" class="form__passrep-input" id="repeatPassword"  placeholder="Повторите пароль..."  minlength="8" required>
 
-                        <p class="form__passrep-error"></p>
+                        <p class="form__passrep-error error-text"></p>
                     </div>
                     <div class="form__secret location">
-                        <label for="textSecret" class="form__code-text text">Кодовое слово</label>
-                        <input type="text" placeholder="Введите кодовое слово..." name="secondSecret" class="form__secret-input" id="textSecret" minlength="2" required>
-
-                        <p class="form__name-error"></p>
+                        <label for="textSecret" class="form__secret-text text">Кодовое слово</label>
+                        <input type="text" placeholder="Введите кодовое слово..." name="secondName" class="form__secret-input" id="textSecret" minlength="2" required>
+                        <p class="form__secret-error error-text"></p>
                     </div>
                     <div class="form__checkbox">
                         <input id="formAgreement" class="form__checkbox-input" type="checkbox" name="secondCheckbox" required>
                         <label for="formAgreement" class="form__checkbox-text text"><span>Согласие на обработку персональных данных</span></label>
-
-                        <p class="form__checkbox-error"></p>
                     </div>
+
                     <div class="form__btn">
-                        <button class="form__btn-text" id="btnText">Регистрация</button>
+                        <button class="form__btn-text" id="btnText">Зарегестрироваться</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="main-reg__container">
+        <div class="main-reg__container" id="invisibleTwo">
             <div class="main-reg__question">
                 <p class="main-reg__question-text">Уже есть аккаунт?</p>
-                <button class="main-reg__question-btn">Войдите</button>
+                <button class="main-reg__question-btn" id="btnComeIn">Войдите</button>
             </div>
+        </div>
+        <div class="main-reg__container see" id="resultOk">
         </div>
     </main>
 

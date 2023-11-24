@@ -5,101 +5,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
-   <link rel="stylesheet" href="./assets/style/main.scss" />
+  <link rel="stylesheet" href="./assets/style/main.scss" />
   <link rel="stylesheet" href="./assets/style/_index.scss">
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="header__container _container">
-      <!-- <div class="header__body"> -->
-    <a href="#" class="header__logo"> MOVIEСервис </a>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container _container">
+        <!-- <div class="header__body"> -->
+        <a href="#" class="header__logo"> MOVIEСервис </a>
 
-     <!-- hamburger icon -->
-     <div class="header__burger">
-     <span></span>
-     </div>
+        <!-- hamburger icon -->
+        <div class="header__burger">
+          <span></span>
+        </div>
 
-<!-- <input class="header__s" type="checkbox" id="side-menu" />
-<label class="header__hamb" for="side-menu" >
-  <span class="header__hamb-line"></span  ></label>
-     -->
-    <nav class="header__nav ">
-    <ul class="header__menu">
-   <li class="menu__item">
-   <a href="#" class="header__link" >Фильмы</a>
-   </li>
-    <li class="header__item">
-    <a href="#" class="header__link">Сериалы</a>
-     </li>
-     </ul>
-    </nav>
-     <div class="search-box">    
-    <form >
-      <input type="text"  class="header__search" placeholder="Поиск" id="filter"/> 
-      <ul class="header__search-list" id="list"> </ul> 
-      <!-- <li>Фильм</li> -->
-    </form>
-     </div>   
+        <!-- <input class="header__s" type="checkbox" id="side-menu" />
+  <label class="header__hamb" for="side-menu" >
+    <span class="header__hamb-line"></span  ></label>
+       -->
+        <nav class="header__nav ">
+          <ul class="header__menu">
+            <li class="menu__item">
+              <a href="#" class="header__link">Фильмы</a>
+            </li>
+            <li class="header__item">
+              <a href="#" class="header__link">Сериалы</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="search-box">
+          <form>
+            <input type="text" class="header__search" placeholder="Поиск" id="filter" />
+            <ul class="header__search-list" id="list"> </ul>
+            <!-- <li>Фильм</li> -->
+          </form>
+        </div>
 
-       <div class="header__btn-container"> 
- <h3 class="user__name">Имя пользователя</h3> 
-<div class="user__email"></div> 
-<img  src="./assets/images/avatar.png"  alt="avatar"  id="avatar" class="user__img" onclick="location.href='personalaccount.html'" />
-<img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img" >
-<h3 class="exit__name">Выйти</h3> 
-</div>
-      <div class="cont" id="hiUser"> 
-      <button class="cont__btn" id="btnOpen">Войти</button>
-       </div>  
-                </div>
-    </div>
-    </div>
+        <div class="header__btn-container" id="seeBlockHeader">
+
+          <h3 class="user__name" id="hiNameUser"></h3>
+
+          <div class="user__email"></div>
+          <img src="./assets/images/avatar.png" alt="avatar" id="avatar" class="user__img"
+            onclick="location.href='personalaccount.html'" />
+          <img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img">
+
+
+          <button class="exit__name" id="exitWind">Выйти</button>
+        </div>
+        <div class="cont" id="hiUser">
+          <button class="cont__btn" id="btnOpen">Войти</button>
+        </div>
+      </div>
+  </div>
+  </div>
   </header>
+  </div>
 
   <!-- Кнопка временная -->
-  <div class="cont" id="hiUser">
+  <!-- <div class="cont" id="hiUser">
     <button class="cont__btn" id="btnOpen">Войти</button>
-  </div>
+  </div> -->
+
+  <!-- <a href="./registr.html">перейти</a> -->
+
+
 
 
   <!-- Модальное окно -->
   <dialog class="dialog" id="windModal">
     <div class="dialog__close">
-      <button class="dialog__close" id="btnClose">X</button>
+      <button class="dialog__close-btn" id="btnClose">X</button>
     </div>
     <div class="dialog__container" id="formContainer">
-      <h2 class="dialog__title">MOVIE Сервис</h2>
-      <p class="dialog__text">Войти в личный кабинет</p>
-      <form class="dialog-form" name="loginForm" novalidate>
-        <div class="dialog-form__email">
-          <label for="secondEmail" class="dialog-form__email-text">Email</label>
-          <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
-            pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+      <div class="dialog__one-block main-form">
+        <h2 class="dialog__title">MOVIE Сервис</h2>
+        <p class="dialog__text dialog-form">Войти в личный кабинет</p>
+        <form class="dialog-form__form" name="loginForm" novalidate>
+          <div class="dialog-form__email">
+            <label for="loginEmail" class="dialog-form__email-text">Email</label>
+            <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
+              placeholder="Введите email..." required>
 
-          <p class="dialog-form__email-error"></p>
-        </div>
-        <div class="dialog-form__password">
-          <label for="secondPassword">Пароль</label>
-          <input name="newPassword" type="password" id="loginPassword" placeholder="Введите пароль..." minlength="8"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
+            <p class="dialog-form__email-error error-text" id="dialogEmailError"></p>
+          </div>
+          <div class="dialog-form__password">
+            <label for="loginPassword" class="dialog-form__password-text">Пароль <button
+                class="dialog-form__password-btn" id="passwordBtn">Забыли пароль?</button></label>
+            <input name="newPassword" class="dialog-form__password-input" type="password" id="loginPassword"
+              placeholder="Введите пароль..." minlength="8" required>
 
-          <p class="error-message"></p>
-        </div>
-        <div class="form__btn">
-          <input class="form__btn-text" type="submit" name="sendForm" id="btnLogin" value="Войти">
-        </div>
-      </form>
+            <p class="dialog-form__password-error error-text" id="dialogPasswError"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
+          </div>
+        </form>
 
-      <div>
-        <p>Новенький?</p>
-        <a href="">Создай аккаунт</a>
+        <div class="dialog__block">
+          <p class="dialog__block-text">Новенький?</p>
+          <a class="dialog__block-link" href="./registr.html">создай аккаунт</a>
+        </div>
       </div>
+
+      <!-- пользователь вводит свой email и кодовое слово -->
+      <div class="dialog__two-block check-input" id="examDate">
+        <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при регистрации
+        </h5>
+        <form class="dialog-form__form" name="secondForm" novalidate>
+          <div class="dialog-form__email">
+            <label for="secondEmail" class="dialog-form__email-text">Email</label>
+            <input type="email" name="secondEmailInput" class="dialog-form__email-input" id="secondEmail"
+              pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+
+            <p class="dialog-form__err-email error-text" id="secondEmailErr"></p>
+          </div>
+          <div class="dialog-form__secret">
+            <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
+            <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
+              class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
+
+            <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
+
+
+      <div class="dialog__three-block new-pass" id="replacePass">
+        <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
+        <form class="dialog-form__form" name="thirdForm" novalidate>
+          <div class="dialog-form__password">
+            <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
+            <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword"
+              placeholder="Введите новый пароль..." minlength="8" required>
+
+            <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
+          </div>
+          <div class="dialog-form__reappassword">
+            <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
+            <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword"
+              placeholder="Повторите пароль..." minlength="8" required>
+
+            <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Новый пароль успешно зарегестрирован -->
+
+
+      <div class="dialog__four-block ok-block">
+        <div class="ok-block__location">
+          <p class="ok-block__text">Вы успешно изменилии пароль</p>
+          <button class="ok-block__btn" id="newComwIn">перейти в форму входа</button>
+        </div>
+      </div>
+
     </div>
   </dialog>
 
-  <a href="./registr.html">перейти</a>
+
+
+
+
+
+
 
   <!--Начало главной страницы-->
   <main class="block-main">
@@ -143,6 +224,7 @@
     <a href=""></a>
   </main>
   <!--Конец главной страницы-->
+
 
 
 
