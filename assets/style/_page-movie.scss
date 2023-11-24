@@ -183,7 +183,6 @@
     &__description-wrapper {
         max-width: 60%;
         display: flex;
-        // flex-direction: column;
         text-align: justify;
 
         @media #{$mobile} {
@@ -209,7 +208,7 @@
 
         @media #{$mobile} {
             gap: 5px;
-            overflow: hidden;
+            flex-wrap: wrap;
         }
 
         @media #{$tablet} {
@@ -238,9 +237,6 @@
     &__title {
         font-family: $font-titles;
 
-        @media #{$tablet} {
-            // margin-right: 10vw;
-        }
     }
 }
 
@@ -270,6 +266,7 @@
             padding: 10px;
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             gap: 5vw;
             width: fit-content;
             margin-top: 1px;
@@ -283,10 +280,6 @@
         align-items: center;
         gap: 10px;
 
-        @media #{$tablet} {
-            // margin-right: 10vw;
-        }
-
         @media #{$mobile} {
             margin-top: 0;
             display: flex;
@@ -296,18 +289,9 @@
 
     &__title {
         font-family: $font-titles;
-
-        // margin-right: 8vw;
-        @media #{$tablet} {
-            // margin-right: 10vw;
-        }
     }
 }
 
-// .titleSeason{
-//     $font-btns: 'Fira Sans Condensed';
-
-// }
 
 #seasons {
     margin-left: 20px;
@@ -335,7 +319,7 @@
 }
 
 .title-episod {
-    max-width: 40vw;
+    max-width: 25vw;
     width: 100%;
 
     @media #{$tablet} {
@@ -351,10 +335,10 @@
 }
 
 .episod {
-    max-width: 60vw;
+    max-width: 70vw;
     display: flex;
     text-align: justify;
-
+    width: 100%;
     @media #{$tablet} {
         max-width: 100%;
     }
