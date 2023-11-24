@@ -6,6 +6,7 @@ import {
   get
 } from './db'; // для работы с БД. Импорт функции из db
 
+
 document.addEventListener("DOMContentLoaded", function () {
   
 const listInput = document.querySelector("#listInput");
@@ -86,7 +87,7 @@ try {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                'X-API-KEY': "ee5367e9-c264-44b7-93b8-dab17fafadc7",
+                'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
                                },
         });
         const data = await response.json();
@@ -128,39 +129,32 @@ const template =  `
   likeList.appendChild(item); // добавляем элемент в контейнер
 
     // выбираем все лайки
-    const likeBtns = document.querySelectorAll('.likeBtn');
 
-        likeBtns.forEach((btn) => {
-        btn.addEventListener('click', async function (event) {
+    likeList.addEventListener('click', async function (event) {
             event.preventDefault()
            
-            // Получаю id фильма из каждого "лайка"
-            const filmId = btn.getAttribute('id');
-            let target = event.target; //это «целевой» элемент, на котором произошло событие
-            if (target.tagName === 'SPAN') {
-              target.classList.toggle('likeIcon'); 
-              
-                console.log(filmId); //Проверка
-                  // Получаю id пользователя из Local storage
-    const objLS = window.localStorage.getItem('client');
-    const accessObj = JSON.parse(objLS).id;
-                console.log(accessObj); //Проверка
-                setLike(accessObj, filmId, false);
+             // Проверка является ли выбранный элемент кнопкой с классом  'likeBtn'
+    const likeBtn = event.target.closest('.likeBtn');
+    if (likeBtn) {
+        const filmId = likeBtn.getAttribute('id');
+        const objLS = window.localStorage.getItem('client');
+        const accessObj = JSON.parse(objLS).id;
+
+        likeBtn.querySelector('span').classList.toggle('likeIcon');
+        console.log(filmId);
+        console.log(accessObj);
+      
 // Находим родительский элемент лайка и удаляем его
-const movieRemove = btn.closest('.content__item');
+const movieRemove = likeBtn.closest('.content__item');
 if (movieRemove) {
     movieRemove.remove();
 }
-        
-                                  
-                                   }
-                                  
-        });
+setLike(accessObj, filmId, false);
+        }
+     });
+    }
   });
-}
-
-
-
+  
 async function updateFavoritesList(user_id) {
   // Получаем актуальные данные из базы
   const updatedClientInfo = await db.get("users", user_id);
@@ -174,15 +168,17 @@ async function updateFavoritesList(user_id) {
   await getMovies(likesKeys);
 }
 
+
+
  async function setLike(user_id, film_id, state) {
       const data = {};
       data[`likes.${film_id}`] = state;
       await db.update("users", user_id, data);
    updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД */
         }; 
-
         
-});
+
+
 
 
 
