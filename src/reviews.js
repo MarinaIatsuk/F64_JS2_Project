@@ -223,11 +223,6 @@ async function getComments() {
 
 // Функции открытия и закрытия модальных окнон
 
-// const btnOpenReviewModal = document.querySelector("#btnOpenReviewModal");
-const btnOpenReviewModal = document.querySelector(".tabs__title-wrapper_btn");
-// const reviewModal = document.querySelector("#reviewModal");
-const btnCloseReviewModal = document.querySelector("#btnCloseReviewModal");
-
 const btnCloseRedirectionModal = document.querySelector(
     "#btnCloseRedirectionModal"
 );
@@ -236,39 +231,15 @@ const btnCloseRedirectionModal = document.querySelector(
 let client = localStorage.getItem("client");
 client = client ? JSON.parse(client) : null;
 
-function openReviewModal() {
-    // // Получаем данные пользователя из Local Storage
-    // let client = localStorage.getItem("client");
-    // client = client ? JSON.parse(client) : null;
-    // Если пользователь не авторизован
-    if (client === null) {
-        closeReviewModal();
-        window.redirectionModal.showModal();
-    } else {
-        // Если пользователь авторизован
-        window.reviewModal.showModal();
-        console.log(client);
-        // Передаём данные пользователя в getDataFromReviewForm();
-        // getDataFromReviewForm(client);
-    }
-}
-
-// Функция открываем окна успешной отправки отзыва на 4 секунды
+// Функция открытия окна успешной отправки отзыва на 4 секунды
 function openSuccessModal() {
     window.successModal.showModal();
     setTimeout(() => window.successModal.close(), 4000);
 }
 
-function closeReviewModal() {
-    window.reviewModal.close();
-}
-
 function closeRedirectionModal() {
     window.redirectionModal.close();
 }
-
-btnOpenReviewModal.addEventListener("click", openReviewModal);
-btnCloseReviewModal.addEventListener("click", closeReviewModal);
 
 btnCloseRedirectionModal.addEventListener("click", closeRedirectionModal);
 
@@ -285,7 +256,6 @@ async function addReview(user_id, user_name, film_id, title, text, date) {
     data.film_id = film_id;
     const id = await db.add("comments", data);
 
-    closeReviewModal();
     // Открываем окно успешного отправления отзыва на несколько секунд
     openSuccessModal();
 
@@ -307,10 +277,6 @@ async function getDataFromReviewForm() {
     // Получаем текст отзыва из input
     const reviewText = reviewTextInput.value.trim();
 
-    // // Получаем данные пользователя из Local Storage
-    // let client = localStorage.getItem("client");
-    // client = client ? JSON.parse(client) : null;
-    // Если текст отзыва не пустой и пользователь авторизован
     if (reviewText !== "" && client) {
         const date = Date.now();
         const title = reviewTitle;
@@ -343,6 +309,8 @@ async function getDataFromReviewForm() {
         );
         console.log("Comment added with id:", id);
         // submitBtn.disabled = false;
+    } else if (client === null) {
+        window.redirectionModal.showModal();
     }
 }
 
@@ -351,6 +319,8 @@ reviewForm.addEventListener("submit", (e) => {
     e.preventDefault(); //отмена отправки
 
     getDataFromReviewForm();
+
+    // TODO написать валидацию полей
     // checkAll();
 });
 
