@@ -108,35 +108,36 @@
         </section>
 
         <section class="block-reviews">
-            <div class="block-reviews__modals">
 
-                <!-- Модальное окно для неавторизованного пользователя -->
-                <dialog class="dialog" id="redirectionModal">
+            <!-- Модальное окно для неавторизованного пользователя -->
+            <dialog class="block-reviews__dialog dialog dialog_redirect" id="redirectionModal">
+            <!-- <dialog class="block-reviews__dialog dialog dialog_redirect" id="redirectionModal" open> -->
+                <div class="dialog__wrapper">
                     <div class="dialog__close">
-                        <button class="dialog__close" id="btnCloseRedirectionModal">&#10799;</button>
+                        <button class="dialog__close-btn" id="btnCloseRedirectionModal">&#10799;</button>
                     </div>
                     <div class="dialog__container" id="redirectionContainer">
                         <h2 class="dialog__title">Вы не вошли на сайт</h2>
                         <p class="dialog__text">Авторизуйтесь, чтобы поделиться своим мнением о фильме</p>
-                        <div class="dialog__btn">
+                        <!-- <div class="dialog__btn">
                             <button class="dialog__btn-text" name="redirectToAuthForm" id="btnRedirectToAuth">Авторизоваться</button>
-                        </div>
+                        </div> -->
                     </div>
-                </dialog>
+                </div>
+            </dialog>
 
 
-                <!-- Модальное окно успешной отправки отзыва -->
-                <dialog class="dialog" id="successModal">
-                    <!-- <div class="dialog__close">
-                        <button class="dialog__close" id="btnCloSesuccessModal">&#10799;</button>
-                    </div> -->
-                    <div class="dialog__container" id="SuccessContainer">
-                        <h2 class="dialog__title">Спасибо!</h2>
-                        <p class="dialog__text">Ваш отзыв успешно отправлен.</p>
-                    </div>
-                </dialog>
-
-            </div>
+            <!-- Модальное окно успешной отправки отзыва -->
+            <dialog class="block-reviews__dialog dialog dialog_success" id="successModal">
+            <!-- <dialog class="block-reviews__dialog dialog dialog_success" id="successModal" open> -->
+                <!-- <div class="dialog__close">
+                    <button class="dialog__close" id="btnCloSesuccessModal">&#10799;</button>
+                </div> -->
+                <div class="dialog__container" id="SuccessContainer">
+                    <h2 class="dialog__title">Спасибо!</h2>
+                    <p class="dialog__text">Ваш отзыв успешно отправлен.</p>
+                </div>
+            </dialog>
 
             <div class="block-reviews__tabs tabs">
                 <div class="tabs__nav">

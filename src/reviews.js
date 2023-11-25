@@ -83,7 +83,7 @@ function createCommentMarkup(post) {
     }
 
     let title;
-    if (post.title === undefined) {
+    if (post.title === undefined || post.title === "") {
         title = "&#10077";
     } else {
         title = post.title;
@@ -223,13 +223,26 @@ async function getComments() {
 
 // Функции открытия и закрытия модальных окнон
 
+// Кнопка закрытия модального окна для неавторизованного пользователя
 const btnCloseRedirectionModal = document.querySelector(
     "#btnCloseRedirectionModal"
 );
+const redirectionModal = document.querySelector("#redirectionModal");
 
 // Получаем данные пользователя из Local Storage
 let client = localStorage.getItem("client");
 client = client ? JSON.parse(client) : null;
+
+// Функция открытия модального окна для неавторизованного пользователя
+function openModalAndLockScroll() {
+    window.redirectionModal.showModal();
+    document.body.classList.add("scroll-lock")
+}
+
+// Возвращаем возможность прокрутки
+function returnScroll() {
+    document.body.classList.remove("scroll-lock")
+}
 
 // Функция открытия окна успешной отправки отзыва на 4 секунды
 function openSuccessModal() {
@@ -237,11 +250,25 @@ function openSuccessModal() {
     setTimeout(() => window.successModal.close(), 4000);
 }
 
+// Функция закрытия модалки для неавторизованного пользователя
 function closeRedirectionModal() {
-    window.redirectionModal.close();
+    redirectionModal.close();
+    returnScroll()
 }
 
 btnCloseRedirectionModal.addEventListener("click", closeRedirectionModal);
+
+// Закрытие модального окна по клику на подложку
+redirectionModal.addEventListener("click", closeOnBackDropClick)
+
+function closeOnBackDropClick({ currentTarget, target }) {
+    const redirectionModal = currentTarget
+    const isClickedOnBackDrop = target === redirectionModal
+    if (isClickedOnBackDrop) {
+        closeRedirectionModal();
+    }
+}
+
 
 // Функция добавления отзыва в БД
 
@@ -316,7 +343,7 @@ async function getDataFromReviewForm() {
         console.log("Comment added with id:", id);
         // submitBtn.disabled = false;
     } else if (client === null) {
-        window.redirectionModal.showModal();
+        openModalAndLockScroll();
     }
 }
 

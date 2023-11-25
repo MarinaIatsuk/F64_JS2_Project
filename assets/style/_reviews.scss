@@ -4,7 +4,27 @@
     &__tabs {
         width: 77.45vw;
     }
+
+    &__dialog {
+        text-align: center;
+    }
+
+    &__dialog::backdrop {
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+    }
 }
+
+.dialog_redirect {
+    border: none;
+    padding: 0;
+}
+
+.dialog__wrapper {
+padding: 1em;
+}
+
 
 .tabs {
     padding-top: 4vw;
@@ -46,6 +66,14 @@
 
         display: flex;
         justify-content: center;
+
+        @media #{$tablet} {
+            padding-bottom: 5vw;
+        }
+        
+        @media #{$mobile} {
+            padding-bottom: 6vw;
+        }
     }
 
     &__content._tab-1-active {
@@ -95,11 +123,13 @@
         @media #{$tablet} {
             margin: 0;
             width: 100%;
+            gap: 2vw;
         }
 
         @media #{$mobile} {
             margin: 0;
             width: 100%;
+            gap: 3vw;
         }
     }
 }
@@ -225,6 +255,14 @@
 
     &__usefulness {
         padding-bottom: 1vw;
+
+        @media #{$tablet} {
+            padding-bottom: 1.5vw;
+        }
+
+        @media #{$mobile} {
+            padding-bottom: 2vw;
+        }
     }
 }
 
