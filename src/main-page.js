@@ -1,6 +1,9 @@
 //главная страница
 //Получаем переменные из файла vars.js
-import{upperPosters, downPosters, div, divTwo} from "./vars";
+import{upperPosters, downPosters, div, divTwo, } from "./vars";
+
+// получаем переменные для кнопки и блока выводы Цитат из vars.js
+import{blockTextQuote,button} from "./vars";
 
 //Создаем функцию fetch с api адресом
 
@@ -74,6 +77,7 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
   </div>`
             ;
 //помещаем html код в div
+
         div.innerHTML = html;
         upperPosters.appendChild(div);
 
@@ -83,5 +87,26 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     .catch((err) => {
         console.log(err);
     })
+
+//Часть с цитами
+//Цитаты для главной страницы
+const quotes = [
+ " «У меня нет мечты, у меня есть цель», - Харви Спектр.",
+ "«Возможности не приходят сами - Вы создаете их», - Крис Гроссер.",
+ "«Важно не то, сбили ли тебя с ног, - важно то, поднялся ли ты снова», - Винс Ломбарди.",
+ "«Я не потерпел неудачу. Я просто нашел 10 тыс. вариантов, которые не работают», - Томас Эдисон.",
+ "«Никогда не отказывайся от того, о чем ты не можешь не думать каждый день», - Харви Спектр.",
+ "«Я - не результат обстоятельств. Я - результат собственных решений», - Стивен Кови.",
+ "«Всегда выкладывайся на полную. Что посеешь - то и пожнешь», - Ог Мандино.",
+ "«Когда вас приперли к стенке, просто сломайте ее к черту», - Харви Спектр."
+];
+
+//Выводим цитаты при нажатии на кнопку
+
+button.addEventListener("click", ()=>{
+      const randonQuote = quotes[Math.floor(Math.random()*quotes.length)];
+      blockTextQuote.textContent =randonQuote;
+
+});
 
 
