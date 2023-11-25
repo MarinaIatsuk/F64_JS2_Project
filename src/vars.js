@@ -7,3 +7,6 @@ export const downPosters = document.getElementById('down-posters');
 export const div = document.createElement('div');
 export const divTwo = document.createElement('div');
 
+// получаем кнопку для вывода цитат и блок куда будем помещать
+export const blockTextQuote = document.getElementById('subtext-quote');
+export const button = document.getElementById('btn-quote');

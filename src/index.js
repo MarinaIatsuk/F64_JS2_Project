@@ -34,7 +34,7 @@ function openModal() {
 
     //поля ввода пустые
     loginEmail.value='';
-    loginPassword.textContent='';
+    loginPassword.value='';
 }
 
 function closeModal() {
@@ -64,7 +64,16 @@ const btnLogin = document.querySelector('#btnLogin');//доступ к кноп�
 
 
 
-const seeBlockHeaderClass = document.querySelector('.header__btn-container');// класс блока Выйти и Личный кабинет, для настройки видимости или невидимости
+// const seeBlockHeaderClass = document.querySelector('.header__btn-container');// класс блока Выйти и Личный кабинет, для настройки видимости или невидимости
+
+
+
+const hiUserTextBlock = document.querySelector('.account__personal')// доступ к блоку Имя юзера + аватар
+
+const exitLsText = document.querySelector('.account__exit');//доступ к тексту Выйти и его аватар( картинка двери)
+
+    hiUserTextBlock.style.display = 'none';
+    exitLsText.style.display = 'none';
 
 const hiNameUser = document.querySelector('#hiNameUser');//приветствие юзера в хэдэр
 
@@ -77,13 +86,14 @@ function lsName() {
     let equallyLs = localStorage.hasOwnProperty("client");// содержит ли локальное хранилище данные о "client"
 
     if (equallyLs === true) {
-        // btnOpen.style.display = 'none';//кнопка войти в хэдэр
-
 
         hiUser.style.display = 'none';//Блок кнопки Войти в хэдэр
 
 
-        seeBlockHeaderClass.style.display = 'flex';
+        // seeBlockHeaderClass.style.display = 'flex';
+
+        hiUserTextBlock.style.display = 'flex';
+        exitLsText.style.display = 'flex';
 
         // получаем данные client из локального хранилища
         const objLS = window.localStorage.getItem('client');
@@ -107,7 +117,6 @@ function lsName() {
             window.localStorage.setItem('client', JSON.stringify(accessObj));
         }
     } else {
-        // btnOpen.style.display = 'flex';
         hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
     }
 
@@ -178,11 +187,12 @@ async function examLogin() {
 
             window.windModal.close();//закрыть модальное окно
 
-            // btnOpen.style.display = 'none';//кнопка войти в хэдэр
+
             hiUser.style.display = 'none';//Блок кнопки Войти в хэдэр
 
-            // ИЛИ ПЕРЕДЕЛАТЬ НА block
-            seeBlockHeaderClass.style.display = 'flex';
+
+            hiUserTextBlock.style.display = 'flex';
+            exitLsText.style.display = 'flex';
 
             const objLS = window.localStorage.getItem('client');
             const accessObj = JSON.parse(objLS);
@@ -218,8 +228,6 @@ const thirdBtn = document.querySelector('#thirdBtn');//доступ к кноп�
 thirdBtn.disabled = true;//кнопка отправки не активна в форме с новым паролем
 
 
-const inputsNewPass = document.querySelectorAll('input[name="thirdCheckOk"]');
-const allInputsArray = Array.from(inputsNewPass);
 
 
 //проверка всех input в форме с новым паролем

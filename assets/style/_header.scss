@@ -75,8 +75,8 @@
       padding-left: 3%;
       margin-left: 3%;
       margin-bottom: 2%;
-      
-      .list__link{
+
+      .list__link {
         text-decoration: none;
         cursor: pointer;
         font-family: $font-texts;
@@ -116,40 +116,43 @@
   .account__exit {
     display: flex;
     align-items: center;
+
     .exit__img {
       width: 2rem;
-  height: 2rem;
-  top: 25px;
-  left: 85%;
-  cursor: pointer;
+      height: 2rem;
+      top: 25px;
+      left: 85%;
+      cursor: pointer;
 
     }
 
     .exit__text {
-      
-  top: 28px;
-  left: 88%;
-  font-family: $font-texts;
-  color: $backgroundLine;
+
+      top: 28px;
+      left: 88%;
+      font-family: $font-texts;
+      color: $backgroundLine;
 
     }
   }
 
   .account__enter {
-    .account__btn {background-color: #ffccfd;
+    .account__btn {
+      background-color: #ffccfd;
       font-family: $font-btns;
       border-radius: 4vh;
       border: solid black 1px;
       color: black;
       // padding: 1% 2%;
-       width: 10vh;
-       height: 5vh; //поиграть с размерами для адаптива
+      width: 10vh;
+      height: 5vh; //поиграть с размерами для адаптива
       cursor: pointer;
     }
+
     .account__btn:hover {
       background-color: $btnBackGroundHover;
       box-shadow: 5px 5px 5px $color;
     }
-    
+
   }
 }
