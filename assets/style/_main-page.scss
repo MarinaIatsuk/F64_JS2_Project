@@ -63,13 +63,13 @@
 
     }
 
-    .subtitle {
+    &__subtitle {
 
-        margin-bottom: 40px;
-        font-family: $font-texts;
+        // margin-bottom: 40px;
+        font-family: $font-btns;
         font-size: 30px;
         font-weight: 400;
-        letter-spacing: 10px;
+        letter-spacing: 4px;
         color: $headers;
 
         @media #{$mobile} {
@@ -78,15 +78,16 @@
 
     }
 
-    .text {
+    &__text {
         max-width: 80%;
         margin-bottom: 25px;
         font-family: $font-texts;
-        font-weight: 400;
+        font-weight: 200;
         font-size: 20px;
         line-height: 29.9px;
         color: $headers;
-
+        padding-top: 40px;
+        text-align: justify;
     }
 }
 

@@ -1,20 +1,30 @@
-// Poppins для начертания ExtraLight
+// Noto Sans для начертания Light
 @font-face {
-    font-family: "Poppins";
-    src: local("Poppins"), local("Poppins-ExtraLight"),
-        url("../fonts/Poppins-ExtraLight.woff") format("woff"),
-        url("../fonts/Poppins-ExtraLight.ttf") format("ttf");
-    font-weight: 200;
+    font-family: "Noto Sans";
+    src: local("Noto Sans"), local("Noto-Sans-Light"),
+        url("../fonts/NotoSans-Light.woff") format("woff"),
+        url("../fonts/NotoSans-Light.ttf") format("ttf");
+    font-weight: 300;
     font-style: normal;
 }
 
-// Poppins для начертания Light
+// Noto Sans для начертания Regular
 @font-face {
-    font-family: "Poppins";
-    src: local("Poppins"), local("Poppins-Light"),
-        url("../fonts/Poppins-Light.woff") format("woff"),
-        url("../fonts/Poppins-Light.ttf") format("ttf");
-    font-weight: 300;
+    font-family: "Noto Sans";
+    src: local("Noto Sans"), local("Noto-Sans-Regular"),
+        url("../fonts/NotoSans-Regular.woff") format("woff"),
+        url("../fonts/NotoSans-Regular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+// Noto Sans для начертания Medium
+@font-face {
+    font-family: "Noto Sans";
+    src: local("Noto Sans"), local("Noto-Sans-Medium"),
+        url("../fonts/NotoSans-Medium.woff") format("woff"),
+        url("../fonts/NotoSans-Medium.ttf") format("ttf");
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -31,7 +41,7 @@
 // Fira Sans Condensed для начертания Medium
 @font-face {
     font-family: "Fira Sans Condensed";
-    src: local("Fira Sans Condensed"), local("FiraSansCondensed-Medium"),
+    src: local("Fira Sans Condensed"), local("FiraSansCondensed-Medium"), local("Fira-Sans-Condensed-Medium"),
         url("../fonts/FiraSansCondensed-Medium.woff") format("woff"),
         url("../fonts/FiraSansCondensed-Medium.ttf") format("ttf");
     font-weight: 500;
