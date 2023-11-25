@@ -258,8 +258,14 @@ async function addReview(user_id, user_name, film_id, title, text, date) {
 
     // Открываем окно успешного отправления отзыва на несколько секунд
     openSuccessModal();
+    console.log("Отзыв успешно отправлен!");
 
-    console.log("Ваш отзыв успешно отправлен!");
+    // Очищаем поля
+    reviewTitleInput.value = "";
+    reviewTextInput.value = "";
+
+    // Обновляем отзывы на странице
+    getComments()
     return id;
 }
 
