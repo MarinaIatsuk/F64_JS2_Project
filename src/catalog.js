@@ -163,5 +163,6 @@ async function setLike(user_id, film_id, state) {
         await db.removeSubfield("users", user_id, subfield);
     }
 }
+console.log('hi');
 
 
