@@ -6,7 +6,14 @@ console.log('gj');
 const door = document.querySelector(".exit__img"); //дверь
 const exitText = document.querySelector(".exit__text"); //текст возле двери
 const enter = document.querySelector('.account__btn'); //кнопка входа
-const hiUser = document.querySelector(".account__greeting"); //текст приветствия
+
+const blockEnter = document.querySelector('.account__enter');//доступ к контейнеру кнопки Войти
+// const hiUser = document.querySelector(".account__greeting"); //текст приветствия
+
+
+const hiUserTextBlock = document.querySelector('.account__personal')// доступ к блоку Имя юзера + аватар
+
+const exitLsText = document.querySelector('.account__exit');//доступ к тексту Выйти и его аватар( картинка двери)
 const avatar = document.querySelector(".account__avatar"); //аватар
 const filter = document.querySelector(".search__input"); //инпут
 const list = document.querySelector(".search__list");//список фильмов 
@@ -50,32 +57,39 @@ filter.addEventListener("input", (event) => {
 
 //Работа с элементами ЛК:
 const objLS = window.localStorage.getItem('client'); // Получение id клиента
-const accessObj = JSON.parse(objLS); // Парсим, чтобы получить id 
+const accessObj = JSON.parse(objLS); // Парсим, чтобы получить id
 
 //Делаем так, чтобы кнопки двери не было, если пользователь не зарегистрирован:
-if (!accessObj) { // Проверка регистрации пользователя
-        door.style.display = "none"; //удаляем дверь 
-        exitText.style.display = "none"; //текст тоже убираем 
-        avatar.style.display = "none"
-        hiUser.style.display = "none"
-}
+// if (!accessObj) { // Проверка регистрации пользователя
+//         door.style.display = "none"; //удаляем дверь 
+//         exitText.style.display = "none"; //текст тоже убираем 
+//         avatar.style.display = "none"
+//         hiUser.style.display = "none"
+// }
 
-//Добавление привествия при входе в ЛК:
-if (accessObj && accessObj.name) { // Проверка регистрации пользователя
-        hiUser.innerHTML = `Привет, ${accessObj.name}`; // Добавление текста. innerHTML вместо textContent, чтоб ыэлемент добавился сразу, а не после перезагрузки
-        enter.style.display = "none" //убираем кнопку входа
-        door.style.display = "block"; //добавляем дверь 
-        exitText.style.display = "block"; //текст 
-}
+// //Добавление привествия при входе в ЛК:
+// if (accessObj && accessObj.name) { // Проверка регистрации пользователя
+//         hiUser.innerHTML = `Привет, ${accessObj.name}`; // Добавление текста. innerHTML вместо textContent, чтоб ыэлемент добавился сразу, а не после перезагрузки
+//         enter.style.display = "none" //убираем кнопку входа
+//         door.style.display = "block"; //добавляем дверь 
+//         exitText.style.display = "block"; //текст 
+// }
 
 
 //Выхлд из ЛК
 door.addEventListener('click', exit) //можно функцию отдельно указывать, думаю, так удобней
+
+
 function exit() {
-        location.reload() //перезагружаем, чтобы были видны изменения
+
         window.localStorage.removeItem('client') //удалили в хранилище локальном инфу о клиенте
-        enter.style.display = "flex" //делаем его  видимым. 
+        blockEnter.style.display = "flex"; //делаем его  видимым.
+        hiUserTextBlock.style.display = "none";
+        exitLsText.style.display='none';
 }
+
+
+
 
 //выход в ЛК при клике на аватар
 avatar.addEventListener('click', enterAccount)
