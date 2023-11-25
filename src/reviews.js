@@ -1,5 +1,4 @@
 import * as db from "./db";
-import { get_query } from "./db"; // Импорт функции из db для работы с БД
 import "./reviews-tabs";
 
 // Прописываем локаль и опции для форматирования даты
@@ -208,7 +207,7 @@ async function getComments() {
         // const selectedFilmId = window.localStorage.getItem("selectedFilmId");
         let selectedFilmId = new URLSearchParams(window.location.search).get('id');
         const key = "film_id";
-        const comments = await get_query("comments", key, selectedFilmId);
+        const comments = await db.get_query("comments", key, selectedFilmId);
         console.log(comments);
 
         const commentsContainer = document.querySelector(".comments-container");
