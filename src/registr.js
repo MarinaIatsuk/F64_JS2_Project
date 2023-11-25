@@ -44,10 +44,6 @@ function checkValidity(input) {
         return false;
     }
 
-    if (validity.patternMismatch) {
-        setError('Неверный формат заполнения');
-        return false;
-    }
 
     return true;
 }
@@ -68,23 +64,21 @@ function checkAll() {
 
     const regexp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;//регулярное выражение для пароля
 
-    const regexpEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]$/; //регулярное выражение для почты
+    const regexpEmail = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/i; //регулярное выражение для почты
 
 
-        //проверка на валидность для пароля
-    if(!regexp.test(newPassword.value)) {
+    //проверка на валидность для пароля
+    if (!regexp.test(newPassword.value)) {
         ok = false;
         onePass.innerHTML = ` Пароль должен: содержать хотя бы одну большую букву, хотя бы одну маленькую букву, хотя бы одну цифру, хотя бы один спецсимвол(!@#$%^&*);`;
         newPassword.classList.add('error');
     }
 
     // проверка на валидность для почты
-    if(!regexpEmail.test(userEmail.value)){
+    if (!regexpEmail.test(userEmail.value)) {
         ok = false;
-        valueEmail.innerHTML=`Неверный формат заполнения`;
+        valueEmail.innerHTML = `Неверный формат заполнения`;
     }
-
-
 
     //Проверка совпадения паролей
 
@@ -93,9 +87,9 @@ function checkAll() {
         passwordTwo.nextElementSibling.textContent = 'Пароли не совпадают';
         passwordTwo.classList.add('error');
         ok = false;
-    }else
+    } else
 
-    return ok;
+        return ok;
 }
 
 
@@ -150,7 +144,7 @@ submButton.addEventListener('click', async () => {
 
     const users = await db.get_query("users", "email", newClient.email);
     if (users.length > 0) {
-        errErrorEmail.textContent ="пользователь с таким email существует";
+        errErrorEmail.textContent = "пользователь с таким email существует";
     } else {
         let uid = await db.add("users", newClient);
 
