@@ -27,7 +27,7 @@ $btnBackGroundHover: rgb(85, 14, 73);
 $headers: #ffffff;
 $main-header: #5E0E5A; // заголовок для главной страницы
 // переменные для шрифтов
-$font-texts: "Poppins";
+$font-texts: "Noto Sans";
 $font-titles: "Rubik";
 $font-btns: "Fira Sans Condensed";
 
@@ -46,6 +46,61 @@ $font-size-desktop: 22px; */
     margin: 0;
     padding: 0;
 }
+
+//расположение текста и инпута
+%display-block {
+    display: flex;
+    flex-direction: column;
+}
+
+
+//большие блоки в форме входа
+%display-maxblock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+//заголовок полей ввода
+%text-block {
+    font-size: 20px;
+    font-family: $font-texts;
+    color: $color;
+    padding: 1%;
+
+    @media #{$tablet}{
+        font-size: 18px;
+    }
+
+    @media #{$mobile} {
+        font-size: 16px;
+    }
+}
+
+//для инпутов форма ввода, регистрации + кнопки
+%square{
+    background-color: $inputcolor;
+    border: none;
+    border-radius: 20px;
+
+    @media #{$tablet}{
+        font-size: 11px;
+    }
+
+    @media #{$mobile} {
+        font-size: 9px;
+    }
+}
+
+
+//поле ошибки
+%error-text {
+    margin-top: 1%;
+    color: rgb(179, 116, 116);
+}
+
 
 .btn {
     //общий класс для кнопок
@@ -79,7 +134,6 @@ $font-size-desktop: 22px; */
     background-color: $btnBackGroundHover;
     box-shadow: 5px 5px 5px $color;
 }
-
 // общий контейнер для страниц
 .container {
     display: flex;
@@ -88,7 +142,7 @@ $font-size-desktop: 22px; */
     padding-top: 4vh;
     margin: 0 3vw 3vh 3vw; //Убралпа правый бок
     background-color: $background-color;
-    min-height: 100vh; 
+    min-height: 90vh; 
     height: 100%;//чтобы контейнер растягивался на ширину контента
     color: $color;
     border-radius: 4vh 4vh 40vh 4vh;

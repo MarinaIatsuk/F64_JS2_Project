@@ -1,7 +1,10 @@
 @import "./templates";
 @import "./fonts";
 
-// $color-text: #fff;
+
+
+
+
 
 .error {
     box-shadow: 0 0 15px red;
@@ -10,34 +13,80 @@
 .text {
     color: $color;
     font-size: 25px;
+    padding: 1%;
+
+    @media #{$tablet}{
+        font-size: 20px;
+    }
+
+    @media #{$mobile} {
+        font-size: 15px;
+    }
 }
 
 .location {
     display: flex;
     flex-direction: column;
+    margin-top: 2%
 }
 
 input {
-    padding: 10px;
-    border-radius: 20px;
+    @extend %square;
+    padding: 1.5%;
 }
+
+.error-text{
+    @extend %error-text;
+}
+
+.see{
+    display: none;
+}
+
+input[name="secondName"]:focus {
+    outline: 2px solid black;
+    box-shadow: 0 0 15px rgb(226, 190, 190);
+}
+
+input[name="secondName"]:active{
+    outline: 2px solid rgb(107, 100, 100);
+}
+
 .main-reg {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
+    height: 85vh;
     justify-content: center;
 
 
     &__title{
         font-size: 60px;
         color: #5E0E5A;
-        font-family: "Poppins";
-        font-weight: 400;
+        font-family: $font-titles;
+        text-align: center;
+
+        @media #{$tablet}{
+            font-size: 50px;
+        }
+
+        @media #{$mobile} {
+            font-size: 30px;
+        }
     }
 
     &__text{
         font-size: 25px;
+        margin-bottom: 2%;
+       font-family: $font-texts;
+
+       @media #{$tablet}{
+        font-size: 23px;
+    }
+
+    @media #{$mobile} {
+        font-size: 16px;
+    }
     }
 
 
@@ -47,6 +96,14 @@ input {
         align-items: center;
         max-width: 839px;
         width: 100%;
+
+        @media #{$tablet}{
+            max-width: 539px;
+        }
+
+        @media #{$mobile} {
+            max-width: 339px;
+        }
     }
 
     &__container-form{
@@ -67,7 +124,7 @@ input {
         background-color: #330031;
         border-radius: 20px;
         box-shadow: 3px 3px 28px 15px rgba(0, 0, 0, 0.10);
-        margin-top: 59px;
+        margin-top: 6%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -77,23 +134,100 @@ input {
     &__question-text{
         color: $color;
         font-size: 20px;
-        margin-right: 20px;
+        margin-right: 3%;
+
+        @media #{$tablet}{
+            font-size: 18px;
+        }
+
+        @media #{$mobile} {
+            font-size: 13px;
+        }
     }
 
     &__question-btn{
+        font-size: 16px;
         border: none;
         background-color: #330031;
         color: rgb(98, 98, 236);
         cursor: pointer;
+
+        @media #{$tablet}{
+            font-size: 13px;
+        }
+
+        @media #{$mobile} {
+            font-size: 11px;
+        }
+    }
+
+    &__ok {
+        width: 100%;
+        background-color: #330031;
+        border-radius: 20px;
+        box-shadow: 3px 3px 28px 15px rgba(0, 0, 0, 0.10);
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__ok-text{
+        font-size: 25px;
+        color: $color;
+        font-family: $font-texts;
+    }
+
+    &__ok-link{
+        color: $color;
+        font-family: $font-texts;
     }
 
 }
 
 .form{
-    &__btn-text{
-        cursor: pointer;
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 4%;
     }
+
+    &__btn-text{
+        padding: 1.8%;
+        font-family: $font-btns;
+        @extend %square;
+        cursor: pointer;
+        width: 80%;//ширина кнопки
+    }
+
+    &__btn-text:disabled{
+        background-color: #6e356b;
+        border: 1px solid rgb(168, 51, 51);
+        color: #330031;
+    }
+
+    &__checkbox{
+        margin-top: 2%;
+    }
+
+    &__password-error{
+        @extend %error-text;
+    }
+
+    &__email-error{
+        @extend %error-text;
+    }
+
+
 }
+
+
+
+
+
+
 
 
 

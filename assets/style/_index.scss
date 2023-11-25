@@ -8,11 +8,308 @@
 // <link rel="stylesheet" href="./assets/style/main.scss" />
 
 
-.cont {
-    display: flex;
-    justify-content: end;
-    &__btn{
-        padding: 5px 10px;
+@import "./templates";
+@import "./fonts";
+
+
+body {
+    scrollbar-gutter: stable;
+}
+
+.scroll-lock {
+    overflow: hidden;
+}
+
+.error {
+    box-shadow: 0 0 15px red;
+}
+
+.error-text {
+    @extend %error-text;
+}
+
+
+.check-input {
+    display: none;
+}
+
+.new-pass {
+    display: none;
+}
+
+.ok-block {
+    display: none;
+}
+
+input:focus {
+    outline: 2px solid black;
+    box-shadow: 0 0 15px rgb(226, 190, 190);
+}
+
+input:active {
+    outline: 2px solid rgb(107, 100, 100);
+}
+
+.dialog {
+    margin: auto;
+    padding: 1em;
+    max-width: 839px;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+
+    @media #{$tablet} {
+        max-width: 539px;
+    }
+
+    @media #{$mobile} {
+        max-width: 339px;
+    }
+
+    &__one-block {
+        @extend %display-maxblock;
+    }
+
+    &__two-block {
+        @extend %display-maxblock;
+        padding: 5%;
+    }
+
+    &__three-block {
+        @extend %display-maxblock;
+        padding: 2%;
+    }
+
+    &__four-block {
+        @extend %display-maxblock;
+        padding: 2%;
+    }
+
+
+    &__title {
+        font-family: $font-titles;
+        font-size: 60px;
+        color: $btnBackGroundHover;
+        text-align: center;
+
+        @media #{$tablet} {
+            font-size: 50px;
+        }
+
+        @media #{$mobile} {
+            font-size: 30px;
+        }
+    }
+
+    &__text-title {
+        font-size: 26px;
+        font-family: $font-titles;
+        color: #644562;
+        width: 90%;
+        text-align: center;
+
+        @media #{$tablet} {
+            font-size: 18px;
+        }
+
+        @media #{$mobile} {
+            font-size: 16px;
+        }
+    }
+
+    &__text {
+        font-family: $font-texts;
+        font-size: 25px;
+
+        @media #{$tablet} {
+            font-size: 23px;
+        }
+
+        @media #{$mobile} {
+            font-size: 16px;
+        }
+    }
+
+
+
+    &__close {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__block {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: $btnBackGroundHover;
+        width: 90%;
+        padding: 2%;
+        border-radius: 20px;
+        margin-top: 4%;
+        margin-bottom: 1%;
+
+
+    }
+
+    &__block-text {
+        @extend %text-block;
+    }
+
+    &__block-link {
+        font-size: 20px;
+        text-decoration: none;
+        font-family: $font-texts;
+        color: rgb(105, 131, 245);
+
+        @media #{$tablet} {
+            font-size: 18px;
+        }
+
+        @media #{$mobile} {
+            font-size: 16px;
+        }
+    }
+
+    &__close-btn {
+        font-weight: 600;
+        padding: 1% 1.5%;
+        border-radius: 50%;
+        border: 1px solid rgb(97, 68, 68);
+        cursor: pointer;
+    }
+
+}
+
+.dialog-form {
+    &__form {
+        background-color: $btnBackGroundHover;
+        width: 90%;
+        padding: 4%;
+        border-radius: 20px;
+        margin-top: 2%;
+    }
+
+
+    &__email {
+        @extend %display-block;
+    }
+
+    &__email-text {
+        @extend %text-block;
+    }
+
+    &__password-text {
+        @extend %text-block;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__password-btn {
+        background-color: $btnBackGroundHover;
+        border: none;
+        color: rgb(105, 131, 245);
+        font-family: $font-texts;
+        padding-right: 5%;
+
+        @media #{$mobile} {
+            font-size: 12px;
+        }
+    }
+
+    &__password {
+        @extend %display-block;
+    }
+
+    &__email-input {
+        @extend %square;
+        padding: 1%;
+    }
+
+    &__password-input {
+        @extend %square;
+        padding: 1%;
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 4%
+    }
+
+    &__btn-text {
+        @extend %square;
+        padding: 1.5%;
+        font-family: $font-btns;
+        width: 80%; //ширина кнопки
+    }
+
+    &__btn-text:disabled {
+        background-color: #6e356b;
+        border: 1px solid rgb(168, 51, 51);
+        color: #330031;
+    }
+
+    &__email-error {
+        @extend %error-text;
+    }
+
+    &__password-error {
+        @extend %error-text;
+    }
+
+    &__password-btn {
+        cursor: pointer;
+    }
+
+    &__secret {
+        @extend %display-block;
+    }
+
+    &__secret-text {
+        @extend %text-block;
+    }
+
+    &__secret-input {
+        @extend %square;
+        padding: 1%;
+    }
+
+    &__reappassword {
+        @extend %display-block;
+    }
+
+    &__reappassword-text {
+        @extend %text-block;
+    }
+
+    &__reappassword-input {
+        @extend %square;
+        padding: 1%;
     }
 }
 
+.ok-block {
+
+    &__location {
+        background-color: $btnBackGroundHover;
+        width: 90%;
+        padding: 4%;
+        border-radius: 20px;
+        margin-top: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__text {
+        @extend %text-block;
+    }
+
+    &__btn {
+        @extend %square;
+        padding: 1% 4%;
+        margin-top: 2%;
+        font-family: $font-btns;
+    }
+}

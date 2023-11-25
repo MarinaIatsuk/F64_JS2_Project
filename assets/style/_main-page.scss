@@ -7,7 +7,7 @@
     padding-left: 3vw;
     padding-top: 4vh;
     margin: 0 10vw 3vh 3vw;
-    min-height: 100vh;
+    min-height: 90vh; /* Подправила высоту, чтобы хэлер вместился */
     background: linear-gradient(135deg, #CA26FF 30%, #F4CAC0, #FFF3B0);
     border-radius: 4vh 4vh 40vh 4vh;
 
@@ -33,6 +33,16 @@
         }
     }
 
+    //стили к тексту с цитатой
+.main-page__subtext{
+    padding-left: 5%;
+    padding-bottom: 20px;
+    .subtext{
+        font-family: $font-texts;
+        font-size: 20px;
+        color: $btnBackGround;
+    }
+}
 }
 
 //Блок с информацией: заголовок, текст, кнопки
@@ -53,13 +63,13 @@
 
     }
 
-    .subtitle {
+    &__subtitle {
 
-        margin-bottom: 40px;
-        font-family: $font-texts;
+        // margin-bottom: 40px;
+        font-family: $font-btns;
         font-size: 30px;
         font-weight: 400;
-        letter-spacing: 10px;
+        letter-spacing: 4px;
         color: $headers;
 
         @media #{$mobile} {
@@ -68,15 +78,16 @@
 
     }
 
-    .text {
+    &__text {
         max-width: 80%;
         margin-bottom: 25px;
         font-family: $font-texts;
-        font-weight: 400;
+        font-weight: 200;
         font-size: 20px;
         line-height: 29.9px;
         color: $headers;
-
+        padding-top: 40px;
+        text-align: justify;
     }
 }
 
@@ -92,27 +103,41 @@
         margin-left: 0;
         padding-left: 0;
     }
+    @media #{$mobile} {
+        padding-left: 0;
+    }
 
     .block__posters {
         display: flex;
         flex-direction: row;
 
         .upper-posters {
-            margin-right: 1rem;
+            margin-right: 30px;
 
         }
 
         .poster-info {
-
+            height: 290px;
+            @media #{$tablet} {
+                height: 400px;
+            }
+            @media #{$mobile} {
+                height: 400px;
+            }
             .film__img {
-                max-width: 70%;
-                width: 230px;
+                width: 150px;
+                height: 214px;
                 margin-bottom: 15px;
                 border-radius: 30px;
 
                 @media #{$tablet} {
-                    max-width: 70%;
-                    width: 300px;
+                    width: 200px;
+                    height: 300px;
+                }
+                @media #{$mobile} {
+                    width: 200px;
+                    height: 300px;
+                   
                 }
 
             }
@@ -124,20 +149,9 @@
                 border-radius: 10px;
                 text-align: center;
 
-                @media #{$tablet} {
-                    max-width: 15vw;
-                    min-height: 7vh;
-                    padding-left: 35px;
-                }
-
-                @media #{$mobile} {
-                    max-width: 22vw;
-                    min-height: 8vh;
-                    padding-left: 20px;
-                }
-
                 .film__title {
                     display: block;
+                    width: 150px;
                     border-radius: 5px;
                     font-weight: 400;
                     font-size: 15px;
@@ -148,10 +162,12 @@
 
                     @media #{$tablet} {
                         font-size: 20px;
+                        width: 200px;
                     }
 
                     @media #{$mobile} {
                         font-size: 20px;
+                        width: 200px;
                     }
                 }
 
@@ -192,4 +208,7 @@
             padding: 0 4px 0 4px;
         }
     }
+
+    
 }
+

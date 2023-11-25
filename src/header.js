@@ -1,52 +1,100 @@
+//const API_KEY = "6e01b98a-32ba-41c9-b64f-a2a9582aafa5";
+//const url = 
+//"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=movie&page=1";
 
-document.querySelector('#avatar').onclick = function(){
-    //alert('вход в личный кабинет');
+console.log('gj');
+const door = document.querySelector(".exit__img"); //дверь
+const exitText = document.querySelector(".exit__text"); //текст возле двери
+const enter = document.querySelector('.account__btn'); //кнопка входа
+
+const blockEnter = document.querySelector('.account__enter');//доступ к контейнеру кнопки Войти
+// const hiUser = document.querySelector(".account__greeting"); //текст приветствия
+
+
+const hiUserTextBlock = document.querySelector('.account__personal')// доступ к блоку Имя юзера + аватар
+
+const exitLsText = document.querySelector('.account__exit');//доступ к тексту Выйти и его аватар( картинка двери)
+const avatar = document.querySelector(".account__avatar"); //аватар
+const filter = document.querySelector(".search__input"); //инпут
+const list = document.querySelector(".search__list");//список фильмов 
+let FILMS = [];
+
+filter.addEventListener("input", (event) => {
+        const keyword = event.target.value.toLowerCase(); //var уже не используется в JS
+        fetch(`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${encodeURIComponent(keyword)}&page=1`, {
+                        method: "GET",
+                        headers: {
+                                "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
+                                "Content-Type": "application/json",
+                        },
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                        console.log("data")
+                        console.log(data);
+                        list.innerHTML = "";
+                        data.films.forEach((film) => {
+                                const li = document.createElement("li");
+                                const template = `<a href="page-movie.html?id=${film.filmId}" class="list__link">${film.nameRu}</a>` //передали в каждый элемент списка название фильма и ссылку, которая переходит на страницу фильма по своему id
+                                li.classList.add('list__item')
+                                li.innerHTML = template;
+                                list.appendChild(li);
+
+                                // Показать или скрыть список в зависимости от наличия результатов
+                                // const searchList = document.querySelector(".header__search-list");
+                                list.style.display = data.films.length > 0 ? "block" : "none";
+                                // скрыть список при клике на поле
+                                document.addEventListener("click", (event) => {
+
+                                        if (!event.target.closest(".search__input") && !event.target.closest(".search__list")) {
+                                                list.style.display = "none";
+                                        }
+                                });
+                        });
+                })
+                .catch((err) => console.log(err));
+});
+
+//Работа с элементами ЛК:
+const objLS = window.localStorage.getItem('client'); // Получение id клиента
+const accessObj = JSON.parse(objLS); // Парсим, чтобы получить id
+
+//Делаем так, чтобы кнопки двери не было, если пользователь не зарегистрирован:
+// if (!accessObj) { // Проверка регистрации пользователя
+//         door.style.display = "none"; //удаляем дверь 
+//         exitText.style.display = "none"; //текст тоже убираем 
+//         avatar.style.display = "none"
+//         hiUser.style.display = "none"
+// }
+
+// //Добавление привествия при входе в ЛК:
+// if (accessObj && accessObj.name) { // Проверка регистрации пользователя
+//         hiUser.innerHTML = `Привет, ${accessObj.name}`; // Добавление текста. innerHTML вместо textContent, чтоб ыэлемент добавился сразу, а не после перезагрузки
+//         enter.style.display = "none" //убираем кнопку входа
+//         door.style.display = "block"; //добавляем дверь 
+//         exitText.style.display = "block"; //текст 
+// }
+
+
+//Выхлд из ЛК
+door.addEventListener('click', exit) //можно функцию отдельно указывать, думаю, так удобней
+
+
+function exit() {
+
+        window.localStorage.removeItem('client') //удалили в хранилище локальном инфу о клиенте
+        blockEnter.style.display = "flex"; //делаем его  видимым.
+        hiUserTextBlock.style.display = "none";
+        exitLsText.style.display='none';
 }
 
- //const API_KEY = "6e01b98a-32ba-41c9-b64f-a2a9582aafa5";
- //const url = 
- //"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=movie&page=1";
- 
- 
- const filter = document.querySelector("#filter");
- const list = document.querySelector("#list");
- let FILMS = [];
- 
- filter.addEventListener("input", (event) => {
-         var keyword = event.target.value.toLowerCase();
-         fetch(
-                 `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${encodeURIComponent(
-                         keyword
-                 )}&page=1`,
-                 {
-                         method: "GET",
-                         headers: {
-                                 "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
-                                 "Content-Type": "application/json",
-                         },
-                 }
-         )
-                 .then((res) => res.json())
-                 .then((data) => {
-                         list.innerHTML = "";
-                         data.films.forEach((film) => {
-                                 const li = document.createElement("li");
-                                 li.textContent = film.nameRu;
-                                 list.appendChild(li);
-                         });
-                 })
-                 .catch((err) => console.log(err));
- });
- 
- const btnOpen =  function() {
-   document.querySelector('#btnOpen').style.display="none";
-}
-const avatar = document.getElementById("avatarId");
-avatar.style.display = "none";
 
-// $(documnet).ready(function() {
-//         $('.header__burger').click(function(event){
-//                 $('.header__burger,. header__nav').toggleClass('active');
-//                 $('body').toggleClass('lock');
-//         });
-// });
+
+
+//выход в ЛК при клике на аватар
+avatar.addEventListener('click', enterAccount)
+
+function enterAccount() {
+        const targetPageURL = 'personalaccount.html';
+        window.location.href = targetPageURL
+}

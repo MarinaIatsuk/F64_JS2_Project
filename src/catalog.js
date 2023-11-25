@@ -89,6 +89,7 @@ function createFilmItem(film) {
     }
 
     
+    
     const imdbRating = film.ratingImdb !== null ? film.ratingImdb : '-'; // Проверка на null для рейтинга по IMDb
 
     const template =

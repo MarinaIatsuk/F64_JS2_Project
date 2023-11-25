@@ -4,102 +4,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
-   <link rel="stylesheet" href="./assets/style/main.scss" />
-  <link rel="stylesheet" href="./assets/style/_index.scss">
+  <title>КиноКосмос — Безграничная галактика фильмов</title>
+  <meta name="description"
+  content="Информация о фильмах, рецензии, отзывы пользователей и многое другое. Поделитесь своим мнением и узнайте о любимых фильмах больше.">
+  <link rel="stylesheet" href="./assets/style/main.scss" />
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
 </head>
 
 <body>
 
+
   <header class="header">
-    <div class="header__container _container">
-      <!-- <div class="header__body"> -->
-    <a href="#" class="header__logo"> MOVIEСервис </a>
 
-     <!-- hamburger icon -->
-     <div class="header__burger">
-     <span></span>
-     </div>
-
-<!-- <input class="header__s" type="checkbox" id="side-menu" />
-<label class="header__hamb" for="side-menu" >
-  <span class="header__hamb-line"></span  ></label>
-     -->
-    <nav class="header__nav ">
-    <ul class="header__menu">
-   <li class="menu__item">
-   <a href="#" class="header__link" >Фильмы</a>
-   </li>
-    <li class="header__item">
-    <a href="#" class="header__link">Сериалы</a>
-     </li>
-     </ul>
-    </nav>
-     <div class="search-box">    
-    <form >
-      <input type="text"  class="header__search" placeholder="Поиск" id="filter"/> 
-      <ul class="header__search-list" id="list"> </ul> 
-      <!-- <li>Фильм</li> -->
-    </form>
-     </div>   
-
-       <div class="header__btn-container"> 
- <h3 class="user__name">Имя пользователя</h3> 
-<div class="user__email"></div> 
-<img  src="./assets/images/avatar.png"  alt="avatar"  id="avatar" class="user__img" onclick="location.href='personalaccount.html'" />
-<img src="./assets/images/door.png" alt="выйти" id="door" class="exit__img" >
-<h3 class="exit__name">Выйти</h3> 
-</div>
-      <div class="cont" id="hiUser"> 
-      <button class="cont__btn" id="btnOpen">Войти</button>
-       </div>  
-                </div>
+    <div class="header__logo logo">
+      <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt="" class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt="" class="logo__picture logo__picture_text"></a>
     </div>
+    <div class="header__links link">
+      <a href="./catalog.html" class="link__item">Каталог</a>
     </div>
+    <div class="header__search search">
+      <input type="text" placeholder="Поиск" class="search__input">
+      <ul class="search__list list">
+        <!-- <li class="list__item"></li> -->
+      </ul>
+    </div>
+    <div class="header__account account">
+        <div class="account__personal">
+          <div class="account__greeting" id="hiNameUser"></div>
+          <img src="./assets/images/avatar.png" alt="avatar" class="account__avatar">
+        </div>
+        <div class="account__exit exit">
+          <img src="./assets/images/door.png" alt="door" class="exit__img">
+          <div class="exit__text">Выйти</div>
+        </div>
+      <div class="account__enter" id="hiUser">
+        <button class="account__btn" id="btnOpen">Войти</button>
+      </div>
+    </div>
+
   </header>
 
-  <!-- Кнопка временная -->
-  <div class="cont" id="hiUser">
-    <button class="cont__btn" id="btnOpen">Войти</button>
-  </div>
+
 
 
   <!-- Модальное окно -->
   <dialog class="dialog" id="windModal">
     <div class="dialog__close">
-      <button class="dialog__close" id="btnClose">X</button>
+      <button class="dialog__close-btn" id="btnClose">X</button>
     </div>
     <div class="dialog__container" id="formContainer">
-      <h2 class="dialog__title">MOVIE Сервис</h2>
-      <p class="dialog__text">Войти в личный кабинет</p>
-      <form class="dialog-form" name="loginForm" novalidate>
-        <div class="dialog-form__email">
-          <label for="secondEmail" class="dialog-form__email-text">Email</label>
-          <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
-            pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+      <div class="dialog__one-block main-form">
+        <h2 class="dialog__title">MOVIE Сервис</h2>
+        <p class="dialog__text dialog-form">Войти в личный кабинет</p>
+        <form class="dialog-form__form" name="loginForm" novalidate>
+          <div class="dialog-form__email">
+            <label for="loginEmail" class="dialog-form__email-text">Email</label>
+            <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
+              placeholder="Введите email..." required>
 
-          <p class="dialog-form__email-error"></p>
-        </div>
-        <div class="dialog-form__password">
-          <label for="secondPassword">Пароль</label>
-          <input name="newPassword" type="password" id="loginPassword" placeholder="Введите пароль..." minlength="8"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$" required>
+            <p class="dialog-form__email-error error-text" id="dialogEmailError"></p>
+          </div>
+          <div class="dialog-form__password">
+            <label for="loginPassword" class="dialog-form__password-text">Пароль <button
+                class="dialog-form__password-btn" id="passwordBtn">Забыли пароль?</button></label>
+            <input name="newPassword" class="dialog-form__password-input" type="password" id="loginPassword"
+              placeholder="Введите пароль..." minlength="8" required>
 
-          <p class="error-message"></p>
-        </div>
-        <div class="form__btn">
-          <input class="form__btn-text" type="submit" name="sendForm" id="btnLogin" value="Войти">
-        </div>
-      </form>
+            <p class="dialog-form__password-error error-text" id="dialogPasswError"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
+          </div>
+        </form>
 
-      <div>
-        <p>Новенький?</p>
-        <a href="">Создай аккаунт</a>
+        <div class="dialog__block">
+          <p class="dialog__block-text">Новенький?</p>
+          <a class="dialog__block-link" href="./registr.html">создай аккаунт</a>
+        </div>
       </div>
+
+      <!-- пользователь вводит свой email и кодовое слово -->
+      <div class="dialog__two-block check-input" id="examDate">
+        <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при регистрации
+        </h5>
+        <form class="dialog-form__form" name="secondForm" novalidate>
+          <div class="dialog-form__email">
+            <label for="secondEmail" class="dialog-form__email-text">Email</label>
+            <input type="email" name="secondEmailInput" class="dialog-form__email-input" id="secondEmail"
+              pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+
+            <p class="dialog-form__err-email error-text" id="secondEmailErr"></p>
+          </div>
+          <div class="dialog-form__secret">
+            <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
+            <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
+              class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
+
+            <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
+
+
+      <div class="dialog__three-block new-pass" id="replacePass">
+        <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
+        <form class="dialog-form__form" name="thirdForm" novalidate>
+          <div class="dialog-form__password">
+            <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
+            <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword"
+              placeholder="Введите новый пароль..." minlength="8" required>
+
+            <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
+          </div>
+          <div class="dialog-form__reappassword">
+            <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
+            <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword"
+              placeholder="Повторите пароль..." minlength="8" required>
+
+            <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Новый пароль успешно зарегестрирован -->
+
+
+      <div class="dialog__four-block ok-block">
+        <div class="ok-block__location">
+          <p class="ok-block__text">Вы успешно изменилии пароль</p>
+          <button class="ok-block__btn" id="newComwIn">перейти в форму входа</button>
+        </div>
+      </div>
+
     </div>
   </dialog>
 
-  <a href="./registr.html">перейти</a>
+
+
+
+
+
+
 
   <!--Начало главной страницы-->
   <main class="block-main">
@@ -111,15 +165,16 @@
           <div class="main-page__left-wrapper left-wrapper">
             <div class="block-info">
               <!--Заголовок-->
-              <h1 class="block-info__title title">MOVIEСервис</h1>
+              <h1 class="block-info__title title">КиноКосмос</h1>
               <!--Подзаголовок-->
-              <h2 class="block-info__subtitle subtitle">насладись просмотром</h2>
-              <p class="block-info__text text"> Загляните в увлекательный мир кино на нашем сайте KinoMania! У нас вы
-                найдете обширную информацию о фильмах, читайте отзывы и рецензии от экспертов и делитесь своими
-                впечатлениями с другими пользователями. Возьмите под контроль свою коллекцию фильмов, добавляйте их в
-                Избранное и создавайте персональные списки для каждого настроения. Расширенный поиск с фильтрами поможет
-                вам найти желаемое кино быстро и легко. Зарегистрируйтесь или войдите в свою учетную запись, чтобы
-                насладиться всеми возможностями KinoMania!</p>
+              <h2 class="block-info__subtitle subtitle">Узнай о фильмах всё</h2>
+              <h2 class="block-info__subtitle subtitle">и поделись своим мнением!</h2>
+              <p class="block-info__text text"> Погрузись в безграничную галактику кино на нашем сайте! У нас ты
+                найдешь обширную информацию о фильмах. Читай отзывы и рецензии от экспертов и делись своими
+                впечатлениями с другими пользователями. Возьми под контроль свою коллекцию фильмов, добавляй их в
+                Избранное и создавай персональные списки для каждого настроения. Расширенный поиск с фильтрами поможет
+                найти желаемое кино быстро и легко. Зарегистрируйся или войди в свою учетную запись, чтобы
+                насладиться всеми возможностями КиноКосмос!</p>
 
             </div>
 
@@ -134,9 +189,12 @@
         </div>
 
         <div class="main-page__block-button block-button">
-          <div class="main-page__button btn">Начать прямо сейчас!</div>
+          <div class="main-page__button btn" id="btn-quote">Начать прямо сейчас!</div>
         </div>
-
+        <div class="main-page__subtext">
+          <p class="subtext" id="subtext-quote"></p>
+        </div>
+  
       </div>
 
     </div>
@@ -146,10 +204,12 @@
 
 
 
+  <script type="module" src="./src/header.js"></script>
   <script type="module" src="./src/main-page.js"></script>
   <script type="module" src="./src/db.js"></script>
   <!-- <script type="module" src="./main.js"></script> -->
   <script type="module" src="./src/index.js"></script>
+
 </body>
 
 </html>
