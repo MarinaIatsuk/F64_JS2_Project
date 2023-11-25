@@ -12,14 +12,44 @@
 
 .header__logo {
   .logo__item {
-    font-size: larger;
-    font-weight: 600;
-    text-decoration: none;
-    font-family: $font-titles;
-    color: $backgroundLine;
+    // font-size: larger;
+    // font-weight: 600;
+    // text-decoration: none;
+    // font-family: $font-titles;
+    // color: $backgroundLine;
     position: relative;
     z-index: 3;
     cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+    padding-left: 2.5vw;
+    margin-bottom: 8px;
+  }
+
+  .logo__picture {
+    height: 4vw;
+
+    @media #{$tablet} {
+      height: 6vw;
+
+    }
+    @media #{$mobile} {
+      height: 8vw;
+    }
+  }
+
+  .logo__picture_text {
+    @media #{$tablet} {
+      display: none;
+
+    }
+
+    @media #{$mobile} {
+      display: none;
+    }
   }
 }
 

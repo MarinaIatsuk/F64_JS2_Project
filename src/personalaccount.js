@@ -103,6 +103,7 @@ try {
 }
 
 
+
 let likeList = window.document.querySelector('.list__movieList');
 
 function makeList(data) {
@@ -151,6 +152,13 @@ if (movieRemove) {
 }
 setLike(accessObj, filmId, false);
         }
+ // Проверяем, является ли выбранный элемент ссылкой с классом 'favorites_title'
+ const linkItem = event.target.closest('.favorites_title');
+ if (linkItem) {
+  console.log('Ссылка была кликнута:', linkItem.href);
+  window.location.href = linkItem.href;
+ }
+
      });
     }
   });
@@ -169,14 +177,21 @@ async function updateFavoritesList(user_id) {
 }
 
 
-
- async function setLike(user_id, film_id, state) {
+async function setLike(user_id, film_id, state) {
+  let subfield = `likes.${film_id}`;
+  if (state) {
       const data = {};
-      data[`likes.${film_id}`] = state;
+      data[subfield] = true;
       await db.update("users", user_id, data);
-   updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД */
-        }; 
-        
+  } else {
+      await db.removeSubfield("users", user_id, subfield);
+  }
+  updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД */
+}
+
+
+ 
+     
 
 
 

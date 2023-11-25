@@ -69,6 +69,10 @@
           .content__title {
               padding-bottom: 2vh;
               color: $backgroundLine;
+              a{
+                text-decoration: none;
+                color: black;
+              }
           }
   
           .content__rating {
