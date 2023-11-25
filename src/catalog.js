@@ -1,20 +1,21 @@
 import * as db from './db'; // для работы с БД
+import { get } from './db'; // для работы с БД. Импорт функции из db
 
 let currentPage = 1; // Флаг для пагинации
 let loading = false; // Флаг для загрузки данных
 let dataLoaded = false;
-const mainPicture=document.querySelector('.catalog__image')
+const mainPicture = document.querySelector('.catalog__image');
 
 // Обработчик события клика на кнопку поиска
 document.querySelector(".btn").addEventListener("click", function (event) {
-    mainPicture.style.display = "none"
+    mainPicture.style.display = "none";
     event.preventDefault(); // Остановить перезагрузку страницы
     currentPage = 1; // Сбрасываем текущую страницу при новом поиске
     const container = document.querySelector(".content");
     container.innerHTML = ""; // Очищаем содержимое контейнера перед загрузкой новых данных
     getData(currentPage); // Вызов функции для получения данных с текущей страницы
 
-     window.scrollTo({ // Возвращаем скролл в начало страницы
+    window.scrollTo({ // Возвращаем скролл в начало страницы
         top: 0,
         behavior: 'smooth' // плавный эффект прокрутки
     });
@@ -43,13 +44,14 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                // "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
             },
         });
         const data = await response.json();
         //console.log(data); //Проверка
         updateContainer(data); // отрисовка списка
-        attachLikeButtonsEvent()
+        attachLikeButtonsEvent();
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
 
@@ -80,16 +82,12 @@ function createFilmItem(film) {
 
     let titleLink = '';
 
-   
-    const filmTitle = film.nameRu || film.nameOriginal; 
+    const filmTitle = film.nameRu || film.nameOriginal;
 
-   
     if (filmTitle !== null && filmTitle !== undefined) {  // Проверка на null или undefined для filmTitle
         titleLink = `<a class="content__title" href="page-movie.html?id=${film.kinopoiskId}">${filmTitle}</a>`;
     }
 
-    
-    
     const imdbRating = film.ratingImdb !== null ? film.ratingImdb : '-'; // Проверка на null для рейтинга по IMDb
 
     const template =
@@ -104,13 +102,14 @@ function createFilmItem(film) {
             <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
         </div>
         <div class="filmFavContainer">
-                            <button class="content-button likeBtn" id="${film.kinopoiskId}">
-                                <span class="likeIcon"></span>
-                            </button>
-                        </div>
+            <button class="content-button likeBtn" id="${film.kinopoiskId}">
+                <span class="likeIcon"></span>
+            </button>
+        </div>
         `;
 
     item.innerHTML = template;
+    setRedLike();
     return item;
 }
 
@@ -125,16 +124,16 @@ function attachLikeButtonsEvent() {
 
             const filmId = btn.getAttribute('id');
             let target = event.target;
-   
+
             const objLS = window.localStorage.getItem('client');
-            const accessObj = JSON.parse(objLS).id;  
+            const accessObj = JSON.parse(objLS).id;
 
             if (target.tagName === 'SPAN') {
                 target.classList.toggle('liked'); // Меняем класс на "Лайк"  
                 console.log(accessObj); //Проверка
                 setLike(accessObj, filmId, target.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
                 console.log(filmId);
-             }
+            }
         });
     });
 }
@@ -150,8 +149,7 @@ function showAlertNeedRegistration() {
             window.location.href = 'registr.html';
         }
     }
-   }
-
+}
 
 // Функция для работы с БД
 async function setLike(user_id, film_id, state) {
@@ -164,6 +162,24 @@ async function setLike(user_id, film_id, state) {
         await db.removeSubfield("users", user_id, subfield);
     }
 }
-console.log('hi');
 
-
+//функция для того, чтобы лайк был уже красным, если он в избранном
+function setRedLike() {
+    const clientId = window.localStorage.getItem('client');
+    const clientInfo = JSON.parse(clientId);
+    const userId = clientInfo.id;
+    get("users", userId) //Получили инфу по id пользователя
+        .then(clientInfo => {
+            const likesKeys = Object.keys(clientInfo.likes); //Получили ключи лайков (id фильмов)
+            const likeBtns = document.querySelectorAll('.likeBtn');// Проходим по всем кнопкам лайков в каталоге
+            likeBtns.forEach((btn) => {
+                const filmId = btn.getAttribute('id');
+                if (likesKeys.includes(filmId)) {// Если в массиве ключей, есть id фильма (т.е. фильм в избранном)
+                    btn.classList.add('liked');//  делаем кнопку "лайка" красной
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Ошибка при получении данных из БД:', error);
+        });
+}
