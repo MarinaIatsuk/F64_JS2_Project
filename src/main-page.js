@@ -5,12 +5,14 @@ import { upperPosters, downPosters, div, divTwo, } from "./vars";
 // получаем переменные для кнопки и блока выводы Цитат из vars.js
 import { blockTextQuote, button } from "./vars";
 
+import { quotes } from "./quotes";
+
 //Создаем функцию fetch с api адресом
 
 fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1', {
   method: 'GET',
   headers: {
-    'X-API-KEY': '24b15cb0-02d2-47d4-83c9-c601d49f2256',
+    'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813',
     'Content-Type': 'application/json',
   },
 })
@@ -88,26 +90,37 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     console.log(err);
   })
 
-//Часть с цитами
-//Цитаты для главной страницы
-const quotes = [
-  "«— Мой брат научил меня не обращать внимание на все, что говорят до слова «но».», - Игра престолов",
-  "«У каждого свои недостатки», - В джазе только девушки, 1959",
-  "«Они не знают, что мы знаем, что они знают, что мы знаем», - (Фиби Буффе) Сериал 'Друзья'.",
-  "«Да пребудет с тобой Сила!», - Звездные войны: Новая надежда.",
-  "«Дороги? Там, куда мы направляемся, нам не нужны дороги.», - Назад в будущее (1985).",
-  "«Зима близко», - Игра престолов.",
-  "«Истина где-то рядом», - Секретные материалы.",
-  "« — Наши дети будут умными и красивыми! — А главное — вымышленными!», - Теория большого взрыва.",
-  " «— Это совершенно безумная идея..Пожалуй,я так и сделаю!» - Альф."
-];
-
-//Выводим цитаты при нажатии на кнопку
-
-button.addEventListener("click", () => {
-  const randonQuote = quotes[Math.floor(Math.random() * quotes.length)];
-  blockTextQuote.textContent = randonQuote;
-
-});
 
 
+
+//<-------- Для цитат ---->
+
+// получить случайное целое число
+function randomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+// задержка в мс
+async function delay(x) {
+  return new Promise(res => setTimeout(res, x));
+}
+
+// вывести цитату
+async function printq(q) {
+  for (let i = 0; i < q.length; i++) {
+    blockTextQuote.textContent += q[i];
+    await delay(50);
+  }
+}
+
+// менять цитаты случайно
+async function type() {
+  while (true) {
+    blockTextQuote.textContent = "";
+    let quote = quotes[randomInt(quotes.length)];
+    await printq('« ' + quote.quote + '» ' + quote.film);
+    await delay(1000 + randomInt(2000));// случайная задержка между цитатами
+  }
+}
+
+type();
