@@ -1,5 +1,5 @@
 // Контейнер каталога
-.catalog__container {
+.catalog-container {
     //padding-top: 0vh !important;
     .catalog__interface {
         display: flex;
@@ -50,10 +50,10 @@
 
             .catalog__btn {
                 padding-left: 100px;
-
                 @media screen and (max-width: 910px) {
                     padding-top: 20px;
                     padding-left: 0;
+                    margin-bottom: 10px;
                 }
 
                 
@@ -134,10 +134,10 @@
 }
 
 // Кнопка лайка
-.filmFavContainer {
+.content__favorite {
     padding-left: 2vh;
 
-    .likeBtn {
+    .content-button{
         background-color: rgba($color: $background-color, $alpha: 0);
         border: none;
         cursor: pointer;
@@ -145,7 +145,7 @@
         align-items: center;
     }
 
-    .likeIcon {
+    .like__icon {
         width: 24px;
         height: 24px;
         background-image: url("../images/likeEmpty30.svg");
@@ -163,7 +163,7 @@
         transition: background-image 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     }
 
-    .likeIcon:hover {
+    .like__icon:hover {
         background-image: url("../images/likeOnfocus.svg");
         background-size: cover;
         width: 24px;
@@ -188,7 +188,7 @@
     justify-content: center;
     align-items: center;
     min-height: 400px;
-    .image_img{
+    .image__img{
         padding-top: 100px;
         margin-right: 100px;
     }

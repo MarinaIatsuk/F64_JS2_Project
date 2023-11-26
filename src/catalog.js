@@ -45,8 +45,8 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                // "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
-                "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
+            //  "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+             "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
             },
         });
         const data = await response.json();
@@ -62,24 +62,27 @@ async function getData(page) {
     }
 }
 
-// Функция, которая отрисовывает список фильмов
+// Функция, которая отрисовывает список фильмов (здесь костыль для отрисовки карточек. Если пользователь авторизован, то находится id пользователя и с ним отрисовывается карточка фильма, для того, чтобы сохранялись лайки, которые он ставил. Если он не авторизован, то карточка отрисовывается в стандартном размере)
 async function updateContainer(data) {
-    const clientId = window.localStorage.getItem('client');
-    const userId = JSON.parse(clientId).id;
-    let user = await get("users", userId);
-    let likes = user.likes;
-
     const container = document.querySelector(".content");
 
     if (data && data.items && Array.isArray(data.items)) {
+        let likes = [];
+
+        if (window.localStorage.getItem('client')) {
+            const clientId = window.localStorage.getItem('client');
+            const userId = JSON.parse(clientId).id;
+            let user = await get("users", userId);
+            likes = user.likes;
+        }
+
         data.items.forEach((film) => {
-            const item = createFilmItem(film, likes); // Создает элемент фильма
+            const item = createFilmItem(film, likes);
             container.appendChild(item);
         });
-    } else {
-        console.error('Неверный формат данных:', data);
     }
 }
+        
 
 // Создает элемент фильма. Проходимся по массиву фильмов и добавляем информацию в контейнер
 function createFilmItem(film, likes) {
@@ -90,14 +93,15 @@ function createFilmItem(film, likes) {
 
     const filmTitle = film.nameRu || film.nameOriginal;
 
-    if (filmTitle !== null && filmTitle !== undefined) {  // Проверка на null или undefined для filmTitle
+    if (filmTitle !== null && filmTitle !== undefined) {
         titleLink = `<a class="content__title" href="page-movie.html?id=${film.kinopoiskId}">${filmTitle}</a>`;
     }
 
-    const imdbRating = film.ratingImdb !== null ? film.ratingImdb : '-'; // Проверка на null для рейтинга по IMDb
+    const imdbRating = film.ratingImdb !== null ? film.ratingImdb : '-';
 
-    const template =
-        `
+    const likedClass = likes && film.kinopoiskId in likes ? 'liked' : '';
+
+    const template = `
         <div class="content__poster">
             <img src="${film.posterUrlPreview}" alt="poster" class="content__img">
         </div>
@@ -105,28 +109,28 @@ function createFilmItem(film, likes) {
             ${titleLink}
             <div class="content__year">Год выхода фильма: ${film.year}</div>
             <div class="content__rating">Рейтинг по кинопоиску: ${film.ratingKinopoisk}</div>
-            <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
+            <div class="content__rating-imdb">Рейтинг по Imdb: ${imdbRating}</div>
         </div>
-        <div class="filmFavContainer">
-            <button class="content-button likeBtn" id="${film.kinopoiskId}">
-                <span class="likeIcon ${film.kinopoiskId in likes ? 'liked' : ''}"></span>
+        <div class="content__favorite">
+            <button class="content-button like" id="${film.kinopoiskId}">
+                <span class="like__icon ${likedClass}"></span>
             </button>
         </div>
-        `;
+    `;
 
     item.innerHTML = template;
     return item;
 }
 
 document.querySelector(".content").addEventListener("click", function (event) {
-    const likeBtn = event.target.closest('.likeBtn');
+    const likeBtn = event.target.closest('.content-button');
 
     if (likeBtn) {
         event.preventDefault();
-        showAlertNeedRegistration();  // Проверка авторизации
+        showAlertNeedRegistration();   // Проверка авторизации
 
         const filmId = likeBtn.getAttribute('id');
-        const target = likeBtn.querySelector('.likeIcon');
+        const target = likeBtn.querySelector('.like__icon');
 
         if (target) {
             target.classList.toggle('liked'); // Меняем класс на "Лайк"  
