@@ -146,12 +146,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 })
 
 async function getLikesFromDB() {
+  let beLike = false;
   const clientId = window.localStorage.getItem('client');
+  if(clientId!=null)
+  {
   const userId = JSON.parse(clientId).id;
   let user = await db.get("users", userId);
   let likes = user.likes;
   let likesInBD = likes[SELECTEDFILMID];
-  let beLike = likesInBD ? likesInBD : false;
+  beLike = likesInBD ? likesInBD : false;
+  }
   return beLike;
 }
 
