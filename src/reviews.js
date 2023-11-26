@@ -62,6 +62,18 @@ function createPostMarkup(post) {
     return template;
 }
 
+// Функция открытия третьей вкладки при переходе со второй вкладки
+function openTabThree() {
+    const tabThreeTitle = document.querySelector('[data-tab="tab_3"]');
+    const tabTwoTitle = document.querySelector('[data-tab="tab_2"]');
+    const tabThreeItem = document.querySelector("#tab_3");
+    const tabTwoItem = document.querySelector("#tab_2");
+    tabThreeTitle.classList.add("_active");
+    tabTwoTitle.classList.remove("_active");
+    tabThreeItem.classList.add("_active");
+    tabTwoItem.classList.remove("_active");
+}
+
 // Функция создания разметки поста с отзывом
 function createCommentMarkup(post) {
     const maxTextLength = 200;
@@ -148,7 +160,7 @@ function addMarkupToContainer(markup, container) {
     container.innerHTML += markup;
 }
 
-// Функция добавления кол-ва отзывов в контейнер
+// Функция добавления кол-ва рецензий в контейнер
 function addTotalToContainer(posts, container) {
     const totalContainer = document.createElement("div");
     totalContainer.classList.add("reviews-container__total-wrapper", "total-wrapper");
@@ -208,13 +220,27 @@ async function getComments() {
         let selectedFilmId = new URLSearchParams(window.location.search).get('id');
         const key = "film_id";
         const comments = await db.get_query("comments", key, selectedFilmId);
-        console.log(comments);
 
-        const commentsContainer = document.querySelector(".comments-container");
-        comments.forEach((comment) => {
-            const commentMarkup = createCommentMarkup(comment);
-            addMarkupToContainer(commentMarkup, commentsContainer);
-        });
+        if (comments.length === 0) {
+            // Если нет отзывов, выводится предложение добавить отзыв
+            const commentsContainer = document.querySelector(".comments-container");
+            const template = `
+            <article class="comments-container__comment-post comment-post сomment-post_no-comments">
+                <h3 class="comment-post__title">Будьте первым, кто оставит отзыв!</h3>
+                <button class="comment-post__add-btn" id="goToTabThreeBtn">Добавить&nbsp;&#10010;</button>
+            </article>
+            `;
+            commentsContainer.innerHTML = template;
+            const goToTabThreeBtn = document.querySelector("#goToTabThreeBtn");
+            goToTabThreeBtn.addEventListener("click", openTabThree);
+        } else {
+            const commentsContainer = document.querySelector(".comments-container");
+            comments.forEach((comment) => {
+                const commentMarkup = createCommentMarkup(comment);
+                addMarkupToContainer(commentMarkup, commentsContainer);
+            });
+        }
+
     } catch (error) {
         console.error("Ошибка при получении данных из БД:", error);
     }

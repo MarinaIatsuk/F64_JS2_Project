@@ -385,6 +385,23 @@ padding: 1em;
     &__date {
         align-self: end;
     }
+
+    &__add-btn {
+        cursor: pointer;
+        background-color: #ffffff00;
+        border: none;
+        color: purple;
+        padding: 3px 5px;
+        margin: 1vw 0.5vw 0;
+    }
+}
+
+.сomment-post_no-comments {
+    background-color: #ffffff00;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4vw;
 }
 
 .review-form {
@@ -453,7 +470,7 @@ padding: 1em;
         border-radius: 10px;
         width: 100%;
         padding: 10px;
-        font-family: $font-titles;
+        font-family: $font-texts;
 
         @media #{$tablet} {
             font-size: 2vw;
