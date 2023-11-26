@@ -31,6 +31,16 @@ $font-texts: "Noto Sans";
 $font-titles: "Rubik";
 $font-btns: "Fira Sans Condensed";
 
+
+html {
+    font-family: $font-texts, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+    font-family: $font-titles, sans-serif;
+
+}
 // переменные для размера экрана
 
 $mobile: "screen and (max-width: 599px)";
