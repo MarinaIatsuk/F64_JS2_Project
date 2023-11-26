@@ -121,7 +121,7 @@ function attachLikeButtonsEvent() {
         btn.addEventListener('click', function (event) {
             event.preventDefault();
 
-            showAlertNeedRegistration();  // Проверка авторизации
+         showAlertNeedRegistration();  // Проверка авторизации 
 
             const filmId = btn.getAttribute('id');
             let target = event.target;
@@ -139,19 +139,25 @@ function attachLikeButtonsEvent() {
     });
 }
 
-function showAlertNeedRegistration() {
+ function showAlertNeedRegistration() {
+    const btnCloseRedirectionModal = document.querySelector(
+        "#btnCloseRedirectionModal")
+        const getAutorized = document.querySelector('#btnRedirectToAuth')
     const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
       
     if (!isUserAuthenticated) {
-        const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
+        window.redirectionModal.showModal();
+        // закрытия модального окна через определенное время
+    setTimeout(() => window.redirectionModal.close(), 8000);
 
-        if (confirmation) {
-            // Redirect the user to the registration page
-            window.location.href = 'registr.html';
-        }
-    }
-   }
-
+btnCloseRedirectionModal.addEventListener("click",function () {
+    window.redirectionModal.close();
+});
+   } 
+   getAutorized.addEventListener("click",function () {
+    window.open('/registr.html');
+});
+}
 
 // Функция для работы с БД
 async function setLike(user_id, film_id, state) {
