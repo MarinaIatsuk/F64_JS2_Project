@@ -163,7 +163,6 @@ function burgerMenu(selector) {
         links.forEach(link => {
           link.addEventListener('click', () => toggleMenu());
         });
-        overlay.addEventListener('click', () => toggleMenu());
       
         function toggleMenu() {
           menu.classList.toggle('burger-menu__active');
