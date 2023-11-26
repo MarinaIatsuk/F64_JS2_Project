@@ -4,6 +4,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: 250px;
     }
 
     &__title-wrapper {
@@ -349,11 +350,48 @@
 }
 
 .likeBtn {
-    background-color: $background-color;
+    background-color: rgba($color: $background-color, $alpha: 0);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
+}
+
+.likeIcon {
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/likeEmpty30.svg");
+    background-size: cover;
+    margin-right: 4px;
+    transition: background-image 0.9s ease-out;
+}
+
+.liked {
+    background-image: url("../images/likeFilledPink.svg");
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    transition: background-image 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.likeIcon:hover {
+    background-image: url("../images/likeOnfocus.svg");
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    transition: background-image 0.6s ease-in;
+}
+
+.liked:hover {
+    background-image: url("../images/likeOnfocus.svg");
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    filter: drop-shadow(6px -4px 0px #af464580);
+    transition: background-image 0.6s ease-in;
 }
 
 .block-wrapper {
