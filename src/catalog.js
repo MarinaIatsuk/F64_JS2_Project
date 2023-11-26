@@ -1,4 +1,4 @@
-import { Logger } from 'sass';
+
 import * as db from './db'; // для работы с БД
 import { get } from './db'; // для работы с БД. Импорт функции из db
 
@@ -108,7 +108,7 @@ function createFilmItem(film, likes) {
             <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
         </div>
         <div class="filmFavContainer">
-            <button class="content-button likeBtn" id="${film.kinopoiskId}">
+            <button class="content-button likeBtn" id="${film.kinopoiskId}" onclick="attachLikeButtonsEvent">
                 <span class="likeIcon ${film.kinopoiskId in likes ? 'liked' : ''}"></span>
             </button>
         </div>
@@ -118,11 +118,29 @@ function createFilmItem(film, likes) {
     // setRedLike();
     return item;
 }
+document.querySelector(".content").addEventListener("click", function (event) {
+    const likeBtn = event.target.closest('.likeBtn');
+
+    if (likeBtn) {
+        event.preventDefault();
+        showAlertNeedRegistration();  // Проверка авторизации
+
+        const filmId = likeBtn.getAttribute('id');
+        const target = likeBtn.querySelector('.likeIcon');
+
+        if (target) {
+            target.classList.toggle('liked'); // Меняем класс на "Лайк"  
+            const objLS = window.localStorage.getItem('client');
+            const accessObj = JSON.parse(objLS).id;
+            setLike(accessObj, filmId, target.classList.contains('liked')); // Добавляем в БД в зависимости от наличия класса 'liked'
+        }
+    }
+});
 
 // Обработчик события клика на кнопках лайков
 function attachLikeButtonsEvent() {
-    const likeBtns = document.querySelectorAll('.likeBtn');
-    likeBtns.forEach((btn) => {
+    // const likeBtns = document.querySelectorAll('.likeBtn');
+    // likeBtns.forEach((btn) => {
         btn.addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -142,7 +160,7 @@ function attachLikeButtonsEvent() {
                 console.log(filmId);
             }
         });
-    });
+    // });
 }
 
 function showAlertNeedRegistration() {
