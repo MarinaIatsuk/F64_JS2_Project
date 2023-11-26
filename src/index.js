@@ -19,6 +19,8 @@
 // Модальное окно на главной странице
 
 const btnOpen = document.querySelector('#btnOpen');//кнопка Войти в хэдэр
+const btnOpenBurger = document.querySelector('#btnOpenBurger');
+const burgerExit = document.querySelector(".burger-menu__exit");
 
 const windModal = document.querySelector('#windModal');
 const btnClose = document.querySelector('#btnClose');
@@ -45,6 +47,7 @@ function closeModal() {
 
 
 btnOpen.addEventListener('click', openModal);
+btnOpenBurger.addEventListener('click', openModal);
 btnClose.addEventListener('click', closeModal);
 
 
@@ -189,8 +192,9 @@ async function examLogin() {
 
 
             hiUser.style.display = 'none';//Блок кнопки Войти в хэдэр
+            btnOpenBurger.style.display = 'none';
 
-
+            burgerExit.style.display = 'flex';
             hiUserTextBlock.style.display = 'flex';
             exitLsText.style.display = 'flex';
 
