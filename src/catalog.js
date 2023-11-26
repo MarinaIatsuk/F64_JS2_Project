@@ -1,6 +1,6 @@
 
-import * as db from './db'; // для работы с БД
 import { get } from './db'; // для работы с БД. Импорт функции из db
+import { setLike, showAlertNeedRegistration } from './functions'
 
 let currentPage = 1; // Флаг для пагинации
 let loading = false; // Флаг для загрузки данных
@@ -52,7 +52,7 @@ async function getData(page) {
         const data = await response.json();
         //console.log(data); //Проверка
         await updateContainer(data); // отрисовка списка
-        attachLikeButtonsEvent();
+        // attachLikeButtonsEvent();
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
 
@@ -108,16 +108,16 @@ function createFilmItem(film, likes) {
             <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
         </div>
         <div class="filmFavContainer">
-            <button class="content-button likeBtn" id="${film.kinopoiskId}" onclick="attachLikeButtonsEvent">
+            <button class="content-button likeBtn" id="${film.kinopoiskId}">
                 <span class="likeIcon ${film.kinopoiskId in likes ? 'liked' : ''}"></span>
             </button>
         </div>
         `;
 
     item.innerHTML = template;
-    // setRedLike();
     return item;
 }
+
 document.querySelector(".content").addEventListener("click", function (event) {
     const likeBtn = event.target.closest('.likeBtn');
 
@@ -137,74 +137,4 @@ document.querySelector(".content").addEventListener("click", function (event) {
     }
 });
 
-// Обработчик события клика на кнопках лайков
-function attachLikeButtonsEvent() {
-    // const likeBtns = document.querySelectorAll('.likeBtn');
-    // likeBtns.forEach((btn) => {
-        btn.addEventListener('click', function (event) {
-            event.preventDefault();
 
-            showAlertNeedRegistration();  // Проверка авторизации
-
-            const filmId = btn.getAttribute('id');
-            let target = event.target;
-            console.log(event.target);
-
-            const objLS = window.localStorage.getItem('client');
-            const accessObj = JSON.parse(objLS).id;
-
-            if (target.tagName === 'SPAN') {
-                target.classList.toggle('liked'); // Меняем класс на "Лайк"  
-                console.log(accessObj); //Проверка
-                setLike(accessObj, filmId, target.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
-                console.log(filmId);
-            }
-        });
-    // });
-}
-
-function showAlertNeedRegistration() {
-    const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
-
-    if (!isUserAuthenticated) {
-        const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
-
-        if (confirmation) {
-            // Redirect the user to the registration page
-            window.location.href = 'registr.html';
-        }
-    }
-}
-
-// Функция для работы с БД
-async function setLike(user_id, film_id, state) {
-    let subfield = `likes.${film_id}`;
-    if (state) {
-        const data = {};
-        data[subfield] = true;
-        await db.update("users", user_id, data);
-    } else {
-        await db.removeSubfield("users", user_id, subfield);
-    }
-}
-
-//функция для того, чтобы лайк был уже красным, если он в избранном
-// function setRedLike(client, film) {
-// const clientId = window.localStorage.getItem('client');
-// const clientInfo = JSON.parse(clientId);
-// const userId = clientInfo.id;
-// get("users", userId) //Получили инфу по id пользователя
-//     .then(clientInfo => {
-//         const likesKeys = Object.keys(clientInfo.likes); //Получили ключи лайков (id фильмов)
-//         const likeBtns = document.querySelectorAll('.likeBtn');// Проходим по всем кнопкам лайков в каталоге
-//         likeBtns.forEach((btn) => {
-//             const filmId = btn.getAttribute('id');
-//             if (likesKeys.includes(filmId)) {// Если в массиве ключей, есть id фильма (т.е. фильм в избранном)
-//                 btn.classList.add('liked');//  делаем кнопку "лайка" красной
-//             }
-//         });
-//     })
-//     .catch(error => {
-//         console.error('Ошибка при получении данных из БД:', error);
-//     });
-// }
