@@ -1,3 +1,4 @@
+import { Logger } from 'sass';
 import * as db from './db'; // для работы с БД
 import { get } from './db'; // для работы с БД. Импорт функции из db
 
@@ -50,7 +51,7 @@ async function getData(page) {
         });
         const data = await response.json();
         //console.log(data); //Проверка
-        updateContainer(data); // отрисовка списка
+        await updateContainer(data); // отрисовка списка
         attachLikeButtonsEvent();
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
@@ -62,12 +63,17 @@ async function getData(page) {
 }
 
 // Функция, которая отрисовывает список фильмов
-function updateContainer(data) {
+async function updateContainer(data) {
+    const clientId = window.localStorage.getItem('client');
+    const userId = JSON.parse(clientId).id;
+    let user = await get("users", userId);
+    let likes = user.likes;
+
     const container = document.querySelector(".content");
 
     if (data && data.items && Array.isArray(data.items)) {
         data.items.forEach((film) => {
-            const item = createFilmItem(film); // Создает элемент фильма
+            const item = createFilmItem(film, likes); // Создает элемент фильма
             container.appendChild(item);
         });
     } else {
@@ -76,7 +82,7 @@ function updateContainer(data) {
 }
 
 // Создает элемент фильма. Проходимся по массиву фильмов и добавляем информацию в контейнер
-function createFilmItem(film) {
+function createFilmItem(film, likes) {
     const item = document.createElement("div");
     item.classList.add("content__item");
 
@@ -103,13 +109,13 @@ function createFilmItem(film) {
         </div>
         <div class="filmFavContainer">
             <button class="content-button likeBtn" id="${film.kinopoiskId}">
-                <span class="likeIcon"></span>
+                <span class="likeIcon ${film.kinopoiskId in likes ? 'liked' : ''}"></span>
             </button>
         </div>
         `;
 
     item.innerHTML = template;
-    setRedLike();
+    // setRedLike();
     return item;
 }
 
@@ -124,6 +130,7 @@ function attachLikeButtonsEvent() {
 
             const filmId = btn.getAttribute('id');
             let target = event.target;
+            console.log(event.target);
 
             const objLS = window.localStorage.getItem('client');
             const accessObj = JSON.parse(objLS).id;
@@ -140,7 +147,7 @@ function attachLikeButtonsEvent() {
 
 function showAlertNeedRegistration() {
     const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
-      
+
     if (!isUserAuthenticated) {
         const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
 
@@ -164,22 +171,22 @@ async function setLike(user_id, film_id, state) {
 }
 
 //функция для того, чтобы лайк был уже красным, если он в избранном
-function setRedLike() {
-    const clientId = window.localStorage.getItem('client');
-    const clientInfo = JSON.parse(clientId);
-    const userId = clientInfo.id;
-    get("users", userId) //Получили инфу по id пользователя
-        .then(clientInfo => {
-            const likesKeys = Object.keys(clientInfo.likes); //Получили ключи лайков (id фильмов)
-            const likeBtns = document.querySelectorAll('.likeBtn');// Проходим по всем кнопкам лайков в каталоге
-            likeBtns.forEach((btn) => {
-                const filmId = btn.getAttribute('id');
-                if (likesKeys.includes(filmId)) {// Если в массиве ключей, есть id фильма (т.е. фильм в избранном)
-                    btn.classList.add('liked');//  делаем кнопку "лайка" красной
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Ошибка при получении данных из БД:', error);
-        });
-}
+// function setRedLike(client, film) {
+// const clientId = window.localStorage.getItem('client');
+// const clientInfo = JSON.parse(clientId);
+// const userId = clientInfo.id;
+// get("users", userId) //Получили инфу по id пользователя
+//     .then(clientInfo => {
+//         const likesKeys = Object.keys(clientInfo.likes); //Получили ключи лайков (id фильмов)
+//         const likeBtns = document.querySelectorAll('.likeBtn');// Проходим по всем кнопкам лайков в каталоге
+//         likeBtns.forEach((btn) => {
+//             const filmId = btn.getAttribute('id');
+//             if (likesKeys.includes(filmId)) {// Если в массиве ключей, есть id фильма (т.е. фильм в избранном)
+//                 btn.classList.add('liked');//  делаем кнопку "лайка" красной
+//             }
+//         });
+//     })
+//     .catch(error => {
+//         console.error('Ошибка при получении данных из БД:', error);
+//     });
+// }
