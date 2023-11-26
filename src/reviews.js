@@ -186,23 +186,34 @@ async function getPosts() {
             {
                 method: "GET",
                 headers: {
-                    // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-                    "X-API-KEY": "ea3a683d-e344-4f44-98e9-1e6b0bb1d8b1", //tech Nat's
+                    'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+                    // "X-API-KEY": "ea3a683d-e344-4f44-98e9-1e6b0bb1d8b1", //tech Nat's
                     "Content-Type": "application/json",
                 },
             }
         );
 
         const posts = await response.json();
-        console.log(posts);
+        console.log("Рецензии: ", posts);
+        console.log("Рецензии Length: ", posts.items.length);
 
         const postsContainer = document.querySelector(".posts-wrapper");
+        if (posts.items.length === 0) {
+            // Если нет рецензий
+            const template = `
+            <article class="review-post review-post_no-reviews">
+                <h3 class="review-post__title">Пока нет рецензий от зрителей Кинопоиска</h3>
+            </article>
+            `;
+            postsContainer.innerHTML = template;
+        } else {
+            posts.items.forEach((item) => {
+                const postMarkup = createPostMarkup(item);
+                addMarkupToContainer(postMarkup, postsContainer);
+            });
+            addTotalToContainer(posts, postsContainer);
+        }
 
-        posts.items.forEach((item) => {
-            const postMarkup = createPostMarkup(item);
-            addMarkupToContainer(postMarkup, postsContainer);
-        });
-        addTotalToContainer(posts, postsContainer);
     } catch (error) {
         console.error(
             "%c%s",
