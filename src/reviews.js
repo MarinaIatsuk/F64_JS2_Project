@@ -1,5 +1,4 @@
 import * as db from "./db";
-import { get_query } from "./db"; // Импорт функции из db для работы с БД
 import "./reviews-tabs";
 
 // Прописываем локаль и опции для форматирования даты
@@ -63,6 +62,18 @@ function createPostMarkup(post) {
     return template;
 }
 
+// Функция открытия третьей вкладки при переходе со второй вкладки
+function openTabThree() {
+    const tabThreeTitle = document.querySelector('[data-tab="tab_3"]');
+    const tabTwoTitle = document.querySelector('[data-tab="tab_2"]');
+    const tabThreeItem = document.querySelector("#tab_3");
+    const tabTwoItem = document.querySelector("#tab_2");
+    tabThreeTitle.classList.add("_active");
+    tabTwoTitle.classList.remove("_active");
+    tabThreeItem.classList.add("_active");
+    tabTwoItem.classList.remove("_active");
+}
+
 // Функция создания разметки поста с отзывом
 function createCommentMarkup(post) {
     const maxTextLength = 200;
@@ -83,7 +94,7 @@ function createCommentMarkup(post) {
     }
 
     let title;
-    if (post.title === undefined) {
+    if (post.title === undefined || post.title === "") {
         title = "&#10077";
     } else {
         title = post.title;
@@ -149,7 +160,7 @@ function addMarkupToContainer(markup, container) {
     container.innerHTML += markup;
 }
 
-// Функция добавления кол-ва отзывов в контейнер
+// Функция добавления кол-ва рецензий в контейнер
 function addTotalToContainer(posts, container) {
     const totalContainer = document.createElement("div");
     totalContainer.classList.add("reviews-container__total-wrapper", "total-wrapper");
@@ -175,23 +186,34 @@ async function getPosts() {
             {
                 method: "GET",
                 headers: {
-                    // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-                    "X-API-KEY": "ea3a683d-e344-4f44-98e9-1e6b0bb1d8b1", //tech Nat's
+                    'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+                    // "X-API-KEY": "ea3a683d-e344-4f44-98e9-1e6b0bb1d8b1", //tech Nat's
                     "Content-Type": "application/json",
                 },
             }
         );
 
         const posts = await response.json();
-        console.log(posts);
+        console.log("Рецензии: ", posts);
+        console.log("Рецензии Length: ", posts.items.length);
 
         const postsContainer = document.querySelector(".posts-wrapper");
+        if (posts.items.length === 0) {
+            // Если нет рецензий
+            const template = `
+            <article class="review-post review-post_no-reviews">
+                <h3 class="review-post__title">Пока нет рецензий от зрителей Кинопоиска</h3>
+            </article>
+            `;
+            postsContainer.innerHTML = template;
+        } else {
+            posts.items.forEach((item) => {
+                const postMarkup = createPostMarkup(item);
+                addMarkupToContainer(postMarkup, postsContainer);
+            });
+            addTotalToContainer(posts, postsContainer);
+        }
 
-        posts.items.forEach((item) => {
-            const postMarkup = createPostMarkup(item);
-            addMarkupToContainer(postMarkup, postsContainer);
-        });
-        addTotalToContainer(posts, postsContainer);
     } catch (error) {
         console.error(
             "%c%s",
@@ -208,14 +230,28 @@ async function getComments() {
         // const selectedFilmId = window.localStorage.getItem("selectedFilmId");
         let selectedFilmId = new URLSearchParams(window.location.search).get('id');
         const key = "film_id";
-        const comments = await get_query("comments", key, selectedFilmId);
-        console.log(comments);
+        const comments = await db.get_query("comments", key, selectedFilmId);
 
-        const commentsContainer = document.querySelector(".comments-container");
-        comments.forEach((comment) => {
-            const commentMarkup = createCommentMarkup(comment);
-            addMarkupToContainer(commentMarkup, commentsContainer);
-        });
+        if (comments.length === 0) {
+            // Если нет отзывов, выводится предложение добавить отзыв
+            const commentsContainer = document.querySelector(".comments-container");
+            const template = `
+            <article class="comments-container__comment-post comment-post сomment-post_no-comments">
+                <h3 class="comment-post__title">Будьте первым, кто оставит отзыв!</h3>
+                <button class="comment-post__add-btn" id="goToTabThreeBtn">Добавить&nbsp;&#10010;</button>
+            </article>
+            `;
+            commentsContainer.innerHTML = template;
+            const goToTabThreeBtn = document.querySelector("#goToTabThreeBtn");
+            goToTabThreeBtn.addEventListener("click", openTabThree);
+        } else {
+            const commentsContainer = document.querySelector(".comments-container");
+            comments.forEach((comment) => {
+                const commentMarkup = createCommentMarkup(comment);
+                addMarkupToContainer(commentMarkup, commentsContainer);
+            });
+        }
+
     } catch (error) {
         console.error("Ошибка при получении данных из БД:", error);
     }
@@ -223,13 +259,26 @@ async function getComments() {
 
 // Функции открытия и закрытия модальных окнон
 
+// Кнопка закрытия модального окна для неавторизованного пользователя
 const btnCloseRedirectionModal = document.querySelector(
     "#btnCloseRedirectionModal"
 );
+const redirectionModal = document.querySelector("#redirectionModal");
 
 // Получаем данные пользователя из Local Storage
 let client = localStorage.getItem("client");
 client = client ? JSON.parse(client) : null;
+
+// Функция открытия модального окна для неавторизованного пользователя
+function openModalAndLockScroll() {
+    window.redirectionModal.showModal();
+    document.body.classList.add("scroll-lock")
+}
+
+// Возвращаем возможность прокрутки
+function returnScroll() {
+    document.body.classList.remove("scroll-lock")
+}
 
 // Функция открытия окна успешной отправки отзыва на 4 секунды
 function openSuccessModal() {
@@ -237,11 +286,25 @@ function openSuccessModal() {
     setTimeout(() => window.successModal.close(), 4000);
 }
 
+// Функция закрытия модалки для неавторизованного пользователя
 function closeRedirectionModal() {
-    window.redirectionModal.close();
+    redirectionModal.close();
+    returnScroll()
 }
 
 btnCloseRedirectionModal.addEventListener("click", closeRedirectionModal);
+
+// Закрытие модального окна по клику на подложку
+redirectionModal.addEventListener("click", closeOnBackDropClick)
+
+function closeOnBackDropClick({ currentTarget, target }) {
+    const redirectionModal = currentTarget
+    const isClickedOnBackDrop = target === redirectionModal
+    if (isClickedOnBackDrop) {
+        closeRedirectionModal();
+    }
+}
+
 
 // Функция добавления отзыва в БД
 
@@ -258,8 +321,14 @@ async function addReview(user_id, user_name, film_id, title, text, date) {
 
     // Открываем окно успешного отправления отзыва на несколько секунд
     openSuccessModal();
+    console.log("Отзыв успешно отправлен!");
 
-    console.log("Ваш отзыв успешно отправлен!");
+    // Очищаем поля
+    reviewTitleInput.value = "";
+    reviewTextInput.value = "";
+
+    // Обновляем отзывы на странице
+    getComments()
     return id;
 }
 
@@ -310,7 +379,7 @@ async function getDataFromReviewForm() {
         console.log("Comment added with id:", id);
         // submitBtn.disabled = false;
     } else if (client === null) {
-        window.redirectionModal.showModal();
+        openModalAndLockScroll();
     }
 }
 
