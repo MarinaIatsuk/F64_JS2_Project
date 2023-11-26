@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}`, {
       method: 'GET',
       headers: {
-        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
+         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
-         'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
+        //  'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
         //  'X-API-KEY': 'bf74cbae-8a3c-4c19-a819-24c4f87080a4',
 
         'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       method: 'GET',
       headers: {
         // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-        // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
+         'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserve
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         headers: {
           // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
           //  'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-          // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+           'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
           // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
           // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         headers: {
           // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
           // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-          // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
+           'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
           // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
           // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
           // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
           // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-          // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
+           'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
           // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
           // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
           'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
+         'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
         // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
         'Content-Type': 'application/json',
       },
@@ -419,28 +419,4 @@ document.querySelector(".likeBtn").addEventListener("click", function (event) {
 });
 }
 
-// function showAlertNeedRegistration() {
-//   const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
-
-//   if (!isUserAuthenticated) {
-//     const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
-
-//     if (confirmation) {
-//       // Redirect the user to the registration page
-//       window.location.href = 'registr.html';
-//     }
-//   }
-// }
-
-// // Функция для работы с БД
-// async function setLike(user_id, film_id, state) {
-//   let subfield = `likes.${film_id}`;
-//   if (state) {
-//     const data = {};
-//     data[subfield] = true;
-//     await db.update("users", user_id, data);
-//   } else {
-//     await db.removeSubfield("users", user_id, subfield);
-//   }
-// }
 
