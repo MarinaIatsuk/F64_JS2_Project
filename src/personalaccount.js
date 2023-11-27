@@ -67,12 +67,12 @@ const userId = clientInfo.id; // Получаем id из объекта
 
 get("users", userId) //Вызываем функцию get, которая возвращает промис users-это base, userId-это id
     .then(clientInfo => {
-        console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes, у которых значение равно true
+        // console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes, у которых значение равно true
         // Получаем ключи объекта likes
         const likesKeys = Object.keys(clientInfo.likes)
         .filter(key => clientInfo.likes[key] === true); //получили ключи необходимого объекта, так они являются id выбранных пользователем фильмов
    
-        console.log(likesKeys); //Проверили
+        // console.log(likesKeys); //Проверили
         getMovies(likesKeys) //Функция для получения фильмов из АПИ
     })
     .catch(error => {
@@ -91,7 +91,7 @@ try {
                                },
         });
         const data = await response.json();
-       console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
+      //  console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
        makeList(data); // функция отрисовка списка, которая ниже
        
     }
@@ -142,8 +142,8 @@ const template =  `
         const accessObj = JSON.parse(objLS).id;
 
         likeBtn.querySelector('span').classList.toggle('liked');
-        console.log(filmId);
-        console.log(accessObj);
+        // console.log(filmId);
+        // console.log(accessObj);
       
 // Находим родительский элемент лайка и удаляем его
 const movieRemove = likeBtn.closest('.content__item');

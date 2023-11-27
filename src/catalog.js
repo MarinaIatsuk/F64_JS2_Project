@@ -54,7 +54,7 @@ async function getData(page) {
             },
         });
         const data = await response.json();
-        //console.log(data); //Проверка
+
         await updateContainer(data); // отрисовка списка
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
