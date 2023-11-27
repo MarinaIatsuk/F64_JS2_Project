@@ -10,6 +10,7 @@ const clientId = window.localStorage.getItem('client');
 
 const blockEnter = document.querySelector('.account__enter');//доступ к контейнеру кнопки Войти
 const btnOpenBurger = document.querySelector('#btnOpenBurger');
+const personalAccount = document.querySelector('#personalAccount');
 // const hiUser = document.querySelector(".account__greeting"); //текст приветствия
 
 
@@ -25,9 +26,11 @@ burgerMenu('.burger-menu');
 if(clientId===null)
 {
         btnOpenBurger.style.display = "flex"; 
+        personalAccount.style.display = 'none';
         burgerExit.style.display = 'none';
 }
 else{
+        personalAccount.style.display = "flex";
         btnOpenBurger.style.display = 'none'; 
         burgerExit.style.display = "flex";
 }
@@ -102,6 +105,7 @@ function exit() {
         blockEnter.style.display = "flex"; //делаем его  видимым.
         btnOpenBurger.style.display = "flex"; 
         burgerExit.style.display = 'none';
+        personalAccount.style.display = 'none';
         hiUserTextBlock.style.display = "none";
         exitLsText.style.display = 'none';
        
