@@ -9,20 +9,21 @@ import * as db from './db';
 import { btnCloseRedirectionModal, getAuthorized, redirectionModal } from './vars.js';
 
 export function showAlertNeedRegistration() {
-    const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
-  if (!isUserAuthenticated) {
-     redirectionModal.showModal();
-      // закрытия модального окна через определенное время
-  setTimeout(() => window.redirectionModal.close(), 8000);
+  const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
+if (!isUserAuthenticated) {
+  window.windModal.showModal();
+    // закрытия модального окна через определенное время
+setTimeout(() => window.redirectionModal.close(), 8000);
 
 btnCloseRedirectionModal.addEventListener("click",function () {
-  window.redirectionModal.close();
+window.redirectionModal.close();
 });
- } 
- getAuthorized.addEventListener("click",function () {
-  window.open('/registr.html');
-});
+} 
+//  getAuthorized.addEventListener("click",function () {
+//   window.open('/registr.html');
+// });
 }
+
 
 
 //Функция установки лайков
