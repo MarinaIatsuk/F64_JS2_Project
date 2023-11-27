@@ -10,8 +10,8 @@ import { quotes } from "./quotes";
 //Создаем функцию fetch с api адресом
 
 window.addEventListener('load', function() {
-
-  fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1', {
+  const randomPage = Math.floor(Math.random() * 30);
+  fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=${randomPage}`, {
     method: 'GET',
     headers: {
       'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813',
@@ -20,31 +20,31 @@ window.addEventListener('load', function() {
   })
     .then(response => response.json())
     .then((data) => {
-
+      console.log(data);
       //Выводим рандомно первый фильм
       const massiveOne = data.items;
-      const randomIndexOne = Math.floor(Math.random() * massiveOne.length);
+      const randomIndexOne = Math.floor(Math.random() * (4 - 0) + 0 );
       const randomElementOne = massiveOne[randomIndexOne];
       console.log(randomElementOne);
 
       //Выводим рандомно второй фильм
 
       const massiveTwo = data.items;
-      const randomIndexTwo = Math.floor(Math.random() * massiveTwo.length);
+      const randomIndexTwo = Math.floor(Math.random() * (9 - 5) + 5 );
       const randomElementTwo = massiveTwo[randomIndexTwo];
       console.log(randomElementTwo);
 
       //Выводим рандомно третий фильм
 
       const massiveThree = data.items;
-      const randomIndexThree = Math.floor(Math.random() * massiveThree.length);
+      const randomIndexThree = Math.floor(Math.random() * (14 - 10) + 10);
       const randomElementThree = massiveTwo[randomIndexThree];
       console.log(randomElementThree);
 
       //Выводим рандомно четвертый фильм
 
       const massiveFour = data.items;
-      const randomIndexFour = Math.floor(Math.random() * massiveFour.length);
+      const randomIndexFour = Math.floor(Math.random() * (massiveOne.length - 15) + 15);
       const randomElementFour = massiveTwo[randomIndexFour];
       console.log(randomElementFour);
       console.log(randomElementThree.kinopoiskId);

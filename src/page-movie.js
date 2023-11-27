@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
         //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
         // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserve
-        'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
+        // 'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
 
         'Content-Type': 'application/json',
       },
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
       const dataSimilarMovies = await response3.json();
       console.log(dataSimilarMovies);
-      // ShowSimilarMovies(dataSimilarMovies);
+      ShowSimilarMovies(dataSimilarMovies);
     }
     catch (error) {
       console.error("Error fetching data:", error);
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
           // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
           // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
-          'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
+          // 'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
           'Content-Type': 'application/json',
         },
       });
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
       const dataSeasons = await response4.json();
       console.log(dataSeasons);
-      // ShowSeason(dataSeasons);
+       ShowSeason(dataSeasons);
     }
     catch (error) {
       console.error("Error fetching data:", error);
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     const dataSources = await response5.json();
     console.log(dataSources);
-    // ShowSources(dataSources);
+    ShowSources(dataSources);
   }
   catch (error) {
     console.error("Error fetching data:", error);

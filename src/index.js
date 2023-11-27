@@ -20,6 +20,7 @@
 
 const btnOpen = document.querySelector('#btnOpen');//кнопка Войти в хэдэр
 const btnOpenBurger = document.querySelector('#btnOpenBurger');
+const personalAccount = document.querySelector('#personalAccount');
 const burgerExit = document.querySelector(".burger-menu__exit");
 
 const windModal = document.querySelector('#windModal');
@@ -195,6 +196,7 @@ async function examLogin() {
             btnOpenBurger.style.display = 'none';
 
             burgerExit.style.display = 'flex';
+            personalAccount.style.display = 'flex';
             hiUserTextBlock.style.display = 'flex';
             exitLsText.style.display = 'flex';
 
