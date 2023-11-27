@@ -102,7 +102,6 @@ function lsName() {
         const objLS = window.localStorage.getItem('client');
         const accessObj = JSON.parse(objLS);
 
-        console.log(accessObj);
 
         // тут доделать
         hiNameUser.textContent = ` Привет, ${accessObj.name}`;
