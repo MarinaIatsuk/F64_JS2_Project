@@ -4,6 +4,27 @@
 //для работы с БД
 import * as db from './db';
 
+
+// модальное окно при необходимости авторизации
+import { btnCloseRedirectionModal, getAuthorized, redirectionModal } from './vars.js';
+
+export function showAlertNeedRegistration() {
+    const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
+  if (!isUserAuthenticated) {
+     redirectionModal.showModal();
+      // закрытия модального окна через определенное время
+  setTimeout(() => window.redirectionModal.close(), 8000);
+
+btnCloseRedirectionModal.addEventListener("click",function () {
+  window.redirectionModal.close();
+});
+ } 
+ getAuthorized.addEventListener("click",function () {
+  window.open('/registr.html');
+});
+}
+
+
 //Функция установки лайков
 export async function setLike(user_id, film_id, state) {
     let subfield = `likes.${film_id}`;
@@ -13,17 +34,5 @@ export async function setLike(user_id, film_id, state) {
         await db.update("users", user_id, data);
     } else {
         await db.removeSubfield("users", user_id, subfield);
-    }
-}
-//Функция проверки регистрации пользователя
-export function showAlertNeedRegistration() {
-    const isUserAuthenticated = window.localStorage.getItem('client');
-
-    if (!isUserAuthenticated) {
-        const confirmation = confirm('Чтобы использовать опцию "Избранное", необходимо авторизироваться. Хотите перейти на страницу регистрации?');
-
-        if (confirmation) {
-            window.location.href = 'registr.html';
-        }
     }
 }
