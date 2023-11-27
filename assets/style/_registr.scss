@@ -52,12 +52,24 @@ input[name="secondName"]:active{
     outline: 2px solid rgb(107, 100, 100);
 }
 
+.style-regist{
+    background-color: white;
+}
+
 .main-reg {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 85vh;
     justify-content: center;
+
+    @media #{$tablet}{
+        height: 69vh;
+    }
+
+    @media #{$mobile} {
+        height: 50vh;
+    }
 
 
     &__title{
@@ -79,6 +91,7 @@ input[name="secondName"]:active{
         font-size: 25px;
         margin-bottom: 2%;
        font-family: $font-texts;
+       color: #362335;
 
        @media #{$tablet}{
         font-size: 23px;

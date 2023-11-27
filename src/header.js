@@ -95,6 +95,7 @@ const accessObj = JSON.parse(objLS); // Парсим, чтобы получит�
 // }
 
 
+
 //Выхлд из ЛК
 door.addEventListener('click', exit) //можно функцию отдельно указывать, думаю, так удобней
 burgerExit.addEventListener('click', exit);
