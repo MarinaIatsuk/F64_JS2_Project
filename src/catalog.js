@@ -1,7 +1,10 @@
-
-
-import { get } from './db'; // для работы с БД. Импорт функции из db
-import { setLike, showAlertNeedRegistration } from './functions'
+import {
+    get
+} from './db'; // для работы с БД. Импорт функции из db
+import {
+    setLike,
+    showAlertNeedRegistration
+} from './functions'
 
 let currentPage = 1; // Флаг для пагинации
 let loading = false; // Флаг для загрузки данных
@@ -46,14 +49,13 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-            //  "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
-             "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
+                //  "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
             },
         });
         const data = await response.json();
         //console.log(data); //Проверка
         await updateContainer(data); // отрисовка списка
-        // attachLikeButtonsEvent();
         currentPage = page;
         loading = false; // разрешаем загрузку следующей порции данных
 
@@ -83,7 +85,7 @@ async function updateContainer(data) {
         });
     }
 }
-        
+
 
 // Создает элемент фильма. Проходимся по массиву фильмов и добавляем информацию в контейнер
 function createFilmItem(film, likes) {
@@ -128,7 +130,7 @@ document.querySelector(".content").addEventListener("click", function (event) {
 
     if (likeBtn) {
         event.preventDefault();
-        showAlertNeedRegistration();   // Проверка авторизации
+        showAlertNeedRegistration(); // Проверка авторизации
 
         const filmId = likeBtn.getAttribute('id');
         const target = likeBtn.querySelector('.like__icon');
@@ -141,5 +143,3 @@ document.querySelector(".content").addEventListener("click", function (event) {
         }
     }
 });
-
-
