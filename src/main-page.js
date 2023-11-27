@@ -9,48 +9,50 @@ import { quotes } from "./quotes";
 
 //Создаем функцию fetch с api адресом
 
-fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1', {
-  method: 'GET',
-  headers: {
-    'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813',
-    'Content-Type': 'application/json',
-  },
-})
-  .then(response => response.json())
-  .then((data) => {
+window.addEventListener('load', function() {
+  const randomPage = Math.floor(Math.random() * 30);
+  fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=${randomPage}`, {
+    method: 'GET',
+    headers: {
+      'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      //Выводим рандомно первый фильм
+      const massiveOne = data.items;
+      const randomIndexOne = Math.floor(Math.random() * (4 - 0) + 0 );
+      const randomElementOne = massiveOne[randomIndexOne];
+      console.log(randomElementOne);
 
-    //Выводим рандомно первый фильм
-    const massiveOne = data.items;
-    const randomIndexOne = Math.floor(Math.random() * massiveOne.length);
-    const randomElementOne = massiveOne[randomIndexOne];
-    console.log(randomElementOne);
+      //Выводим рандомно второй фильм
 
-    //Выводим рандомно второй фильм
+      const massiveTwo = data.items;
+      const randomIndexTwo = Math.floor(Math.random() * (9 - 5) + 5 );
+      const randomElementTwo = massiveTwo[randomIndexTwo];
+      console.log(randomElementTwo);
 
-    const massiveTwo = data.items;
-    const randomIndexTwo = Math.floor(Math.random() * massiveTwo.length);
-    const randomElementTwo = massiveTwo[randomIndexTwo];
-    console.log(randomElementTwo);
+      //Выводим рандомно третий фильм
 
-    //Выводим рандомно третий фильм
+      const massiveThree = data.items;
+      const randomIndexThree = Math.floor(Math.random() * (14 - 10) + 10);
+      const randomElementThree = massiveTwo[randomIndexThree];
+      console.log(randomElementThree);
 
-    const massiveThree = data.items;
-    const randomIndexThree = Math.floor(Math.random() * massiveThree.length);
-    const randomElementThree = massiveTwo[randomIndexThree];
-    console.log(randomElementThree);
+      //Выводим рандомно четвертый фильм
 
-    //Выводим рандомно четвертый фильм
+      const massiveFour = data.items;
+      const randomIndexFour = Math.floor(Math.random() * (massiveOne.length - 15) + 15);
+      const randomElementFour = massiveTwo[randomIndexFour];
+      console.log(randomElementFour);
+      console.log(randomElementThree.kinopoiskId);
+      console.log(randomElementFour.kinopoiskId);
 
-    const massiveFour = data.items;
-    const randomIndexFour = Math.floor(Math.random() * massiveFour.length);
-    const randomElementFour = massiveTwo[randomIndexFour];
-    console.log(randomElementFour);
-    console.log(randomElementThree.kinopoiskId);
-    console.log(randomElementFour.kinopoiskId);
+      //html код для рандомных постеров при загрузке страницы    
 
-    //html код для рандомных постеров при загрузке страницы    
-
-    const html = `
+      const html = `
 
   <div class="poster-info post-one">
   <img class="film__img" src="${randomElementOne.posterUrl}" alt="film">
@@ -64,7 +66,7 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
    
     </div>`;
 
-    const htmlTwo = `
+      const htmlTwo = `
 
   <div class="poster-info post-one">
   <img class="film__img" src="${randomElementThree.posterUrl}" alt="film">
@@ -77,18 +79,20 @@ fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_P
     <div class="film__title-wrapper"><a href="/page-movie.html?id=${randomElementFour.kinopoiskId}" class="film__title">${randomElementFour.nameRu}</a></div>
     
   </div>`
-      ;
-    //помещаем html код в div
+        ;
+      //помещаем html код в div
 
-    div.innerHTML = html;
-    upperPosters.appendChild(div);
+      div.innerHTML = html;
+      upperPosters.appendChild(div);
 
-    divTwo.innerHTML = htmlTwo;
-    downPosters.appendChild(divTwo);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+      divTwo.innerHTML = htmlTwo;
+      downPosters.appendChild(divTwo);
+    })
+    .catch((err) => {
+      console.log("Ошибка загрузки:",err);
+    });
+
+});
 
 
 

@@ -141,7 +141,7 @@ const template =  `
         const objLS = window.localStorage.getItem('client');
         const accessObj = JSON.parse(objLS).id;
 
-        likeBtn.querySelector('span').classList.toggle('likeIcon');
+        likeBtn.querySelector('span').classList.toggle('liked');
         console.log(filmId);
         console.log(accessObj);
       

@@ -6,6 +6,18 @@
     padding: 0;
 }
 
+// Против скролла при открытии модалок
+html, body {
+    // Чтобы при скрытии прокрутки через overflow: hidden
+    // у нас появился отступ вместо скроллбара 
+    // и контент остался на месте
+    scrollbar-gutter: stable;
+}
+// Этот класс добавляется к body при открытии модального окна
+.scroll-lock {
+    // Убирает прокрутку
+    overflow: hidden;
+}
 
 $mobile: "screen and (max-width: 599px)";
 $tablet: "screen and (min-width: 600px) and (max-width: 1023px)";
@@ -31,6 +43,16 @@ $font-texts: "Noto Sans";
 $font-titles: "Rubik";
 $font-btns: "Fira Sans Condensed";
 
+
+html {
+    font-family: $font-texts, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+    font-family: $font-titles, sans-serif;
+
+}
 // переменные для размера экрана
 
 $mobile: "screen and (max-width: 599px)";
