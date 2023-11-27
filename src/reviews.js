@@ -308,7 +308,6 @@ function closeOnBackDropClick({ currentTarget, target }) {
 
 
 // Функция добавления отзыва в БД
-
 async function addReview(user_id, user_name, film_id, title, text, date) {
     const data = {};
     data.title = title;
@@ -332,15 +331,6 @@ async function addReview(user_id, user_name, film_id, title, text, date) {
     getComments()
     return id;
 }
-
-// // Получаем элементы
-// // const reviewTitleInput = document.getElementById("reviewTitle");
-// // const reviewTextInput = document.getElementById("reviewText");
-
-// Перенесено в getDataFromReviewForm()
-// const reviewForm = document.forms.reviewForm;
-// const reviewTitleInput = reviewForm.elements.reviewTitle;
-// const reviewTextInput = reviewForm.elements.reviewText;
 
 // Функция сбора данных из формы и отправки их в нужные поля для БД
 async function getDataFromReviewForm() {
@@ -392,18 +382,6 @@ async function getDataFromReviewForm() {
     }
 }
 
-// const reviewForm = document.forms.reviewForm;
-
-// Слушатель submit в форме для отправки отзыва
-// reviewForm.addEventListener("submit", (e) => {
-//     e.preventDefault(); //отмена отправки
-
-//     getDataFromReviewForm();
-
-//     // TODO написать валидацию полей
-//     // checkAll();
-// });
-
 // Функция отрисовки вкладки с формой отзыва
 
 function renderReviewForm() {
@@ -411,9 +389,7 @@ function renderReviewForm() {
     let formTemplate;
     
     if (client) {
-        
         // Если пользователь авторизован, отрисовываем форму отправки отзыва
-        
         formTemplate = `
         <div class="review-form__container" id="reviewContainer">
             <h2 class="review-form__title">Оставьте отзыв</h2>
@@ -436,17 +412,8 @@ function renderReviewForm() {
         </div>
         `;
 
-
-        // reviewForm.addEventListener("submit", (e) => {
-        //     e.preventDefault(); //отмена отправки
-        
-        //     getDataFromReviewForm();
-        // });
-
-        console.log("Пользователь:", client);
     } else {
         // Если пользователь не авторизован, отрисовываем кнопку открытия модалки авторизации
-
         formTemplate = `
         <div class="review-form__container" id="reviewContainer">
             <h2 class="review-form__title">Вы не вошли на сайт</h2>
@@ -454,18 +421,25 @@ function renderReviewForm() {
             <button class="review-form__auth-redirect-btn btn" id="goToAuthModal">Перейти к форме авторизации</button>
         </div>
         `;
-
-
-        // const goToAuthModalBtn = document.querySelector("#goToAuthModal");
-        // goToAuthModalBtn.addEventListener("click", showAlertNeedRegistration);
-
-        console.log("Вы не вошли на сайт");
     }
 
     reviewFormContainer.innerHTML = formTemplate;
+
+    if (client) {
+        // Добавляем слушатель события на форму отправки отзыва
+        reviewForm.addEventListener("submit", (e) => {
+            e.preventDefault(); //отмена отправки
+            getDataFromReviewForm();
+
+        // TODO написать валидацию полей
+        });
+    } else {
+        // Добавляем слушатель события на кнопку открытия модалки авторизации
+        const goToAuthModalBtn = document.querySelector("#goToAuthModal");
+        goToAuthModalBtn.addEventListener("click", showAlertNeedRegistration);
+    }
 }
 
 getPosts();
 getComments();
-// добавлено:
 renderReviewForm();
