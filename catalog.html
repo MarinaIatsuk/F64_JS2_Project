@@ -111,6 +111,29 @@
             <div class="content">
 
                 </div>
+<!-- Модальное окно для неавторизованного пользователя -->
+<dialog class="dialog" id="redirectionModal">
+  <div class="dialog__close">
+    <button class="dialog__close" id="btnCloseRedirectionModal">
+      &#10799;
+    </button>
+  </div>
+  <div class="dialog__container" id="redirectionContainer">
+    <h2 class="dialog__title">Вы не вошли на сайт</h2>
+    <p class="dialog__text">
+      Авторизуйтесь, чтобы добавить фильм в избранное.
+    </p>
+    <div class="dialog__btn">
+      <button
+        class="dialog__btn-text"
+        name="redirectToAuthForm"
+        id="btnRedirectToAuth"
+      >
+        Авторизоваться
+      </button>
+    </div>
+  </div>
+</dialog>
 
         </div>
     </main>

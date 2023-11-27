@@ -10,3 +10,9 @@ export const divTwo = document.createElement('div');
 // получаем кнопку для вывода цитат и блок куда будем помещать
 export const blockTextQuote = document.getElementById('subtext-quote');
 export const button = document.getElementById('btn-quote');
+
+//  модальное окно при необходимости авторизации
+export const btnCloseRedirectionModal = document.querySelector(
+  "#btnCloseRedirectionModal")
+export const getAuthorized = document.querySelector('#btnRedirectToAuth');
+export const redirectionModal = window.redirectionModal;
