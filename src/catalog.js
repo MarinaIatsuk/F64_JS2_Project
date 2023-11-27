@@ -1,4 +1,5 @@
 import * as db from './db'; // для работы с БД
+import { showAlertNeedRegistration } from './functions';
 
 let currentPage = 1; // Флаг для пагинации
 let loading = false; // Флаг для загрузки данных
@@ -121,7 +122,7 @@ function attachLikeButtonsEvent() {
         btn.addEventListener('click', function (event) {
             event.preventDefault();
 
-         showAlertNeedRegistration();  // Проверка авторизации 
+        showAlertNeedRegistration();  // Проверка авторизации 
 
             const filmId = btn.getAttribute('id');
             let target = event.target;
@@ -139,25 +140,7 @@ function attachLikeButtonsEvent() {
     });
 }
 
- function showAlertNeedRegistration() {
-    const btnCloseRedirectionModal = document.querySelector(
-        "#btnCloseRedirectionModal")
-        const getAutorized = document.querySelector('#btnRedirectToAuth')
-    const isUserAuthenticated = window.localStorage.getItem('client'); // Получили id пользователя из бд
-      
-    if (!isUserAuthenticated) {
-        window.redirectionModal.showModal();
-        // закрытия модального окна через определенное время
-    setTimeout(() => window.redirectionModal.close(), 8000);
 
-btnCloseRedirectionModal.addEventListener("click",function () {
-    window.redirectionModal.close();
-});
-   } 
-   getAutorized.addEventListener("click",function () {
-    window.open('/registr.html');
-});
-}
 
 // Функция для работы с БД
 async function setLike(user_id, film_id, state) {
