@@ -16,20 +16,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}`, {
       method: 'GET',
       headers: {
-         'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-        // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-        //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
-        //  'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
-        //  'X-API-KEY': 'bf74cbae-8a3c-4c19-a819-24c4f87080a4',
-
+        'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
         'Content-Type': 'application/json',
       },
     });
     const dataMovie = await response.json();
     TYPE_FILM = dataMovie.serial;
-    console.log(dataMovie);
     ShowPageMovie(dataMovie);
   }
   catch (error) {
@@ -39,18 +31,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response2 = await fetch(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${SELECTEDFILMID}`, {
       method: 'GET',
       headers: {
-        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
          'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-        //  'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-        // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserve
-        // 'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
-
         'Content-Type': 'application/json',
       },
     });
     const dataStaff = await response2.json();
-    console.log(dataStaff);
    ShowStaffMovie(dataStaff);
   }
   catch (error) {
@@ -61,12 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/similars`, {
         method: 'GET',
         headers: {
-          // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-          //  'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
            'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-          // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-          // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
-          // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
           'Content-Type': 'application/json',
         },
       });
@@ -83,18 +63,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/similars`, {
         method: 'GET',
         headers: {
-          // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-          // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
            'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-          // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-          // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
-          // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
-          // 'X-API-KEY': 'eea8ea52-8916-4942-984a-2bd461617959',//tech7 reserv
           'Content-Type': 'application/json',
         },
       });
       const dataSimilarMovies = await response3.json();
-      console.log(dataSimilarMovies);
       ShowSimilarMovies(dataSimilarMovies);
     }
     catch (error) {
@@ -105,12 +78,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response4 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/seasons`, {
         method: 'GET',
         headers: {
-          // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-          // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-          // 'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
            'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
-          // 'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
-          // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
           'Content-Type': 'application/json',
         },
       });
@@ -127,17 +95,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response5 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/external_sources?page=1`, {
       method: 'GET',
       headers: {
-        // 'X-API-KEY': '94ca834b-5c22-427c-af84-610eb7685d60', //tech
-        // 'X-API-KEY': '71366ccb-2bd6-4045-b47f-fb75863ae604', //tech2
-        //  'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-        // 'X-API-KEY': '93a0d256-5519-4fe4-baf9-8f7b6109ae42',//tech4
          'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813', //tech5
-        // 'X-API-KEY': 'e8e6cb28-f79d-4595-a2a8-9a81886dee12',//tech6 reserv
         'Content-Type': 'application/json',
       },
     });
     const dataSources = await response5.json();
-    console.log(dataSources);
     ShowSources(dataSources);
   }
   catch (error) {
@@ -402,7 +364,6 @@ function ShowSources(data) {
   }
 }
 
-// Обработчик события клика на кнопках лайков
 function SetLikeAndChackReg()
 {
 document.querySelector(".likeBtn").addEventListener("click", function (event) {

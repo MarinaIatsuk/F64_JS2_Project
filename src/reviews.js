@@ -195,8 +195,6 @@ async function getPosts() {
         );
 
         const posts = await response.json();
-        console.log("Рецензии: ", posts);
-        console.log("Рецензии Length: ", posts.items.length);
 
         const postsContainer = document.querySelector(".posts-wrapper");
         if (posts.items.length === 0) {
@@ -321,7 +319,6 @@ async function addReview(user_id, user_name, film_id, title, text, date) {
 
     // Открываем окно успешного отправления отзыва на несколько секунд
     openSuccessModal();
-    console.log("Отзыв успешно отправлен!");
 
     // Очищаем поля
     reviewTitleInput.value = "";
@@ -359,15 +356,6 @@ async function getDataFromReviewForm() {
         const userName = client.name;
 
         const id = await addReview(
-            userId,
-            userName,
-            selectedFilmId,
-            title,
-            text,
-            date
-        );
-        console.log(
-            "Данные из формы:",
             userId,
             userName,
             selectedFilmId,
