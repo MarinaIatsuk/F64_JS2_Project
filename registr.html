@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration form</title>
+    <link rel="stylesheet" href="./assets/style/main.scss" />
     <link rel="stylesheet" href="./assets/style/_registr.scss">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
 </head>
 <body>
+   <div class="container style-regist">
+    <header class="header">
+        <div class="header__logo logo">
+          <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt="" class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt="" class="logo__picture logo__picture_text"></a>
+        </div>
+      </header> 
+    
     <main class="main-reg">
         <div class="main-reg__container" id="invisibleOne">
             <h2 class="main-reg__title">MOVIE Сервис</h2>
@@ -62,8 +72,10 @@
         <div class="main-reg__container see" id="resultOk">
         </div>
     </main>
+   </div>
 
     <script type="module" src="./src/registr.js"></script>
     <script type="module" src="./src/db.js"></script>
+    <!-- <script type="module" src="./src/header.js"></script> -->
 </body>
 </html>
