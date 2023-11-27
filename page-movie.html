@@ -2,357 +2,360 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style/main.scss" />
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/style/main.scss" />
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   <link rel="shortcut icon" href="/assets/images/favicon.ico" />
-    <title>Страница фильма</title>
+  <title>Страница фильма</title>
 </head>
 
 <body>
-    <!-- <header class="header">
+  <!-- <header class="header">
         <div class="header__logo logo">
           <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt="" class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt="" class="logo__picture logo__picture_text"></a>
         </div>
       </header> -->
 
-      <header class="header">
+  <header class="header">
 
-        <div class="header__logo logo">
-          <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt="" class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt="" class="logo__picture logo__picture_text"></a>
+    <div class="header__logo logo">
+      <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt=""
+          class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt=""
+          class="logo__picture logo__picture_text"></a>
+    </div>
+    <div class="header__links link">
+      <a href="./catalog.html" class="link__item">Каталог</a>
+    </div>
+    <div class="header__search search">
+      <input type="text" placeholder="Поиск" class="search__input">
+      <ul class="search__list list">
+        <!-- <li class="list__item"></li> -->
+      </ul>
+    </div>
+    <div class="header__account account">
+      <div class="account__personal">
+        <div class="account__greeting" id="hiNameUser"></div>
+        <img src="./assets/images/avatar.png" alt="avatar" class="account__avatar">
+      </div>
+      <div class="account__exit exit">
+        <img src="./assets/images/door.png" alt="door" class="exit__img">
+        <div class="exit__text">Выйти</div>
+      </div>
+      <div class="account__enter" id="hiUser">
+        <button class="account__btn" id="btnOpen">Войти</button>
+      </div>
+    </div>
+    <div class="burger-menu">
+      <a href="" class="burger-menu__button">
+        <spun class="burger-menu__lines"></spun>
+      </a>
+      <nav class="burger-menu__nav">
+        <a href="./catalog.html" class="burger-menu__link">Каталог</a>
+        <a href="./personalaccount.html" class="burger-menu__link" id="personalAccount">Личный кабинет</a>
+        <a class="burger-menu__link" id="btnOpenBurger">Войти</a>
+        <div class="burger-menu__link burger-menu__exit">Выйти
+          <img src="./assets/images/door.png" alt="door" class="tiny-img">
         </div>
-        <div class="header__links link">
-          <a href="./catalog.html" class="link__item">Каталог</a>
+      </nav>
+    </div>
+  </header>
+
+
+
+
+  <!-- Модальное окно -->
+  <dialog class="dialog" id="windModal">
+    <div class="dialog__close">
+      <button class="dialog__close-btn" id="btnClose">X</button>
+    </div>
+    <div class="dialog__container" id="formContainer">
+      <div class="dialog__one-block main-form">
+        <h2 class="dialog__title">MOVIE Сервис</h2>
+        <p class="dialog__text dialog-form">Войти в личный кабинет</p>
+        <form class="dialog-form__form" name="loginForm" novalidate>
+          <div class="dialog-form__email">
+            <label for="loginEmail" class="dialog-form__email-text">Email</label>
+            <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
+              placeholder="Введите email..." required>
+
+            <p class="dialog-form__email-error error-text" id="dialogEmailError"></p>
+          </div>
+          <div class="dialog-form__password">
+            <label for="loginPassword" class="dialog-form__password-text">Пароль <button
+                class="dialog-form__password-btn" id="passwordBtn">Забыли пароль?</button></label>
+            <input name="newPassword" class="dialog-form__password-input" type="password" id="loginPassword"
+              placeholder="Введите пароль..." minlength="8" required>
+
+            <p class="dialog-form__password-error error-text" id="dialogPasswError"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
+          </div>
+        </form>
+
+        <div class="dialog__block">
+          <p class="dialog__block-text">Новенький?</p>
+          <a class="dialog__block-link" href="./registr.html">создай аккаунт</a>
         </div>
-        <div class="header__search search">
-          <input type="text" placeholder="Поиск" class="search__input">
-          <ul class="search__list list">
-            <!-- <li class="list__item"></li> -->
-          </ul>
+      </div>
+
+      <!-- пользователь вводит свой email и кодовое слово -->
+      <div class="dialog__two-block check-input" id="examDate">
+        <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при регистрации
+        </h5>
+        <form class="dialog-form__form" name="secondForm" novalidate>
+          <div class="dialog-form__email">
+            <label for="secondEmail" class="dialog-form__email-text">Email</label>
+            <input type="email" name="secondEmailInput" class="dialog-form__email-input" id="secondEmail"
+              pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+
+            <p class="dialog-form__err-email error-text" id="secondEmailErr"></p>
+          </div>
+          <div class="dialog-form__secret">
+            <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
+            <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
+              class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
+
+            <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
+
+
+      <div class="dialog__three-block new-pass" id="replacePass">
+        <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
+        <form class="dialog-form__form" name="thirdForm" novalidate>
+          <div class="dialog-form__password">
+            <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
+            <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword"
+              placeholder="Введите новый пароль..." minlength="8" required>
+
+            <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
+          </div>
+          <div class="dialog-form__reappassword">
+            <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
+            <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword"
+              placeholder="Повторите пароль..." minlength="8" required>
+
+            <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
+          </div>
+          <div class="dialog-form__btn">
+            <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Новый пароль успешно зарегестрирован -->
+
+
+      <div class="dialog__four-block ok-block">
+        <div class="ok-block__location">
+          <p class="ok-block__text">Вы успешно изменилии пароль</p>
+          <button class="ok-block__btn" id="newComwIn">перейти в форму входа</button>
         </div>
-        <div class="header__account account">
-            <div class="account__personal">
-              <div class="account__greeting" id="hiNameUser"></div>
-              <img src="./assets/images/avatar.png" alt="avatar" class="account__avatar">
+      </div>
+
+    </div>
+  </dialog>
+
+
+
+
+  <div class="container">
+
+    <section class="block-movie">
+      <div class="block-movie__title-wrapper">
+        <div>
+          <h1 class="block-movie__title name-ru"></h1>
+          <h2 class="block-movie__title name-en"></h2>
+          <h3 class="block-movie__title name-original"></h3>
+        </div>
+        <div class="block-movie__rating-age">
+          <img class="block-movie__rating-age-limit" src="" alt="age limit"></img>
+        </div>
+      </div>
+      <div class="block-movie__main-section">
+        <div class="block-movie__cotanier-wrapper">
+          <div class="block-movie__poster-wrapper">
+            <img class="block-movie__poster" src="" alt="poster">
+            <div class="block-movie__wrapper">
+              <div class="block-movie__rating-kinopoisk"></div>
+              <div class="block-movie__like-wrapper filmFavContainer">
+                <button class="block-movie__like-button likeBtn">
+                  <span class="block-movie__like-icon likeIcon"></span>
+                </button>
+              </div>
             </div>
-            <div class="account__exit exit">
-              <img src="./assets/images/door.png" alt="door" class="exit__img">
-              <div class="exit__text">Выйти</div>
-            </div>
-          <div class="account__enter" id="hiUser">
-            <button class="account__btn" id="btnOpen">Войти</button>
           </div>
-        </div>
-        <div class="burger-menu">
-          <a href="" class="burger-menu__button">
-            <spun class="burger-menu__lines"></spun>
-          </a>
-          <nav class="burger-menu__nav">
-            <a href="./catalog.html" class="burger-menu__link">Каталог</a>
-            <a href="./personalaccount.html" class="burger-menu__link">Личный кабинет</a>
-            <a class="burger-menu__link" id="btnOpenBurger">Войти</a>
-              <div class="burger-menu__link burger-menu__exit">Выйти
-              <img src="./assets/images/door.png" alt="door" class="tiny-img">
+          <div class="block-movie__common-info-about">
+            <div class="block-movie__infomation">
+              <div class="block-movie__info-wrapper">
+                <h3 class="block-movie__subtitle about"></h3>
+                <div class="block-movie__item about"></div>
               </div>
-          </nav>
-        </div>
-      </header>
-    
-    
-    
-    
-      <!-- Модальное окно -->
-      <dialog class="dialog" id="windModal">
-        <div class="dialog__close">
-          <button class="dialog__close-btn" id="btnClose">X</button>
-        </div>
-        <div class="dialog__container" id="formContainer">
-          <div class="dialog__one-block main-form">
-            <h2 class="dialog__title">MOVIE Сервис</h2>
-            <p class="dialog__text dialog-form">Войти в личный кабинет</p>
-            <form class="dialog-form__form" name="loginForm" novalidate>
-              <div class="dialog-form__email">
-                <label for="loginEmail" class="dialog-form__email-text">Email</label>
-                <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
-                  placeholder="Введите email..." required>
-    
-                <p class="dialog-form__email-error error-text" id="dialogEmailError"></p>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle ">Год выпуска</a>
+                <div class="block-movie__item start-year">&mdash;</div>
               </div>
-              <div class="dialog-form__password">
-                <label for="loginPassword" class="dialog-form__password-text">Пароль <button
-                    class="dialog-form__password-btn" id="passwordBtn">Забыли пароль?</button></label>
-                <input name="newPassword" class="dialog-form__password-input" type="password" id="loginPassword"
-                  placeholder="Введите пароль..." minlength="8" required>
-    
-                <p class="dialog-form__password-error error-text" id="dialogPasswError"></p>
+
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle ">Страна происхождения</a>
+                <div class="block-movie__item countries">&mdash;</div>
               </div>
-              <div class="dialog-form__btn">
-                <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle">Жанры</a>
+                <div class="block-movie__item genres">&mdash;</div>
               </div>
-            </form>
-    
-            <div class="dialog__block">
-              <p class="dialog__block-text">Новенький?</p>
-              <a class="dialog__block-link" href="./registr.html">создай аккаунт</a>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle ">Слоган</a>
+                <div class="block-movie__item slogan">&mdash;</div>
+              </div>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle ">Время</a>
+                <div class="block-movie__item film-length">&mdash;</div>
+              </div>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle">Режиссер</a>
+                <div class="block-movie__item director">&mdash;</div>
+              </div>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle">Актеры</a>
+                <div class="block-movie__item actor">&mdash;</div>
+              </div>
+              <div class="block-movie__info-wrapper">
+                <a class="block-movie__subtitle actors-subtitle"></a>
+                <div id="actors-photos" class="block-movie__photos-wrapper "></div>
+              </div>
             </div>
           </div>
-    
-          <!-- пользователь вводит свой email и кодовое слово -->
-          <div class="dialog__two-block check-input" id="examDate">
-            <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при регистрации
-            </h5>
-            <form class="dialog-form__form" name="secondForm" novalidate>
-              <div class="dialog-form__email">
-                <label for="secondEmail" class="dialog-form__email-text">Email</label>
-                <input type="email" name="secondEmailInput" class="dialog-form__email-input" id="secondEmail"
-                  pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
-    
-                <p class="dialog-form__err-email error-text" id="secondEmailErr"></p>
+          <div class="block-movie__sources movie-sources">
+            <div class="movie-sources__sources-wrapper ">
+              <h3 class="movie-sources__title">Где смотреть?</h3>
+              <div id="external-sources" class="movie-sources__container">
               </div>
-              <div class="dialog-form__secret">
-                <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
-                <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
-                  class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
-    
-                <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
-              </div>
-              <div class="dialog-form__btn">
-                <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
-              </div>
-            </form>
-          </div>
-    
-          <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
-    
-    
-          <div class="dialog__three-block new-pass" id="replacePass">
-            <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
-            <form class="dialog-form__form" name="thirdForm" novalidate>
-              <div class="dialog-form__password">
-                <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
-                <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword"
-                  placeholder="Введите новый пароль..." minlength="8" required>
-    
-                <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
-              </div>
-              <div class="dialog-form__reappassword">
-                <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
-                <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword"
-                  placeholder="Повторите пароль..." minlength="8" required>
-    
-                <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
-              </div>
-              <div class="dialog-form__btn">
-                <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
-              </div>
-            </form>
-          </div>
-    
-          <!-- Новый пароль успешно зарегестрирован -->
-    
-    
-          <div class="dialog__four-block ok-block">
-            <div class="ok-block__location">
-              <p class="ok-block__text">Вы успешно изменилии пароль</p>
-              <button class="ok-block__btn" id="newComwIn">перейти в форму входа</button>
             </div>
           </div>
-    
+        </div>
+        <details class="block-movie__description-wrapper">
+          <summary>Описание</summary>
+          <p class="block-movie__item description"></p>
+        </details>
+        <details class="block-movie__seasons-wrapper no-visible">
+          <summary class="block-movie__seasons seasons">Сезоны</summary>
+          <div id="seasons"></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="similar-movies">
+      <div class="similar-movies__container">
+        <h2 class="similar-movies__title">Похожие фильмы</h2>
+        <div id="posters-contanier" class="similar-movies__posters-contanier">
+        </div>
+        <div class="similar-movies__container-wrapper">
+          <div id="more-posters-contanier" class="similar-movies__more-similar-movies">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block-reviews">
+
+      <!-- Модальное окно для неавторизованного пользователя -->
+      <dialog class="block-reviews__dialog dialog dialog_redirect" id="redirectionModal">
+        <!-- <dialog class="block-reviews__dialog dialog dialog_redirect" id="redirectionModal" open> -->
+        <div class="dialog__wrapper">
+          <div class="dialog__close">
+            <button class="dialog__close-btn" id="btnCloseRedirectionModal">&#10799;</button>
+          </div>
+          <div class="dialog__container" id="redirectionContainer">
+            <h2 class="dialog__title">Вы не вошли на сайт</h2>
+            <p class="dialog__text">Авторизуйтесь, чтобы поделиться своим мнением о фильме</p>
+            <!-- <div class="dialog__btn">
+                            <button class="dialog__btn-text" name="redirectToAuthForm" id="btnRedirectToAuth">Авторизоваться</button>
+                        </div> -->
+          </div>
         </div>
       </dialog>
 
 
-
-
-
-
-    <div class="container">
-
-        <section class="block-movie">
-            <div class="block-movie__title-wrapper">
-                <div>
-                    <h1 class="block-movie__title name-ru"></h1>
-                    <h2 class="block-movie__title name-en"></h2>
-                    <h3 class="block-movie__title name-original"></h3>
-                </div>
-                <div class="block-movie__rating-age">
-                    <img class="block-movie__rating-age-limit" src="" alt="age limit"></img>
-                </div>
-            </div>
-            <div class="block-movie__main-section">
-                <div class="block-movie__cotanier-wrapper">
-                    <div class="block-movie__poster-wrapper">
-                        <img class="block-movie__poster" src="" alt="poster">
-                        <div class="block-movie__wrapper">
-                            <div class="block-movie__rating-kinopoisk"></div>
-                            <div class="block-movie__like-wrapper filmFavContainer">
-                                <button class="block-movie__like-button likeBtn">
-                                    <span class="block-movie__like-icon likeIcon" ></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-movie__common-info-about">
-                        <div class="block-movie__infomation">
-                            <div class="block-movie__info-wrapper">
-                                <h3 class="block-movie__subtitle about"></h3>
-                                <div class="block-movie__item about"></div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle ">Год выпуска</a>
-                                <div class="block-movie__item start-year">&mdash;</div>
-                            </div>
-
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle ">Страна происхождения</a>
-                                <div class="block-movie__item countries">&mdash;</div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle">Жанры</a>
-                                <div class="block-movie__item genres">&mdash;</div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle ">Слоган</a>
-                                <div class="block-movie__item slogan">&mdash;</div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle ">Время</a>
-                                <div class="block-movie__item film-length">&mdash;</div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle">Режиссер</a>
-                                <div class="block-movie__item director">&mdash;</div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle">Актеры</a>
-                                <div class="block-movie__item actor">&mdash;</div>
-                            </div>
-                            <div class="block-movie__info-wrapper">
-                                <a class="block-movie__subtitle actors-subtitle"></a>
-                                <div id="actors-photos" class="block-movie__photos-wrapper "></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-movie__sources movie-sources">
-                        <div class="movie-sources__sources-wrapper ">
-                            <h3 class="movie-sources__title">Где смотреть?</h3>
-                            <div id="external-sources" class="movie-sources__container">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <details class="block-movie__description-wrapper">
-                    <summary>Описание</summary>
-                    <p class="block-movie__item description"></p>
-                </details>
-                <details class="block-movie__seasons-wrapper no-visible">
-                    <summary class="block-movie__seasons seasons">Сезоны</summary>
-                    <div id="seasons"></div>
-                </details>
-            </div>
-        </section>
-
-        <section class="similar-movies">
-            <div class="similar-movies__container">
-                <h2 class="similar-movies__title">Похожие фильмы</h2>
-                <div id="posters-contanier" class="similar-movies__posters-contanier">
-                </div>
-                <div class="similar-movies__container-wrapper">
-                    <div id="more-posters-contanier" class="similar-movies__more-similar-movies">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="block-reviews">
-
-            <!-- Модальное окно для неавторизованного пользователя -->
-            <dialog class="block-reviews__dialog dialog dialog_redirect" id="redirectionModal">
-            <!-- <dialog class="block-reviews__dialog dialog dialog_redirect" id="redirectionModal" open> -->
-                <div class="dialog__wrapper">
-                    <div class="dialog__close">
-                        <button class="dialog__close-btn" id="btnCloseRedirectionModal">&#10799;</button>
-                    </div>
-                    <div class="dialog__container" id="redirectionContainer">
-                        <h2 class="dialog__title">Вы не вошли на сайт</h2>
-                        <p class="dialog__text">Авторизуйтесь, чтобы поделиться своим мнением о фильме</p>
-                        <!-- <div class="dialog__btn">
-                            <button class="dialog__btn-text" name="redirectToAuthForm" id="btnRedirectToAuth">Авторизоваться</button>
-                        </div> -->
-                    </div>
-                </div>
-            </dialog>
-
-
-            <!-- Модальное окно успешной отправки отзыва -->
-            <dialog class="block-reviews__dialog dialog dialog_success" id="successModal">
-            <!-- <dialog class="block-reviews__dialog dialog dialog_success" id="successModal" open> -->
-                <!-- <div class="dialog__close">
+      <!-- Модальное окно успешной отправки отзыва -->
+      <dialog class="block-reviews__dialog dialog dialog_success" id="successModal">
+        <!-- <dialog class="block-reviews__dialog dialog dialog_success" id="successModal" open> -->
+        <!-- <div class="dialog__close">
                     <button class="dialog__close" id="btnCloSesuccessModal">&#10799;</button>
                 </div> -->
-                <div class="dialog__container" id="SuccessContainer">
-                    <h2 class="dialog__title">Спасибо!</h2>
-                    <p class="dialog__text">Ваш отзыв успешно отправлен.</p>
-                </div>
-            </dialog>
+        <div class="dialog__container" id="SuccessContainer">
+          <h2 class="dialog__title">Спасибо!</h2>
+          <p class="dialog__text">Ваш отзыв успешно отправлен.</p>
+        </div>
+      </dialog>
 
-            <div class="block-reviews__tabs tabs">
-                <div class="tabs__nav">
-                    <div class="tabs__title-wrapper tabs__title-wrapper_kinopoisk">
-                        <div class="tabs__title _active" data-tab="tab_1" id="title-kp">Рецензии зрителей Кинопоиска</div>
-                    </div>
-                    <div class="tabs__title-wrapper tabs__title-wrapper_ours">
-                        <div class="tabs__title" data-tab="tab_2" id="title-ours">Отзывы наших пользователей</div>
-                    </div>
-                    <div class="tabs__title-wrapper tabs__title-wrapper_btn">
-                        <div class="tabs__title" data-tab="tab_3" id="title-btn">Оставить отзыв&nbsp;&#10010;</div>
-                    </div>
-                </div>
-                
-                <div class="tabs__content _tab-1-active">
+      <div class="block-reviews__tabs tabs">
+        <div class="tabs__nav">
+          <div class="tabs__title-wrapper tabs__title-wrapper_kinopoisk">
+            <div class="tabs__title _active" data-tab="tab_1" id="title-kp">Рецензии зрителей Кинопоиска</div>
+          </div>
+          <div class="tabs__title-wrapper tabs__title-wrapper_ours">
+            <div class="tabs__title" data-tab="tab_2" id="title-ours">Отзывы наших пользователей</div>
+          </div>
+          <div class="tabs__title-wrapper tabs__title-wrapper_btn">
+            <div class="tabs__title" data-tab="tab_3" id="title-btn">Оставить отзыв&nbsp;&#10010;</div>
+          </div>
+        </div>
 
-                    <div class="tabs__item _active" id="tab_1">
-                        <div class="reviews-container">
-                            <div class="reviews-container__posts-wrapper posts-wrapper">
-                            </div>
-                        </div>
-                    </div>
+        <div class="tabs__content _tab-1-active">
 
-                    <div class="tabs__item" id="tab_2">
-                        <div class="comments-container">
-                        </div>
-                    </div>
-
-                    <div class="tabs__item" id="tab_3">
-                        <div class="review-form">
-                            <div class="review-form__container" id="reviewContainer">
-                                <h2 class="review-form__title">Оставьте отзыв</h2>
-                                <p class="review-form__text">Поделитесь своим мнением о фильме</p>
-                                <form class="comment-form" name="reviewForm" novalidate>
-                                    <div class="comment-form__content-title">
-                                        <input type="text" name="reviewTitle" class="comment-form__title-input" id="reviewTitle" placeholder="Заголовок">
-                                    </div>
-                                    <div class="comment-form__content-text">
-                                        <textarea name="reviewText" id="reviewText" rows="15" class="comment-form__text-input" placeholder="Текст отзыва" minlength="8" spellcheck="true" required></textarea>
-                                        <!-- <p class="error-message"></p> -->
-                                    </div>
-                                    <div class="review-form__btn">
-                                        <input class="review-form__btn-text" type="submit" name="sendReview" id="btnSendReview" value="Отправить">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+          <div class="tabs__item _active" id="tab_1">
+            <div class="reviews-container">
+              <div class="reviews-container__posts-wrapper posts-wrapper">
+              </div>
             </div>
-        </section>
-    </div>
-    <!-- <script type="module" src="./main.js"></script> -->
-    <script type="module" src="./src/page-movie.js"></script>
-    <script type="module" src="./src/header.js"></script>
-        <script type="module" src="./src/index.js"></script>
+          </div>
+
+          <div class="tabs__item" id="tab_2">
+            <div class="comments-container">
+            </div>
+          </div>
+
+          <div class="tabs__item" id="tab_3">
+            <div class="review-form">
+              <div class="review-form__container" id="reviewContainer">
+                <h2 class="review-form__title">Оставьте отзыв</h2>
+                <p class="review-form__text">Поделитесь своим мнением о фильме</p>
+                <form class="comment-form" name="reviewForm" novalidate>
+                  <div class="comment-form__content-title">
+                    <input type="text" name="reviewTitle" class="comment-form__title-input" id="reviewTitle"
+                      placeholder="Заголовок">
+                  </div>
+                  <div class="comment-form__content-text">
+                    <textarea name="reviewText" id="reviewText" rows="15" class="comment-form__text-input"
+                      placeholder="Текст отзыва" minlength="8" spellcheck="true" required></textarea>
+                    <!-- <p class="error-message"></p> -->
+                  </div>
+                  <div class="review-form__btn">
+                    <input class="review-form__btn-text" type="submit" name="sendReview" id="btnSendReview"
+                      value="Отправить">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- <script type="module" src="./main.js"></script> -->
+  <script type="module" src="./src/page-movie.js"></script>
+  <script type="module" src="./src/header.js"></script>
+  <script type="module" src="./src/index.js"></script>
 
 </body>
 
