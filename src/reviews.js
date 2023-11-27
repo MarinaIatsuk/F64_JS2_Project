@@ -1,5 +1,6 @@
 import * as db from "./db";
 import "./reviews-tabs";
+import { showAlertNeedRegistration } from './functions'
 
 // Прописываем локаль и опции для форматирования даты
 const formatter = new Intl.DateTimeFormat("ru-RU", {
@@ -305,7 +306,6 @@ function closeOnBackDropClick({ currentTarget, target }) {
 
 
 // Функция добавления отзыва в БД
-
 async function addReview(user_id, user_name, film_id, title, text, date) {
     const data = {};
     data.title = title;
@@ -329,15 +329,14 @@ async function addReview(user_id, user_name, film_id, title, text, date) {
     return id;
 }
 
-// Получаем элементы
-// const reviewTitleInput = document.getElementById("reviewTitle");
-// const reviewTextInput = document.getElementById("reviewText");
-const reviewForm = document.forms.reviewForm;
-const reviewTitleInput = reviewForm.elements.reviewTitle;
-const reviewTextInput = reviewForm.elements.reviewText;
-
 // Функция сбора данных из формы и отправки их в нужные поля для БД
 async function getDataFromReviewForm() {
+    
+    // Получаем элементы формы
+    const reviewForm = document.forms.reviewForm;
+    const reviewTitleInput = reviewForm.elements.reviewTitle;
+    const reviewTextInput = reviewForm.elements.reviewText;
+    
     // Получаем заголовок отзыва из input
     const reviewTitle = reviewTitleInput.value.trim();
     // Получаем текст отзыва из input
@@ -371,15 +370,64 @@ async function getDataFromReviewForm() {
     }
 }
 
-// const reviewForm = document.forms.reviewForm;
-reviewForm.addEventListener("submit", (e) => {
-    e.preventDefault(); //отмена отправки
+// Функция отрисовки вкладки с формой отзыва
 
-    getDataFromReviewForm();
+function renderReviewForm() {
+    const reviewFormContainer = document.querySelector(".review-form");
+    let formTemplate;
+    
+    if (client) {
+        // Если пользователь авторизован, отрисовываем форму отправки отзыва
+        formTemplate = `
+        <div class="review-form__container" id="reviewContainer">
+            <h2 class="review-form__title">Оставьте отзыв</h2>
+            <p class="review-form__text">Поделитесь своим мнением о фильме</p>
+            <form class="comment-form" name="reviewForm" novalidate>
+                <div class="comment-form__content-title">
+                    <input type="text" name="reviewTitle" class="comment-form__title-input" id="reviewTitle"
+                    placeholder="Заголовок">
+                </div>
+                <div class="comment-form__content-text">
+                    <textarea name="reviewText" id="reviewText" rows="15" class="comment-form__text-input"
+                    placeholder="Текст отзыва" minlength="8" spellcheck="true" required></textarea>
+                    <!-- <p class="error-message"></p> -->
+                </div>
+                <div class="review-form__btn">
+                    <input class="review-form__btn-text" type="submit" name="sendReview" id="btnSendReview"
+                    value="Отправить">
+                </div>
+            </form>
+        </div>
+        `;
 
-    // TODO написать валидацию полей
-    // checkAll();
-});
+    } else {
+        // Если пользователь не авторизован, отрисовываем кнопку открытия модалки авторизации
+        formTemplate = `
+        <div class="review-form__container" id="reviewContainer">
+            <h2 class="review-form__title">Вы не вошли на сайт</h2>
+            <p class="review-form__text">Авторизуйтесь, чтобы оставить отзыв</p>
+            <button class="review-form__auth-redirect-btn btn" id="goToAuthModal">Перейти к форме авторизации</button>
+        </div>
+        `;
+    }
+
+    reviewFormContainer.innerHTML = formTemplate;
+
+    if (client) {
+        // Добавляем слушатель события на форму отправки отзыва
+        reviewForm.addEventListener("submit", (e) => {
+            e.preventDefault(); //отмена отправки
+            getDataFromReviewForm();
+
+        // TODO написать валидацию полей
+        });
+    } else {
+        // Добавляем слушатель события на кнопку открытия модалки авторизации
+        const goToAuthModalBtn = document.querySelector("#goToAuthModal");
+        goToAuthModalBtn.addEventListener("click", showAlertNeedRegistration);
+    }
+}
 
 getPosts();
 getComments();
+renderReviewForm();
