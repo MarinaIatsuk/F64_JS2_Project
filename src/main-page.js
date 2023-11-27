@@ -25,30 +25,24 @@ window.addEventListener('load', function() {
       const massiveOne = data.items;
       const randomIndexOne = Math.floor(Math.random() * massiveOne.length);
       const randomElementOne = massiveOne[randomIndexOne];
-      console.log(randomElementOne);
 
       //Выводим рандомно второй фильм
 
       const massiveTwo = data.items;
       const randomIndexTwo = Math.floor(Math.random() * massiveTwo.length);
       const randomElementTwo = massiveTwo[randomIndexTwo];
-      console.log(randomElementTwo);
 
       //Выводим рандомно третий фильм
 
       const massiveThree = data.items;
       const randomIndexThree = Math.floor(Math.random() * massiveThree.length);
       const randomElementThree = massiveTwo[randomIndexThree];
-      console.log(randomElementThree);
 
       //Выводим рандомно четвертый фильм
 
       const massiveFour = data.items;
       const randomIndexFour = Math.floor(Math.random() * massiveFour.length);
       const randomElementFour = massiveTwo[randomIndexFour];
-      console.log(randomElementFour);
-      console.log(randomElementThree.kinopoiskId);
-      console.log(randomElementFour.kinopoiskId);
 
       //html код для рандомных постеров при загрузке страницы    
 
