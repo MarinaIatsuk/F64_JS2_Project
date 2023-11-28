@@ -98,13 +98,13 @@ function checkAll() {
 const choceCheck = myForm.elements.secondCheckbox; //доступ чекбокс
 
 const submButton = document.querySelector('#btnText'); // доступ к кнопке
-submButton.disabled = 1;
+submButton.disabled = true;
 
 choceCheck.addEventListener('change', () => {
     if (choceCheck.checked) {
-        submButton.disabled = 0;
+        submButton.disabled = false;
     } else {
-        submButton.disabled = 1;
+        submButton.disabled = true;
     }
 })
 

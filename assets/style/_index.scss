@@ -1,315 +1,228 @@
-//предлагаю стили по каждой странице делать так же, как и называется страница
-
-// Название писать так:
-// _example.scss
-// Подключать в main.scss так:
-// @import "./example";
-// Подключать в example.html так:
-// <link rel="stylesheet" href="./assets/style/main.scss" />
+//Стили к Главной странице
 
 
-@import "./templates";
-@import "./fonts";
+.main-block {
+    // max-width: 1377px;
+    // width: 100%;
+    padding-left: 3vw;
+    padding-top: 4vh;
+    margin: 0 10vw 3vh 3vw;
+    min-height: 90vh;
+    /* Подправила высоту, чтобы хэлер вместился */
+    background: linear-gradient(135deg, #CA26FF 30%, #F4CAC0, #FFF3B0);
+    border-radius: 4vh 4vh 40vh 4vh;
 
+    //Главный wrapper
+    .main-page__wrapper {
+        display: flex;
+        padding-top: 50px;
 
-body {
-    scrollbar-gutter: stable;
+        @media #{$tablet,$mobile} {
+            display: flex;
+            flex-direction: column;
+        }
+
+        //Левый wrapper
+        .left-wrapper {
+            display: flex;
+            flex-basis: 55%;
+
+            @media #{$tablet} {
+                justify-content: center;
+                margin-left: 0;
+            }
+        }
+    }
+
+    //стили к тексту с цитатой
+    .main-page__subtext {
+
+        .subtext {
+            font-family: $font-texts;
+            font-size: 20px;
+            color: $btnBackGround;
+        }
+    }
 }
 
-.scroll-lock {
-    overflow: hidden;
+//Блок с информацией: заголовок, текст, кнопки
+.block-info {
+
+    @media #{$tablet,$mobile} {
+        padding-left: 0;
+    }
+
+    .title {
+        margin-bottom: 15px;
+        letter-spacing: 0.12rem;
+        font-family: $font-titles;
+        font-weight: 400;
+        font-size: 60px;
+        color: $main-header;
+
+    }
+
+    &__subtitle {
+
+        // margin-bottom: 40px;
+        font-family: $font-btns;
+        font-size: 30px;
+        font-weight: 400;
+        letter-spacing: 4px;
+        color: $headers;
+
+        @media #{$mobile} {
+            font-size: 27px;
+        }
+
+    }
+
+    &__text {
+
+        max-width: 95%;
+        font-size: 18px;
+        line-height: 20px;
+        margin-bottom: 25px;
+        font-family: $font-texts;
+        font-weight: 200;
+        color: $headers;
+        padding-top: 40px;
+        text-align: justify;
+    }
 }
 
-.error {
-    box-shadow: 0 0 15px red;
-}
+//правая часть страницы с постерами к фильмам, правый wrapper
 
-.error-text {
-    @extend %error-text;
-}
-
-
-.check-input {
-    display: none;
-}
-
-.new-pass {
-    display: none;
-}
-
-.ok-block {
-    display: none;
-}
-
-input:focus {
-    outline: 2px solid black;
-    box-shadow: 0 0 15px rgb(226, 190, 190);
-}
-
-input:active {
-    outline: 2px solid rgb(107, 100, 100);
-}
-
-.dialog {
-    margin: auto;
-    padding: 1em;
-    max-width: 839px;
-    width: 100%;
-    border: none;
-    border-radius: 20px;
+.right-wrapper {
+    display: flex;
+    flex-grow: 1;
+    padding-left: 50px;
 
     @media #{$tablet} {
-        max-width: 539px;
+        justify-content: center;
+        margin-left: 0;
+        padding-left: 0;
     }
 
     @media #{$mobile} {
-        max-width: 339px;
+        padding-left: 0;
     }
 
-    &__one-block {
-        @extend %display-maxblock;
-    }
-
-    &__two-block {
-        @extend %display-maxblock;
-        padding: 5%;
-    }
-
-    &__three-block {
-        @extend %display-maxblock;
-        padding: 2%;
-    }
-
-    &__four-block {
-        @extend %display-maxblock;
-        padding: 2%;
-    }
-
-
-    &__title {
-        font-family: $font-titles;
-        font-size: 60px;
-        color: $btnBackGroundHover;
-        text-align: center;
-
-        @media #{$tablet} {
-            font-size: 50px;
-        }
-
-        @media #{$mobile} {
-            font-size: 30px;
-        }
-    }
-
-    &__text-title {
-        font-size: 26px;
-        font-family: $font-titles;
-        color: #644562;
-        width: 90%;
-        text-align: center;
-
-        @media #{$tablet} {
-            font-size: 18px;
-        }
-
-        @media #{$mobile} {
-            font-size: 16px;
-        }
-    }
-
-    &__text {
-        font-family: $font-texts;
-        font-size: 25px;
-
-        @media #{$tablet} {
-            font-size: 23px;
-        }
-
-        @media #{$mobile} {
-            font-size: 16px;
-        }
-    }
-
-
-
-    &__close {
+    .block__posters {
         display: flex;
-        justify-content: flex-end;
-    }
+        flex-direction: row;
 
-    &__block {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-wrap: wrap;
-        background-color: $btnBackGroundHover;
-        width: 90%;
-        padding: 2%;
-        border-radius: 20px;
-        margin-top: 4%;
-        margin-bottom: 1%;
+        .upper-posters {
+            margin-right: 30px;
 
-
-    }
-
-    &__block-text {
-        @extend %text-block;
-    }
-
-    &__block-link {
-        font-size: 20px;
-        text-decoration: none;
-        font-family: $font-texts;
-        color: rgb(105, 131, 245);
-
-        @media #{$tablet} {
-            font-size: 18px;
         }
 
-        @media #{$mobile} {
-            font-size: 16px;
-        }
-    }
+        .poster-info {
+            height: 290px;
 
-    &__close-btn {
-        font-weight: 600;
-        padding: 1% 1.5%;
-        border-radius: 50%;
-        border: 1px solid rgb(97, 68, 68);
-        cursor: pointer;
+            @media #{$tablet} {
+                height: 400px;
+            }
+
+            @media #{$mobile} {
+                height: 400px;
+            }
+
+            .film__img {
+                width: 150px;
+                height: 214px;
+                margin-bottom: 15px;
+                border-radius: 30px;
+
+                @media #{$tablet} {
+                    width: 200px;
+                    height: 300px;
+                }
+
+                @media #{$mobile} {
+                    width: 200px;
+                    height: 300px;
+
+                }
+
+            }
+
+            .film__title-wrapper {
+
+                max-width: 12vw;
+                min-height: 5vh;
+                border-radius: 10px;
+                text-align: center;
+
+                .film__title {
+                    display: block;
+                    width: 150px;
+                    border-radius: 5px;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 18.5px;
+                    color: $btnBackGround;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    @media #{$tablet} {
+                        font-size: 20px;
+                        width: 200px;
+                    }
+
+                    @media #{$mobile} {
+                        font-size: 20px;
+                        width: 200px;
+                    }
+                }
+
+                .film__title:hover {
+                    background-color: $color;
+                    box-shadow: 5px 5px 5px $btnBackGround;
+
+                }
+            }
+        }
+
     }
+}
+
+.poster-info:not(:last-child) {
+    margin-bottom: 20px;
 
 }
 
-.dialog-form {
-    &__form {
-        background-color: $btnBackGroundHover;
-        width: 90%;
-        padding: 4%;
-        border-radius: 20px;
-        margin-top: 2%;
+//Блок с кнопкой
+.block-button {
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+
+    @media #{$mobile, $tablet} {
+        padding-bottom: 20px;
     }
 
-
-    &__email {
-        @extend %display-block;
-    }
-
-    &__email-text {
-        @extend %text-block;
-    }
-
-    &__password-text {
-        @extend %text-block;
+    .main-page__button {
         display: flex;
-        justify-content: space-between;
-    }
-
-    &__password-btn {
-        background-color: $btnBackGroundHover;
-        border: none;
-        color: rgb(105, 131, 245);
-        font-family: $font-texts;
-        padding-right: 5%;
-
-        @media #{$mobile} {
-            font-size: 12px;
-        }
-    }
-
-    &__password {
-        @extend %display-block;
-    }
-
-    &__email-input {
-        @extend %square;
-        padding: 1%;
-    }
-
-    &__password-input {
-        @extend %square;
-        padding: 1%;
-    }
-
-    &__btn {
-        display: flex;
+        align-items: center;
         justify-content: center;
-        margin-top: 4%
+
+        @media #{$mobile, $tablet} {
+            max-width: 30vw;
+            min-height: 6vh;
+            padding: 0 4px 0 4px;
+        }
     }
 
-    &__btn-text {
-        @extend %square;
-        padding: 1.5%;
-        font-family: $font-btns;
-        width: 80%; //ширина кнопки
-    }
 
-    &__btn-text:disabled {
-        background-color: #6e356b;
-        border: 1px solid rgb(168, 51, 51);
-        color: #330031;
-    }
-
-    &__email-error {
-        @extend %error-text;
-    }
-
-    &__password-error {
-        @extend %error-text;
-    }
-
-    &__password-btn {
-        cursor: pointer;
-    }
-
-    &__secret {
-        @extend %display-block;
-    }
-
-    &__secret-text {
-        @extend %text-block;
-    }
-
-    &__secret-input {
-        @extend %square;
-        padding: 1%;
-    }
-
-    &__reappassword {
-        @extend %display-block;
-    }
-
-    &__reappassword-text {
-        @extend %text-block;
-    }
-
-    &__reappassword-input {
-        @extend %square;
-        padding: 1%;
-    }
 }
 
-.ok-block {
+.main-page__subtext {
+    background-color: #e7e5d74d;
+    width: 50%;
+    margin-top: 2%;
+    padding: 2%;
+    border: thick double rgb(94, 35, 150);
+    border-radius: 20px;
 
-    &__location {
-        background-color: $btnBackGroundHover;
-        width: 90%;
-        padding: 4%;
-        border-radius: 20px;
-        margin-top: 2%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__text {
-        @extend %text-block;
-    }
-
-    &__btn {
-        @extend %square;
-        padding: 1% 4%;
-        margin-top: 2%;
-        font-family: $font-btns;
-    }
 }
