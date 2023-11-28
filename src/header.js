@@ -51,9 +51,15 @@ filter.addEventListener("input", (event) => {
             list.innerHTML = "";
 
             data.films.forEach((film) => {
-                if (film.filmId !== undefined && film.filmId !== null && film.nameRu !== undefined && film.nameRu !== null) {
+                if (film.filmId !== undefined && film.filmId !== null) {
+                    let filmName;
+                    filmName = film.nameRu;
+                    // Если у фильма нет русского названия
+                    if (film.nameRu === undefined && film.nameEn !== undefined) {
+                        filmName = film.nameEn;
+                    }
                     const li = document.createElement("li");
-                    const template = `<a href="page-movie.html?id=${film.filmId}" class="list__link">${film.nameRu}</a>`;
+                    const template = `<a href="page-movie.html?id=${film.filmId}" class="list__link">${filmName}</a>`;
                     li.classList.add('list__item');
                     li.innerHTML = template;
                     list.appendChild(li);
