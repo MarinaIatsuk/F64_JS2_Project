@@ -133,9 +133,14 @@ function burgerMenu(selector) {
         menu.classList.toggle('burger-menu__active');
 
         if (menu.classList.contains('burger-menu__active')) {
-            document.body.style.overflow = 'hidden';
+            // document.body.style.overflow = 'hidden';
+            document.body.classList.add("toggle-hidden")
+            document.body.classList.remove("toggle-visible")
         } else {
-            document.body.style.overflow = 'visible';
+            // document.body.style.overflow = 'visible';
+            // // document.body.style.overflow = 'hidden-x';
+            document.body.classList.add("toggle-visible")
+            document.body.classList.remove("toggle-hidden")
         }
     }
 }
