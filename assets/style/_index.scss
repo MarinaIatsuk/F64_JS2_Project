@@ -6,7 +6,7 @@
     // width: 100%;
     padding-left: 3vw;
     padding-top: 4vh;
-    margin: 0 10vw 3vh 3vw;
+    margin: 0 3vw 3vh 3vw;
     min-height: 90vh;
     /* Подправила высоту, чтобы хэлер вместился */
     background: linear-gradient(135deg, #CA26FF 30%, #F4CAC0, #FFF3B0);
@@ -22,9 +22,17 @@
         // max-width: 100%;
         // width: 100%;
 
-        @media #{$tablet},#{$mobile} {
+        @media #{$tablet}{
+            padding-top: 0px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        @media #{$mobile} {
             // max-width: 60%;
             // width: 100%;
+            padding-top: 0px;
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -172,7 +180,7 @@
             height: 290px;
 
             @media #{$tablet} {
-                height: 400px;
+                height: 300px;
             }
 
             @media #{$mobile} {
