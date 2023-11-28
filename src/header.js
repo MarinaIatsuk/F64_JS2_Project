@@ -51,11 +51,14 @@ filter.addEventListener("input", (event) => {
             list.innerHTML = "";
 
             data.films.forEach((film) => {
-                const li = document.createElement("li");
-                const template = `<a href="page-movie.html?id=${film.filmId}" class="list__link">${film.nameRu}</a>` //передали в каждый элемент списка название фильма и ссылку, которая переходит на страницу фильма по своему id
-                li.classList.add('list__item')
-                li.innerHTML = template;
-                list.appendChild(li);
+                if (film.filmId !== undefined && film.filmId !== null && film.nameRu !== undefined && film.nameRu !== null) {
+                    const li = document.createElement("li");
+                    const template = `<a href="page-movie.html?id=${film.filmId}" class="list__link">${film.nameRu}</a>`;
+                    li.classList.add('list__item');
+                    li.innerHTML = template;
+                    list.appendChild(li);
+                }
+            
 
                 // Показать или скрыть список в зависимости от наличия результатов
                 // const searchList = document.querySelector(".header__search-list");
