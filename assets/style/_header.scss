@@ -18,6 +18,7 @@
   padding-top: 2vh;
   margin-right: 3.5vh;
   font-size: larger;
+
   @media #{$mobile} {
     padding-top: 0;
 
@@ -86,6 +87,7 @@
     width: 2rem;
     // left: 60px;
     cursor: pointer;
+
     @media #{$tablet} {
       width: 100%;
     }
@@ -107,6 +109,7 @@
     font-size: large;
     font-family: $font-texts;
     font-weight: 600;
+
     @media #{$mobile} {
       max-width: 60vw;
       width: 100%;
@@ -153,9 +156,11 @@
   @media #{$mobile} {
     display: none;
   }
+
   @media #{$tablet} {
     width: 10%;
   }
+
   .account__personal {
     display: flex;
     align-items: center;
@@ -186,8 +191,9 @@
   .account__exit {
     display: flex;
     align-items: center;
+
     @media #{$mobile} {
-     flex-direction: row;
+      flex-direction: row;
     }
 
     .exit__img {
@@ -219,10 +225,15 @@
       border-radius: 4vh;
       border: solid black 1px;
       color: black;
-      // padding: 1% 2%;
+      // padding: 3% 5%;
       width: 10vh;
       height: 5vh; //поиграть с размерами для адаптива
       cursor: pointer;
+
+      @media #{$tablet} {
+        width: 6vh;
+        height: 4.5vh;
+      }
     }
 
     .account__btn:hover {
@@ -255,7 +266,8 @@
     transition: 0.4s;
   }
 
-  &__button:hover, &__lines {
+  &__button:hover,
+  &__lines {
     filter: brightness(0.7);
   }
 
