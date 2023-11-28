@@ -68,7 +68,6 @@ const btnLogin = document.querySelector('#btnLogin');//доступ к кноп�
 
 
 
-// const seeBlockHeaderClass = document.querySelector('.header__btn-container');// класс блока Выйти и Личный кабинет, для настройки видимости или невидимости
 
 
 
@@ -94,7 +93,7 @@ function lsName() {
         hiUser.style.display = 'none';//Блок кнопки Войти в хэдэр
 
 
-        // seeBlockHeaderClass.style.display = 'flex';
+
 
         hiUserTextBlock.style.display = 'flex';
         exitLsText.style.display = 'flex';
@@ -103,7 +102,6 @@ function lsName() {
         const objLS = window.localStorage.getItem('client');
         const accessObj = JSON.parse(objLS);
 
-        console.log(accessObj);
 
         // тут доделать
         hiNameUser.textContent = ` Привет, ${accessObj.name}`;
@@ -138,20 +136,6 @@ loginForm.addEventListener('submit', (e) => {
 
 })
 
-//Выйти из ЛК в хэдэре
-
-// function exitUserLC() {
-//     window.localStorage.removeItem('client');// удаление локального хранилища client
-//     seeBlockHeaderClass.style.display = 'none';//блок Личный кабинет и Выйти в хэдэре сделать невидимым
-
-
-//     // btnOpen.style.display = 'flex';//кнока Войти в хэдэре видимая
-
-//     hiUser.style.display = 'flex';//Блок кнопки Войти в хэдэр
-// }
-
-
-// door.addEventListener('click', exitUserLC)
 
 loginEmail.addEventListener('input', checkInput);// слушатель события-активировать кнопку если input почты и пароля не пустые
 loginPassword.addEventListener('input', checkInput);//слушатель события-активировать кнопку если input почты и пароля не пустые
@@ -288,9 +272,6 @@ const secondEmailErr = document.querySelector('#secondEmailErr');//доступ 
 
 const secondSecretErr = document.querySelector('#secondSecretErr');//доступ к ошибка в поле Кодовое слово во второй форме
 
-// const examDate = document.querySelector('#examDate');// доступ ко второму блоку ID
-
-// const replacePass = document.querySelector('#replacePass');//доступ к третьему блоку ID
 
 const checkInputSecond = document.querySelector('.check-input');// доступ ко второму блоку class
 
@@ -386,10 +367,8 @@ newComeIn.addEventListener('click', () => {
 
 
 
-
-
 // ====================================================================
-async function testtt() {
+// async function testtt() {
     // setLike(user.id, "film_id", false);
     // setRating(user.id, "film_id", 5);
     // addComment(user.id, user.name, "film_id", "film sucks");
@@ -397,54 +376,52 @@ async function testtt() {
     // data[`likes.somefilem`] = true;
     // await db.update("users", "WAdKgR1PYL9r3fzKk03d", data);
 
-};
+// };
 
 // функция для добавления и убирания из избранного
 // state = true - добавить в избранное
 // state = false - убрать из избранного
 
-export async function setLike(user_id, film_id, state) {
-    let subfield = `likes.${film_id}`;
-    if (state) {
-        const data = {};
-        data[subfield] = true;
-        await db.update("users", user_id, data);
-    } else {
-        await db.removeSubfield("users", user_id, subfield);
-    }
-}
+// export async function setLike(user_id, film_id, state) {
+//     let subfield = `likes.${film_id}`;
+//     if (state) {
+//         const data = {};
+//         data[subfield] = true;
+//         await db.update("users", user_id, data);
+//     } else {
+//         await db.removeSubfield("users", user_id, subfield);
+//     }
+// }
 
 // функция для установки и изменения рейтинга, value - значение рейтинга
-async function setRating(user_id, film_id, value) {
-    const film = await db.get("ratings", film_id);
-    if (!film) {
-        let rating = {};
-        rating[user_id] = value;
-        await db.set("ratings", film_id, { ratings: rating });  // создал оценку
-    } else {
-        let data = {};
-        data[`ratings.${user_id}`] = value;
-        await db.update("ratings", film_id, data);  // изменил оценку
-    }
-}
+// async function setRating(user_id, film_id, value) {
+//     const film = await db.get("ratings", film_id);
+//     if (!film) {
+//         let rating = {};
+//         rating[user_id] = value;
+//         await db.set("ratings", film_id, { ratings: rating });  // создал оценку
+//     } else {
+//         let data = {};
+//         data[`ratings.${user_id}`] = value;
+//         await db.update("ratings", film_id, data);  // изменил оценку
+//     }
+// }
 
 // функция для добавления комментария, text - текст комментария
-async function addComment(user_id, user_name, film_id, text, title) {
-    const data = {};
-    data.text = text;
-    data.name = user_name;
-    data.user_id = user_id;
-    data.film_id = film_id;
-    data.date = new Date().getTime();
-    data.title = title;
-    const id = await db.add("comments", data);
-    return id;
-}
+// async function addComment(user_id, user_name, film_id, text, title) {
+//     const data = {};
+//     data.text = text;
+//     data.name = user_name;
+//     data.user_id = user_id;
+//     data.film_id = film_id;
+//     data.date = new Date().getTime();
+//     data.title = title;
+//     const id = await db.add("comments", data);
+//     return id;
+// }
 
 //ПРИМЕР получить рейтинги к фильму
 // db.get("ratings", "film").then(r => console.log(r));
 
 //ПРИМЕР получить комментарии к фильму
 // db.get_query("comments", "film_id", "film id 123").then(r => console.log(r));
-
-

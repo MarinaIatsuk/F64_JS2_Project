@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         },
       });
       const dataSimilarMovies = await response3.json();
-      console.log(dataSimilarMovies);
       ShowSimilarMovies(dataSimilarMovies);
     }
     catch (error) {
@@ -83,7 +82,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         },
       });
       const dataSeasons = await response4.json();
-      console.log(dataSeasons);
        ShowSeason(dataSeasons);
     }
     catch (error) {
@@ -230,7 +228,6 @@ function ShowStaffMovie(data) {
     newImg.src = photoActor;
     parentElement.append(newImg);
     newImg.classList.add("tiny-pict");
-    console.log(newImg.src);
   }
 }
 
@@ -377,9 +374,7 @@ document.querySelector(".likeBtn").addEventListener("click", function (event) {
 
 
     likeIcon.classList.toggle('liked'); // Меняем класс на "Лайк"
-    console.log(accessObj); //Проверка
     setLike(accessObj, SELECTEDFILMID, likeIcon.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
-    console.log(SELECTEDFILMID);
 
 });
 }
