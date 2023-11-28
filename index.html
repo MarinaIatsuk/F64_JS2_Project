@@ -32,11 +32,11 @@
     <div class="header__account account">
         <div class="account__personal">
           <div class="account__greeting" id="hiNameUser"></div>
-          <img src="./assets/images/avatar.png" alt="avatar" class="account__avatar">
+          <img src="./assets/images/avatar.svg" alt="avatar" class="account__avatar">
         </div>
         <div class="account__exit exit">
-          <img src="./assets/images/door.png" alt="door" class="exit__img">
-          <div class="exit__text">Выйти</div>
+          <div class="exit__text">Выйти&nbsp;</div>
+          <img src="./assets/images/logout.svg" alt="door" class="exit__img">
         </div>
       <div class="account__enter" id="hiUser">
         <button class="account__btn" id="btnOpen">Войти</button>
@@ -44,15 +44,16 @@
     </div>
     <div class="burger-menu">
       <a href="" class="burger-menu__button">
-        <spun class="burger-menu__lines"></spun>
+        <span class="burger-menu__lines"></span>
       </a>
       <nav class="burger-menu__nav">
         <a href="./catalog.html" class="burger-menu__link">Каталог</a>
-        <a href="./personalaccount.html" class="burger-menu__link" id="personalAccount">Личный кабинет</a>
-        <a class="burger-menu__link" id="btnOpenBurger">Войти</a>
-          <div class="burger-menu__link burger-menu__exit">Выйти
-          <img src="./assets/images/door.png" alt="door" class="tiny-img">
-          </div>
+        <a href="./personalaccount.html" class="burger-menu__link" id="personalAccount">Личный кабинет<img src="./assets/images/avatar_white.svg" alt="avatar" class="tiny-img"></a>
+        <a class="burger-menu__link" id="btnOpenBurger">Войти<img src="./assets/images/login_white.svg" alt="door" class="tiny-img"></a>
+        <div class="burger-menu__link burger-menu__exit">Выйти
+            <img src="./assets/images/logout_white.svg" alt="door" class="tiny-img">
+        </div>
+        <a href="./index.html" class="burger-menu__link">На главную<img src="./assets/images/logo_white.svg" alt="logo" class="tiny-img"><img src="./assets/images/logo_text_white.svg" alt="logo" class="tiny-img"></a>
       </nav>
       <div class="burger-menu__overlay"></div>
     </div>
