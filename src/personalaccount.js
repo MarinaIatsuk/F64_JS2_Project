@@ -8,6 +8,8 @@ import {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
   
 const listInput = document.querySelector("#listInput");
 const listItem = document.querySelector(".list__title");
@@ -67,13 +69,14 @@ const userId = clientInfo.id; // Получаем id из объекта
 
 get("users", userId) //Вызываем функцию get, которая возвращает промис users-это base, userId-это id
     .then(clientInfo => {
-        console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes, у которых значение равно true
+        //console.log(clientInfo); //Проверка, тут мы видим, что получаем объект по пользователю, из которого можно получить id фильмов из likes, у которых значение равно true
         // Получаем ключи объекта likes
         const likesKeys = Object.keys(clientInfo.likes)
         .filter(key => clientInfo.likes[key] === true); //получили ключи необходимого объекта, так они являются id выбранных пользователем фильмов
    
-        console.log(likesKeys); //Проверили
+        //console.log(likesKeys); //Проверили
         getMovies(likesKeys) //Функция для получения фильмов из АПИ
+       
     })
     .catch(error => {
         console.error('Ошибка при получении данных из БД:', error);
@@ -91,7 +94,7 @@ try {
                                },
         });
         const data = await response.json();
-       console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
+       //console.log(data); // Проверка. Здесь можно увидеть, что нам выдает АПИ
        makeList(data); // функция отрисовка списка, которая ниже
        
     }
@@ -107,8 +110,12 @@ try {
 let likeList = window.document.querySelector('.list__movieList');
 
 function makeList(data) {
-const item = document.createElement("div"); //создаем, например, див
+  const emptyList = document.querySelector(".list__empty");
+
+  const item = document.createElement("div"); //создаем, например, див
 item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
+
+
 const template =  `
 <div class="content__poster">
 <img src="${data.posterUrlPreview}" alt="poster" class="poster__img">
@@ -129,6 +136,10 @@ const template =  `
    item.innerHTML = template; //вставляем карточку в item
   likeList.appendChild(item); // добавляем элемент в контейнер
 
+  emptyList.style.display = "none";
+
+
+  
     // выбираем все лайки
 
     likeList.addEventListener('click', async function (event) {
@@ -142,8 +153,8 @@ const template =  `
         const accessObj = JSON.parse(objLS).id;
 
         likeBtn.querySelector('span').classList.toggle('liked');
-        console.log(filmId);
-        console.log(accessObj);
+        //console.log(filmId);
+        //console.log(accessObj);
       
 // Находим родительский элемент лайка и удаляем его
 const movieRemove = likeBtn.closest('.content__item');
@@ -155,12 +166,13 @@ setLike(accessObj, filmId, false);
  // Проверяем, является ли выбранный элемент ссылкой с классом 'favorites_title'
  const linkItem = event.target.closest('.favorites_title');
  if (linkItem) {
-  console.log('Ссылка была кликнута:', linkItem.href);
+  //.log('Ссылка была кликнута:', linkItem.href);
   window.location.href = linkItem.href;
  }
 
      });
-    }
+    
+  }
   });
   
 async function updateFavoritesList(user_id) {
@@ -170,6 +182,7 @@ async function updateFavoritesList(user_id) {
   // Получаем ключи объекта likes, у которых значение равно true
   const likesKeys = Object.keys(updatedClientInfo.likes)
       .filter(key => updatedClientInfo.likes[key] === true);
+      
   // Очищаем текущий список в избранном
   likeList.textContent = "";
   // Обновляем список фильмов в избранном

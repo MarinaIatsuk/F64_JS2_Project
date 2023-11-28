@@ -48,6 +48,9 @@
   padding-top: 1vh;
   display: flex;
   flex-direction: column;
+  .list__empty{
+    color: rgba(0, 0, 0);
+  }
   
   .content__item {
       display: flex;
