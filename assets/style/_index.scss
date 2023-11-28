@@ -52,6 +52,10 @@
 
     //стили к тексту с цитатой
     .main-page__subtext {
+        @media #{desktop} {
+            position: relative;
+            margin-top: -12vh;
+        }
 
         .subtext {
             font-family: $font-texts;
@@ -259,5 +263,6 @@
     padding: 2%;
     border: thick double rgb(94, 35, 150);
     border-radius: 20px;
+    
 
 }
