@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style/main.scss" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+    <title>Личный кабинет</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./assets/style/main.scss" />
-  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
-  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
-  <title>Личный кабинет</title>
-</head>
-
-<body>
-  <!-- <header class="header">
+  <body>
+    <!-- <header class="header">
       <div class="header__logo logo">
         <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt="" class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt="" class="logo__picture logo__picture_text"></a>
       </div>
     </header> -->
+
 
 
 
@@ -43,10 +43,31 @@
       <div class="account__exit exit">
         <div class="exit__text">Выйти&nbsp;</div>
         <img src="./assets/images/logout.svg" alt="door" class="exit__img">
+
       </div>
-      <div class="account__enter" id="hiUser">
-        <button class="account__btn" id="btnOpen">Войти</button>
+      <div class="header__search search">
+        <input type="text" placeholder="Поиск" class="search__input" />
+        <ul class="search__list list">
+          <!-- <li class="list__item"></li> -->
+        </ul>
       </div>
+
+      <div class="header__account account">
+        <div class="account__personal">
+          <div class="account__greeting" id="hiNameUser"></div>
+          <img
+            src="./assets/images/avatar.png"
+            alt="avatar"
+            class="account__avatar"
+          />
+        </div>
+        <div class="account__exit exit">
+          <img src="./assets/images/door.png" alt="door" class="exit__img" />
+          <div class="exit__text">Выйти</div>
+        </div>
+        <div class="account__enter" id="hiUser">
+          <button class="account__btn" id="btnOpen">Войти</button>
+
     </div>
     <div class="burger-menu">
       <a href="" class="burger-menu__button">
@@ -101,106 +122,242 @@
         <div class="dialog__block">
           <p class="dialog__block-text">Новенький?</p>
           <a class="dialog__block-link" href="./registr.html">создай аккаунт</a>
+
         </div>
       </div>
-
-      <!-- пользователь вводит свой email и кодовое слово -->
-      <div class="dialog__two-block check-input" id="examDate">
-        <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при регистрации
-        </h5>
-        <form class="dialog-form__form" name="secondForm" novalidate>
-          <div class="dialog-form__email">
-            <label for="secondEmail" class="dialog-form__email-text">Email</label>
-            <input type="email" name="secondEmailInput" class="dialog-form__email-input" id="secondEmail"
-              pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
-
-            <p class="dialog-form__err-email error-text" id="secondEmailErr"></p>
+      <div class="burger-menu">
+        <a href="" class="burger-menu__button">
+          <spun class="burger-menu__lines"></spun>
+        </a>
+        <nav class="burger-menu__nav">
+          <a href="./catalog.html" class="burger-menu__link">Каталог</a>
+          <a
+            href="./personalaccount.html"
+            class="burger-menu__link"
+            id="personalAccount"
+            >Личный кабинет</a
+          >
+          <a class="burger-menu__link" id="btnOpenBurger">Войти</a>
+          <div class="burger-menu__link burger-menu__exit">
+            Выйти
+            <img src="./assets/images/door.png" alt="door" class="tiny-img" />
           </div>
-          <div class="dialog-form__secret">
-            <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
-            <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
-              class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
-
-            <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
-          </div>
-          <div class="dialog-form__btn">
-            <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
-          </div>
-        </form>
+        </nav>
+        <div class="burger-menu__overlay"></div>
       </div>
+    </header>
 
-      <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
-
-
-      <div class="dialog__three-block new-pass" id="replacePass">
-        <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
-        <form class="dialog-form__form" name="thirdForm" novalidate>
-          <div class="dialog-form__password">
-            <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
-            <input name="thirdCheckOk" type="password" class="dialog-form__password-input" id="thirdPassword"
-              placeholder="Введите новый пароль..." minlength="8" required>
-
-            <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
-          </div>
-          <div class="dialog-form__reappassword">
-            <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
-            <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input" id="thirdReappassword"
-              placeholder="Повторите пароль..." minlength="8" required>
-
-            <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
-          </div>
-          <div class="dialog-form__btn">
-            <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
-          </div>
-        </form>
+    <!-- Модальное окно -->
+    <dialog class="dialog" id="windModal">
+      <div class="dialog__close">
+        <button class="dialog__close-btn" id="btnClose">X</button>
       </div>
+      <div class="dialog__container" id="formContainer">
+        <div class="dialog__one-block main-form">
+          <h2 class="dialog__title">MOVIE Сервис</h2>
+          <p class="dialog__text dialog-form">Войти в личный кабинет</p>
+          <form class="dialog-form__form" name="loginForm" novalidate>
+            <div class="dialog-form__email">
+              <label for="loginEmail" class="dialog-form__email-text"
+                >Email</label
+              >
+              <input
+                type="email"
+                name="secondEmail"
+                class="dialog-form__email-input"
+                id="loginEmail"
+                placeholder="Введите email..."
+                required
+              />
 
-      <!-- Новый пароль успешно зарегестрирован -->
+              <p
+                class="dialog-form__email-error error-text"
+                id="dialogEmailError"
+              ></p>
+            </div>
+            <div class="dialog-form__password">
+              <label for="loginPassword" class="dialog-form__password-text"
+                >Пароль
+                <button class="dialog-form__password-btn" id="passwordBtn">
+                  Забыли пароль?
+                </button></label
+              >
+              <input
+                name="newPassword"
+                class="dialog-form__password-input"
+                type="password"
+                id="loginPassword"
+                placeholder="Введите пароль..."
+                minlength="8"
+                required
+              />
 
+              <p
+                class="dialog-form__password-error error-text"
+                id="dialogPasswError"
+              ></p>
+            </div>
+            <div class="dialog-form__btn">
+              <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
+            </div>
+          </form>
 
-      <div class="dialog__four-block ok-block">
-        <div class="ok-block__location">
-          <p class="ok-block__text">Вы успешно изменилии пароль</p>
-          <button class="ok-block__btn" id="newComwIn">перейти в форму входа</button>
+          <div class="dialog__block">
+            <p class="dialog__block-text">Новенький?</p>
+            <a class="dialog__block-link" href="./registr.html"
+              >создай аккаунт</a
+            >
+          </div>
         </div>
-      </div>
 
-    </div>
-  </dialog>
+        <!-- пользователь вводит свой email и кодовое слово -->
+        <div class="dialog__two-block check-input" id="examDate">
+          <h5 class="dialog__text-title dialog-form">
+            Введите почту и кодовое слово, которые Вы вводили при регистрации
+          </h5>
+          <form class="dialog-form__form" name="secondForm" novalidate>
+            <div class="dialog-form__email">
+              <label for="secondEmail" class="dialog-form__email-text"
+                >Email</label
+              >
+              <input
+                type="email"
+                name="secondEmailInput"
+                class="dialog-form__email-input"
+                id="secondEmail"
+                pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$"
+                placeholder="Введите email..."
+                required
+              />
 
+              <p
+                class="dialog-form__err-email error-text"
+                id="secondEmailErr"
+              ></p>
+            </div>
+            <div class="dialog-form__secret">
+              <label for="secondSecret" class="dialog-form__secret-text"
+                >Кодовое слово</label
+              >
+              <input
+                type="text"
+                placeholder="Введите кодовое слово..."
+                name="secondSecretInput"
+                class="dialog-form__secret-input"
+                id="secondSecret"
+                minlength="2"
+                required
+              />
 
-
-  <div class="lk" id="lk">
-    <div class="container">
-      <div class="lk__user user">
-        <h2 class="user__title">Личный кабинет</h2>
-      </div>
-
-      <div class="lk__list list">
-        <div class="list__title title">
-          <h3 class="title__header">Избранное:</h3>
+              <p
+                class="dialog-form__err-secret error-text"
+                id="secondSecretErr"
+              ></p>
+            </div>
+            <div class="dialog-form__btn">
+              <button class="dialog-form__btn-text" id="secondBtn">
+                Проверить
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="list__movieList"></div>
-      </div>
-      <button class="lk__btn btn">Создать новый список</button>
-    </div>
-    <dialog class="lk__modalList modallist">
-      <div id="modal-box" class="modalList__wrapper">
-        <div class="modalList__title">Новый список</div>
-        <div class="modalList__input input">
-          <label for="listInput" class="input__label">Введите название списка:</label>
-          <input type="text" id="listInput" class="input__text" />
+
+        <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
+
+        <div class="dialog__three-block new-pass" id="replacePass">
+          <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
+          <form class="dialog-form__form" name="thirdForm" novalidate>
+            <div class="dialog-form__password">
+              <label for="thirdPassword" class="dialog-form__password-text"
+                >Пароль</label
+              >
+              <input
+                name="thirdCheckOk"
+                type="password"
+                class="dialog-form__password-input"
+                id="thirdPassword"
+                placeholder="Введите новый пароль..."
+                minlength="8"
+                required
+              />
+
+              <p
+                class="dialog-form__err-password error-text"
+                id="thirdPasswordErr"
+              ></p>
+            </div>
+            <div class="dialog-form__reappassword">
+              <label
+                for="thirdReappassword"
+                class="dialog-form__reappassword-text"
+                >Повторите пароль</label
+              >
+              <input
+                type="password"
+                name="thirdCheckOk"
+                class="dialog-form__reappassword-input"
+                id="thirdReappassword"
+                placeholder="Повторите пароль..."
+                minlength="8"
+                required
+              />
+
+              <p
+                class="dialog-form__err-reappassword error-text"
+                id="thirdReappasswordErr"
+              ></p>
+            </div>
+            <div class="dialog-form__btn">
+              <button class="dialog-form__btn-text" id="thirdBtn">
+                Изменить пароль
+              </button>
+            </div>
+          </form>
         </div>
-        <button class="modalList__btn">Создать</button>
+
+        <!-- Новый пароль успешно зарегестрирован -->
+
+        <div class="dialog__four-block ok-block">
+          <div class="ok-block__location">
+            <p class="ok-block__text">Вы успешно изменилии пароль</p>
+            <button class="ok-block__btn" id="newComwIn">
+              перейти в форму входа
+            </button>
+          </div>
+        </div>
       </div>
     </dialog>
-  </div>
 
+    <div class="lk" id="lk">
+      <div class="container">
+        <div class="lk__user user">
+          <h2 class="user__title">Личный кабинет</h2>
+        </div>
 
+        <div class="lk__list list">
+          <div class="list__title title">
+            <h3 class="title__header">Избранное:</h3>
+          </div>
+          <div class="list__movieList"></div>
+        </div>
+        <button class="lk__btn btn">Создать новый список</button>
+      </div>
+      <dialog class="lk__modalList modallist">
+        <div id="modal-box" class="modalList__wrapper">
+          <div class="modalList__title">Новый список</div>
+          <div class="modalList__input input">
+            <label for="listInput" class="input__label"
+              >Введите название списка:</label
+            >
+            <input type="text" id="listInput" class="input__text" />
+          </div>
+          <button class="modalList__btn">Создать</button>
+        </div>
+      </dialog>
+    </div>
 
-  <script type="module" src="./src/personalaccount.js"></script>
-  <script type="module" src="./src/header.js"></script>
-  <script type="module" src="./src/modal.js"></script>
-</body>
-
+    <script type="module" src="./src/personalaccount.js"></script>
+    <script type="module" src="./src/header.js"></script>
+    <script type="module" src="./src/modal.js"></script>
+  </body>
 </html>
