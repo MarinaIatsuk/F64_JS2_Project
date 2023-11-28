@@ -15,17 +15,25 @@
     //Главный wrapper
     .main-page__wrapper {
         display: flex;
+        flex-wrap: wrap;
         padding-top: 50px;
+        justify-content: space-between;
+        // justify-content: center;
+        // max-width: 100%;
+        // width: 100%;
 
-        @media #{$tablet,$mobile} {
+        @media #{$tablet},#{$mobile} {
+            // max-width: 60%;
+            // width: 100%;
             display: flex;
+            align-items: center;
             flex-direction: column;
         }
-
         //Левый wrapper
         .left-wrapper {
             display: flex;
             flex-basis: 55%;
+            // width: 40%;
 
             @media #{$tablet} {
                 justify-content: center;
@@ -41,6 +49,14 @@
             font-family: $font-texts;
             font-size: 20px;
             color: $btnBackGround;
+
+            @media #{$tablet} {
+                font-size: 17px;
+            }
+    
+            @media #{$mobile}{
+                font-size: 14px;
+            }
         }
     }
 }
@@ -48,9 +64,9 @@
 //Блок с информацией: заголовок, текст, кнопки
 .block-info {
 
-    @media #{$tablet,$mobile} {
-        padding-left: 0;
-    }
+    // @media #{$tablet,$mobile} {
+    //     padding-left: 0;
+    // }
 
     .title {
         margin-bottom: 15px;
@@ -59,6 +75,14 @@
         font-weight: 400;
         font-size: 60px;
         color: $main-header;
+
+        @media #{$tablet} {
+            font-size: 50px;
+        }
+
+        @media #{$mobile}{
+            font-size: 40px;
+        }
 
     }
 
@@ -70,9 +94,18 @@
         font-weight: 400;
         letter-spacing: 4px;
         color: $headers;
+        width: 70%;
 
-        @media #{$mobile} {
-            font-size: 27px;
+        // @media #{$mobile} {
+        //     font-size: 27px;
+        // }
+
+        @media #{$tablet} {
+            font-size: 25px;
+        }
+
+        @media #{$mobile}{
+            font-size: 20px;
         }
 
     }
@@ -80,37 +113,55 @@
     &__text {
 
         max-width: 95%;
+        width: 100%;
         font-size: 18px;
         line-height: 20px;
-        margin-bottom: 25px;
         font-family: $font-texts;
         font-weight: 200;
         color: $headers;
         padding-top: 40px;
         text-align: justify;
+        margin-bottom: 20px;
+
+        @media #{$tablet} {
+            margin-bottom: 8%;
+            font-size: 16px;
+        }
+
+        @media #{$mobile}{
+            margin-bottom: 10%;
+            font-size: 14px;
+        }
     }
 }
 
 //правая часть страницы с постерами к фильмам, правый wrapper
 
 .right-wrapper {
-    display: flex;
-    flex-grow: 1;
-    padding-left: 50px;
+    margin-right: 6%;
+    // width: 40%;
+    // display: flex;
+    // justify-content: center;
 
-    @media #{$tablet} {
-        justify-content: center;
-        margin-left: 0;
-        padding-left: 0;
-    }
 
-    @media #{$mobile} {
-        padding-left: 0;
-    }
+
+    // display: flex;
+    // flex-grow: 1;
+    // padding-left: 50px;
+
+    // @media #{$tablet} {
+    //     justify-content: center;
+    //     margin-left: 0;
+    //     padding-left: 0;
+    // }
+
+    // @media #{$mobile} {
+    //     padding-left: 0;
+    // }
 
     .block__posters {
         display: flex;
-        flex-direction: row;
+        // flex-direction: row;
 
         .upper-posters {
             margin-right: 30px;
@@ -125,23 +176,23 @@
             }
 
             @media #{$mobile} {
-                height: 400px;
+                // height: 400px;
             }
 
             .film__img {
-                width: 150px;
-                height: 214px;
+                width: 180px;
+                height: 250px;
                 margin-bottom: 15px;
                 border-radius: 30px;
 
                 @media #{$tablet} {
-                    width: 200px;
-                    height: 300px;
+                    // width: 200px;
+                    // height: 300px;
                 }
 
                 @media #{$mobile} {
-                    width: 200px;
-                    height: 300px;
+                    width: 130px;
+                    height: 200px;
 
                 }
 
@@ -152,7 +203,6 @@
                 max-width: 12vw;
                 min-height: 5vh;
                 border-radius: 10px;
-                text-align: center;
 
                 .film__title {
                     display: block;
@@ -164,15 +214,16 @@
                     color: $btnBackGround;
                     cursor: pointer;
                     text-decoration: none;
+                    text-align: center;
 
                     @media #{$tablet} {
-                        font-size: 20px;
+                        font-size: 15px;
                         width: 200px;
                     }
 
                     @media #{$mobile} {
-                        font-size: 20px;
-                        width: 200px;
+                        font-size: 15px;
+                        width: 120px;
                     }
                 }
 
@@ -192,30 +243,6 @@
 
 }
 
-//Блок с кнопкой
-.block-button {
-    padding-bottom: 1.5%;
-    display: flex;
-    justify-content: center;
-
-    @media #{$mobile, $tablet} {
-        padding-bottom: 20px;
-    }
-
-    .main-page__button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        @media #{$mobile, $tablet} {
-            max-width: 30vw;
-            min-height: 6vh;
-            padding: 0 4px 0 4px;
-        }
-    }
-
-
-}
 
 .main-page__subtext {
     background-color: #e7e5d74d;
