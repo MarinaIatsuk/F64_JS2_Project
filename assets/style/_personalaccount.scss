@@ -22,6 +22,16 @@
       display: flex;
       flex-direction: row;
       flex-grow: 1;
+
+      @media #{$tablet} {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      @media #{$mobile} {
+        flex-direction: column;
+        align-items: center;
+      }
   
       .list{
    
