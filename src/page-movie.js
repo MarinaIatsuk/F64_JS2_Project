@@ -4,14 +4,11 @@ import * as db from './db';
 import { setLike, showAlertNeedRegistration } from './functions'
 
 let TYPE_FILM;
-let SELECTEDFILMID = new URLSearchParams(window.location.search).get('id');
+const SELECTEDFILMID = new URLSearchParams(window.location.search).get('id');
 import "./reviews";
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-
-
-  // получает данные о фильме по ID
   try {
     const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}`, {
       method: 'GET',
@@ -41,23 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   catch (error) {
     console.error("Error fetching data:", error);
   }
-  if (TYPE_FILM == false) {
-    try {
-      const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/similars`, {
-        method: 'GET',
-        headers: {
-           'X-API-KEY': '8f24ccbd-b43e-481c-914d-439866b4c2a9',//tech3
-          'Content-Type': 'application/json',
-        },
-      });
-      const dataSimilarMovies = await response3.json();
-      ShowSimilarMovies(dataSimilarMovies);
-    }
-    catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-  else {
+
     try {
       const response3 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/similars`, {
         method: 'GET',
@@ -73,6 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Error fetching data:", error);
     }
 
+  if (TYPE_FILM !== false) {
     try {
       const response4 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${SELECTEDFILMID}/seasons`, {
         method: 'GET',
@@ -142,7 +124,7 @@ async function ShowPageMovie(data) {
   nameRu.textContent = data.nameRu;
   nameEn.textContent = data.nameEn;
   nameOriginal.textContent = data.nameOriginal;
-  if (data.ratingAgeLimits != null)
+  if (data.ratingAgeLimits !== null)
     ratingAgeLimit.setAttribute(
       "src",
       `../assets/images/${data.ratingAgeLimits}.svg`
@@ -183,7 +165,7 @@ async function ShowPageMovie(data) {
   }
   genres.textContent = allGenres;
   let fullDiscription;
-  if (data.serial == false) about.textContent = "О фильме";
+  if (TYPE_FILM) about.textContent = "О фильме";
   else about.textContent = "О сериале";
   if (data.description !== 0) {
     description.textContent = data.description;
@@ -250,13 +232,13 @@ function ShowSimilarMovies(data) {
       newLink = document.createElement('a');
       newDiv = document.createElement('img');
       newDiv.src = foundSimilarMovies.posterUrl;
-      newLink.setAttribute("href", "/page-movie.html?id=" + foundSimilarMovies.filmId);
+      newLink.setAttribute("href",`/page-movie.html?id=${foundSimilarMovies.filmId}`);
       parentElement.append(newLink);
       newLink.append(newDiv);
       newDiv.classList.add("small-pict");
-      if (index == 3) { break }
+      if (index == 5) { break }
     }
-    if (data.items.length >= 4) {
+    if (data.items.length >= 6) {
       let showFirst = true;
       const MoreSimilarMovies = document.getElementById('more-posters-contanier');
       const similarMovieBlock = document.querySelector('.similar-movies__container');
@@ -275,7 +257,7 @@ function ShowSimilarMovies(data) {
             newLink = document.createElement('a');
             newDiv = document.createElement('img');
             newDiv.src = foundSimilarMovies.posterUrl;
-            newLink.setAttribute("href", "/page-movie.html?id=" + foundSimilarMovies.filmId);
+            newLink.setAttribute("href", `/page-movie.html?id=${foundSimilarMovies.filmId}`);
             MoreSimilarMovies.append(newLink);
             newLink.append(newDiv);
             newDiv.classList.add("small-pict");
