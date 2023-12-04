@@ -46,7 +46,7 @@ function createListItem(){
   let liItem = document.createElement('li');
   let linkItem = document.createElement('a');
   linkItem.href = '#'; 
- linkItem.innerHTML = inputValue;
+  linkItem.insertAdjacentHTML('beforeend', inputValue);
   liItem.appendChild(linkItem);
    listItem.appendChild(liItem);
    listInput.value = '';
@@ -133,7 +133,7 @@ const template =  `
  </div>
        ` 
 
-   item.innerHTML = template; //вставляем карточку в item
+  item.insertAdjacentHTML('beforeend', template); //вставляем карточку в item
   likeList.appendChild(item); // добавляем элемент в контейнер
 
   emptyList.style.display = "none";
