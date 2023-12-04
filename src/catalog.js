@@ -11,6 +11,29 @@ let loading = false; // Флаг для загрузки данных
 let dataLoaded = false;
 const mainPicture = document.querySelector('.catalog__image');
 
+//Показ топа фильмов, если пользователь не нажал на Поиск
+async function getTopMovies() {
+
+    try {
+        const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_ALL&page=1`, {
+            method: "GET",
+            headers: {
+                'content-type': "application/json",
+                //  "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
+            },
+        });
+        const data = await response.json();
+        await updateContainer(data); // отрисовка списка
+
+    } catch (error) {
+        console.error("Ошибка загрузки:", error);
+        loading = false; // обработка ошибки, разрешаем загрузку следующей порции данных
+    }
+}
+getTopMovies()
+
+
 // Обработчик события клика на кнопку поиска
 document.querySelector(".btn").addEventListener("click", function (event) {
     mainPicture.style.display = "none";
@@ -105,7 +128,7 @@ function createFilmItem(film, likes) {
     const likedClass = likes && film.kinopoiskId in likes ? 'liked' : '';
 
     const template = `
-        <div class="content__poster">
+        <div class="content__poster" onclick="location.href='page-movie.html?id=${film.kinopoiskId}'">
             <img src="${film.posterUrlPreview}" alt="poster" class="content__img">
         </div>
         <div class="content__info">
@@ -116,7 +139,7 @@ function createFilmItem(film, likes) {
         </div>
         <div class="content__favorite">
             <button class="content-button like" id="${film.kinopoiskId}">
-                <span class="like__icon ${likedClass}"></span>
+                Добавить в избранное: <span class="like__icon ${likedClass}"></span>
             </button>
         </div>
     `;
