@@ -86,17 +86,20 @@
             .content__poster {
                 width: 200px;
                 margin-right: 10px;
+                overflow: hidden; /* Убрать, если нужно, чтобф картинки увеличивались за контейнером, а не внутри */
 
                 .content__img {
                     width: 100%;
+                    transition: 1s;
                 }
+                .content__img:hover {
+                    cursor: pointer;
+                    transform: scale(1.2);
+                }
+    
                 
             }
-            .content__poster:hover {
-                width: 230px;
-                cursor: pointer;
-            }
-
+            
             .content__info {
                 display: flex;
                 flex-direction: column;
