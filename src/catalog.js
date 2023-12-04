@@ -9,7 +9,7 @@ import {
 let currentPage = 1; // Флаг для пагинации
 let loading = false; // Флаг для загрузки данных
 let dataLoaded = false;
-const mainPicture = document.querySelector('.catalog__image');
+let isTopMoviesMode = true; // Флаг для отслеживания режима списка фильмов (true - топ фильмов, false - результаты поиска)
 
 //Показ топа фильмов, если пользователь не нажал на Поиск
 async function getTopMovies() {
@@ -36,12 +36,15 @@ getTopMovies()
 
 // Обработчик события клика на кнопку поиска
 document.querySelector(".btn").addEventListener("click", function (event) {
-    mainPicture.style.display = "none";
     event.preventDefault(); // Остановить перезагрузку страницы
     currentPage = 1; // Сбрасываем текущую страницу при новом поиске
     const container = document.querySelector(".content");
     container.innerHTML = ""; // Очищаем содержимое контейнера перед загрузкой новых данных
-    getData(currentPage); // Вызов функции для получения данных с текущей страницы
+    // getData(currentPage); // Вызов функции для получения данных с текущей страницы
+    isTopMoviesMode=false; //ставим топ фильмов в false
+    if (!isTopMoviesMode) {
+        getData(currentPage); // загружаем рез-ты поиска при топе фильмов false
+    }
 
     window.scrollTo({ // Возвращаем скролл в начало страницы
         top: 0,

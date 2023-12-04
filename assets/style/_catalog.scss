@@ -191,17 +191,3 @@
         transition: background-image 0.6s ease-in;
     }
 }
-//космонавт
-.catalog__image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    .image__img{
-        padding-top: 100px;
-        margin-right: 100px;
-    }
-    @media screen and (max-width: 690px) {
-        display: none;
-    }
-}
