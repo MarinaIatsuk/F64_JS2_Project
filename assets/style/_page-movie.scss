@@ -127,6 +127,7 @@
 
     &__item {
 
+        margin-left: 2vw;
         display: flex;
         flex-direction: column;
         justify-items: center;
@@ -181,63 +182,81 @@
         }
     }
 
+    &__description-title {
+        text-decoration: underline;
+    }
+
     &__description-wrapper {
+        padding-top: 1vh;
         max-width: 60%;
         display: flex;
         text-align: justify;
 
         @media #{$mobile} {
-            max-width: 100%;
+            max-width: 140%;
         }
 
         @media #{$tablet} {
-            max-width: 100%;
+            max-width: 200%;
         }
     }
 
     &__seasons {
         max-width: 60%;
+        text-decoration: underline;
+    }
+
+    &__seasons-wrapper {
+        padding-top: 1vh;
+        margin-bottom: 1vh;
     }
 }
 
 .similar-movies {
     margin-top: 20px;
 
+    &__title {
+        padding-bottom: 1vh;
+    }
+
+
     &__posters-contanier {
         display: flex;
-        gap: 30px;
+        gap: 25px;
+        flex-wrap: wrap;
 
         @media #{$mobile} {
-            gap: 5px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         @media #{$tablet} {
-            gap: 12px;
+            gap: 20px;
         }
     }
 
     &__more-similar-movies {
         margin-top: 20px;
-        max-width: 40vw;
+        max-width: 845px;
         display: flex;
         flex-wrap: wrap;
-        gap: 30px;
+        justify-items: center;
+        gap: 25px;
+        margin-bottom: 3vh;
 
         @media #{$mobile} {
-            gap: 5px;
-            max-width: 100vw;
+            gap: 10px;
+            max-width: 650px;
         }
 
         @media #{$tablet} {
-            gap: 12px;
-            max-width: 100vw;
+            gap: 20px;
+            max-width: 680px;
         }
     }
 
     &__title {
         font-family: $font-titles;
-
     }
 }
 
@@ -332,7 +351,6 @@
     }
 
     font-family: $font-titles;
-
 }
 
 .episod {
@@ -340,6 +358,7 @@
     display: flex;
     text-align: justify;
     width: 100%;
+
     @media #{$tablet} {
         max-width: 100%;
     }
@@ -348,6 +367,8 @@
         max-width: 100%;
     }
 }
+
+
 
 .likeBtn {
     background-color: rgba($color: $background-color, $alpha: 0);
@@ -405,11 +426,11 @@
 }
 
 .small-pict {
-    max-height: 150px;
+    max-width: 120px;
     border-radius: 10%;
 
     @media #{$mobile} {
-        max-height: 120px;
+        max-width: 100px;
         border-radius: 8%;
     }
 }
