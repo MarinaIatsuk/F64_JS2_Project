@@ -84,7 +84,7 @@ try {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                'X-API-KEY': "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
                                },
         });
         const data = await response.json();
@@ -119,7 +119,7 @@ const template =  `
  <div class="content__year">Год выхода фильма: ${data.year}</div>
  <div class="content__rating">Рейтинг по кинопоиску: ${data.ratingKinopoisk}</div>
  <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
- <div class="filmFavContainer">
+ <div class="content__favorite">
      <button class="content-button likeBtn" id="${data.kinopoiskId}">
          <span class="liked"></span>
      </button>
@@ -195,15 +195,3 @@ async function setLike(user_id, film_id, state) {
   }
   updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД */
 }
-
-
- 
-     
-
-
-
-
-
-
-
-

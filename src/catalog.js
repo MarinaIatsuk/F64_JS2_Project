@@ -49,7 +49,7 @@ async function getData(page) {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                //  "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                 // "X-API-KEY": "4cb59c01-681c-4c05-bed7-5b173e7511c3",
                 "X-API-KEY": "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
             },
         });
@@ -102,7 +102,7 @@ function createFilmItem(film, likes) {
 
     const imdbRating = film.ratingImdb !== null ? film.ratingImdb : '-';
 
-    const likedClass = likes && film.kinopoiskId in likes ? 'liked' : '';
+    const likedClass = likes && likes[film.kinopoiskId] ? 'liked' : '';
 
     const template = `
         <div class="content__poster">

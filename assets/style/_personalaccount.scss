@@ -16,8 +16,7 @@
   }
       }
     }
-    
-  
+      
     &__list{
       display: flex;
       flex-direction: row;
@@ -51,7 +50,6 @@
       }
     }
   
-  
    &__movieList {
   padding: 0 0 5vw  10vw;
   font-family:$font-titles;
@@ -62,19 +60,15 @@
     color: rgba(0, 0, 0);
 margin-right: 50px;
   }
-  
-  .content__item {
+    .content__item {
       display: flex;
       flex-grow: 1;
       padding-top: 30px;
   
-  
       .content__poster {
-  
-          width: 100px;
+            width: 100px;
           margin-right: 10px;
-  
-          .poster__img {
+            .poster__img {
               width: 100%;
           }
       }
@@ -89,42 +83,23 @@ margin-right: 50px;
                 color: black;
               }
           }
-  
-          .content__rating {
+            .content__rating {
               padding-bottom: 0.5vh;
-  
-          }
-  
-          .content__year {
+            }
+            .content__year {
               padding-bottom: 0.5vh;
           }
-  
-  
+   
       }
-
-      
-    .likeIcon {
-      width: 18px;
-      height: 18px;
-      background-image: url('../images/likeGray.png');
-      background-size: cover;
-      margin-right: 4px;
-  }
-
-
       .content__btn{
           width: 30vw;
           height: 4vh;
           align-self: flex-end;
-  
-      }
+        }
   }
-  
-  
-  } 
+    } 
       }
-    
-    }
+        }
   
   &__btn{
         margin-bottom: 50px;
@@ -183,7 +158,3 @@ margin-right: 50px;
       }
   
     }
-  
-  
-  
-  
