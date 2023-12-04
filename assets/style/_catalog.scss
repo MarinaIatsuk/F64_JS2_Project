@@ -133,54 +133,7 @@
     }
 }
 
-// Кнопка лайка
-.content__favorite {
-    padding-left: 2vh;
 
-    .content-button{
-        background-color: rgba($color: $background-color, $alpha: 0);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-    }
-   
-    .like__icon {
-        width: 24px;
-        height: 24px;
-        background-image: url("../images/likeEmpty30.svg");
-        background-size: cover;
-        margin-right: 4px;
-       transition: background-image 0.9s ease-out; 
-    }
-
-    .liked {
-        background-image: url("../images/likeFilledPink.svg");
-        background-size: cover;
-        width: 24px;
-        height: 24px;
-        margin-right: 4px;
-     transition: background-image 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6); 
-    }
-
-    .like__icon:hover {
-        background-image: url("../images/likeFilledPink.svg");
-        background-size: cover;
-        width: 24px;
-        height: 24px;
-        margin-right: 4px;
-         transition: background-image 0.6s ease-in; 
-    }
-
-    .liked:hover {
-        background-image: url("../images/likeEmpty30.svg");
-        background-size: cover;
-        width: 24px;
-        height: 24px;
-        margin-right: 4px;
-           transition: background-image 0.6s ease-in; 
-    }
-}
 //космонавт
 .catalog__image{
     display: flex;
