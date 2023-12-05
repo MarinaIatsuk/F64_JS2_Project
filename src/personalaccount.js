@@ -84,7 +84,7 @@ try {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                'X-API-KEY': "6e01b98a-32ba-41c9-b64f-a2a9582aafa5",
+                'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
                                },
         });
         const data = await response.json();
@@ -108,17 +108,24 @@ function makeList(data) {
 
   const item = document.createElement("div"); //создаем, например, див
 item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
+let titleLink = '';
 
+    const filmTitle = data.nameRu || data.nameOriginal;
+    if (filmTitle !== null && filmTitle !== undefined) {
+        titleLink = `<a class="content__title" href="page-movie.html?id=${data.kinopoiskId}">${filmTitle}</a>`;
+    }
+
+    const imdbRating = data.ratingImdb !== null && data.ratingImdb !== undefined? data.ratingImdb : '-';
 
 const template =  `
 <div class="content__poster">
 <img src="${data.posterUrlPreview}" alt="poster" class="poster__img">
 </div>
 <div class="content__info">
- <h3 class="content__title"><a href="page-movie.html?id=${data.kinopoiskId}" class="favorites_title">${data.nameRu}</a></h3> 
+${titleLink}
  <div class="content__year">Год выхода фильма: ${data.year}</div>
  <div class="content__rating">Рейтинг по кинопоиску: ${data.ratingKinopoisk}</div>
- <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
+ <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
  <div class="content__favorite">
      <button class="content-button likeBtn" id="${data.kinopoiskId}">
          <span class="liked"></span>
