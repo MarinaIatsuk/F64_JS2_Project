@@ -1,7 +1,10 @@
 //import "../page-film.html";
 import "./db";
-import * as db from './db';
+//import * as db from './db';
 import { setLike, showAlertNeedRegistration } from './functions'
+import {
+  get
+} from './db'; // для работы с БД. Импорт функции из db
 
 let TYPE_FILM;
 let SELECTEDFILMID = new URLSearchParams(window.location.search).get('id');
@@ -103,9 +106,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   catch (error) {
     console.error("Error fetching data:", error);
   }
-})
 
-async function getLikesFromDB() {
+
+/* async function getLikesFromDB() {
   let beLike = false;
   const clientId = window.localStorage.getItem('client');
   if(clientId!=null)
@@ -117,18 +120,30 @@ async function getLikesFromDB() {
   beLike = likesInBD ? likesInBD : false;
   }
   return beLike;
-}
+} */
 
 async function ShowPageMovie(data) {
-
-  let setLike = await getLikesFromDB();
+  
+  if (data && data.items && Array.isArray(data.items)) {
+    let likes = [];
+    if (window.localStorage.getItem('client')) {
+      const clientId = window.localStorage.getItem('client');
+      const userId = JSON.parse(clientId).id;
+      let user = await get("users", userId);
+      likes = user.likes;
+           const likedClass = likes && likes[SELECTEDFILMID] ? 'liked' : '';
+  document.querySelector(".like__icon").classList = likedClass;
+  }
+ 
+}
+  /*  let setLike = await getLikesFromDB(); */
   let allCountry = "";
   let firstCounrty = true;
   let comma = "";
-  const nameRu = document.querySelector('.name-ru');
+  const nameRu = document.querySelector('.name-ru'); 
   const nameEn = document.querySelector('.name-en');
-  const nameOriginal = document.querySelector('.name-original');
-  const poster = document.querySelector('.block-movie__poster');
+  const nameOriginal = document.querySelector('.name-original'); 
+ const poster = document.querySelector('.block-movie__poster'); 
   const ratingAgeLimit = document.querySelector('.block-movie__rating-age-limit');
   const ratingKinopoisk = document.querySelector('.block-movie__rating-kinopoisk');
   const startYear = document.querySelector('.start-year');
@@ -140,8 +155,8 @@ async function ShowPageMovie(data) {
   const slogan = document.querySelector('.slogan');
 
   nameRu.textContent = data.nameRu;
-  nameEn.textContent = data.nameEn;
-  nameOriginal.textContent = data.nameOriginal;
+  nameEn.textContent = data.nameEn; 
+  nameOriginal.textContent = data.nameOriginal; 
   if (data.ratingAgeLimits != null)
     ratingAgeLimit.setAttribute(
       "src",
@@ -151,9 +166,9 @@ async function ShowPageMovie(data) {
   poster.setAttribute("src", data.posterUrl);
   ratingKinopoisk.textContent = data.ratingKinopoisk;
   const btnLike = document.querySelector('.likeIcon');
-  SetLikeAndChackReg();
-  if (setLike)
-    btnLike.classList.add('liked');
+/*   SetLikeAndChackReg(); */
+/*   if (setLike)
+    btnLike.classList.add('liked'); */
 
   startYear.textContent = data.year;
   if (data.filmLength !== null)
@@ -189,8 +204,26 @@ async function ShowPageMovie(data) {
     description.textContent = data.description;
   }
   else description.textContent = data.shotDescription;
-}
+ 
+};
+document.querySelector(".block-movie").addEventListener("click", function (event) {
+  const filmId = SELECTEDFILMID;
+  const likeBtn = event.target.closest('.content-button');
+  if (likeBtn) {
+   likeBtn.id = filmId;
+  event.preventDefault();
+  showAlertNeedRegistration();  // Проверка авторизации
+  const target = likeBtn.querySelector('.like__icon');
+  if (target) {
+    target.classList.toggle('liked'); // Меняем класс на "Лайк"  
+    const objLS = window.localStorage.getItem('client');
+     const accessObj = JSON.parse(objLS).id;
+    setLike(accessObj, filmId, target.classList.contains('liked'));
+  }
+  }
+}); 
 
+});
 function ShowStaffMovie(data) {
   const director = document.querySelector('.director');
   const actor = document.querySelector('.actor');
@@ -230,7 +263,6 @@ function ShowStaffMovie(data) {
     newImg.classList.add("tiny-pict");
   }
 }
-
 
 function ShowSimilarMovies(data) {
   const titleSimilarMovies = document.querySelector('.similar-movies__title');
@@ -360,23 +392,3 @@ function ShowSources(data) {
     movieSources.classList.toggle("no-visible");
   }
 }
-
-function SetLikeAndChackReg()
-{
-document.querySelector(".likeBtn").addEventListener("click", function (event) {
-
-  event.preventDefault();
-  showAlertNeedRegistration();  // Проверка авторизации
-  const likeIcon = document.querySelector(".likeIcon");
-
-  const objLS = window.localStorage.getItem('client');
-  const accessObj = JSON.parse(objLS).id;
-
-
-    likeIcon.classList.toggle('liked'); // Меняем класс на "Лайк"
-    setLike(accessObj, SELECTEDFILMID, likeIcon.classList.contains('liked')); //добавляем в БД в зависимости от наличия класса 'liked'
-
-});
-}
-
-
