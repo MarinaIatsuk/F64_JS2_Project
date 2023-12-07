@@ -123,8 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 } */
 
 async function ShowPageMovie(data) {
-  
-  if (data && data.items && Array.isArray(data.items)) {
+ 
     let likes = [];
     if (window.localStorage.getItem('client')) {
       const clientId = window.localStorage.getItem('client');
@@ -135,7 +134,6 @@ async function ShowPageMovie(data) {
   document.querySelector(".like__icon").classList = likedClass;
   }
  
-}
   /*  let setLike = await getLikesFromDB(); */
   let allCountry = "";
   let firstCounrty = true;

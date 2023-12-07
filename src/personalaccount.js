@@ -84,7 +84,8 @@ try {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+               // 'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813',
                                },
         });
         const data = await response.json();
@@ -133,9 +134,17 @@ ${titleLink}
  </div>
  </div>
        ` 
-
+// так как не соабаьывает перезод по ссылкеб добавим eventlistener
   item.insertAdjacentHTML('beforeend', template); //вставляем карточку в item
   likeList.appendChild(item); // добавляем элемент в контейнер
+
+  const titleLinkElement = item.querySelector('.content__title');
+if (titleLinkElement) {
+    titleLinkElement.addEventListener('click', function (event) {
+        event.preventDefault(); 
+        window.location.href = titleLinkElement.getAttribute('href');
+    });
+}
 
   emptyList.style.display = "none";
 
