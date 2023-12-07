@@ -8,17 +8,7 @@
     <link rel="shortcut icon" href="/assets/images/favicon.ico" />
     <title>Личный кабинет</title>
   </head>
-
   <body>
-    <!-- <header class="header">
-      <div class="header__logo logo">
-        <a href="./index.html" class="logo__item"><img src="./assets/images/logo_black.svg" alt="" class="logo__picture"><img src="./assets/images/logo_text_black.svg" alt="" class="logo__picture logo__picture_text"></a>
-      </div>
-    </header> -->
-
-
-
-
     <header class="header">
       <div class="header__logo logo">
         <a href="./index.html" class="logo__item"
@@ -37,7 +27,6 @@
       <div class="header__search search">
         <input type="text" placeholder="Поиск" class="search__input" />
         <ul class="search__list list">
-          <!-- <li class="list__item"></li> -->
         </ul>
       </div>
       <div class="header__account account">
@@ -73,8 +62,6 @@
         <div class="burger-menu__overlay"></div>
       </div>
     </header>
-
-      <!-- Модальное окно -->
       <dialog class="dialog" id="windModal">
         <div class="dialog__close">
           <button class="dialog__close-btn" id="btnClose">&#10799;</button>
@@ -96,8 +83,7 @@
                   placeholder="Введите email..."
                   required
                 />
-  
-                <p
+                  <p
                   class="dialog-form__email-error error-text"
                   id="dialogEmailError"
                 ></p>
@@ -118,8 +104,7 @@
                   minlength="8"
                   required
                 />
-  
-                <p
+                  <p
                   class="dialog-form__password-error error-text"
                   id="dialogPasswError"
                 ></p>
@@ -128,17 +113,14 @@
                 <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
               </div>
             </form>
-  
-            <div class="dialog__block">
+              <div class="dialog__block">
               <p class="dialog__block-text">Новенький?</p>
               <a class="dialog__block-link" href="./registr.html"
                 >создай аккаунт</a
               >
             </div>
           </div>
-  
-          <!-- пользователь вводит свой email и кодовое слово -->
-          <div class="dialog__two-block check-input" id="examDate">
+           <div class="dialog__two-block check-input" id="examDate">
             <h5 class="dialog__text-title dialog-form">
               Введите почту и кодовое слово, которые Вы вводили при регистрации
             </h5>
@@ -156,8 +138,7 @@
                   placeholder="Введите email..."
                   required
                 />
-  
-                <p
+                  <p
                   class="dialog-form__err-email error-text"
                   id="secondEmailErr"
                 ></p>
@@ -175,8 +156,7 @@
                   minlength="2"
                   required
                 />
-  
-                <p
+                  <p
                   class="dialog-form__err-secret error-text"
                   id="secondSecretErr"
                 ></p>
@@ -188,10 +168,7 @@
               </div>
             </form>
           </div>
-  
-          <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
-  
-          <div class="dialog__three-block new-pass" id="replacePass">
+            <div class="dialog__three-block new-pass" id="replacePass">
             <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
             <form class="dialog-form__form" name="thirdForm" novalidate>
               <div class="dialog-form__password">
@@ -207,8 +184,7 @@
                   minlength="8"
                   required
                 />
-  
-                <p
+                  <p
                   class="dialog-form__err-password error-text"
                   id="thirdPasswordErr"
                 ></p>
@@ -228,8 +204,7 @@
                   minlength="8"
                   required
                 />
-  
-                <p
+                  <p
                   class="dialog-form__err-reappassword error-text"
                   id="thirdReappasswordErr"
                 ></p>
@@ -241,10 +216,7 @@
               </div>
             </form>
           </div>
-  
-          <!-- Новый пароль успешно зарегестрирован -->
-  
-          <div class="dialog__four-block ok-block">
+            <div class="dialog__four-block ok-block">
             <div class="ok-block__location">
               <p class="ok-block__text">Вы успешно изменилии пароль</p>
               <button class="ok-block__btn" id="newComwIn">
@@ -254,14 +226,12 @@
           </div>
         </div>
       </dialog>
-  
-      <div class="lk" id="lk">
+        <div class="lk" id="lk">
         <div class="container">
           <div class="lk__user user">
             <h2 class="user__title">Личный кабинет</h2>
           </div>
-  
-          <div class="lk__list list">
+            <div class="lk__list list">
             <div class="list__title title">
               <h3 class="title__header">Избранное:</h3>
             </div>
@@ -283,8 +253,7 @@
           </div>
         </dialog>
       </div>
-  
-      <script type="module" src="./src/personalaccount.js"></script>
+        <script type="module" src="./src/personalaccount.js"></script>
       <script type="module" src="./src/header.js"></script>
       <script type="module" src="./src/modal.js"></script>
     </body>

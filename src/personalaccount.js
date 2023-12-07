@@ -1,26 +1,20 @@
 import "./db";
 import * as db from './db';
-import MD5 from "crypto-js/md5";
-
 import {
   get
 } from './db'; // для работы с БД. Импорт функции из db
 
-
 document.addEventListener("DOMContentLoaded", function () {
-
-
-  
 const listInput = document.querySelector("#listInput");
 const listItem = document.querySelector(".list__title");
-let createListBtn = document.querySelector(".lk__btn");
-let modal = document.querySelector('.lk__modalList');
+const createListBtn = document.querySelector(".lk__btn");
+const modal = document.querySelector('.lk__modalList');
 const modalBox = document.getElementById('modal-box');
 const modalListBtn = document.querySelector('.modalList__btn');
 
 
 //открытие модалки
-let isModalOpen = false
+const isModalOpen = false
 createListBtn .addEventListener('click', (e) => {
   modal.showModal()
   isModalOpen = true
@@ -46,7 +40,7 @@ function createListItem(){
   let liItem = document.createElement('li');
   let linkItem = document.createElement('a');
   linkItem.href = '#'; 
- linkItem.innerHTML = inputValue;
+  linkItem.insertAdjacentHTML('beforeend', inputValue);
   liItem.appendChild(linkItem);
    listItem.appendChild(liItem);
    listInput.value = '';
@@ -90,7 +84,8 @@ try {
             method: "GET",
             headers: {
                 'content-type': "application/json",
-                'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+               // 'X-API-KEY': "4cb59c01-681c-4c05-bed7-5b173e7511c3",
+                'X-API-KEY': 'efb74c12-361f-4478-a2aa-d7214dd21813',
                                },
         });
         const data = await response.json();
@@ -107,34 +102,49 @@ try {
 
 
 
-let likeList = window.document.querySelector('.list__movieList');
+const likeList = window.document.querySelector('.list__movieList');
 
 function makeList(data) {
   const emptyList = document.querySelector(".list__empty");
 
   const item = document.createElement("div"); //создаем, например, див
 item.classList.add("content__item"); //здесь пишем необходимый класс этого дива
+let titleLink = '';
 
+    const filmTitle = data.nameRu || data.nameOriginal;
+    if (filmTitle !== null && filmTitle !== undefined) {
+        titleLink = `<a class="content__title" href="page-movie.html?id=${data.kinopoiskId}">${filmTitle}</a>`;
+    }
+
+    const imdbRating = data.ratingImdb !== null && data.ratingImdb !== undefined? data.ratingImdb : '-';
 
 const template =  `
 <div class="content__poster">
 <img src="${data.posterUrlPreview}" alt="poster" class="poster__img">
 </div>
 <div class="content__info">
- <h3 class="content__title"><a href="page-movie.html?id=${data.kinopoiskId}" class="favorites_title">${data.nameRu}</a></h3> 
+${titleLink}
  <div class="content__year">Год выхода фильма: ${data.year}</div>
  <div class="content__rating">Рейтинг по кинопоиску: ${data.ratingKinopoisk}</div>
- <div class="content__ratingImdb">Рейтинг по Imdb: ${data.ratingImdb}</div>
- <div class="filmFavContainer">
+ <div class="content__ratingImdb">Рейтинг по Imdb: ${imdbRating}</div>
+ <div class="content__favorite">
      <button class="content-button likeBtn" id="${data.kinopoiskId}">
          <span class="liked"></span>
      </button>
  </div>
  </div>
        ` 
-
-   item.innerHTML = template; //вставляем карточку в item
+// так как не соабаьывает перезод по ссылкеб добавим eventlistener
+  item.insertAdjacentHTML('beforeend', template); //вставляем карточку в item
   likeList.appendChild(item); // добавляем элемент в контейнер
+
+  const titleLinkElement = item.querySelector('.content__title');
+if (titleLinkElement) {
+    titleLinkElement.addEventListener('click', function (event) {
+        event.preventDefault(); 
+        window.location.href = titleLinkElement.getAttribute('href');
+    });
+}
 
   emptyList.style.display = "none";
 
@@ -201,15 +211,3 @@ async function setLike(user_id, film_id, state) {
   }
   updateFavoritesList(user_id);  // Обновление интерфейса после изменения данных в БД */
 }
-
-
- 
-     
-
-
-
-
-
-
-
-
